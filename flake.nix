@@ -40,6 +40,7 @@
                 thunderbird
                 keepassxc
                 mako # wayland notification daemon
+                sway-contrib.grimshot
                 # grim
                 # slurp # wayland screenshots
                 # wf-recorder
@@ -92,6 +93,15 @@
                   init.defaultBranch = "main";
                 };
               };
+              # programs.ssh = {
+              # enable = true;
+              # matchBlocks = {
+              # "github.com" = {
+              # hostname = "github.com";
+              # identityFile = "/home/stefan/.ssh/id_ed25519_github";
+              # };
+              # };
+              # };
 
               programs.home-manager.enable = true;
               # programs.nixvim = {
