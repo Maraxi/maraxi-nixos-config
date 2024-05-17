@@ -9,6 +9,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ../../system/greetd.nix
   ];
 
   nix = {
@@ -85,7 +86,8 @@
   users.users.stefan = {
     isNormalUser = true;
     extraGroups = ["wheel" "audio" "video" "scanner" "lp"];
-    shell = pkgs.nushell;
+    # shell = pkgs.nushell;
+    shell = pkgs.bash;
   };
 
   environment.systemPackages = with pkgs; [
