@@ -85,6 +85,7 @@
   users.users.stefan = {
     isNormalUser = true;
     extraGroups = ["wheel" "audio" "video" "scanner" "lp"];
+    shell = pkgs.nushell;
   };
 
   environment.systemPackages = with pkgs; [
