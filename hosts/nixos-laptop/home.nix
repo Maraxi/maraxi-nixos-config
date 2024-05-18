@@ -1,8 +1,32 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}:
+# let
+# nixvim = import (builtins.fetchGit {
+# url = "https://github.com/nix-community/nixvim";
+# If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
+# ref = "nixos-23.05";
+# });
+# in
+{
   imports = [
     ../../user/alacritty.nix
     ../../user/sway.nix
+    # nixvim.homeManagerModules.nixvim
   ];
+  # inputs.nixvim.homeManagermodules.nixvim.enable = true;
+  programs.nixvim.enable = true;
+  programs.nixvim = {
+    opts = {
+      number = true;
+      relativenumber = true;
+      list = true;
+    };
+  };
+
+  # programs.nixvim.enable = true;
   home.username = "stefan";
   home.homeDirectory = "/home/stefan";
   home.keyboard = {
