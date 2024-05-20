@@ -1,4 +1,15 @@
 {pkgs, ...}: {
+  home.packages = with pkgs; [
+    mako # wayland notification daemon
+    sway-contrib.grimshot
+    # grim
+    # slurp # wayland screenshots
+    # wf-recorder
+    # kanshi # hot switching output profiles
+    wl-clipboard # wayland clipboard
+    # shotman # wayland screenshots
+    # flameshot
+  ];
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = false;

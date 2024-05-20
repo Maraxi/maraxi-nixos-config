@@ -31,34 +31,28 @@
     librewolf
     thunderbird
     keepassxc
-    mako # wayland notification daemon
-    sway-contrib.grimshot
-    # grim
-    # slurp # wayland screenshots
-    # wf-recorder
-    # kanshi # hot switching output profiles
-    wl-clipboard # wayland clipboard
-    # shotman # wayland screenshots
-    # flameshot
     simple-scan
+    feh
+
+    appimage-run
+    pavucontrol
+
+    python313
+
+    glances
+    htop
+    btop
+
     tree
     ripgrep
     fd
-    feh
-    glances
-    python313
     neofetch
-    htop
-    btop
     fclones
     pciutils
     wget
     lsof
-    unzip
+    atool
     alejandra
-    pavucontrol
-    # hello
-    appimage-run
   ];
   home.sessionPath = ["$HOME/bin"];
 
