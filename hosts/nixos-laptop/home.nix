@@ -54,6 +54,7 @@
     pciutils
     wget
     lsof
+    unzip
     alejandra
     pavucontrol
     # hello
@@ -86,14 +87,6 @@
     # };
   };
   # home.sessionVariables.GTK_THEME = "Tokyonight-Moon";
-  programs.git = {
-    enable = true;
-    userName = "Maraxi";
-    userEmail = "Maraxi@users.noreply.github.com";
-    extraConfig = {
-      init.defaultBranch = "main";
-    };
-  };
   # programs.ssh = {
   # enable = true;
   # matchBlocks = {
