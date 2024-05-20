@@ -14,19 +14,11 @@
   imports = [
     ../../user/alacritty.nix
     ../../user/sway.nix
-    # nixvim.homeManagerModules.nixvim
+    ../../user/shells.nix
+    ../../user/git.nix
   ];
-  # inputs.nixvim.homeManagermodules.nixvim.enable = true;
-  programs.nixvim.enable = true;
-  programs.nixvim = {
-    opts = {
-      number = true;
-      relativenumber = true;
-      list = true;
-    };
-  };
+  programs.home-manager.enable = true;
 
-  # programs.nixvim.enable = true;
   home.username = "stefan";
   home.homeDirectory = "/home/stefan";
   home.keyboard = {
@@ -55,9 +47,9 @@
     feh
     glances
     python313
-    fzf
     neofetch
     htop
+    btop
     fclones
     pciutils
     wget
@@ -68,6 +60,15 @@
     appimage-run
   ];
   home.sessionPath = ["$HOME/bin"];
+
+  programs.nixvim.enable = true;
+  programs.nixvim = {
+    opts = {
+      number = true;
+      relativenumber = true;
+      list = true;
+    };
+  };
 
   gtk = {
     enable = true;
@@ -85,46 +86,6 @@
     # };
   };
   # home.sessionVariables.GTK_THEME = "Tokyonight-Moon";
-  programs.bash.enable = true;
-  programs.nushell = {
-    enable = true;
-    # for editing directly to config.nu
-    extraConfig = ''
-      # let carapace_completer = {|spans|
-      # carapace $spans.0 nushell $spans | from json
-      # }
-      $env.config = {
-       show_banner: false,
-       # completions: {
-       # case_sensitive: false # case-sensitive completions
-       # quick: true    # set to false to prevent auto-selecting completions
-       # partial: true    # set to false to prevent partial filling of the prompt
-       # algorithm: "fuzzy"    # prefix or fuzzy
-       # external: {
-       # set to false to prevent nushell looking into $env.PATH to find more suggestions
-           # enable: true
-       # set to lower can improve completion performance at the cost of omitting some options
-           # max_results: 100
-           # completer: $carapace_completer # check 'carapace_completer'
-         # }
-       # }
-      }
-      # $env.PATH = ($env.PATH |
-      # split row (char esep) |
-      # prepend /home/myuser/.apps |
-      # append /usr/bin/env
-      # )
-    '';
-    # shellAliases = {
-    # vi = "hx";
-    # vim = "hx";
-    # nano = "hx";
-    # };
-  };
-  # programs.carapace = {
-  # enable = true;
-  # enableNushellIntegration = true;
-  # };
   programs.git = {
     enable = true;
     userName = "Maraxi";
@@ -142,26 +103,6 @@
   # };
   # };
   # };
-
-  programs.home-manager.enable = true;
-  # programs.nixvim = {
-  # opts = {
-  # number = true;
-  # };
-  # };
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    options = ["--cmd" "cd"];
-  };
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true;
-  };
 
   home.stateVersion = "24.05";
 }
