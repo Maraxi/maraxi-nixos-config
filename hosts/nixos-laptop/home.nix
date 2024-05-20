@@ -52,6 +52,7 @@
     wget
     lsof
     atool
+    unzip
     alejandra
   ];
   home.sessionPath = ["$HOME/bin"];
