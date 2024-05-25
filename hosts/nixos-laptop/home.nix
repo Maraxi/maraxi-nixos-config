@@ -53,6 +53,7 @@
     lsof
     atool
     unzip
+    zip
     alejandra
   ];
   home.sessionPath = ["$HOME/bin"];
