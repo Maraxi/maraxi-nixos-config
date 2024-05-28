@@ -69,9 +69,9 @@
   };
 
   # dconf.settings = {
-    # "org.gnome.nautilus.preferences" = {
-      # thumbnail-limit = 1000000000;
-    # };
+  # "org.gnome.nautilus.preferences" = {
+  # thumbnail-limit = 1000000000;
+  # };
   # };
 
   gtk = {

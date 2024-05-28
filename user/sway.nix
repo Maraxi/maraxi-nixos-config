@@ -37,6 +37,42 @@
       defaultWorkspace = "workspace number 1";
       focus.followMouse = false;
       focus.mouseWarping = false;
+      colors = let
+        cl_high = "#080899";
+        cl_indi = "#d9d8d8";
+        cl_back = "#231f20";
+        cl_fore = "#d9d8d8";
+        cl_urge = "#ff69b4";
+      in {
+        focused = {
+          background = "${cl_high}";
+          border = "${cl_high}";
+          text = "${cl_fore}";
+          indicator = "${cl_indi}";
+          childBorder = "${cl_back}";
+        };
+        focusedInactive = {
+          background = "${cl_back}";
+          border = "${cl_back}";
+          text = "${cl_fore}";
+          indicator = "${cl_back}";
+          childBorder = "${cl_back}";
+        };
+        unfocused = {
+          background = "${cl_back}";
+          border = "${cl_back}";
+          text = "${cl_fore}";
+          indicator = "${cl_back}";
+          childBorder = "${cl_back}";
+        };
+        urgent = {
+          background = "${cl_urge}";
+          border = "${cl_urge}";
+          text = "${cl_fore}";
+          indicator = "${cl_urge}";
+          childBorder = "${cl_urge}";
+        };
+      };
       output = {
         # swaymsg -t get_outputs
         eDP-1 = {
@@ -109,6 +145,10 @@
         "${modifier}+r" = "mode resize";
 
         "${modifier}+i" = "exec ${pkgs.firefox.outPath}/bin/firefox";
+      };
+      assigns = {
+        "8" = [{class = "^thunderbird$";}];
+        "9" = [{class = "^KeePassXC$";}];
       };
     };
     extraConfig = ''
