@@ -87,6 +87,7 @@
       };
       keybindings = let
         cfg = config.wayland.windowManager.sway.config;
+        meh = "${modifier}+Ctrl+Shift";
       in {
         "${modifier}+Return" = "exec ${terminal}";
         "${modifier}+Shift+q" = "kill";
@@ -142,9 +143,9 @@
         "${modifier}+Shift+c" = "reload";
         "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
-        "${modifier}+r" = "mode resize";
-
-        "${modifier}+i" = "exec ${pkgs.firefox.outPath}/bin/firefox";
+        "${meh}+r" = "mode resize";
+        "${meh}+a" = "mode $mode_applications";
+        "${modifier}+o" = "mode $mode_power";
       };
       assigns = {
         "8" = [{class = "^thunderbird$";}];
@@ -152,12 +153,20 @@
       };
     };
     extraConfig = ''
-      bindsym Mod1+Ctrl+Shift+t exec thunderbird
-      set $mode_power "Power: [h]ibernate [s]uspend"
-      bindsym Mod1+o mode $mode_power
+      set $mode_applications "[t]hunderbird [l]ibrewolf [k]eepass"
+      mode $mode_applications {
+        bindsym t exec ${pkgs.thunderbird}/bin/thunderbird
+        bindsym l exec ${pkgs.librewolf}/bin/librewolf
+        bindsym k exec ${pkgs.keepassxc}/bin/keepassxc
+        bindsym Return mode default
+        bindsym Escape mode default
+      }
+      set $mode_power "Power: [h]ibernate [s]uspend [l]ogout [p]oweroff"
       mode $mode_power {
         bindsym h exec systemctl hibernate, mode default
         bindsym s exec systemctl suspend, mode default
+        bindsym l swaymsg exit
+        bindsym p exec poweroff
         bindsym Return mode default
         bindsym Escape mode default
       }
