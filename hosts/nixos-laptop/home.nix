@@ -28,6 +28,7 @@
   };
   home.packages = with pkgs; [
     cinnamon.nemo
+    xfce.thunar
     librewolf
     thunderbird
     keepassxc
@@ -66,6 +67,12 @@
       list = true;
     };
   };
+
+  # dconf.settings = {
+    # "org.gnome.nautilus.preferences" = {
+      # thumbnail-limit = 1000000000;
+    # };
+  # };
 
   gtk = {
     enable = true;
