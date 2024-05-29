@@ -19,6 +19,9 @@
   ];
   programs.home-manager.enable = true;
 
+  catppuccin.enable = true;
+  catppuccin.flavor = "mocha";
+
   home.username = "stefan";
   home.homeDirectory = "/home/stefan";
   home.keyboard = {
