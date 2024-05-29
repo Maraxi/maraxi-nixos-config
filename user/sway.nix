@@ -90,30 +90,28 @@
         meh = "${modifier}+Ctrl+Shift";
       in {
         "${modifier}+Return" = "exec ${terminal}";
-        "${modifier}+Shift+q" = "kill";
         "${modifier}+d" = "exec ${cfg.menu}";
+        "${modifier}+Shift+q" = "kill";
 
         "${modifier}+${cfg.left}" = "focus left";
         "${modifier}+${cfg.down}" = "focus down";
         "${modifier}+${cfg.up}" = "focus up";
         "${modifier}+${cfg.right}" = "focus right";
 
-        "${modifier}+Shift+${cfg.left}" = "move left";
+        "${modifier}+Shift+${cfg.left}" = "move workspace to output left";
         "${modifier}+Shift+${cfg.down}" = "move down";
         "${modifier}+Shift+${cfg.up}" = "move up";
-        "${modifier}+Shift+${cfg.right}" = "move right";
+        "${modifier}+Shift+${cfg.right}" = "move workspace to output right";
 
         "${modifier}+b" = "splith";
         "${modifier}+v" = "splitv";
-        "${modifier}+f" = "fullscreen toggle";
         "${modifier}+a" = "focus parent";
 
-        "${modifier}+s" = "layout stacking";
-        "${modifier}+w" = "layout tabbed";
-        "${modifier}+e" = "layout toggle split";
+        "${modifier}+e" = "layout toggle tabbed splith";
 
-        "${modifier}+Shift+space" = "floating toggle";
-        "${modifier}+space" = "focus mode_toggle";
+        "${meh}+f" = "fullscreen toggle";
+        "${meh}+l" = "floating toggle";
+        "${meh}+o" = "focus mode_toggle";
 
         "${modifier}+1" = "workspace number 1";
         "${modifier}+2" = "workspace number 2";
@@ -137,19 +135,21 @@
         "${modifier}+Shift+9" = "move container to workspace number 9";
         "${modifier}+Shift+0" = "move container to workspace number 10";
 
-        "${modifier}+Shift+minus" = "move scratchpad";
-        "${modifier}+minus" = "scratchpad show";
+        "${modifier}+Shift+comma" = "move scratchpad";
+        "${modifier}+comma" = "scratchpad show";
+
+        "${modifier}+Tab" = "workspace back_and_forth";
 
         "${modifier}+Shift+c" = "reload";
-        "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
 
         "${meh}+r" = "mode resize";
         "${meh}+a" = "mode $mode_applications";
         "${modifier}+o" = "mode $mode_power";
       };
       assigns = {
-        "8" = [{class = "^thunderbird$";}];
-        "9" = [{class = "^KeePassXC$";}];
+        # swaymsg -t get_tree
+        "8" = [{app_id = "^thunderbird$";}];
+        "9" = [{title = "^KeeData.kdbx";}];
       };
     };
     extraConfig = ''
@@ -163,10 +163,10 @@
       }
       set $mode_power "Power: [h]ibernate [s]uspend [l]ogout [p]oweroff"
       mode $mode_power {
-        bindsym h exec systemctl hibernate, mode default
-        bindsym s exec systemctl suspend, mode default
-        bindsym l swaymsg exit
-        bindsym p exec poweroff
+        bindsym h exec --no-startup-id systemctl hibernate, mode default
+        bindsym s exec --no-startup-id systemctl suspend, mode default
+        bindsym l exit
+        bindsym p exec --no-startup-id poweroff
         bindsym Return mode default
         bindsym Escape mode default
       }
