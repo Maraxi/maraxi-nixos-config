@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }:
 # let
@@ -19,7 +20,7 @@
   ];
   programs.home-manager.enable = true;
 
-  catppuccin.enable = true;
+  gtk.catppuccin.enable = true;
   catppuccin.flavor = "mocha";
 
   home.username = "stefan";
@@ -71,11 +72,12 @@
     };
   };
 
-  # dconf.settings = {
-  # "org.gnome.nautilus.preferences" = {
-  # thumbnail-limit = 1000000000;
-  # };
-  # };
+  dconf.settings = {
+    "org/nemo/preferences" = {
+      show-hidden-files = true;
+      thumbnail-limit = lib.hm.gvariant.mkUint64 1073741824;
+    };
+  };
 
   gtk = {
     enable = true;
