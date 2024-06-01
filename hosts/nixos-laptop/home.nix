@@ -95,15 +95,6 @@
       };
     };
   };
-  # programs.ssh = {
-  # enable = true;
-  # matchBlocks = {
-  # "github.com" = {
-  # hostname = "github.com";
-  # identityFile = "/home/stefan/.ssh/id_ed25519_github";
-  # };
-  # };
-  # };
 
   home.stateVersion = "24.05";
 }
