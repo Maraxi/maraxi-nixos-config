@@ -20,9 +20,6 @@
   ];
   programs.home-manager.enable = true;
 
-  gtk.catppuccin.enable = true;
-  catppuccin.flavor = "mocha";
-
   home.username = "stefan";
   home.homeDirectory = "/home/stefan";
   home.keyboard = {
@@ -72,6 +69,10 @@
     };
   };
 
+  gtk.enable = true;
+  gtk.catppuccin.enable = true;
+  catppuccin.flavor = "mocha";
+
   dconf.settings = {
     "org/nemo/preferences" = {
       show-hidden-files = true;
@@ -79,22 +80,21 @@
     };
   };
 
-  gtk = {
+  programs.ssh = {
     enable = true;
-    # gtk3.extraConfig.gtk-decoration-layout = "menu:";
-    # theme.package = pkgs.solarc-gtk-theme;
-    # theme.name = "SolArc-Dark";
-    # theme = {
-    # name = "Storm-B";
-    # package = pkgs.tokyonight-gtk-theme;
-    # };
-    # iconTheme.name = "Tokyonight-Moon";
-    # cursorTheme = {
-    # name = "gtkCursorTheme";
-    # package = pkgs.bibata-cursors;
-    # };
+    compression = true;
+    matchBlocks = {
+      "pi" = {
+        hostname = "192.168.178.45";
+        user = "stefan";
+        port = 36969;
+        identityFile = "/home/stefan/.ssh/id_ed25519_raspberrypi";
+      };
+      "github.com" = {
+        identityFile = "/home/stefan/.ssh/id_ed25519_github";
+      };
+    };
   };
-  # home.sessionVariables.GTK_THEME = "Tokyonight-Moon";
   # programs.ssh = {
   # enable = true;
   # matchBlocks = {

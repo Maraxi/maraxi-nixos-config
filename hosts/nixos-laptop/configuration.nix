@@ -90,6 +90,8 @@
     shell = pkgs.bash;
   };
 
+  environment.variables.EDITOR = "nvim";
+
   environment.systemPackages = with pkgs; [
     neovim
     vim
