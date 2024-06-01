@@ -69,6 +69,15 @@
     };
   };
 
+  programs.ripgrep = {
+    enable = true;
+    arguments = [
+      "--smart-case"
+      "--max-columns-preview"
+      "--max-columns=80"
+    ];
+  };
+
   gtk.enable = true;
   gtk.catppuccin.enable = true;
   catppuccin.flavor = "mocha";
