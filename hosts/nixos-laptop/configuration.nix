@@ -14,6 +14,10 @@
 
   nix.package = pkgs.nixFlakes;
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  # nixpkgs.config = {
+  # allowBroken = true;
+  # allowUnfree = true;
+  # };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -53,10 +57,6 @@
 
   # Enable sound.
   sound.enable = false;
-  # nixpkgs.config = {
-  # allowBroken = true;
-  # allowUnfree = true;
-  # };
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
