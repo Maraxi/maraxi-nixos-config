@@ -144,6 +144,7 @@
 
         "${meh}+r" = "mode resize";
         "${meh}+a" = "mode $mode_applications";
+        "${modifier}+s" = "mode $mode_sound";
         "${modifier}+o" = "mode $mode_power";
       };
       assigns = {
@@ -158,6 +159,14 @@
         bindsym t exec ${pkgs.thunderbird}/bin/thunderbird
         bindsym l exec ${pkgs.librewolf}/bin/librewolf
         bindsym k exec ${pkgs.keepassxc}/bin/keepassxc
+        bindsym Return mode default
+        bindsym Escape mode default
+      }
+      set $mode_sound "[m]ute [u]p [d]own"
+      mode $mode_sound {
+        bindsym m exec ${pkgs.pamixer}/bin/pamixer -t
+        bindsym u exec ${pkgs.pamixer}/bin/pamixer -i 3
+        bindsym d exec ${pkgs.pamixer}/bin/pamixer -d 3
         bindsym Return mode default
         bindsym Escape mode default
       }
