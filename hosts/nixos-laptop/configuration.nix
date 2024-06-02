@@ -12,13 +12,7 @@
     ../../system/greetd.nix
   ];
 
-  nix = {
-    package = pkgs.nixFlakes;
-    # extraOptions = ''
-    # experimental-features = nix-command flakes
-    # '';
-  };
-
+  nix.package = pkgs.nixFlakes;
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Use the systemd-boot EFI boot loader.
@@ -59,11 +53,7 @@
 
   # Enable sound.
   sound.enable = false;
-  # hardware.pulseaudio.enable = true;
-  # hardware.pulseaudio.support32Bit = true;
-  # hardware.pulseaudio.package = pkgs.pulseaudioFull;
   # nixpkgs.config = {
-  # pulseaudio = true;
   # allowBroken = true;
   # allowUnfree = true;
   # };
