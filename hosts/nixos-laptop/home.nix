@@ -78,8 +78,13 @@
     ];
   };
 
+  # catppuccin.enable = true;
   gtk.enable = true;
-  gtk.catppuccin.enable = true;
+  gtk.catppuccin = {
+    enable = true;
+    icon.enable = true;
+  };
+
   catppuccin.flavor = "mocha";
 
   dconf.settings = {
