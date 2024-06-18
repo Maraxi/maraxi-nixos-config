@@ -146,6 +146,8 @@
         "${meh}+a" = "mode $mode_applications";
         "${modifier}+s" = "mode $mode_sound";
         "${modifier}+o" = "mode $mode_power";
+
+        "${modifier}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\"; mode $mode_record";
       };
       assigns = {
         # swaymsg -t get_tree
@@ -161,6 +163,10 @@
         bindsym k exec ${pkgs.keepassxc}/bin/keepassxc
         bindsym Return mode default
         bindsym Escape mode default
+      }
+      set $mode_record "Recording Ctrl+Esc to quit"
+      mode $mode_record {
+        bindsym Ctrl+Escape exec pkill -SIGINT wf-recorder; mode default
       }
       set $mode_sound "[m]ute [u]p [d]own"
       mode $mode_sound {
