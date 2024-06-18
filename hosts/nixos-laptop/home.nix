@@ -78,6 +78,15 @@
     ];
   };
 
+  # xdg-portals for screen sharing
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-wlr];
+    config = {
+      common.default = ["wlr"];
+    };
+  };
+
   # catppuccin.enable = true;
   gtk.enable = true;
   gtk.catppuccin = {
