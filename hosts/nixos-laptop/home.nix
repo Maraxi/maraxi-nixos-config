@@ -94,7 +94,16 @@
     icon.enable = true;
   };
 
+  # catppuccin.pointerCursor.enable = true;
+  # catppuccin.pointerCursor.accent = "pink";
   catppuccin.flavor = "mocha";
+
+  # home.pointerCursor = {
+  # gtk.enable = true;
+  # name = "Catppuccin-Mocha-Dark-Cursors";
+  # package = pkgs.catppuccin-cursors.mochaDark;
+  # size = 16;
+  # };
 
   dconf.settings = {
     "org/nemo/preferences" = {
