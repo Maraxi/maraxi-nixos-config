@@ -60,14 +60,14 @@
   ];
   home.sessionPath = ["$HOME/bin"];
 
-  programs.nixvim.enable = true;
-  programs.nixvim = {
-    opts = {
-      number = true;
-      relativenumber = true;
-      list = true;
-    };
-  };
+  # programs.nixvim.enable = true;
+  # programs.nixvim = {
+    # opts = {
+      # number = true;
+      # relativenumber = true;
+      # list = true;
+    # };
+  # };
 
   programs.ripgrep = {
     enable = true;
