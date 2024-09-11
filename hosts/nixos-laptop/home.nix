@@ -45,9 +45,12 @@
     htop
     btop
 
+    gcc
+    gnumake
     tree
     ripgrep
     fd
+    difftastic
     neofetch
     fclones
     pciutils
