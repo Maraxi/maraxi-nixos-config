@@ -42,6 +42,8 @@
         };
         "type:keyboard" = {
           xkb_layout = "de";
+          xkb_variant = "nodeadkeys";
+          xkb_options = "caps:escape_shifted_capslock,compose:sclk";
         };
       };
       workspaceLayout = "tabbed";
