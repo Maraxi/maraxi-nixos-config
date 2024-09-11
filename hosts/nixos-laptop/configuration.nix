@@ -57,7 +57,7 @@
   services.avahi.openFirewall = true;
 
   # Enable sound.
-  sound.enable = false;
+  # sound.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
