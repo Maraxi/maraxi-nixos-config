@@ -89,10 +89,20 @@
 
   # catppuccin.enable = true;
   gtk.enable = true;
-  gtk.catppuccin = {
-    enable = true;
-    icon.enable = true;
+  gtk.theme = {
+    name = "Dracula";
+    package = pkgs.dracula-theme;
   };
+  gtk.iconTheme = {
+    # name = "Dracula";
+    # package = pkgs.dracula-icon-theme;
+    name = "Material-Black-Plum-Suru";
+    package = pkgs.material-black-colors;
+  };
+  # gtk.catppuccin = {
+  # enable = true;
+  # icon.enable = true;
+  # };
 
   # catppuccin.pointerCursor.enable = true;
   # catppuccin.pointerCursor.accent = "pink";
