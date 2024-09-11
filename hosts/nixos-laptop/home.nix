@@ -28,7 +28,7 @@
     options = "caps:escape_shifted_capslock";
   };
   home.packages = with pkgs; [
-    cinnamon.nemo
+    nemo
     xfce.thunar
     librewolf
     thunderbird
