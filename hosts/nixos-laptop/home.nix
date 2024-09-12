@@ -73,22 +73,23 @@
     };
   };
 
-  gtk.enable = true;
-  gtk.theme = {
-    name = "Dracula";
-    package = pkgs.dracula-theme;
-  };
-  gtk.iconTheme = {
-    # name = "Dracula";
-    # package = pkgs.dracula-icon-theme;
-    # name = "Material-Black-Plum-Suru";
-    name = "MB-Plum-Suru-GLOW";
-    package = pkgs.material-black-colors;
-  };
-
-  gtk.cursorTheme = {
-    name = "volantes_cursors";
-    package = pkgs.volantes-cursors;
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+    };
+    iconTheme = {
+      # name = "Dracula";
+      # package = pkgs.dracula-icon-theme;
+      # name = "Material-Black-Plum-Suru";
+      name = "MB-Plum-Suru-GLOW";
+      package = pkgs.material-black-colors;
+    };
+    cursorTheme = {
+      name = "volantes_cursors";
+      package = pkgs.volantes-cursors;
+    };
   };
 
   dconf.settings = {
