@@ -90,7 +90,6 @@
     };
   };
 
-  # catppuccin.enable = true;
   gtk.enable = true;
   gtk.theme = {
     name = "Dracula";
@@ -103,22 +102,7 @@
     name = "MB-Plum-Suru-GLOW";
     package = pkgs.material-black-colors;
   };
-  # gtk.catppuccin = {
-  # enable = true;
-  # icon.enable = true;
-  # };
 
-  # catppuccin.pointerCursor.enable = true;
-  # catppuccin.pointerCursor.accent = "pink";
-  catppuccin.flavor = "mocha";
-
-  # home.pointerCursor = {
-  # gtk.enable = true;
-  # x11.enable = true;
-  # name = "catppuccin-mocha-dark-cursors";
-  # package = pkgs.catppuccin-cursors.mochaDark;
-  # size = 16;
-  # };
   gtk.cursorTheme = {
     name = "volantes_cursors";
     package = pkgs.volantes-cursors;
