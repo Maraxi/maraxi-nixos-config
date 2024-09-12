@@ -3,15 +3,7 @@
   inputs,
   lib,
   ...
-}:
-# let
-# nixvim = import (builtins.fetchGit {
-# url = "https://github.com/nix-community/nixvim";
-# If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
-# ref = "nixos-23.05";
-# });
-# in
-{
+}: {
   imports = [
     ../../user/alacritty.nix
     ../../user/sway.nix
@@ -62,15 +54,6 @@
     alejandra
   ];
   home.sessionPath = ["$HOME/bin"];
-
-  # programs.nixvim.enable = true;
-  # programs.nixvim = {
-    # opts = {
-      # number = true;
-      # relativenumber = true;
-      # list = true;
-    # };
-  # };
 
   programs.ripgrep = {
     enable = true;
