@@ -111,11 +111,16 @@
   # catppuccin.pointerCursor.accent = "pink";
   catppuccin.flavor = "mocha";
 
-  home.pointerCursor = {
-  gtk.enable = true;
-  name = "Catppuccin-Mocha-Dark-Cursors";
-  package = pkgs.catppuccin-cursors.mochaDark;
-  size = 16;
+  # home.pointerCursor = {
+  # gtk.enable = true;
+  # x11.enable = true;
+  # name = "catppuccin-mocha-dark-cursors";
+  # package = pkgs.catppuccin-cursors.mochaDark;
+  # size = 16;
+  # };
+  gtk.cursorTheme = {
+    name = "volantes_cursors";
+    package = pkgs.volantes-cursors;
   };
 
   dconf.settings = {
