@@ -99,7 +99,8 @@
   gtk.iconTheme = {
     # name = "Dracula";
     # package = pkgs.dracula-icon-theme;
-    name = "Material-Black-Plum-Suru";
+    # name = "Material-Black-Plum-Suru";
+    name = "MB-Plum-Suru-GLOW";
     package = pkgs.material-black-colors;
   };
   # gtk.catppuccin = {
