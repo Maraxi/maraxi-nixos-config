@@ -1,0 +1,2 @@
+#env
+LESS = --ignore-case --jump-target=.2 --SEARCH-SKIP-SCREEN --LONG-PROMPT --RAW-CONTROL-CHARS --QUIET --quit-if-one-screen
