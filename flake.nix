@@ -17,7 +17,11 @@
     nixpkgs,
     home-manager,
     ...
-  }: {
+  }: let
+    setup = {
+      isNixOS = false;
+    };
+  in {
     homeConfigurations."iv546" = home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         system = "x86_64-linux";
@@ -27,6 +31,7 @@
       ];
       extraSpecialArgs = {
         inherit inputs;
+        setup = setup;
       };
     };
     nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
@@ -42,6 +47,8 @@
               ./hosts/nixos-laptop/home.nix
             ];
           };
+          # todo: Add extraSpecialArgs
+          # with setup = setup // {isNixOs = true;};
         }
       ];
     };
