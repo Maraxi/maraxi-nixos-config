@@ -11,6 +11,7 @@
     ../../user/shells.nix
     ../../user/git.nix
     ../../user/gtk.nix
+    ../../user/packages.nix
   ];
   programs.home-manager.enable = true;
 
@@ -21,40 +22,6 @@
     variant = "nodeadkeys";
     options = "caps:escape_shifted_capslock";
   };
-  home.packages = with pkgs; [
-    nemo
-    xfce.thunar
-    librewolf
-    thunderbird
-    keepassxc
-    simple-scan
-    feh
-
-    appimage-run
-    pavucontrol
-
-    python313
-
-    glances
-    htop
-    btop
-
-    gcc
-    gnumake
-    tree
-    ripgrep
-    fd
-    difftastic
-    neofetch
-    fclones
-    pciutils
-    wget
-    lsof
-    atool
-    unzip
-    zip
-    alejandra
-  ];
 
   programs.ripgrep = {
     enable = true;

@@ -10,6 +10,7 @@
     ../../user/shells.nix
     ../../user/git.nix
     ../../user/gtk.nix
+    ../../user/packages.nix
     (builtins.fetchurl {
       url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
       sha256 = "01dkfr9wq3ib5hlyq9zq662mp0jl42fw3f6gd2qgdf8l8ia78j7i";
@@ -19,22 +20,6 @@
     username = "iv546";
     homeDirectory = "/home/iv546";
     stateVersion = "24.05";
-
-    packages = [
-      pkgs.alejandra
-
-      # # overrides. You can do that directly here, just don't forget the
-      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-      # # fonts?
-      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-    ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
