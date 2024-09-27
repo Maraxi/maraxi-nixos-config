@@ -1,6 +1,7 @@
 {
   pkgs,
   setup,
+  lib,
   ...
 }: {
   home.packages = let
@@ -20,7 +21,6 @@
       gcc
       gnumake
       tree
-      ripgrep
       fd
       difftastic
       neofetch
@@ -58,6 +58,22 @@
     all_packages = basic_pkgs ++ full_install_pkgs;
   in
     all_packages;
+
+  programs.ripgrep = {
+    enable = true;
+    arguments = [
+      "--smart-case"
+      "--max-columns-preview"
+      "--max-columns=80"
+    ];
+  };
+
+  dconf.settings = {
+    "org/nemo/preferences" = {
+      show-hidden-files = true;
+      thumbnail-limit = lib.hm.gvariant.mkUint64 1073741824;
+    };
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

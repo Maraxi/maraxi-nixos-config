@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  lib,
   ...
 }: {
   imports = [
@@ -27,28 +26,12 @@
     stateVersion = "24.05";
   };
 
-  programs.ripgrep = {
-    enable = true;
-    arguments = [
-      "--smart-case"
-      "--max-columns-preview"
-      "--max-columns=80"
-    ];
-  };
-
   # xdg-portals for screen sharing
   xdg.portal = {
     enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-wlr];
     config = {
       common.default = ["wlr"];
-    };
-  };
-
-  dconf.settings = {
-    "org/nemo/preferences" = {
-      show-hidden-files = true;
-      thumbnail-limit = lib.hm.gvariant.mkUint64 1073741824;
     };
   };
 
