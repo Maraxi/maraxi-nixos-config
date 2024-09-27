@@ -7,8 +7,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs @ {
-    self,
+  outputs = {
     nixpkgs,
     home-manager,
     ...
