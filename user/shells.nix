@@ -3,9 +3,14 @@
   programs.readline = {
     enable = true;
     variables = {
+      colored-stats = true;
       completion-ignore-case = true;
-      match-hidden-files = true;
+      completion-prefix-display-length = 3;
       mark-symlinked-directories = true;
+      match-hidden-files = true;
+      show-all-if-ambiguous = true;
+      show-all-if-unmodified = true;
+      visible-stats = true;
     };
   };
   programs.nushell = {
