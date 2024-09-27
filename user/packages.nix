@@ -79,5 +79,6 @@
   # plain files is through 'home.file'.
   home.file = {
     ".config/lesskey".source = dotfiles/lesskey;
+    ".config/htop/htoprc".source = dotfiles/htoprc;
   };
 }
