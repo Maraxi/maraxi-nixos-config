@@ -4,6 +4,8 @@
   ...
 }: {
   imports = [
+    ../../user/alacritty.nix
+    ../../user/shells.nix
     ../../user/git.nix
   ];
   home = {
