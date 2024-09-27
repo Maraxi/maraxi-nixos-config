@@ -6,6 +6,7 @@
 }: {
   imports = [
     ../../user/alacritty.nix
+    ../../user/environment.nix
     ../../user/sway.nix
     ../../user/shells.nix
     ../../user/git.nix
@@ -53,7 +54,6 @@
     zip
     alejandra
   ];
-  home.sessionPath = ["$HOME/bin"];
 
   programs.ripgrep = {
     enable = true;
