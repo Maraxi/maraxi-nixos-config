@@ -43,29 +43,6 @@
   };
   programs.home-manager.enable = true;
 
-  programs.bash.enable = true;
-  programs.readline = {
-    enable = true;
-    variables = {
-      completion-ignore-case = true;
-      match-hidden-files = true;
-      mark-symlinked-directories = true;
-    };
-  };
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    options = ["--cmd" "cd"];
-  };
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-
   gtk = {
     enable = true;
     theme = {
