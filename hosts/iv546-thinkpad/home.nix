@@ -16,6 +16,9 @@
       sha256 = "01dkfr9wq3ib5hlyq9zq662mp0jl42fw3f6gd2qgdf8l8ia78j7i";
     })
   ];
+
+  programs.home-manager.enable = true;
+
   home = {
     username = "iv546";
     homeDirectory = "/home/iv546";
@@ -26,7 +29,6 @@
     };
     stateVersion = "24.05";
   };
-  programs.home-manager.enable = true;
 
   nixGL.prefix = "${inputs.nixGL.packages."${pkgs.system}".nixGLIntel}/bin/nixGLIntel";
   programs.alacritty.package = config.lib.nixGL.wrap pkgs.alacritty;

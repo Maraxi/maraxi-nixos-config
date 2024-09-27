@@ -13,6 +13,7 @@
     ../../user/shells.nix
     ../../user/sway.nix
   ];
+
   programs.home-manager.enable = true;
 
   home = {
