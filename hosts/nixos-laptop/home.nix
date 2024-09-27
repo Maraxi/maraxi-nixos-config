@@ -7,11 +7,11 @@
   imports = [
     ../../user/alacritty.nix
     ../../user/environment.nix
-    ../../user/sway.nix
-    ../../user/shells.nix
     ../../user/git.nix
     ../../user/gtk.nix
     ../../user/packages.nix
+    ../../user/shells.nix
+    ../../user/sway.nix
   ];
   programs.home-manager.enable = true;
 
