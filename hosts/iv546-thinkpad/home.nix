@@ -6,6 +6,7 @@
 }: {
   imports = [
     ../../user/alacritty.nix
+    ../../user/environment.nix
     ../../user/shells.nix
     ../../user/git.nix
     (builtins.fetchurl {
