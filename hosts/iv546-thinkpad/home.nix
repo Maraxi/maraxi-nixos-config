@@ -44,9 +44,6 @@
       # # symlink to the Nix store copy.
       # ".screenrc".source = dotfiles/screenrc;
     };
-    sessionVariables = {
-      # EDITOR = "emacs";
-    };
   };
   programs.home-manager.enable = true;
 
