@@ -15,12 +15,15 @@
   ];
   programs.home-manager.enable = true;
 
-  home.username = "stefan";
-  home.homeDirectory = "/home/stefan";
-  home.keyboard = {
-    layout = "de";
-    variant = "nodeadkeys";
-    options = "caps:escape_shifted_capslock";
+  home = {
+    username = "stefan";
+    homeDirectory = "/home/stefan";
+    keyboard = {
+      layout = "de";
+      variant = "nodeadkeys";
+      options = "caps:escape_shifted_capslock, compose:rctrl";
+    };
+    stateVersion = "24.05";
   };
 
   programs.ripgrep = {
@@ -63,6 +66,4 @@
       };
     };
   };
-
-  home.stateVersion = "24.05";
 }

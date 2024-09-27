@@ -19,6 +19,11 @@
   home = {
     username = "iv546";
     homeDirectory = "/home/iv546";
+    keyboard = {
+      layout = "de";
+      variant = "nodeadkeys";
+      options = "caps:escape_shifted_capslock, compose:rctrl";
+    };
     stateVersion = "24.05";
   };
   programs.home-manager.enable = true;
