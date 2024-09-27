@@ -1,12 +1,17 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
     ../../user/alacritty.nix
     ../../user/shells.nix
     ../../user/git.nix
+    (builtins.fetchurl {
+      url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
+      sha256 = "01dkfr9wq3ib5hlyq9zq662mp0jl42fw3f6gd2qgdf8l8ia78j7i";
+    })
   ];
   home = {
     username = "iv546";
@@ -42,6 +47,9 @@
     };
   };
   programs.home-manager.enable = true;
+
+  nixGL.prefix = "${inputs.nixGL.packages."${pkgs.system}".nixGLIntel}/bin/nixGLIntel";
+  programs.alacritty.package = config.lib.nixGL.wrap pkgs.alacritty;
 
   gtk = {
     enable = true;
