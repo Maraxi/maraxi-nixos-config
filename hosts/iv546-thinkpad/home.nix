@@ -9,6 +9,7 @@
     ../../user/environment.nix
     ../../user/shells.nix
     ../../user/git.nix
+    ../../user/gtk.nix
     (builtins.fetchurl {
       url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
       sha256 = "01dkfr9wq3ib5hlyq9zq662mp0jl42fw3f6gd2qgdf8l8ia78j7i";
@@ -51,27 +52,4 @@
 
   nixGL.prefix = "${inputs.nixGL.packages."${pkgs.system}".nixGLIntel}/bin/nixGLIntel";
   programs.alacritty.package = config.lib.nixGL.wrap pkgs.alacritty;
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
-    };
-    iconTheme = {
-      # name = "Material-Black-Plum-Suru";
-      name = "MB-Plum-Suru-GLOW";
-      package = pkgs.material-black-colors;
-    };
-    cursorTheme = {
-      name = "volantes_cursors";
-      package = pkgs.volantes-cursors;
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-  };
 }

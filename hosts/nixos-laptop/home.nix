@@ -10,6 +10,7 @@
     ../../user/sway.nix
     ../../user/shells.nix
     ../../user/git.nix
+    ../../user/gtk.nix
   ];
   programs.home-manager.enable = true;
 
@@ -70,25 +71,6 @@
     extraPortals = [pkgs.xdg-desktop-portal-wlr];
     config = {
       common.default = ["wlr"];
-    };
-  };
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
-    };
-    iconTheme = {
-      # name = "Dracula";
-      # package = pkgs.dracula-icon-theme;
-      # name = "Material-Black-Plum-Suru";
-      name = "MB-Plum-Suru-GLOW";
-      package = pkgs.material-black-colors;
-    };
-    cursorTheme = {
-      name = "volantes_cursors";
-      package = pkgs.volantes-cursors;
     };
   };
 
