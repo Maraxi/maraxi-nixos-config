@@ -47,8 +47,9 @@
               ./hosts/nixos-laptop/home.nix
             ];
           };
-          # todo: Add extraSpecialArgs
-          # with setup = setup // {isNixOs = true;};
+          home-manager.extraSpecialArgs = {
+            setup = setup // {isNixOS = true;};
+          };
         }
       ];
     };
