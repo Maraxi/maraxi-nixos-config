@@ -40,15 +40,17 @@
         ./hosts/nixos-laptop/configuration.nix
         home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.stefan = {
-            imports = [
-              ./hosts/nixos-laptop/home.nix
-            ];
-          };
-          home-manager.extraSpecialArgs = {
-            setup = setup // {isNixOS = true;};
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.stefan = {
+              imports = [
+                ./hosts/nixos-laptop/home.nix
+              ];
+            };
+            extraSpecialArgs = {
+              setup = setup // {isNixOS = true;};
+            };
           };
         }
       ];
