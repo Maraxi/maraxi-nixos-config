@@ -26,7 +26,7 @@
   in {
     overlays = import ./overlays {inherit inputs;};
 
-    homeConfigurations."iv546" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [
         ./user/home.nix
