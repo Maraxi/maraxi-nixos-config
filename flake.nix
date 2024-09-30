@@ -3,6 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # Only pull from 'nix-trunk' when channels are blocked by a Hydra jobset failure or
+    # the 'unstable' channel has not otherwise updated recently for some other reason.
+    nix-trunk.url = "github:nixos/nixpkgs";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,21 +17,25 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     ...
   } @ inputs: let
+    inherit (self) outputs;
     setup = {
       isNixOS = false;
     };
   in {
+    overlays = import ./overlays {inherit inputs;};
+
     homeConfigurations."iv546" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [
         ./hosts/iv546-thinkpad/home.nix
       ];
       extraSpecialArgs = {
-        inherit inputs;
+        inherit inputs outputs;
         setup = setup;
       };
     };

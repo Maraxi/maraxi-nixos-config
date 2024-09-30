@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  outputs,
   ...
 }: {
   imports = [
@@ -16,6 +17,12 @@
       sha256 = "01dkfr9wq3ib5hlyq9zq662mp0jl42fw3f6gd2qgdf8l8ia78j7i";
     })
   ];
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.trunk-packages
+    ];
+  };
 
   programs.home-manager.enable = true;
 

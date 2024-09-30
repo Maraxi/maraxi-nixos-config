@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   home.shellAliases = {
     cal = "ncal -b3A3";
   };
@@ -74,5 +74,6 @@
     extraOptions = [
       "--group-directories-first"
     ];
+    package = pkgs.trunk.eza;
   };
 }
