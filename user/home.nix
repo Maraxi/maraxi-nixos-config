@@ -12,6 +12,7 @@
         ./xdg-portal.nix
       ]
       else [
+        ./chromium.nix
         ./nixGL.nix
         (builtins.fetchurl {
           url = "https://raw.githubusercontent.com/Smona/home-manager/nixgl-compat/modules/misc/nixgl.nix";
