@@ -20,7 +20,7 @@
 
   nixpkgs = {
     overlays = [
-      outputs.overlays.selective-update
+      # outputs.overlays.selective-update
     ];
   };
 
