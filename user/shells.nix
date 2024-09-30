@@ -74,6 +74,6 @@
     extraOptions = [
       "--group-directories-first"
     ];
-    package = pkgs.trunk.eza;
+    package = pkgs.eza;
   };
 }

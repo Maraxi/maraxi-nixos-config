@@ -20,7 +20,7 @@
 
   nixpkgs = {
     overlays = [
-      outputs.overlays.trunk-packages
+      outputs.overlays.selective-update
     ];
   };
 

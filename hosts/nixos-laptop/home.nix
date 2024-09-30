@@ -15,7 +15,7 @@
 
   nixpkgs = {
     overlays = [
-      outputs.overlays.trunk-packages
+      # outputs.overlays.trunk-packages
     ];
   };
 
