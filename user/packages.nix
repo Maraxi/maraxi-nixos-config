@@ -54,7 +54,10 @@
           simple-scan
           appimage-run
         ]
-      else [];
+      else
+        with pkgs; [
+          chromium
+        ];
     all_packages = basic_pkgs ++ full_install_pkgs;
   in
     all_packages;
