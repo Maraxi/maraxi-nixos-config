@@ -56,11 +56,20 @@
         ]
       else
         with pkgs; [
-          chromium
         ];
     all_packages = basic_pkgs ++ full_install_pkgs;
   in
     all_packages;
+
+  programs.chromium =
+    if setup.isNixOS
+    then {}
+    else {
+      enable = true;
+      commandLineArgs = [
+        "--proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
+      ];
+    };
 
   programs.ripgrep = {
     enable = true;
