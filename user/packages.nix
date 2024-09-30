@@ -82,15 +82,6 @@
       ];
     };
 
-  programs.ripgrep = {
-    enable = true;
-    arguments = [
-      "--smart-case"
-      "--max-columns-preview"
-      "--max-columns=80"
-    ];
-  };
-
   dconf.settings = {
     "org/nemo/preferences" = {
       show-hidden-files = true;

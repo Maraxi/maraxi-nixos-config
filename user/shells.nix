@@ -76,4 +76,12 @@
     ];
     package = pkgs.eza;
   };
+  programs.ripgrep = {
+    enable = true;
+    arguments = [
+      "--smart-case"
+      "--max-columns-preview"
+      "--max-columns=80"
+    ];
+  };
 }
