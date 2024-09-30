@@ -13,11 +13,11 @@
     };
   };
 
-  outputs = inputs @ {
+  outputs = {
     nixpkgs,
     home-manager,
     ...
-  }: let
+  } @ inputs: let
     setup = {
       isNixOS = false;
     };
