@@ -1,14 +1,18 @@
 {...}: {
-  programs.chromium =
-    if setup.isNixOS
-    then {}
-    else {
-      enable = true;
-      commandLineArgs = [
-        "--proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
-      ];
-      extensions = [
-        {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
-      ];
-    };
+  programs.chromium = {
+    enable = true;
+    commandLineArgs = [
+      "--proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
+    ];
+    extensions = [
+      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
+      {id = "ohcpnigalekghcmgcdcenkpelffpdolg";} # colorpick-eyedropper
+      # {id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";} # dark-reader
+      {id = "poahndpaaanbpbeafbkploiobpiiieko";} # display-anchors
+      {id = "oboonakemofpalcgghocfoadofidjkkk";} # keepassxc-browser
+      {id = "clngdbkpkpeebahjckkjfobafhncgmne";} # stylus
+      {id = "dbepggeogbaibhgnhhndojpepiihcmeb";} # vimium
+      {id = "jinjaccalgkegednnccohejagnlnfdag";} # violentmonkey
+    ];
+  };
 }
