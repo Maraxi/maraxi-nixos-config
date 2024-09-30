@@ -19,13 +19,13 @@
     })
   ];
 
+  programs.home-manager.enable = true;
+
   # nixpkgs = {
   # overlays = [
   # outputs.overlays.selective-update
   # ];
   # };
-
-  programs.home-manager.enable = true;
 
   home = {
     keyboard = {
