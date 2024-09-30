@@ -5,6 +5,7 @@
   config,
   lib,
   pkgs,
+  outputs,
   ...
 }: {
   imports = [
@@ -14,9 +15,14 @@
 
   nix.package = pkgs.nixFlakes;
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  # nixpkgs.config = {
+  # nixpkgs = {
+  # config = {
   # allowBroken = true;
   # allowUnfree = true;
+  # };
+  # overlays = [
+  # outputs.overlays.trunk-packages
+  # ];
   # };
 
   # Use the systemd-boot EFI boot loader.

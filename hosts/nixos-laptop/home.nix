@@ -13,12 +13,6 @@
     ../../user/sway.nix
   ];
 
-  nixpkgs = {
-    overlays = [
-      # outputs.overlays.trunk-packages
-    ];
-  };
-
   programs.home-manager.enable = true;
 
   home = {

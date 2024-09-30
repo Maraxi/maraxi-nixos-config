@@ -41,6 +41,7 @@
     };
     nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = {inherit outputs;};
       modules = [
         ./hosts/nixos-laptop/configuration.nix
         home-manager.nixosModules.home-manager
