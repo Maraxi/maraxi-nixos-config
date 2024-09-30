@@ -1,4 +1,7 @@
 {...}: {
+  home.shellAliases = {
+    ls = "ls --color=auto";
+  };
   programs.bash.enable = true;
   programs.readline = {
     enable = true;
