@@ -23,9 +23,7 @@
     };
   in {
     homeConfigurations."iv546" = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-      };
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [
         ./hosts/iv546-thinkpad/home.nix
       ];
