@@ -10,6 +10,9 @@
     specific-imports =
       if setup.isNixOS
       then [
+        ./sway.nix
+        ./ssh.nix
+        ./xdg-portal.nix
       ]
       else [
         ./nixGL.nix
