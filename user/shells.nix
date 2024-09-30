@@ -1,6 +1,5 @@
 {...}: {
   home.shellAliases = {
-    ls = "ls --color=auto";
     cal = "ncal -b3A3";
   };
   programs.bash.enable = true;
@@ -68,5 +67,12 @@
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
+  };
+  programs.eza = {
+    enable = true;
+    icons = true;
+    extraOptions = [
+      "--group-directories-first"
+    ];
   };
 }
