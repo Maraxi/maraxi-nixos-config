@@ -3,6 +3,8 @@
     enable = true;
     commandLineArgs = [
       "--proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
+      "--high-dpi-support=1"
+      "--force-device-scale-factor=1"
     ];
     extensions = [
       {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
