@@ -18,11 +18,11 @@
     })
   ];
 
-  nixpkgs = {
-    overlays = [
-      # outputs.overlays.selective-update
-    ];
-  };
+  # nixpkgs = {
+  # overlays = [
+  # outputs.overlays.selective-update
+  # ];
+  # };
 
   programs.home-manager.enable = true;
 
