@@ -38,6 +38,10 @@
   # };
 
   home = {
+    username = setup.username;
+    homeDirectory = "/home/" + setup.username;
+    stateVersion = setup.stateVersion;
+
     keyboard = {
       layout = "de";
       variant = "nodeadkeys";

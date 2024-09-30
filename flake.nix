@@ -32,11 +32,15 @@
     homeConfigurations."iv546" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [
-        ./hosts/iv546-thinkpad/home.nix
+        ./user/home.nix
       ];
       extraSpecialArgs = {
         inherit inputs outputs;
-        setup = setup;
+        setup = {
+          username = "iv546";
+          stateVersion = "24.05";
+          isNixOS = false;
+        };
       };
     };
     nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
