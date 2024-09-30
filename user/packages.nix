@@ -82,6 +82,6 @@
 
   home.file = {
     ".config/lesskey".source = dotfiles/lesskey;
-    ".config/htop/htoprc".source = dotfiles/htoprc;
+    # ".config/htop/htoprc".source = dotfiles/htoprc;
   };
 }
