@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # Only pull from 'nix-trunk' when channels are blocked by a Hydra jobset failure or
     # the 'unstable' channel has not otherwise updated recently for some other reason.
-    nix-trunk.url = "github:nixos/nixpkgs";
+    # nix-trunk.url = "github:nixos/nixpkgs";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
