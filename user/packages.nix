@@ -4,6 +4,11 @@
   lib,
   ...
 }: {
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "pycharm-professional"
+    ];
+
   home.packages = let
     basic_pkgs = with pkgs; [
       nemo
@@ -56,6 +61,7 @@
         ]
       else
         with pkgs; [
+          jetbrains.pycharm-professional
         ];
     all_packages = basic_pkgs ++ full_install_pkgs;
   in
