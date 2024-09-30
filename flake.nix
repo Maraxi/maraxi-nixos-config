@@ -23,9 +23,6 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-    setup = {
-      isNixOS = false;
-    };
   in {
     overlays = import ./overlays {inherit inputs;};
 
@@ -55,11 +52,15 @@
             useUserPackages = true;
             users.stefan = {
               imports = [
-                ./hosts/nixos-laptop/home.nix
+                ./user/home.nix
               ];
             };
             extraSpecialArgs = {
-              setup = setup // {isNixOS = true;};
+              setup = {
+                username = "stefan";
+                stateVersion = "24.05";
+                isNixOS = true;
+              };
             };
           };
         }
