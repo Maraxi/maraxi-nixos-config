@@ -51,19 +51,22 @@
     # nano = "hx";
     # };
   };
-  # programs.carapace = {
+  # programs.carapace = { # command line completions
   # enable = true;
   # enableNushellIntegration = true;
   # };
+
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
     options = ["--cmd" "cd"];
   };
+
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
   };
+
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
@@ -72,6 +75,7 @@
     # };
   };
   home.file.".config/starship.toml".source = dotfiles/starship.toml;
+
   programs.eza = {
     enable = true;
     icons = true;
