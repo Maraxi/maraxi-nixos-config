@@ -81,6 +81,7 @@
     icons = true;
     extraOptions = [
       "--group-directories-first"
+      "--classify"
     ];
     package = pkgs.eza;
   };
