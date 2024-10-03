@@ -24,6 +24,7 @@
     self,
     nixpkgs,
     home-manager,
+    kickstart-nix-nvim,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -46,7 +47,9 @@
     };
     nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {inherit outputs;};
+      specialArgs = {
+        inherit outputs kickstart-nix-nvim;
+      };
       modules = [
         ./hosts/nixos-laptop/configuration.nix
         home-manager.nixosModules.home-manager

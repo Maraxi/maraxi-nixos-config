@@ -6,6 +6,7 @@
   lib,
   pkgs,
   outputs,
+  kickstart-nix-nvim,
   ...
 }: {
   imports = [
@@ -15,15 +16,16 @@
 
   nix.package = pkgs.nixFlakes;
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  # nixpkgs = {
-  # config = {
-  # allowBroken = true;
-  # allowUnfree = true;
-  # };
-  # overlays = [
-  # outputs.overlays.trunk-packages
-  # ];
-  # };
+  nixpkgs = {
+    # config = {
+    # allowBroken = true;
+    # allowUnfree = true;
+    # };
+    overlays = [
+      kickstart-nix-nvim.overlays.default
+      # outputs.overlays.trunk-packages
+    ];
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -94,7 +96,8 @@
   environment.variables.EDITOR = "nvim";
 
   environment.systemPackages = with pkgs; [
-    neovim
+    nvim-pkg
+    # neovim
     vim
     git
   ];
