@@ -37,7 +37,7 @@
         ./user/home.nix
       ];
       extraSpecialArgs = {
-        inherit inputs outputs;
+        inherit inputs outputs kickstart-nix-nvim;
         setup = {
           username = "iv546";
           stateVersion = "24.05";

@@ -1,6 +1,7 @@
 {
   setup,
-  outputs,
+  # outputs,
+  kickstart-nix-nvim,
   ...
 }: {
   imports = let
@@ -32,11 +33,15 @@
 
   programs.home-manager.enable = true;
 
-  # nixpkgs = {
-  # overlays = [
-  # outputs.overlays.selective-update
-  # ];
-  # };
+  nixpkgs =
+    if setup.isNixOS
+    then {}
+    else {
+      overlays = [
+        kickstart-nix-nvim.overlays.default
+        # outputs.overlays.selective-update
+      ];
+    };
 
   home = {
     username = setup.username;
