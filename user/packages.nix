@@ -13,7 +13,6 @@
     basic_pkgs = with pkgs; [
       nvim-pkg
 
-      nemo
       keepassxc
       feh
 
@@ -63,6 +62,7 @@
           thunderbird
           simple-scan
           appimage-run
+          nemo
         ]
       else
         with pkgs; [
