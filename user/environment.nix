@@ -1,7 +1,5 @@
-{lib, ...}: {
-  # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
-  # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
-  home.sessionVariables = rec {
+{
+  home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
     XDG_CACHE_HOME = "$HOME/.cache";
