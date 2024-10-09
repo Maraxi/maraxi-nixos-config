@@ -35,6 +35,7 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [
         ./user/home.nix
+        ./user/ecc.nix
       ];
       extraSpecialArgs = {
         inherit inputs outputs kickstart-nix-nvim;
