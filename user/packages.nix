@@ -19,6 +19,7 @@
       pavucontrol
 
       python313
+      uv
 
       glances
       htop
