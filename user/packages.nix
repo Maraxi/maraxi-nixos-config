@@ -25,7 +25,6 @@
       htop
       btop
 
-      direnv
       gcc
       gnumake
       tree

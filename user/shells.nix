@@ -93,4 +93,12 @@
       "--max-columns=100"
     ];
   };
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    config = {
+      global.strict_env = true;
+      global.load_dotenv = true;
+    };
+  };
 }
