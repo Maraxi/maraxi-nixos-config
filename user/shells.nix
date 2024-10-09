@@ -90,7 +90,7 @@
     arguments = [
       "--smart-case"
       "--max-columns-preview"
-      "--max-columns=80"
+      "--max-columns=100"
     ];
   };
 }
