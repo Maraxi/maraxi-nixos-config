@@ -20,6 +20,7 @@
 
       python313
       uv
+      ruff
 
       glances
       htop
