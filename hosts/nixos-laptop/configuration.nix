@@ -22,7 +22,7 @@
     # allowUnfree = true;
     # };
     overlays = [
-      kickstart-nix-nvim.overlays.default
+      # kickstart-nix-nvim.overlays.default
       # outputs.overlays.trunk-packages
     ];
   };
@@ -96,8 +96,8 @@
   environment.variables.EDITOR = "nvim";
 
   environment.systemPackages = with pkgs; [
-    nvim-pkg
-    # neovim
+    # nvim-pkg
+    neovim
     vim
     git
   ];

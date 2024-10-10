@@ -11,7 +11,7 @@
 
   home.packages = let
     basic_pkgs = with pkgs; [
-      nvim-pkg
+      # nvim-pkg
 
       keepassxc
       feh

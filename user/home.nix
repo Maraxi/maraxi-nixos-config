@@ -26,6 +26,7 @@
       ./environment.nix
       ./git.nix
       ./gtk.nix
+      ./neovim.nix
       ./packages.nix
       ./shells.nix
     ]
@@ -38,7 +39,7 @@
     then {}
     else {
       overlays = [
-        kickstart-nix-nvim.overlays.default
+        # kickstart-nix-nvim.overlays.default
         # outputs.overlays.selective-update
       ];
     };
