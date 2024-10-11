@@ -13,9 +13,8 @@
     basic_pkgs = with pkgs; [
       # nvim-pkg
 
-      keepassxc
       feh
-
+      keepassxc
       pavucontrol
 
       python313
@@ -29,17 +28,17 @@
       libfaketime
       gcc
       gnumake
-      tree
       fd
       difftastic
-      neofetch
       fclones
       pciutils
       wget
       lsof
+
       atool
       unzip
       zip
+
       alejandra
 
       pre-commit
