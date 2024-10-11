@@ -92,6 +92,7 @@
         dev = {
           -- reuse files from pkgs.vimPlugins.*
           path = "${lazyPath}",
+          patterns = {""}, --Specify that all of our plugins will use the dev dir. Empty string is a wildcard!
           -- patterns = { "." },
           -- fallback to download
           -- fallback = true,
