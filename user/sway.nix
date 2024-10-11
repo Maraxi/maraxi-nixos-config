@@ -155,6 +155,8 @@
 
         "${modifier}+Shift+c" = "reload";
 
+        "${modifier}+Shift+d" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
+
         "${meh}+r" = "mode resize";
         "${meh}+a" = "mode $mode_applications";
         "${modifier}+s" = "mode $mode_sound";
