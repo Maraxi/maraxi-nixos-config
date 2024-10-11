@@ -26,6 +26,7 @@
       htop
       btop
 
+      libfaketime
       gcc
       gnumake
       tree
