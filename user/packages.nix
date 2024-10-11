@@ -68,6 +68,7 @@
       else
         with pkgs; [
           jetbrains.pycharm-professional
+          coreutils
         ];
     all_packages = basic_pkgs ++ full_install_pkgs;
   in
