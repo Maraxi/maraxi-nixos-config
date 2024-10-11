@@ -122,6 +122,8 @@
           missing = true,
         },
       })
+
+      require("config")
     '';
   };
 
