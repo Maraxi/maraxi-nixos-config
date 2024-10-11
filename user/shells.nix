@@ -83,7 +83,6 @@
       "--group-directories-first"
       "--classify"
     ];
-    package = pkgs.eza;
   };
   programs.ripgrep = {
     enable = true;
