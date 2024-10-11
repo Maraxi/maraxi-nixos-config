@@ -83,8 +83,8 @@
 
   programs.lesspipe.enable = true;
 
-  home.file = {
-    ".config/lesskey".source = dotfiles/lesskey;
-    # ".config/htop/htoprc".source = dotfiles/htoprc;
+  xdg.configFile = {
+    "lesskey".source = dotfiles/lesskey;
+    # "htop/htoprc".source = dotfiles/htoprc;
   };
 }
