@@ -65,6 +65,7 @@
         # trouble-nvim
         # vim-illuminate
         # vim-startuptime
+        vim-sleuth
         which-key-nvim
         # { name = "LuaSnip"; path = luasnip; }
         # { name = "catppuccin"; path = catppuccin-nvim; }
