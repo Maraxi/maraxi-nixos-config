@@ -84,7 +84,11 @@
         else drv;
       lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
     in ''
-      -- vim.g.mapleader = " " -- Need to set leader before lazy for correct keybindings
+      vim.g.mapleader = " " -- Need to set leader before lazy for correct keybindings
+      vim.g.maplocalleader = " "
+
+      vim.g.have_nerd_font = true
+
       require("lazy").setup({
         defaults = {
           lazy = true,
