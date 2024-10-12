@@ -37,7 +37,7 @@
         # dressing-nvim
         # flash-nvim
         # friendly-snippets
-        # gitsigns-nvim
+        gitsigns-nvim
         # indent-blankline-nvim
         # lualine-nvim
         # neo-tree-nvim
