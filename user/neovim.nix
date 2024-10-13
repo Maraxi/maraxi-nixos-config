@@ -55,11 +55,12 @@
         # nvim-treesitter-textobjects
         # nvim-ts-autotag
         # nvim-ts-context-commentstring
-        # nvim-web-devicons
+        nvim-web-devicons
         # persistence-nvim
-        # plenary-nvim
+        plenary-nvim
         # telescope-fzf-native-nvim
-        # telescope-nvim
+        telescope-nvim
+        telescope-ui-select-nvim
         # todo-comments-nvim
         # tokyonight-nvim
         # trouble-nvim
