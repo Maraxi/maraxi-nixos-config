@@ -26,7 +26,6 @@
       plugins = with pkgs.vimPlugins; [
         oil-nvim
         # LazyVim
-        # LazyVim
         # bufferline-nvim
         # cmp-buffer
         # cmp-nvim-lsp
