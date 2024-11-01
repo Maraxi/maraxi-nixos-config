@@ -14,7 +14,7 @@
     ../../system/greetd.nix
   ];
 
-  nix.package = pkgs.nixFlakes;
+  nix.package = pkgs.nixVersions.stable;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nixpkgs = {
     # config = {
