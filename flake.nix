@@ -31,21 +31,6 @@
   in {
     overlays = import ./overlays {inherit inputs;};
 
-    homeConfigurations."iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [
-        ./user/home.nix
-        ./user/ecc.nix
-      ];
-      extraSpecialArgs = {
-        inherit inputs outputs kickstart-nix-nvim;
-        setup = {
-          username = "iv546";
-          stateVersion = "24.05";
-          isNixOS = false;
-        };
-      };
-    };
     nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
@@ -73,6 +58,21 @@
           };
         }
       ];
+    };
+    homeConfigurations."iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [
+        ./user/home.nix
+        ./user/ecc.nix
+      ];
+      extraSpecialArgs = {
+        inherit inputs outputs kickstart-nix-nvim;
+        setup = {
+          username = "iv546";
+          stateVersion = "24.05";
+          isNixOS = false;
+        };
+      };
     };
   };
 }
