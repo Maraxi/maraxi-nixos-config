@@ -46,7 +46,7 @@
 
   home = {
     username = setup.username;
-    homeDirectory = "/home/" + setup.username;
+    homeDirectory = "/home/${setup.username}";
     stateVersion = setup.stateVersion;
 
     keyboard = {
