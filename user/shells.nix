@@ -1,7 +1,4 @@
 {pkgs, ...}: {
-  home.shellAliases = {
-    cal = "ncal -b3A3";
-  };
   programs.bash.enable = true;
   programs.readline = {
     enable = true;
