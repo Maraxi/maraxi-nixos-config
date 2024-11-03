@@ -14,8 +14,8 @@
       url = "github:Maraxi/kickstart-nix.nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixGL = {
-      url = "github:nix-community/nixGL/310f8e49a149e4c9ea52f1adf70cdc768ec53f8a";
+    nixgl = {
+      url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -25,6 +25,7 @@
     nixpkgs,
     home-manager,
     kickstart-nix-nvim,
+    nixgl,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -66,7 +67,7 @@
         ./user/ecc.nix
       ];
       extraSpecialArgs = {
-        inherit inputs outputs kickstart-nix-nvim;
+        inherit inputs outputs kickstart-nix-nvim nixgl;
         setup = {
           username = "iv546";
           stateVersion = "24.05";

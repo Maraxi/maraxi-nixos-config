@@ -112,7 +112,7 @@
         "type": "github"
       }
     },
-    "nixGL": {
+    "nixgl": {
       "inputs": {
         "flake-utils": "flake-utils_2",
         "nixpkgs": [
@@ -130,7 +130,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixGL",
-        "rev": "310f8e49a149e4c9ea52f1adf70cdc768ec53f8a",
         "type": "github"
       }
     },
@@ -182,7 +181,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "kickstart-nix-nvim": "kickstart-nix-nvim",
-        "nixGL": "nixGL",
+        "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_2"
       }
     },
