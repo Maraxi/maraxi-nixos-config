@@ -1,5 +1,11 @@
 {pkgs, ...}: {
-  programs.bash.enable = true;
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      bind -x '"\C-o":${pkgs.ruff}/bin/ruff format; ${pkgs.ruff}/bin/ruff check --fix --unsafe-fixes'
+      bind -x '"\C-p":${pkgs.pre-commit}/bin/pre-commit'
+    '';
+  };
   programs.readline = {
     enable = true;
     variables = {
