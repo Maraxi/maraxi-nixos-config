@@ -79,11 +79,4 @@
       thumbnail-limit = lib.hm.gvariant.mkUint64 1073741824;
     };
   };
-
-  programs.lesspipe.enable = true;
-
-  xdg.configFile = {
-    "lesskey".source = dotfiles/lesskey;
-    # "htop/htoprc".source = dotfiles/htoprc;
-  };
 }

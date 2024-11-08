@@ -98,4 +98,11 @@
       global.strict_env = true;
     };
   };
+
+  programs.lesspipe.enable = true;
+
+  xdg.configFile = {
+    "lesskey".source = dotfiles/lesskey;
+    # "htop/htoprc".source = dotfiles/htoprc;
+  };
 }
