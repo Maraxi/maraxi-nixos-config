@@ -34,6 +34,7 @@
       pciutils
       wget
       lsof
+      bat
 
       atool
       unzip
