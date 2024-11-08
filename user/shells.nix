@@ -49,14 +49,12 @@
       # )
     '';
     # shellAliases = {
-    # vi = "hx";
-    # vim = "hx";
-    # nano = "hx";
+    #   nano = "hx";
     # };
   };
   # programs.carapace = { # command line completions
-  # enable = true;
-  # enableNushellIntegration = true;
+  #   enable = true;
+  #   enableNushellIntegration = true;
   # };
 
   programs.zoxide = {
