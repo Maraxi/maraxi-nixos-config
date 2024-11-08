@@ -90,13 +90,13 @@
         # swaymsg -t get_outputs
         eDP-1 = {
           pos = "0 150";
-          # bg = "$HOME/arch/Furry/5c15126e906b533c9caf28ee14155aa4.png fill";
+          # bg = "$HOME/.background.png fill";
         };
         HDMI-A-2 = {
           pos = "1600 0";
           # mode = "1920x1080@60Hz";
         };
-        "*" = {bg = "/home/stefan/.background-image fill";};
+        "*" = {bg = "$HOME/.background-image fill";};
       };
       keybindings = let
         cfg = config.wayland.windowManager.sway.config;
@@ -162,7 +162,7 @@
         "${modifier}+s" = "mode $mode_sound";
         "${modifier}+o" = "mode $mode_power";
 
-        # "${modifier}+Shift+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\"; mode $mode_record";
+        "${modifier}+Shift+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\"; mode $mode_record";
         "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
       };
       assigns = {
