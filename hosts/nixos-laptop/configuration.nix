@@ -6,7 +6,6 @@
   lib,
   pkgs,
   outputs,
-  kickstart-nix-nvim,
   ...
 }: {
   imports = [
@@ -22,7 +21,6 @@
     #   allowUnfree = true;
     # };
     overlays = [
-      # kickstart-nix-nvim.overlays.default
       # outputs.overlays.trunk-packages
     ];
   };

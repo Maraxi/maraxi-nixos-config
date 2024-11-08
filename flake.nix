@@ -10,10 +10,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    kickstart-nix-nvim = {
-      url = "github:Maraxi/kickstart-nix.nvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +20,6 @@
     self,
     nixpkgs,
     home-manager,
-    kickstart-nix-nvim,
     nixgl,
     ...
   } @ inputs: let
@@ -35,7 +30,7 @@
     nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
-        inherit outputs kickstart-nix-nvim;
+        inherit outputs;
       };
       modules = [
         ./hosts/nixos-laptop/configuration.nix
@@ -67,7 +62,7 @@
         ./user/ecc.nix
       ];
       extraSpecialArgs = {
-        inherit inputs outputs kickstart-nix-nvim nixgl;
+        inherit inputs outputs nixgl;
         setup = {
           username = "iv546";
           stateVersion = "24.05";

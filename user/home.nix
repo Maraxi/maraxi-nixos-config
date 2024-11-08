@@ -1,7 +1,6 @@
 {
   setup,
   # outputs,
-  kickstart-nix-nvim,
   ...
 }: {
   imports = let
@@ -36,7 +35,6 @@
     then {}
     else {
       overlays = [
-        # kickstart-nix-nvim.overlays.default
         # outputs.overlays.selective-update
       ];
     };
