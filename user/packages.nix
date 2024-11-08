@@ -61,7 +61,6 @@
           librewolf
           thunderbird
           simple-scan
-          appimage-run
           nemo
         ]
       else
