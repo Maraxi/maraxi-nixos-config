@@ -71,9 +71,6 @@
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
-    # settings = {
-    # https://github.com/nix-community/home-manager/blob/ffe2d07e771580a005e675108212597e5b367d2d/modules/programs/starship.nix#L31
-    # };
   };
   xdg.configFile."starship.toml".source = dotfiles/starship.toml;
 
