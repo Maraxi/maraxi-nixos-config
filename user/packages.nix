@@ -21,9 +21,9 @@
       uv
       ruff
 
-      # glances
+      glances
       htop
-      # btop
+      btop
 
       libfaketime
       gcc
