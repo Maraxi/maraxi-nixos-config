@@ -22,6 +22,7 @@
       ./environment.nix
       ./git.nix
       ./gtk.nix
+      ./nh.nix
       ./neovim.nix
       ./packages.nix
       ./shells.nix
