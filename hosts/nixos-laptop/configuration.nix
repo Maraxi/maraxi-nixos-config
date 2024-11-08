@@ -18,8 +18,8 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nixpkgs = {
     # config = {
-    # allowBroken = true;
-    # allowUnfree = true;
+    #   allowBroken = true;
+    #   allowUnfree = true;
     # };
     overlays = [
       # kickstart-nix-nvim.overlays.default
@@ -166,11 +166,11 @@
     # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
     # and migrated your data accordingly.
     # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-    stateVersion = "23.11"; # Did you read the comment?
-    # # autoUpgrade = {
-    # enable = true;
-    # flake = inputs.self.outPath; # TOFix use flake
-    # dates = "weekly";
+    stateVersion = "23.11";
+    # autoUpgrade = {
+    #   enable = true;
+    #   flake = inputs.self.outPath; # TOFix use flake
+    #   dates = "weekly";
     # };
   };
 }
