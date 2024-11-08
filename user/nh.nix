@@ -6,7 +6,7 @@
     flake = "/home/${setup.username}/${
       if setup.isNixOS
       then "nixconfig"
-      else ".home/home-manager"
+      else ".config/home-manager"
     }";
   };
 }
