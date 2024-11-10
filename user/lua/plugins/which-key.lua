@@ -5,6 +5,7 @@ return {
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		opts = {
+			-- TODO
 			-- plugins = { spelling = true },
 			-- defaults = {
 				-- mode = { "n", "v" },
