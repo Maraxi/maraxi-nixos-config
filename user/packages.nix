@@ -23,6 +23,9 @@
       htop
       btop
 
+      dust
+      ncdu
+
       libfaketime
       gcc
       gnumake
