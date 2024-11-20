@@ -15,6 +15,7 @@
 
   nix.package = pkgs.nixVersions.stable;
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.trusted-users = ["stefan"];
   nixpkgs = {
     # config = {
     #   allowBroken = true;
