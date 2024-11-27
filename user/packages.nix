@@ -19,6 +19,9 @@
       uv
       ruff
 
+      cargo
+      zig
+
       glances
       htop
       btop
