@@ -104,7 +104,7 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override {fonts = ["DroidSansMono"];})
+      nerd-fonts.droid-sans-mono
       dejavu_fonts
       noto-fonts
       noto-fonts-cjk-sans
