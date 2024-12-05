@@ -1,20 +1,9 @@
-{
-  pkgs,
-  setup,
-  ...
-}: {
+{pkgs, ...}: {
   programs.bash = {
     enable = true;
-    initExtra = let
-      kickstart-alias =
-        if setup.isNixOS
-        then ""
-        else ''alias nvim='NVIM_APPNAME="nvim-kickstart" nvim' '';
-    in ''
+    initExtra = ''
       bind -x '"\C-o":${pkgs.ruff}/bin/ruff format; ${pkgs.ruff}/bin/ruff check --fix --unsafe-fixes'
       bind -x '"\C-p":${pkgs.pre-commit}/bin/pre-commit'
-
-      ${kickstart-alias}
     '';
   };
   programs.readline = {
