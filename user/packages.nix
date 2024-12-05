@@ -75,9 +75,8 @@
           kubectl # for pycharm
           coreutils
         ];
-    all_packages = basic_pkgs ++ full_install_pkgs;
   in
-    all_packages;
+    basic_pkgs ++ full_install_pkgs;
 
   dconf.settings = {
     "org/nemo/preferences" = {
