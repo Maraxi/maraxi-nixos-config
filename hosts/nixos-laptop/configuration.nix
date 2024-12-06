@@ -16,15 +16,15 @@
   nix.package = pkgs.nixVersions.stable;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.trusted-users = ["stefan"];
-  nixpkgs = {
-    # config = {
-    #   allowBroken = true;
-    #   allowUnfree = true;
-    # };
-    overlays = [
-      # outputs.overlays.trunk-packages
-    ];
-  };
+  # nixpkgs = {
+  #   config = {
+  #     allowBroken = true;
+  #     allowUnfree = true;
+  #   };
+  #   overlays = [
+  #     outputs.overlays.trunk-packages
+  #   ];
+  # };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
