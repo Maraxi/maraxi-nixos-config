@@ -172,11 +172,12 @@
       };
     };
     extraConfig = ''
-      set $mode_applications "[t]hunderbird [l]ibrewolf [k]eepass"
+      set $mode_applications "[t]hunderbird [l]ibrewolf [k]eepass key[m]app"
       mode $mode_applications {
         bindsym t exec ${pkgs.thunderbird}/bin/thunderbird
         bindsym l exec ${pkgs.librewolf}/bin/librewolf
         bindsym k exec ${pkgs.keepassxc}/bin/keepassxc
+        bindsym m exec ${pkgs.keymapp}/bin/keymapp
         bindsym Return mode default
         bindsym Escape mode default
       }
