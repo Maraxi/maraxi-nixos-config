@@ -7,11 +7,11 @@
 
   home.packages = with pkgs; [
     # treesitter
-    node
+    nodejs
     tree-sitter
 
-    # dynamic lsps
-    luajitPackages.lua-lsp
+    # lsp
+    lua-language-server
   ];
 
   # xdg.configFile."nvim" = {
