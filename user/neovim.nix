@@ -5,8 +5,12 @@
     # vimdiffAlias = true;
   };
 
-  # dynamic lsps
   home.packages = with pkgs; [
+    # treesitter
+    node
+    tree-sitter
+
+    # dynamic lsps
     luajitPackages.lua-lsp
   ];
 
