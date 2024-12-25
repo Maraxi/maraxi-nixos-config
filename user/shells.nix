@@ -1,9 +1,18 @@
 {pkgs, ...}: {
   programs.bash = {
     enable = true;
+
+    historySize = -1;
+    historyFileSize = -1;
+    historyFile = "$HOME/.bash_history_eternal";
+    historyControl = ["ignorespace" "ignoredups"];
+
     initExtra = ''
       bind -x '"\C-o":${pkgs.ruff}/bin/ruff format; ${pkgs.ruff}/bin/ruff check --fix --unsafe-fixes'
       bind -x '"\C-p":${pkgs.pre-commit}/bin/pre-commit'
+
+      export HISTTIMEFORMAT="[%F %T] "
+      PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
     '';
   };
   programs.readline = {
