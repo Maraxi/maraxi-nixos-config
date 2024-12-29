@@ -6,6 +6,7 @@
     # Only pull from 'nix-trunk' when channels are blocked by a Hydra jobset failure or
     # the 'unstable' channel has not otherwise updated recently for some other reason.
     # nix-trunk.url = "github:nixos/nixpkgs";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,19 +27,17 @@
     self,
     nixpkgs,
     home-manager,
-    nixgl,
     ghostty,
+    nixgl,
     ...
-  } @ inputs: let
-    inherit (self) outputs;
-  in {
+  } @ inputs:
+  # let inherit (self) outputs; in
+  {
     overlays = import ./overlays {inherit inputs;};
 
     nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {
-        inherit outputs;
-      };
+      # specialArgs = { inherit outputs; };
       modules = [
         ./hosts/nixos-laptop/configuration.nix
         home-manager.nixosModules.home-manager
