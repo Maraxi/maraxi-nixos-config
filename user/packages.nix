@@ -67,7 +67,7 @@
       #   echo "Hello, ${config.home.username}!"
       # '')
     ];
-    full_install_pkgs =
+    per_system_pkgs =
       if setup.isNixOS
       then
         with pkgs; [
@@ -83,7 +83,7 @@
           coreutils
         ];
   in
-    basic_pkgs ++ full_install_pkgs;
+    basic_pkgs ++ per_system_pkgs;
 
   dconf.settings = {
     "org/nemo/preferences" = {
