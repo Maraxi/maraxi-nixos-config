@@ -70,13 +70,12 @@
     per_system_pkgs =
       if setup.isNixOS
       then
-        with pkgs;
-          [
-            librewolf
-            thunderbird
-            simple-scan
-            nemo
-          ]
+        with pkgs; [
+          librewolf
+          thunderbird
+          simple-scan
+          nemo
+        ]
       else
         with pkgs; [
           jetbrains.pycharm-professional
