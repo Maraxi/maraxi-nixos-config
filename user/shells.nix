@@ -104,5 +104,9 @@
   xdg.configFile = {
     "lesskey".source = dotfiles/lesskey;
     # "htop/htoprc".source = dotfiles/htoprc;
+    "ghostty" = {
+      source = dotfiles/ghostty;
+      recursive = true;
+    };
   };
 }
