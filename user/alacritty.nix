@@ -1,6 +1,7 @@
 {lib, ...}: {
   programs.alacritty.enable = true;
   programs.alacritty.settings = {
+    # Night Owl
     colors = lib.mkOverride 500 {
       bright = {
         black = "#575656";
@@ -46,7 +47,7 @@
       opacity = 0.8;
     };
     window.padding = {
-      x = 4;
+      x = 0;
       y = 0;
     };
   };
