@@ -1,8 +1,5 @@
 repos:
   - repo: https://github.com/kamadorueda/alejandra
-    rev: 3.0.0
+    rev: 2bb91e309ca99656addff5c74545acbf5813636d  # frozen: 3.1.0
     hooks:
-      # Requires Nix to be previously installed in the system
-      # - id: alejandra-nix
-      # Requires Alejandra to be previously installed in the system
       - id: alejandra-system
