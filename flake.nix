@@ -69,7 +69,7 @@
         ./user/ecc.nix
       ];
       extraSpecialArgs = {
-        inherit inputs outputs nixgl;
+        inherit inputs outputs ghostty nixgl;
         setup = {
           username = "iv546";
           stateVersion = "24.05";

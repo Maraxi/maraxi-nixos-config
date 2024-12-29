@@ -16,71 +16,71 @@
         ];
 
   home.packages = let
-    basic_pkgs = with pkgs;
-      [
-        feh
-        keepassxc
-        pavucontrol
+    basic_pkgs = with pkgs; [
+      feh
+      keepassxc
+      pavucontrol
 
-        python313
-        uv
-        ruff
+      python313
+      uv
+      ruff
 
-        cargo
-        zig
+      cargo
+      zig
 
-        glances
-        htop
-        btop
+      glances
+      htop
+      btop
 
-        dust
-        ncdu
+      dust
+      ncdu
 
-        libfaketime
-        gcc
-        gnumake
-        fd
-        difftastic
-        fclones
-        pciutils
-        wget
-        lsof
-        bat
+      libfaketime
+      gcc
+      gnumake
+      fd
+      difftastic
+      fclones
+      pciutils
+      wget
+      lsof
+      bat
 
-        atool
-        unzip
-        zip
+      atool
+      unzip
+      zip
 
-        alejandra
+      alejandra
 
-        pre-commit
+      pre-commit
 
-        keymapp
+      keymapp
 
-        # # overrides. You can do that directly here, just don't forget the
-        # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-        # # fonts?
-        # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+      # # overrides. You can do that directly here, just don't forget the
+      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+      # # fonts?
+      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-        # # You can also create simple shell scripts directly inside your
-        # # configuration. For example, this adds a command 'my-hello' to your
-        # # environment:
-        # (pkgs.writeShellScriptBin "my-hello" ''
-        #   echo "Hello, ${config.home.username}!"
-        # '')
-      ]
-      ++ [
-        ghostty.packages.x86_64-linux.ghostty
-      ];
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
+    ];
     per_system_pkgs =
       if setup.isNixOS
       then
-        with pkgs; [
-          librewolf
-          thunderbird
-          simple-scan
-          nemo
-        ]
+        with pkgs;
+          [
+            librewolf
+            thunderbird
+            simple-scan
+            nemo
+          ]
+          ++ [
+            ghostty.packages.x86_64-linux.ghostty
+          ]
       else
         with pkgs; [
           jetbrains.pycharm-professional
