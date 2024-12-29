@@ -96,7 +96,6 @@
           pos = "1600 0";
           # mode = "1920x1080@60Hz";
         };
-        # "*" = {bg = "$HOME/.background-image fill";};
       };
       keybindings = let
         cfg = config.wayland.windowManager.sway.config;
@@ -202,6 +201,8 @@
         bindsym Return mode default
         bindsym Escape mode default
       }
+
+      exec_always wallpaper
     '';
     extraSessionCommands = ''
       export MOZ_ENABLE_WAYLAND=1
