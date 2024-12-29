@@ -97,7 +97,7 @@
           pos = "1600 0";
           # mode = "1920x1080@60Hz";
         };
-        "*" = {bg = "$HOME/.background-image fill";};
+        # "*" = {bg = "$HOME/.background-image fill";};
       };
       keybindings = let
         cfg = config.wayland.windowManager.sway.config;
@@ -163,7 +163,7 @@
         "${modifier}+s" = "mode $mode_sound";
         "${modifier}+o" = "mode $mode_power";
 
-        "${modifier}+Shift+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\"; mode $mode_record";
+        "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode $mode_record";
         "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
       };
       assigns = {
