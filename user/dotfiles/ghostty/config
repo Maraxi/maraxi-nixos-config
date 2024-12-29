@@ -4,6 +4,11 @@ background-opacity = 0.7
 window-decoration = false
 gtk-tabs-location = hidden
 
+font-size = 12
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = true
+
 keybind = clear
 
 keybind = ctrl+q=close_window
