@@ -2,7 +2,6 @@
   pkgs,
   setup,
   lib,
-  ghostty,
   ...
 }: {
   nixpkgs.config.allowUnfreePredicate =
@@ -77,9 +76,6 @@
             thunderbird
             simple-scan
             nemo
-          ]
-          ++ [
-            ghostty.packages.x86_64-linux.ghostty
           ]
       else
         with pkgs; [

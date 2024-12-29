@@ -12,14 +12,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs-unstable.follows = "nixpkgs";
-    };
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "ghostty/zig/flake-utils";
     };
   };
 
@@ -27,7 +22,6 @@
     self,
     nixpkgs,
     home-manager,
-    ghostty,
     nixgl,
     ...
   } @ inputs:
@@ -51,7 +45,6 @@
               ];
             };
             extraSpecialArgs = {
-              inherit ghostty;
               setup = {
                 username = "stefan";
                 stateVersion = "24.05";

@@ -31,8 +31,7 @@
     checkConfig = false;
     config = rec {
       modifier = "Mod1";
-      # terminal = "${pkgs.alacritty}/bin/alacritty";
-      terminal = "ghostty";
+      terminal = "${pkgs.alacritty}/bin/alacritty";
       input = {
         # swaymsg -t get_inputs
         "1008:36:CHICONY_HP_Basic_USB_Keyboard" = {
@@ -173,9 +172,8 @@
       };
     };
     extraConfig = ''
-      set $mode_applications "[a]llacrity [t]hunderbird [l]ibrewolf [k]eepass key[m]app"
+      set $mode_applications "[t]hunderbird [l]ibrewolf [k]eepass key[m]app"
       mode $mode_applications {
-        bindsym a exec ${pkgs.alacritty}/bin/alacritty
         bindsym t exec ${pkgs.thunderbird}/bin/thunderbird
         bindsym l exec ${pkgs.librewolf}/bin/librewolf
         bindsym k exec ${pkgs.keepassxc}/bin/keepassxc
