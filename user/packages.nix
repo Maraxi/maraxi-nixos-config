@@ -71,7 +71,7 @@
       if setup.isNixOS
       then
         with pkgs; [
-          librewolf
+          firefox
           thunderbird
           simple-scan
           nemo
