@@ -48,7 +48,7 @@
       atool
       zip
       unzip
-      unrar
+      unar
 
       alejandra
 
