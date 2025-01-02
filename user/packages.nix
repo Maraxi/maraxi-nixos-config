@@ -46,8 +46,9 @@
       bat
 
       atool
-      unzip
       zip
+      unzip
+      unrar
 
       alejandra
 
