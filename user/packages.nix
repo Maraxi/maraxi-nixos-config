@@ -54,6 +54,7 @@
 
       pre-commit
 
+      libreoffice
       imagemagick
 
       keymapp
