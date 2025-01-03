@@ -54,6 +54,8 @@
 
       pre-commit
 
+      imagemagick
+
       keymapp
 
       # # overrides. You can do that directly here, just don't forget the
