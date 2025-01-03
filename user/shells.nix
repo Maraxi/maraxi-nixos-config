@@ -8,6 +8,8 @@
     historyControl = ["ignorespace" "ignoredups"];
 
     initExtra = ''
+      alias nv=nvim
+
       bind -x '"\C-o":${pkgs.ruff}/bin/ruff format; ${pkgs.ruff}/bin/ruff check --fix --unsafe-fixes'
       bind -x '"\C-p":${pkgs.pre-commit}/bin/pre-commit'
 
