@@ -171,7 +171,7 @@
       };
     };
     extraConfig = ''
-      set $mode_applications "[t]hunderbird [l]ibrewolf [k]eepass key[m]app"
+      set $mode_applications "[t]hunderbird [f]irefox [k]eepass key[m]app"
       mode $mode_applications {
         bindsym t exec ${pkgs.thunderbird}/bin/thunderbird
         bindsym f exec ${pkgs.firefox}/bin/firefox
