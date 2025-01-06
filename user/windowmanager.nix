@@ -221,7 +221,7 @@ in
             {
               command = "wallpaper";
               always = true;
-              notification = false;
+              # notification = false;
             }
           ];
         };
