@@ -295,35 +295,15 @@ in
               "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
             };
 
-          workspaceOutputAssign = let
-            primary = "eDP-1";
-            other = ["DP-1-1.8" "DP-1-1.1" "DP-1-1.1.8" "DP-1-1.3" "DP-1.3"];
-          in [
-            {
-              workspace = "1";
-              output = other;
-            }
-            {
-              workspace = "2";
-              output = other;
-            }
-            {
-              workspace = "3";
-              output = other;
-            }
-            {
-              workspace = "8";
-              output = primary;
-            }
-            {
-              workspace = "9";
-              output = primary;
-            }
-            {
-              workspace = "10";
-              output = primary;
-            }
-          ];
+          workspaceOutputAssign =
+            map (workspace: {
+              workspace = workspace;
+              output = ["DP-1-1.8" "DP-1-1.1" "DP-1-1.1.8" "DP-1-1.3" "DP-1.3"];
+            }) ["1" "2" "3"]
+            ++ map (workspace: {
+              workspace = workspace;
+              output = "eDP-1";
+            }) ["8" "9" "10"];
           assigns = {
             # i3-msg -t get_tree | jq -C | less
             "1" = [{class = "^Chromium";}];
