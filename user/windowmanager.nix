@@ -4,6 +4,7 @@
   setup,
   ...
 }: let
+  modifier = "Mod1";
   colors = let
     cl_high = "#080899";
     cl_indi = "#d9d8d8";
@@ -70,7 +71,7 @@ in
       enable = true;
       checkConfig = false;
       config = rec {
-        modifier = "Mod1";
+        modifier = modifier;
         terminal = "${pkgs.alacritty}/bin/alacritty";
         input = {
           # swaymsg -t get_inputs
@@ -226,6 +227,7 @@ in
     xsession.windowManager.i3 = {
       enable = true;
       config = {
+        modifier = modifier;
         bars = [];
         colors = colors;
         keybindings = {};
