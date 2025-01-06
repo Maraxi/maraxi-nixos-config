@@ -322,6 +322,29 @@ in
               output = primary;
             }
           ];
+          assigns = {
+            # i3-msg -t get_tree | jq -C | less
+            "1" = [{class = "^Chromium";}];
+            "2" = [{class = "^jetbrains-pycharm$";}];
+            "3" = [{class = "^org.remmina.Remmina$";}];
+            "4" = [
+              # Citrix
+              {class = "^File Explorer$";}
+              {class = "^Google Chrome$";}
+            ];
+            "8" = [{class = "^pavucontrol$";}];
+            "9" = [
+              {
+                class = "^KeePassXC$";
+                title = "^KeePassXC$";
+              }
+              {
+                class = "^KeePassXC$";
+                title = "^Passwords.*KeePassXC$";
+              }
+            ];
+            "10" = [{class = "^Keymapp$";}];
+          };
 
           modes = {};
           bars = [
@@ -434,18 +457,6 @@ in
         for_window [class="^xfreerdp$"] floating disable
         # No floating for pychrarm settings
         for_window [class="^jetbrains-pycharm$" title="^Settings$"] floating disable
-
-        # Assign workspaces
-        assign [class="^Chromium"] → 1
-        assign [class="^jetbrains-pycharm$"] → 2
-        assign [class="^org.remmina.Remmina$"] → 3
-        assign [class="^Pavucontrol$"] → 8
-        assign [class="^KeePassXC$" title="^KeePassXC$"] → 9
-        assign [class="^KeePassXC$" title="^Passwords.*KeePassXC$"] → 9
-        assign [class="^Keymapp$"] → 10
-        # Citrix
-        # assign [class="^File Explorer$"] → 4
-        # assign [class="^Google Chrome$"] → 4
 
         for_window [class="^Update-manager$"] floating disable
         no_focus [class="^Update-manager$"]
