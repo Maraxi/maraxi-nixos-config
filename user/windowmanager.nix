@@ -119,7 +119,7 @@ in
           meh = "${modifier}+Ctrl+Shift";
         in
           keybindings
-          ++ {
+          // {
             "${modifier}+d" = "exec ${cfg.menu}";
             "${modifier}+Shift+q" = "kill";
 
