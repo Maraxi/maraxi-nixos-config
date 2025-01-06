@@ -64,14 +64,15 @@
 
     keybindings = let
       meh = "Mod1+Ctrl+Shift";
-      dmenu =
-        if setup.isNixOS
-        then config.wayland.windowManager.sway.config.menu
-        else "dmenu_run";
       left = "h";
       down = "j";
       up = "k";
       right = "l";
+
+      dmenu =
+        if setup.isNixOS
+        then config.wayland.windowManager.sway.config.menu
+        else "dmenu_run";
     in {
       "${modifier}+Return" = "exec ${terminal}";
       "${modifier}+d" = "exec --no-startup-id ${dmenu}";
