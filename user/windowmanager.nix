@@ -5,6 +5,8 @@
   ...
 }: let
   modifier = "Mod1";
+  terminal = "${pkgs.alacritty}/bin/alacritty";
+
   colors = let
     cl_high = "#080899";
     cl_indi = "#d9d8d8";
@@ -76,7 +78,8 @@ in
       checkConfig = false;
       config = rec {
         modifier = modifier;
-        terminal = "${pkgs.alacritty}/bin/alacritty";
+        terminal = terminal;
+
         input = {
           # swaymsg -t get_inputs
           "1008:36:CHICONY_HP_Basic_USB_Keyboard" = {
@@ -231,6 +234,8 @@ in
       enable = true;
       config = {
         modifier = modifier;
+        terminal = terminal;
+
         bars = [];
         colors = colors;
         floating.modifier = "${modifier}";
