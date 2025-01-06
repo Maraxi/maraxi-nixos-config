@@ -7,6 +7,11 @@
   modifier = "Mod1";
   terminal = "${pkgs.alacritty}/bin/alacritty";
 
+  focus = {
+    followMouse = false;
+    mouseWarping = false;
+  };
+
   colors = let
     cl_high = "#080899";
     cl_indi = "#d9d8d8";
@@ -42,10 +47,6 @@
       indicator = "${cl_urge}";
       childBorder = "${cl_urge}";
     };
-  };
-  focus = {
-    followMouse = false;
-    mouseWarping = false;
   };
 in
   if setup.isNixOS
