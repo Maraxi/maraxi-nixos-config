@@ -293,6 +293,36 @@ in
               "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
             };
 
+          workspaceOutputAssign = let
+            primary = "eDP-1";
+            other = ["DP-1-1.8" "DP-1-1.1" "DP-1-1.1.8" "DP-1-1.3" "DP-1.3"];
+          in [
+            {
+              workspace = "1";
+              output = other;
+            }
+            {
+              workspace = "2";
+              output = other;
+            }
+            {
+              workspace = "3";
+              output = other;
+            }
+            {
+              workspace = "8";
+              output = primary;
+            }
+            {
+              workspace = "9";
+              output = primary;
+            }
+            {
+              workspace = "10";
+              output = primary;
+            }
+          ];
+
           modes = {};
           bars = [
             {
@@ -406,13 +436,6 @@ in
         for_window [class="^jetbrains-pycharm$" title="^Settings$"] floating disable
 
         # Assign workspaces
-        set $output_other DP-1-1.3 DP-1-1.8 DP-1-1.1.8 DP-1.3
-        workspace $ws1 output $output_other
-        workspace $ws2 output $output_other
-        workspace $ws3 output $output_other
-        workspace $ws8 output primary
-        workspace $ws9 output primary
-        workspace $ws10 output primary
         assign [class="^Chromium"] → 1
         assign [class="^jetbrains-pycharm$"] → 2
         assign [class="^org.remmina.Remmina$"] → 3
