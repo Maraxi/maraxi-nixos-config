@@ -128,6 +128,8 @@
       "${modifier}+comma" = "scratchpad show";
 
       "${modifier}+Tab" = "workspace back_and_forth";
+      # focus urgent/recent
+      "${meh}+u" = "[urgent=\"latest\"] focus";
 
       "${meh}+c" = "reload";
 
@@ -381,9 +383,6 @@ in
         # There also is i3-dmenu-desktop which only displays applications shipping a
         # .desktop file. It is a wrapper around dmenu, so you need that installed.
         bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
-
-        # focus urgent/recent
-        bindsym $meh+u [urgent="latest"] focus
 
 
         # Identify windows with "xprop" or "xwininfo -tree -root"
