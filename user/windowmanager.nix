@@ -86,6 +86,12 @@
       "${modifier}+Shift+${down}" = "move down";
       "${modifier}+Shift+${up}" = "move up";
       "${modifier}+Shift+${right}" = "move workspace to output right";
+
+      "${meh}+h" = "split h";
+      "${meh}+v" = "split v";
+      # "${meh}+a" = "focus parent";
+      # "${meh}+d" = "focus child";
+      "${meh}+t" = "layout toggle tabbed splith";
     };
   };
 in
@@ -151,12 +157,6 @@ in
           in
             shared_config.keybindings
             // {
-              "${modifier}+b" = "splith";
-              "${modifier}+v" = "splitv";
-              "${modifier}+a" = "focus parent";
-
-              "${modifier}+e" = "layout toggle tabbed splith";
-
               "${meh}+f" = "fullscreen toggle";
               "${meh}+l" = "floating toggle";
               "${meh}+o" = "focus mode_toggle";
@@ -341,29 +341,14 @@ in
         # .desktop file. It is a wrapper around dmenu, so you need that installed.
         bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 
-        # split in horizontal orientation
-        bindsym $mod+Shift+b split h
-
-        # split in vertical orientation
-        bindsym $mod+Shift+v split v
-
         # enter fullscreen mode for the focused container
         bindsym $meh+f fullscreen toggle
-
-        # change container layout (stacked, tabbed, toggle split)
-        bindsym $meh+t layout toggle tabbed splith
 
         # toggle tiling / floating
         bindsym $meh+l floating toggle
 
         # change focus between tiling / floating windows
         bindsym $mod+space focus mode_toggle
-
-        # focus the parent container
-        # bindsym $mod+a focus parent
-
-        # focus the child container
-        #bindsym $mod+d focus child
 
         # focus urgent/recent
         bindsym $meh+u [urgent="latest"] focus
