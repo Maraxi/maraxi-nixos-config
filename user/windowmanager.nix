@@ -20,6 +20,9 @@
     size = 11.0;
   };
 
+  workspaceLayout = "tabbed";
+  defaultWorkspace = "workspace number 1";
+
   keybindings = let
     meh = "Mod1+Ctrl+Shift";
     dmenu =
@@ -115,8 +118,8 @@ in
             xkb_options = "caps:escape_shifted_capslock,compose:sclk";
           };
         };
-        workspaceLayout = "tabbed";
-        defaultWorkspace = "workspace number 1";
+        workspaceLayout = workspaceLayout;
+        defaultWorkspace = defaultWorkspace;
         focus = focus;
         fonts = fonts;
         colors = colors;
@@ -257,6 +260,8 @@ in
         terminal = terminal;
 
         bars = [];
+        workspaceLayout = workspaceLayout;
+        defaultWorkspace = defaultWorkspace;
         colors = colors;
         floating.modifier = "${modifier}";
         focus = focus;
@@ -334,9 +339,6 @@ in
                 bindsym Escape mode "default"
         }
         bindsym $meh+w mode $window_mode
-
-        # Use a tabbed as default layout
-        workspace_layout tabbed
 
         # start dmenu (a program launcher)
         # bindsym $mod+d exec --no-startup-id dmenu_run
