@@ -4,71 +4,74 @@
   setup,
   ...
 }: let
-  modifier = "Mod1";
-  terminal =
-    if setup.isNixOS
-    then "${pkgs.alacritty}/bin/alacritty"
-    else "alacritty";
-
-  fonts = {
-    names = ["DejaVu Sans Mono" "FontAwesome5Free"];
-    style = "Bold Semi-Condensed";
-    size = 11.0;
-  };
-
-  focus = {
-    followMouse = false;
-    mouseWarping = false;
-  };
-  workspaceLayout = "tabbed";
-  defaultWorkspace = "workspace number 1";
-
-  keybindings = let
-    meh = "Mod1+Ctrl+Shift";
-    dmenu =
+  shared_config = rec {
+    modifier = "Mod1";
+    terminal =
       if setup.isNixOS
-      then config.wayland.windowManager.sway.config.menu
-      else "dmenu_run";
-  in {
-    "${modifier}+Return" = "exec ${terminal}";
-    "${modifier}+d" = "exec --no-startup-id ${dmenu}";
-    "${meh}+q" = "kill";
-  };
+      then "${pkgs.alacritty}/bin/alacritty"
+      else "alacritty";
 
-  colors = let
-    cl_high = "#080899";
-    cl_indi = "#d9d8d8";
-    cl_back = "#231f20";
-    cl_fore = "#d9d8d8";
-    cl_urge = "#9966ff";
-  in {
-    focused = {
-      background = "${cl_high}";
-      border = "${cl_high}";
-      text = "${cl_fore}";
-      indicator = "${cl_indi}";
-      childBorder = "${cl_back}";
+    fonts = {
+      names = ["DejaVu Sans Mono" "FontAwesome5Free"];
+      style = "Bold Semi-Condensed";
+      size = 11.0;
     };
-    focusedInactive = {
-      background = "${cl_back}";
-      border = "${cl_back}";
-      text = "${cl_fore}";
-      indicator = "${cl_back}";
-      childBorder = "${cl_back}";
+    colors = let
+      cl_high = "#080899";
+      cl_indi = "#d9d8d8";
+      cl_back = "#231f20";
+      cl_fore = "#d9d8d8";
+      cl_urge = "#9966ff";
+    in {
+      focused = {
+        background = "${cl_high}";
+        border = "${cl_high}";
+        text = "${cl_fore}";
+        indicator = "${cl_indi}";
+        childBorder = "${cl_back}";
+      };
+      focusedInactive = {
+        background = "${cl_back}";
+        border = "${cl_back}";
+        text = "${cl_fore}";
+        indicator = "${cl_back}";
+        childBorder = "${cl_back}";
+      };
+      unfocused = {
+        background = "${cl_back}";
+        border = "${cl_back}";
+        text = "${cl_fore}";
+        indicator = "${cl_back}";
+        childBorder = "${cl_back}";
+      };
+      urgent = {
+        background = "${cl_urge}";
+        border = "${cl_urge}";
+        text = "${cl_fore}";
+        indicator = "${cl_urge}";
+        childBorder = "${cl_urge}";
+      };
     };
-    unfocused = {
-      background = "${cl_back}";
-      border = "${cl_back}";
-      text = "${cl_fore}";
-      indicator = "${cl_back}";
-      childBorder = "${cl_back}";
+
+    focus = {
+      followMouse = false;
+      mouseWarping = false;
     };
-    urgent = {
-      background = "${cl_urge}";
-      border = "${cl_urge}";
-      text = "${cl_fore}";
-      indicator = "${cl_urge}";
-      childBorder = "${cl_urge}";
+    workspaceLayout = "tabbed";
+    defaultWorkspace = "workspace number 1";
+
+    floating.modifier = "${modifier}";
+
+    keybindings = let
+      meh = "Mod1+Ctrl+Shift";
+      dmenu =
+        if setup.isNixOS
+        then config.wayland.windowManager.sway.config.menu
+        else "dmenu_run";
+    in {
+      "${modifier}+Return" = "exec ${terminal}";
+      "${modifier}+d" = "exec --no-startup-id ${dmenu}";
+      "${meh}+q" = "kill";
     };
   };
 in
@@ -100,113 +103,106 @@ in
     wayland.windowManager.sway = {
       enable = true;
       checkConfig = false;
-      config = {
-        modifier = modifier;
-        terminal = terminal;
-
-        fonts = fonts;
-        colors = colors;
-
-        focus = focus;
-        workspaceLayout = workspaceLayout;
-        defaultWorkspace = defaultWorkspace;
-
-        input = {
-          # swaymsg -t get_inputs
-          "1008:36:CHICONY_HP_Basic_USB_Keyboard" = {
-            xkb_layout = "de";
-            xkb_variant = "nodeadkeys";
-            xkb_options = "caps:escape_shifted_capslock,compose:sclk";
-            xkb_numlock = "enabled";
+      config =
+        shared_config
+        // {
+          input = {
+            # swaymsg -t get_inputs
+            "1008:36:CHICONY_HP_Basic_USB_Keyboard" = {
+              xkb_layout = "de";
+              xkb_variant = "nodeadkeys";
+              xkb_options = "caps:escape_shifted_capslock,compose:sclk";
+              xkb_numlock = "enabled";
+            };
+            "type:keyboard" = {
+              xkb_layout = "de";
+              xkb_variant = "nodeadkeys";
+              xkb_options = "caps:escape_shifted_capslock,compose:sclk";
+            };
           };
-          "type:keyboard" = {
-            xkb_layout = "de";
-            xkb_variant = "nodeadkeys";
-            xkb_options = "caps:escape_shifted_capslock,compose:sclk";
+          output = {
+            # swaymsg -t get_outputs
+            eDP-1 = {
+              pos = "0 150";
+              # bg = "$HOME/.background.png fill";
+            };
+            HDMI-A-2 = {
+              pos = "1600 0";
+              # mode = "1920x1080@60Hz";
+            };
+          };
+          keybindings = let
+            modifier = shared_config.modifier;
+            cfg = config.wayland.windowManager.sway.config;
+            meh = "${modifier}+Ctrl+Shift";
+          in
+            shared_config.keybindings
+            // {
+              "${modifier}+${cfg.left}" = "focus left";
+              "${modifier}+${cfg.down}" = "focus down";
+              "${modifier}+${cfg.up}" = "focus up";
+              "${modifier}+${cfg.right}" = "focus right";
+
+              "${modifier}+Shift+${cfg.left}" = "move workspace to output left";
+              "${modifier}+Shift+${cfg.down}" = "move down";
+              "${modifier}+Shift+${cfg.up}" = "move up";
+              "${modifier}+Shift+${cfg.right}" = "move workspace to output right";
+
+              "${modifier}+b" = "splith";
+              "${modifier}+v" = "splitv";
+              "${modifier}+a" = "focus parent";
+
+              "${modifier}+e" = "layout toggle tabbed splith";
+
+              "${meh}+f" = "fullscreen toggle";
+              "${meh}+l" = "floating toggle";
+              "${meh}+o" = "focus mode_toggle";
+
+              "${modifier}+1" = "workspace number 1";
+              "${modifier}+2" = "workspace number 2";
+              "${modifier}+3" = "workspace number 3";
+              "${modifier}+4" = "workspace number 4";
+              "${modifier}+5" = "workspace number 5";
+              "${modifier}+6" = "workspace number 6";
+              "${modifier}+7" = "workspace number 7";
+              "${modifier}+8" = "workspace number 8";
+              "${modifier}+9" = "workspace number 9";
+              "${modifier}+0" = "workspace number 10";
+
+              "${modifier}+Shift+1" = "move container to workspace number 1";
+              "${modifier}+Shift+2" = "move container to workspace number 2";
+              "${modifier}+Shift+3" = "move container to workspace number 3";
+              "${modifier}+Shift+4" = "move container to workspace number 4";
+              "${modifier}+Shift+5" = "move container to workspace number 5";
+              "${modifier}+Shift+6" = "move container to workspace number 6";
+              "${modifier}+Shift+7" = "move container to workspace number 7";
+              "${modifier}+Shift+8" = "move container to workspace number 8";
+              "${modifier}+Shift+9" = "move container to workspace number 9";
+              "${modifier}+Shift+0" = "move container to workspace number 10";
+
+              "${modifier}+Shift+comma" = "move scratchpad";
+              "${modifier}+comma" = "scratchpad show";
+
+              "${modifier}+Tab" = "workspace back_and_forth";
+
+              "${modifier}+Shift+c" = "reload";
+
+              "${modifier}+Shift+d" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
+
+              "${meh}+r" = "mode resize";
+              "${meh}+a" = "mode $mode_applications";
+              "${modifier}+s" = "mode $mode_sound";
+              "${modifier}+o" = "mode $mode_power";
+
+              "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode $mode_record";
+              "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
+            };
+          assigns = {
+            # swaymsg -t get_tree
+            "8" = [{app_id = "^thunderbird$";}];
+            "9" = [{title = "^KeeData.kdbx";}];
           };
         };
-        output = {
-          # swaymsg -t get_outputs
-          eDP-1 = {
-            pos = "0 150";
-            # bg = "$HOME/.background.png fill";
-          };
-          HDMI-A-2 = {
-            pos = "1600 0";
-            # mode = "1920x1080@60Hz";
-          };
-        };
-        keybindings = let
-          cfg = config.wayland.windowManager.sway.config;
-          meh = "${modifier}+Ctrl+Shift";
-        in
-          keybindings
-          // {
-            "${modifier}+${cfg.left}" = "focus left";
-            "${modifier}+${cfg.down}" = "focus down";
-            "${modifier}+${cfg.up}" = "focus up";
-            "${modifier}+${cfg.right}" = "focus right";
-
-            "${modifier}+Shift+${cfg.left}" = "move workspace to output left";
-            "${modifier}+Shift+${cfg.down}" = "move down";
-            "${modifier}+Shift+${cfg.up}" = "move up";
-            "${modifier}+Shift+${cfg.right}" = "move workspace to output right";
-
-            "${modifier}+b" = "splith";
-            "${modifier}+v" = "splitv";
-            "${modifier}+a" = "focus parent";
-
-            "${modifier}+e" = "layout toggle tabbed splith";
-
-            "${meh}+f" = "fullscreen toggle";
-            "${meh}+l" = "floating toggle";
-            "${meh}+o" = "focus mode_toggle";
-
-            "${modifier}+1" = "workspace number 1";
-            "${modifier}+2" = "workspace number 2";
-            "${modifier}+3" = "workspace number 3";
-            "${modifier}+4" = "workspace number 4";
-            "${modifier}+5" = "workspace number 5";
-            "${modifier}+6" = "workspace number 6";
-            "${modifier}+7" = "workspace number 7";
-            "${modifier}+8" = "workspace number 8";
-            "${modifier}+9" = "workspace number 9";
-            "${modifier}+0" = "workspace number 10";
-
-            "${modifier}+Shift+1" = "move container to workspace number 1";
-            "${modifier}+Shift+2" = "move container to workspace number 2";
-            "${modifier}+Shift+3" = "move container to workspace number 3";
-            "${modifier}+Shift+4" = "move container to workspace number 4";
-            "${modifier}+Shift+5" = "move container to workspace number 5";
-            "${modifier}+Shift+6" = "move container to workspace number 6";
-            "${modifier}+Shift+7" = "move container to workspace number 7";
-            "${modifier}+Shift+8" = "move container to workspace number 8";
-            "${modifier}+Shift+9" = "move container to workspace number 9";
-            "${modifier}+Shift+0" = "move container to workspace number 10";
-
-            "${modifier}+Shift+comma" = "move scratchpad";
-            "${modifier}+comma" = "scratchpad show";
-
-            "${modifier}+Tab" = "workspace back_and_forth";
-
-            "${modifier}+Shift+c" = "reload";
-
-            "${modifier}+Shift+d" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
-
-            "${meh}+r" = "mode resize";
-            "${meh}+a" = "mode $mode_applications";
-            "${modifier}+s" = "mode $mode_sound";
-            "${modifier}+o" = "mode $mode_power";
-
-            "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode $mode_record";
-            "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
-          };
-        assigns = {
-          # swaymsg -t get_tree
-          "8" = [{app_id = "^thunderbird$";}];
-          "9" = [{title = "^KeeData.kdbx";}];
-        };
-      };
       extraConfig = ''
         set $mode_applications "[t]hunderbird [f]irefox [k]eepass key[m]app"
         mode $mode_applications {
@@ -257,22 +253,12 @@ in
   else {
     xsession.windowManager.i3 = {
       enable = true;
-      config = {
-        modifier = modifier;
-        terminal = terminal;
-
-        fonts = fonts;
-        colors = colors;
-
-        focus = focus;
-        workspaceLayout = workspaceLayout;
-        defaultWorkspace = defaultWorkspace;
-
-        floating.modifier = "${modifier}";
-        keybindings = keybindings;
-        modes = {};
-        bars = [];
-      };
+      config =
+        shared_config
+        // {
+          modes = {};
+          bars = [];
+        };
       extraConfig = ''
         # Should you change your keyboard layout some time, delete
         # this file and re-run i3-config-wizard(1).
