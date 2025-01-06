@@ -224,6 +224,10 @@ else {
   xsession.windowManager.i3 = {
     enable = true;
     config = {
+      bars = [];
+      colors = {};
+      keybindings = {};
+      modes = {};
     };
     extraConfig = ''
       # Should you change your keyboard layout some time, delete
