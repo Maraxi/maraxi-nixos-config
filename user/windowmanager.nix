@@ -68,10 +68,24 @@
         if setup.isNixOS
         then config.wayland.windowManager.sway.config.menu
         else "dmenu_run";
+      left = "h";
+      down = "j";
+      up = "k";
+      right = "l";
     in {
       "${modifier}+Return" = "exec ${terminal}";
       "${modifier}+d" = "exec --no-startup-id ${dmenu}";
       "${meh}+q" = "kill";
+
+      "${modifier}+${left}" = "focus left";
+      "${modifier}+${down}" = "focus down";
+      "${modifier}+${up}" = "focus up";
+      "${modifier}+${right}" = "focus right";
+
+      "${modifier}+Shift+${left}" = "move workspace to output left";
+      "${modifier}+Shift+${down}" = "move down";
+      "${modifier}+Shift+${up}" = "move up";
+      "${modifier}+Shift+${right}" = "move workspace to output right";
     };
   };
 in
@@ -133,21 +147,10 @@ in
           };
           keybindings = let
             modifier = shared_config.modifier;
-            cfg = config.wayland.windowManager.sway.config;
             meh = "${modifier}+Ctrl+Shift";
           in
             shared_config.keybindings
             // {
-              "${modifier}+${cfg.left}" = "focus left";
-              "${modifier}+${cfg.down}" = "focus down";
-              "${modifier}+${cfg.up}" = "focus up";
-              "${modifier}+${cfg.right}" = "focus right";
-
-              "${modifier}+Shift+${cfg.left}" = "move workspace to output left";
-              "${modifier}+Shift+${cfg.down}" = "move down";
-              "${modifier}+Shift+${cfg.up}" = "move up";
-              "${modifier}+Shift+${cfg.right}" = "move workspace to output right";
-
               "${modifier}+b" = "splith";
               "${modifier}+v" = "splitv";
               "${modifier}+a" = "focus parent";
@@ -337,22 +340,6 @@ in
         # There also is i3-dmenu-desktop which only displays applications shipping a
         # .desktop file. It is a wrapper around dmenu, so you need that installed.
         bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
-
-        # change focus
-        bindsym $mod+h focus left
-        bindsym $mod+j focus down
-        bindsym $mod+k focus up
-        bindsym $mod+l focus right
-
-        # move focused window
-        bindsym $mod+Shift+h move left
-        bindsym $mod+Shift+j move down
-        bindsym $mod+Shift+k move up
-        bindsym $mod+Shift+l move right
-
-        # alternatively, you can use the cursor keys:
-        bindsym $mod+Shift+Right move workspace to output right
-        bindsym $mod+Shift+Left move workspace to output left
 
         # split in horizontal orientation
         bindsym $mod+Shift+b split h
