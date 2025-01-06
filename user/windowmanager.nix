@@ -73,6 +73,10 @@
         if setup.isNixOS
         then config.wayland.windowManager.sway.config.menu
         else "dmenu_run";
+      dismiss_notifications =
+        if setup.isNixOS
+        then "${pkgs.mako}/bin/makoctl dismiss -a"
+        else "dunstctl close-all";
     in {
       "${modifier}+Return" = "exec ${terminal}";
       "${modifier}+d" = "exec --no-startup-id ${dmenu}";
@@ -126,6 +130,8 @@
       "${modifier}+Tab" = "workspace back_and_forth";
 
       "${meh}+c" = "reload";
+
+      "${meh}+d" = "exec --no-startup-id ${dismiss_notifications}";
     };
   };
 in
@@ -191,8 +197,6 @@ in
           in
             shared_config.keybindings
             // {
-              "${modifier}+Shift+d" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
-
               "${meh}+r" = "mode resize";
               "${meh}+a" = "mode $mode_applications";
               "${modifier}+s" = "mode $mode_sound";
@@ -416,9 +420,6 @@ in
         bindsym $meh+a mode $apps_mode
 
         bindsym Print exec flameshot gui
-
-        # clear all dunst notifications
-        bindsym $meh+d exec "dunstctl close-all"
 
         set $lock i3lock -efc 000000 && sleep 1
         set $display_off xset dpms force off
