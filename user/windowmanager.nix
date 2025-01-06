@@ -306,11 +306,12 @@ in
             {
               # screensaver
               command = "xset +dpms";
+              always = true;
               notification = false;
             }
             {
-              # screensaver
               command = "xset s 540";
+              always = true;
               notification = false;
             }
             {command = "${pkgs.keepassxc}/bin/keepassxc";}
