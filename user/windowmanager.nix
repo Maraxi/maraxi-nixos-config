@@ -313,6 +313,7 @@ in
               command = "xset s 540";
               notification = false;
             }
+            {command = "${pkgs.keepassxc}/bin/keepassxc";}
           ];
         };
       extraConfig = ''
@@ -416,9 +417,6 @@ in
         # no_focus [class="KeePassXC$" title="^KeePassXC$"]
         # focus_on_window_activation [class="KeePassXC$" title="^KeePassXC$"] none
         focus_on_window_activation smart
-
-        # Startup
-        exec keepassxc
 
         # Applications
         set $apps_mode "Apps C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot"
