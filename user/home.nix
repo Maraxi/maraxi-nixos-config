@@ -7,7 +7,6 @@
     specific-imports =
       if setup.isNixOS
       then [
-        ./sway.nix
         ./ssh.nix
         ./xdg-portal.nix
       ]
@@ -25,6 +24,7 @@
       ./neovim.nix
       ./packages.nix
       ./shells.nix
+      ./windowmanager.nix
     ]
     ++ specific-imports;
 

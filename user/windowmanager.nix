@@ -1,8 +1,11 @@
 {
   pkgs,
   config,
+  setup,
   ...
-}: {
+}:
+if setup.isNixOS
+then {
   home.packages = with pkgs; [
     # mako # wayland notification daemon
     # sway-contrib.grimshot
@@ -217,3 +220,4 @@
     wrapperFeatures.gtk = true;
   };
 }
+else {}
