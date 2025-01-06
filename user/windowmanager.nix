@@ -12,6 +12,10 @@
     mouseWarping = false;
   };
 
+  keybindings = {
+    "${modifier}+Return" = "exec ${terminal}";
+  };
+
   colors = let
     cl_high = "#080899";
     cl_indi = "#d9d8d8";
@@ -113,70 +117,71 @@ in
         keybindings = let
           cfg = config.wayland.windowManager.sway.config;
           meh = "${modifier}+Ctrl+Shift";
-        in {
-          "${modifier}+Return" = "exec ${terminal}";
-          "${modifier}+d" = "exec ${cfg.menu}";
-          "${modifier}+Shift+q" = "kill";
+        in
+          keybindings
+          ++ {
+            "${modifier}+d" = "exec ${cfg.menu}";
+            "${modifier}+Shift+q" = "kill";
 
-          "${modifier}+${cfg.left}" = "focus left";
-          "${modifier}+${cfg.down}" = "focus down";
-          "${modifier}+${cfg.up}" = "focus up";
-          "${modifier}+${cfg.right}" = "focus right";
+            "${modifier}+${cfg.left}" = "focus left";
+            "${modifier}+${cfg.down}" = "focus down";
+            "${modifier}+${cfg.up}" = "focus up";
+            "${modifier}+${cfg.right}" = "focus right";
 
-          "${modifier}+Shift+${cfg.left}" = "move workspace to output left";
-          "${modifier}+Shift+${cfg.down}" = "move down";
-          "${modifier}+Shift+${cfg.up}" = "move up";
-          "${modifier}+Shift+${cfg.right}" = "move workspace to output right";
+            "${modifier}+Shift+${cfg.left}" = "move workspace to output left";
+            "${modifier}+Shift+${cfg.down}" = "move down";
+            "${modifier}+Shift+${cfg.up}" = "move up";
+            "${modifier}+Shift+${cfg.right}" = "move workspace to output right";
 
-          "${modifier}+b" = "splith";
-          "${modifier}+v" = "splitv";
-          "${modifier}+a" = "focus parent";
+            "${modifier}+b" = "splith";
+            "${modifier}+v" = "splitv";
+            "${modifier}+a" = "focus parent";
 
-          "${modifier}+e" = "layout toggle tabbed splith";
+            "${modifier}+e" = "layout toggle tabbed splith";
 
-          "${meh}+f" = "fullscreen toggle";
-          "${meh}+l" = "floating toggle";
-          "${meh}+o" = "focus mode_toggle";
+            "${meh}+f" = "fullscreen toggle";
+            "${meh}+l" = "floating toggle";
+            "${meh}+o" = "focus mode_toggle";
 
-          "${modifier}+1" = "workspace number 1";
-          "${modifier}+2" = "workspace number 2";
-          "${modifier}+3" = "workspace number 3";
-          "${modifier}+4" = "workspace number 4";
-          "${modifier}+5" = "workspace number 5";
-          "${modifier}+6" = "workspace number 6";
-          "${modifier}+7" = "workspace number 7";
-          "${modifier}+8" = "workspace number 8";
-          "${modifier}+9" = "workspace number 9";
-          "${modifier}+0" = "workspace number 10";
+            "${modifier}+1" = "workspace number 1";
+            "${modifier}+2" = "workspace number 2";
+            "${modifier}+3" = "workspace number 3";
+            "${modifier}+4" = "workspace number 4";
+            "${modifier}+5" = "workspace number 5";
+            "${modifier}+6" = "workspace number 6";
+            "${modifier}+7" = "workspace number 7";
+            "${modifier}+8" = "workspace number 8";
+            "${modifier}+9" = "workspace number 9";
+            "${modifier}+0" = "workspace number 10";
 
-          "${modifier}+Shift+1" = "move container to workspace number 1";
-          "${modifier}+Shift+2" = "move container to workspace number 2";
-          "${modifier}+Shift+3" = "move container to workspace number 3";
-          "${modifier}+Shift+4" = "move container to workspace number 4";
-          "${modifier}+Shift+5" = "move container to workspace number 5";
-          "${modifier}+Shift+6" = "move container to workspace number 6";
-          "${modifier}+Shift+7" = "move container to workspace number 7";
-          "${modifier}+Shift+8" = "move container to workspace number 8";
-          "${modifier}+Shift+9" = "move container to workspace number 9";
-          "${modifier}+Shift+0" = "move container to workspace number 10";
+            "${modifier}+Shift+1" = "move container to workspace number 1";
+            "${modifier}+Shift+2" = "move container to workspace number 2";
+            "${modifier}+Shift+3" = "move container to workspace number 3";
+            "${modifier}+Shift+4" = "move container to workspace number 4";
+            "${modifier}+Shift+5" = "move container to workspace number 5";
+            "${modifier}+Shift+6" = "move container to workspace number 6";
+            "${modifier}+Shift+7" = "move container to workspace number 7";
+            "${modifier}+Shift+8" = "move container to workspace number 8";
+            "${modifier}+Shift+9" = "move container to workspace number 9";
+            "${modifier}+Shift+0" = "move container to workspace number 10";
 
-          "${modifier}+Shift+comma" = "move scratchpad";
-          "${modifier}+comma" = "scratchpad show";
+            "${modifier}+Shift+comma" = "move scratchpad";
+            "${modifier}+comma" = "scratchpad show";
 
-          "${modifier}+Tab" = "workspace back_and_forth";
+            "${modifier}+Tab" = "workspace back_and_forth";
 
-          "${modifier}+Shift+c" = "reload";
+            "${modifier}+Shift+c" = "reload";
 
-          "${modifier}+Shift+d" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
+            "${modifier}+Shift+d" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
 
-          "${meh}+r" = "mode resize";
-          "${meh}+a" = "mode $mode_applications";
-          "${modifier}+s" = "mode $mode_sound";
-          "${modifier}+o" = "mode $mode_power";
+            "${meh}+r" = "mode resize";
+            "${meh}+a" = "mode $mode_applications";
+            "${modifier}+s" = "mode $mode_sound";
+            "${modifier}+o" = "mode $mode_power";
 
-          "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode $mode_record";
-          "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
-        };
+            "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode $mode_record";
+            "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
+          };
         assigns = {
           # swaymsg -t get_tree
           "8" = [{app_id = "^thunderbird$";}];
@@ -246,7 +251,7 @@ in
           style = "Bold Semi-Condensed";
           size = 11.0;
         };
-        keybindings = {};
+        keybindings = keybindings;
         modes = {};
       };
       extraConfig = ''
@@ -322,9 +327,6 @@ in
 
         # Use a tabbed as default layout
         workspace_layout tabbed
-
-        # start a terminal
-        bindsym $meh+Return exec alacritty
 
         # kill focused window
         bindsym $meh+q kill
