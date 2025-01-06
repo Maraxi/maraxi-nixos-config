@@ -17,8 +17,16 @@
     size = 11.0;
   };
 
-  keybindings = {
+  keybindings = let
+    meh = "Mod1+Ctrl+Shift";
+    dmenu =
+      if setup.isNixOS
+      then config.wayland.windowManager.sway.config.menu
+      else "dmenu_run";
+  in {
     "${modifier}+Return" = "exec ${terminal}";
+    "${modifier}+d" = "exec --no-startup-id ${dmenu}";
+    "${meh}+q" = "kill";
   };
 
   colors = let
@@ -126,9 +134,6 @@ in
         in
           keybindings
           // {
-            "${modifier}+d" = "exec ${cfg.menu}";
-            "${modifier}+Shift+q" = "kill";
-
             "${modifier}+${cfg.left}" = "focus left";
             "${modifier}+${cfg.down}" = "focus down";
             "${modifier}+${cfg.up}" = "focus up";
@@ -330,11 +335,8 @@ in
         # Use a tabbed as default layout
         workspace_layout tabbed
 
-        # kill focused window
-        bindsym $meh+q kill
-
         # start dmenu (a program launcher)
-        bindsym $mod+d exec --no-startup-id dmenu_run
+        # bindsym $mod+d exec --no-startup-id dmenu_run
         # A more modern dmenu replacement is rofi:
         # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
         # There also is i3-dmenu-desktop which only displays applications shipping a
