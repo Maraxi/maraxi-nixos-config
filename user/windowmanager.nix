@@ -9,7 +9,7 @@
     cl_indi = "#d9d8d8";
     cl_back = "#231f20";
     cl_fore = "#d9d8d8";
-    cl_urge = "#ff69b4";
+    cl_urge = "#9966ff";
   in {
     focused = {
       background = "${cl_high}";
