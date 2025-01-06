@@ -57,6 +57,7 @@
     focus = {
       followMouse = false;
       mouseWarping = false;
+      newWindow = "smart";
     };
     workspaceLayout = "tabbed";
     defaultWorkspace = "workspace number 1";
@@ -462,7 +463,6 @@ in
         no_focus [class="^Update-manager$"]
         # no_focus [class="KeePassXC$" title="^KeePassXC$"]
         # focus_on_window_activation [class="KeePassXC$" title="^KeePassXC$"] none
-        focus_on_window_activation smart
 
         # Applications
         set $apps_mode "Apps C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot"
