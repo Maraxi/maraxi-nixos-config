@@ -4,7 +4,7 @@
   setup,
   ...
 }: let
-  shared_colors = let
+  colors = let
     cl_high = "#080899";
     cl_indi = "#d9d8d8";
     cl_back = "#231f20";
@@ -90,7 +90,7 @@ in
         defaultWorkspace = "workspace number 1";
         focus.followMouse = false;
         focus.mouseWarping = false;
-        colors = shared_colors;
+        colors = colors;
         output = {
           # swaymsg -t get_outputs
           eDP-1 = {
@@ -227,7 +227,7 @@ in
       enable = true;
       config = {
         bars = [];
-        colors = shared_colors;
+        colors = colors;
         keybindings = {};
         modes = {};
       };
