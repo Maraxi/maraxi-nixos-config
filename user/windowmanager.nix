@@ -4,6 +4,7 @@
   setup,
   ...
 }: let
+  # See https://i3wm.org/docs/userguide.html for a complete reference to i3/sway!
   shared_config = rec {
     modifier = "Mod1";
     terminal =
@@ -343,9 +344,6 @@ in
       extraConfig = ''
         # Should you change your keyboard layout some time, delete
         # this file and re-run i3-config-wizard(1).
-
-        # i3 config file (v4)
-        # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
         set $mod Mod1
         set $meh Ctrl+Shift+Mod1
