@@ -303,6 +303,16 @@ in
               command = "nm-applet";
               notification = false;
             }
+            {
+              # screensaver
+              command = "xset +dpms";
+              notification = false;
+            }
+            {
+              # screensaver
+              command = "xset s 540";
+              notification = false;
+            }
           ];
         };
       extraConfig = ''
@@ -331,10 +341,6 @@ in
                 bindsym Enter mode "default"
         }
         bindsym $meh+s mode $sound_mode
-
-        # screensaver
-        exec_always --no-startup-id xset +dpms
-        exec_always --no-startup-id xset s 540
 
         # Set monitors for home setup
         # reference $ man xkeyboard-config
