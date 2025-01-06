@@ -81,7 +81,7 @@ in
     wayland.windowManager.sway = {
       enable = true;
       checkConfig = false;
-      config = rec {
+      config = {
         modifier = modifier;
         terminal = terminal;
 
