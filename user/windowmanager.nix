@@ -10,16 +10,16 @@
     then "${pkgs.alacritty}/bin/alacritty"
     else "alacritty";
 
-  focus = {
-    followMouse = false;
-    mouseWarping = false;
-  };
   fonts = {
     names = ["DejaVu Sans Mono" "FontAwesome5Free"];
     style = "Bold Semi-Condensed";
     size = 11.0;
   };
 
+  focus = {
+    followMouse = false;
+    mouseWarping = false;
+  };
   workspaceLayout = "tabbed";
   defaultWorkspace = "workspace number 1";
 
@@ -104,6 +104,13 @@ in
         modifier = modifier;
         terminal = terminal;
 
+        fonts = fonts;
+        colors = colors;
+
+        focus = focus;
+        workspaceLayout = workspaceLayout;
+        defaultWorkspace = defaultWorkspace;
+
         input = {
           # swaymsg -t get_inputs
           "1008:36:CHICONY_HP_Basic_USB_Keyboard" = {
@@ -118,11 +125,6 @@ in
             xkb_options = "caps:escape_shifted_capslock,compose:sclk";
           };
         };
-        workspaceLayout = workspaceLayout;
-        defaultWorkspace = defaultWorkspace;
-        focus = focus;
-        fonts = fonts;
-        colors = colors;
         output = {
           # swaymsg -t get_outputs
           eDP-1 = {
@@ -259,15 +261,17 @@ in
         modifier = modifier;
         terminal = terminal;
 
-        bars = [];
+        fonts = fonts;
+        colors = colors;
+
+        focus = focus;
         workspaceLayout = workspaceLayout;
         defaultWorkspace = defaultWorkspace;
-        colors = colors;
+
         floating.modifier = "${modifier}";
-        focus = focus;
-        fonts = fonts;
         keybindings = keybindings;
         modes = {};
+        bars = [];
       };
       extraConfig = ''
         # Should you change your keyboard layout some time, delete
