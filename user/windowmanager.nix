@@ -148,7 +148,6 @@ in
       # kanshi # hot switching output profiles
       wl-clipboard # wayland clipboard
       # shotman # wayland screenshots
-      # flameshot
     ];
     services.mako.enable = true;
     services.swayidle = {
@@ -281,7 +280,7 @@ in
             shared_config.keybindings
             // {
               "${meh}+r" = "restart";
-              "Print" = "flameshot gui";
+              "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
             };
 
           modes = {};
@@ -438,7 +437,7 @@ in
                 bindsym s mode "default", exec pass
                 bindsym k mode "default", exec keepassxc
                 bindsym m mode "default", exec keymapp
-                bindsym f mode "default", exec flameshot gui #TODO prntscn button
+                bindsym f mode "default", exec flameshot gui
                 # bindsym g mode "default", exec gif
                 # back to normal: Enter or Escape
                 bindsym Return mode "default"
