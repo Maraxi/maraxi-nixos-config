@@ -314,6 +314,11 @@ in
               notification = false;
             }
             {command = "${pkgs.keepassxc}/bin/keepassxc";}
+            {
+              # Compositor for transparency
+              command = "picom &";
+              notification = false;
+            }
           ];
         };
       extraConfig = ''
@@ -469,9 +474,6 @@ in
                 bindsym $mod+r mode "default"
         }
         bindsym $mod+r mode "resize"
-
-        # Compositor for transparency
-        exec --no-startup-id picom &
 
         # Start i3bar to display a workspace bar (plus the system information i3status
         # finds out, if available)
