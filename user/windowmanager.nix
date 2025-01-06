@@ -230,6 +230,11 @@ in
         modifier = modifier;
         bars = [];
         colors = colors;
+        fonts = {
+          names = ["DejaVu Sans Mono" "FontAwesome5Free"];
+          style = "Bold Semi-Condensed";
+          size = 11.0;
+        };
         keybindings = {};
         modes = {};
       };
@@ -242,14 +247,6 @@ in
 
         set $mod Mod1
         set $meh Ctrl+Shift+Mod1
-
-        # Font for window titles. Will also be used by the bar unless a different font
-        # is used in the bar {} block below.
-        font pango:monospace 11
-
-        # This font is widely installed, provides lots of unicode glyphs, right-to-left
-        # text rendering and scalability on retina/hidpi displays (thanks to pango).
-        #font pango:DejaVu Sans Mono 8
 
         # Start XDG autostart .desktop files using dex. See also
         # https://wiki.archlinux.org/index.php/XDG_Autostart
