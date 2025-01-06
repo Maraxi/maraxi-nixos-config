@@ -5,7 +5,10 @@
   ...
 }: let
   modifier = "Mod1";
-  terminal = "${pkgs.alacritty}/bin/alacritty";
+  terminal =
+    if setup.isNixOS
+    then "${pkgs.alacritty}/bin/alacritty"
+    else "alacritty";
 
   focus = {
     followMouse = false;
