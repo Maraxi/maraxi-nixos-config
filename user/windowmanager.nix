@@ -92,6 +92,10 @@
       # "${meh}+a" = "focus parent";
       # "${meh}+d" = "focus child";
       "${meh}+t" = "layout toggle tabbed splith";
+
+      "${meh}+f" = "fullscreen toggle";
+      "${meh}+l" = "floating toggle"; # toggle tiling / floating for active window
+      "${meh}+o" = "focus mode_toggle"; # change focus between tiling / floating windows
     };
   };
 in
@@ -157,10 +161,6 @@ in
           in
             shared_config.keybindings
             // {
-              "${meh}+f" = "fullscreen toggle";
-              "${meh}+l" = "floating toggle";
-              "${meh}+o" = "focus mode_toggle";
-
               "${modifier}+1" = "workspace number 1";
               "${modifier}+2" = "workspace number 2";
               "${modifier}+3" = "workspace number 3";
@@ -340,15 +340,6 @@ in
         # There also is i3-dmenu-desktop which only displays applications shipping a
         # .desktop file. It is a wrapper around dmenu, so you need that installed.
         bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
-
-        # enter fullscreen mode for the focused container
-        bindsym $meh+f fullscreen toggle
-
-        # toggle tiling / floating
-        bindsym $meh+l floating toggle
-
-        # change focus between tiling / floating windows
-        bindsym $mod+space focus mode_toggle
 
         # focus urgent/recent
         bindsym $meh+u [urgent="latest"] focus
