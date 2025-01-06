@@ -11,6 +11,11 @@
     followMouse = false;
     mouseWarping = false;
   };
+  fonts = {
+    names = ["DejaVu Sans Mono" "FontAwesome5Free"];
+    style = "Bold Semi-Condensed";
+    size = 11.0;
+  };
 
   keybindings = {
     "${modifier}+Return" = "exec ${terminal}";
@@ -102,6 +107,7 @@ in
         workspaceLayout = "tabbed";
         defaultWorkspace = "workspace number 1";
         focus = focus;
+        fonts = fonts;
         colors = colors;
         output = {
           # swaymsg -t get_outputs
@@ -246,11 +252,7 @@ in
         colors = colors;
         floating.modifier = "${modifier}";
         focus = focus;
-        fonts = {
-          names = ["DejaVu Sans Mono" "FontAwesome5Free"];
-          style = "Bold Semi-Condensed";
-          size = 11.0;
-        };
+        fonts = fonts;
         keybindings = keybindings;
         modes = {};
       };
