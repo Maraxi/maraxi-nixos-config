@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   setup,
   ...
 }: let
@@ -353,6 +354,9 @@ in
               fonts = shared_config.fonts;
               command = "${pkgs.i3}/bin/i3bar -t";
               statusCommand = "${pkgs.i3status}/bin/i3status";
+              colors = {
+                urgentWorkspace = lib.attrsets.getAttrs ["background" "border" "text"] shared_config.colors.urgent;
+              };
             }
           ];
 
