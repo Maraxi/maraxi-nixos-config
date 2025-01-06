@@ -123,6 +123,8 @@
       "${modifier}+comma" = "scratchpad show";
 
       "${modifier}+Tab" = "workspace back_and_forth";
+
+      "${meh}+c" = "reload";
     };
   };
 in
@@ -188,8 +190,6 @@ in
           in
             shared_config.keybindings
             // {
-              "${modifier}+Shift+c" = "reload";
-
               "${modifier}+Shift+d" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
 
               "${meh}+r" = "mode resize";
@@ -259,6 +259,14 @@ in
       config =
         shared_config
         // {
+          keybindings = let
+            modifier = shared_config.modifier;
+            meh = "${modifier}+Ctrl+Shift";
+          in
+            shared_config.keybindings
+            // {
+              "${meh}+r" = "restart";
+            };
           modes = {};
           bars = [];
         };
@@ -407,11 +415,6 @@ in
         bindsym $meh+a mode $apps_mode
 
         bindsym Print exec flameshot gui
-
-        # reload the configuration file
-        bindsym $meh+c reload
-        # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-        bindsym $meh+r restart
 
         # clear all dunst notifications
         bindsym $meh+d exec "dunstctl close-all"
