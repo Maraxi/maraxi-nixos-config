@@ -118,6 +118,11 @@
       "${modifier}+Shift+8" = "move container to workspace number 8";
       "${modifier}+Shift+9" = "move container to workspace number 9";
       "${modifier}+Shift+0" = "move container to workspace number 10";
+
+      "${modifier}+Shift+comma" = "move scratchpad";
+      "${modifier}+comma" = "scratchpad show";
+
+      "${modifier}+Tab" = "workspace back_and_forth";
     };
   };
 in
@@ -183,11 +188,6 @@ in
           in
             shared_config.keybindings
             // {
-              "${modifier}+Shift+comma" = "move scratchpad";
-              "${modifier}+comma" = "scratchpad show";
-
-              "${modifier}+Tab" = "workspace back_and_forth";
-
               "${modifier}+Shift+c" = "reload";
 
               "${modifier}+Shift+d" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
@@ -343,11 +343,6 @@ in
 
         # focus urgent/recent
         bindsym $meh+u [urgent="latest"] focus
-        bindsym $mod+Tab workspace back_and_forth
-
-        # scratchpad
-        bindsym $mod+Shift+comma move scratchpad
-        bindsym $mod+comma scratchpad show
 
 
         # Identify windows with "xprop" or "xwininfo -tree -root"
