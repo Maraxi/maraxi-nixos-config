@@ -191,6 +191,13 @@ in
               # mode = "1920x1080@60Hz";
             };
           };
+
+          assigns = {
+            # swaymsg -t get_tree
+            "8" = [{app_id = "^thunderbird$";}];
+            "9" = [{title = "^KeeData.kdbx";}];
+          };
+
           keybindings = let
             modifier = shared_config.modifier;
             meh = "${modifier}+Ctrl+Shift";
@@ -205,11 +212,7 @@ in
               "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode $mode_record";
               "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
             };
-          assigns = {
-            # swaymsg -t get_tree
-            "8" = [{app_id = "^thunderbird$";}];
-            "9" = [{title = "^KeeData.kdbx";}];
-          };
+
           startup = [
             {
               command = "wallpaper";
