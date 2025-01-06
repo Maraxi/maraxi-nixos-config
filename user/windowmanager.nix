@@ -280,7 +280,16 @@ in
             shared_config.keybindings
             // {
               "${meh}+r" = "restart";
+
               "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
+
+              # start dmenu (a program launcher)
+              # bindsym $mod+d exec --no-startup-id dmenu_run
+              # A more modern dmenu replacement is rofi:
+              # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+              # There also is i3-dmenu-desktop which only displays applications shipping a
+              # .desktop file. It is a wrapper around dmenu, so you need that installed.
+              "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
             };
 
           modes = {};
@@ -377,14 +386,6 @@ in
                 bindsym Escape mode "default"
         }
         bindsym $meh+w mode $window_mode
-
-        # start dmenu (a program launcher)
-        # bindsym $mod+d exec --no-startup-id dmenu_run
-        # A more modern dmenu replacement is rofi:
-        # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-        # There also is i3-dmenu-desktop which only displays applications shipping a
-        # .desktop file. It is a wrapper around dmenu, so you need that installed.
-        bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 
 
         # Identify windows with "xprop" or "xwininfo -tree -root"
