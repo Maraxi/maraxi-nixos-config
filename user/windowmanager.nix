@@ -297,6 +297,7 @@ in
           bars = [
             {
               fonts = shared_config.fonts;
+              command = "${pkgs.i3}/bin/i3bar -t";
               statusCommand = "${pkgs.i3status}/bin/i3status";
             }
           ];
