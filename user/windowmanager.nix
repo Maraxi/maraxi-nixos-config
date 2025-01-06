@@ -281,9 +281,12 @@ in
             shared_config.keybindings
             // {
               "${meh}+r" = "restart";
+              "Print" = "flameshot gui";
             };
+
           modes = {};
           bars = [];
+
           startup = [
             {
               # Start XDG autostart .desktop files using dex. See also
@@ -442,8 +445,6 @@ in
                 bindsym Escape mode "default"
         }
         bindsym $meh+a mode $apps_mode
-
-        bindsym Print exec flameshot gui
 
         set $lock i3lock -efc 000000 && sleep 1
         set $display_off xset dpms force off
