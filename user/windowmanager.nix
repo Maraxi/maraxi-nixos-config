@@ -210,6 +210,13 @@ in
             "8" = [{app_id = "^thunderbird$";}];
             "9" = [{title = "^KeeData.kdbx";}];
           };
+          startup = [
+            {
+              command = "wallpaper";
+              always = true;
+              notification = false;
+            }
+          ];
         };
       extraConfig = ''
         set $mode_applications "[t]hunderbird [f]irefox [k]eepass key[m]app"
@@ -242,8 +249,6 @@ in
           bindsym Return mode default
           bindsym Escape mode default
         }
-
-        exec_always wallpaper
       '';
       extraSessionCommands = ''
         export MOZ_ENABLE_WAYLAND=1
