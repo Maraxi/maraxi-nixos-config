@@ -41,6 +41,10 @@
       childBorder = "${cl_urge}";
     };
   };
+  focus = {
+    followMouse = false;
+    mouseWarping = false;
+  };
 in
   if setup.isNixOS
   then {
@@ -89,8 +93,7 @@ in
         };
         workspaceLayout = "tabbed";
         defaultWorkspace = "workspace number 1";
-        focus.followMouse = false;
-        focus.mouseWarping = false;
+        focus = focus;
         colors = colors;
         output = {
           # swaymsg -t get_outputs
@@ -230,6 +233,8 @@ in
         modifier = modifier;
         bars = [];
         colors = colors;
+        floating.modifier = "${modifier}";
+        focus = focus;
         fonts = {
           names = ["DejaVu Sans Mono" "FontAwesome5Free"];
           style = "Bold Semi-Condensed";
@@ -283,12 +288,6 @@ in
         # screensaver
         exec_always --no-startup-id xset +dpms
         exec_always --no-startup-id xset s 540
-
-        # Use Mouse+$mod to drag floating windows to their wanted position
-        floating_modifier $mod
-
-        focus_follows_mouse no
-        mouse_warping none
 
         # Set monitors for home setup
         # reference $ man xkeyboard-config
