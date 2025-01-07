@@ -205,13 +205,13 @@ in
             // {
               "${modifier}+d" = "exec --no-startup-id ${config.wayland.windowManager.sway.config.menu}";
 
+              "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode $mode_record";
+              "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
+
               "${meh}+r" = "mode resize";
               "${meh}+a" = "mode $mode_applications";
               "${modifier}+s" = "mode $mode_sound";
               "${modifier}+o" = "mode $mode_power";
-
-              "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode $mode_record";
-              "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
             };
 
           startup = [
@@ -286,8 +286,6 @@ in
             // {
               "${meh}+r" = "restart";
 
-              "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
-
               # start dmenu (a program launcher)
               "${modifier}+d" = "exec --no-startup-id dmenu_run";
               # A more modern dmenu replacement is rofi:
@@ -295,6 +293,8 @@ in
               # There also is i3-dmenu-desktop which only displays applications shipping a
               # .desktop file. It is a wrapper around dmenu, so you need that installed.
               "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
+
+              "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
 
               "${meh}+s" = "mode \"${sound_mode}\"";
               "${meh}+a" = "mode \"${apps_mode}\"";
