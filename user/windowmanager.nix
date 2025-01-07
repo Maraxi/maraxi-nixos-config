@@ -342,15 +342,14 @@ in
             ${apps_mode} = {
               # c = mode "default", exec --no-startup-id "/snap/bin/chromium --proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
               # Shift+c = mode "default", exec --no-startup-id "/snap/bin/chromium"
-              c = "mode \"default\", exec chromium";
-              r = "mode \"default\", exec remmina -i";
-              v = "mode \"default\", exec pavucontrol";
-              p = "mode \"default\", exec pycharm-professional";
+              c = "mode \"default\", exec ${pkgs.chromium}/bin/chromium";
+              r = "mode \"default\", exec ${pkgs.remmina}/bin/remmina -i";
+              v = "mode \"default\", exec ${pkgs.pavucontrol}/bin/pavucontrol";
+              p = "mode \"default\", exec ${pkgs.jetbrains.pycharm-professional}/pycharm-professional/bin/pycharm";
               s = "mode \"default\", exec pass";
-              k = "mode \"default\", exec keepassxc";
-              m = "mode \"default\", exec keymapp";
-              f = "mode \"default\", exec flameshot gui";
-              # g = "mode \"default\", exec gif";
+              k = "mode \"default\", exec ${pkgs.keepassxc}/bin/keepassxc";
+              m = "mode \"default\", exec ${pkgs.keymapp}/bin/keymapp";
+              f = "mode \"default\", exec ${pkgs.flameshot}/bin/flameshot gui";
 
               Escape = "mode \"default\"";
             };
