@@ -340,45 +340,39 @@ in
             }
           ];
 
-          startup = [
-            {
+          startup =
+            map (cmd: {
+              command = cmd;
+              notification = false;
+            }) [
               # Start XDG autostart .desktop files using dex. See also
               # https://wiki.archlinux.org/index.php/XDG_Autostart
-              command = "dex --autostart --environment i3";
-              notification = false;
-            }
-            # The combination of xss-lock, nm-applet and pactl is a popular choice, so
-            # they are included here as an example. Modify as you see fit.
-            {
+              "dex --autostart --environment i3"
+
+              # The combination of xss-lock, nm-applet and pactl is a popular choice, so
+              # they are included here as an example. Modify as you see fit.
               # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
               # screen before suspend. Use loginctl lock-session to lock your screen.
-              command = "xss-lock --transfer-sleep-lock -- i3lock --nofork";
-              notification = false;
-            }
-            {
+              "xss-lock --transfer-sleep-lock -- i3lock --nofork"
               # NetworkManager is the most popular way to manage wireless networks on Linux,
               # and nm-applet is a desktop environment-independent system tray GUI for it.
-              command = "nm-applet";
-              notification = false;
-            }
-            {
-              # screensaver
-              command = "xset +dpms";
-              always = true;
-              notification = false;
-            }
-            {
-              command = "xset s 540";
-              always = true;
-              notification = false;
-            }
-            {command = "${pkgs.keepassxc}/bin/keepassxc";}
-            {
+              "nm-applet"
+
               # Compositor for transparency
-              command = "picom &";
+              "picom &"
+            ]
+            ++ map (cmd: {
+              command = cmd;
+              always = true;
               notification = false;
-            }
-          ];
+            }) [
+              # screensaver
+              "xset +dpms"
+              "xset s 540"
+            ]
+            ++ [
+              {command = "${pkgs.keepassxc}/bin/keepassxc";}
+            ];
         };
       extraConfig = ''
         # Should you change your keyboard layout some time, delete
