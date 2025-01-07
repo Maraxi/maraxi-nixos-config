@@ -159,6 +159,26 @@ in
       config =
         shared_config
         // {
+          keybindings = let
+            modifier = shared_config.modifier;
+            meh = "${modifier}+Ctrl+Shift";
+          in
+            shared_config.keybindings
+            // {
+              "${modifier}+d" = "exec --no-startup-id ${config.wayland.windowManager.sway.config.menu}";
+
+              # sway-contrib.grimshot
+              # slurp # wayland screenshots
+              # shotman # wayland screenshots
+              "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
+              "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode \"${mode_record}\"";
+
+              "${meh}+r" = "mode resize";
+              "${meh}+a" = "mode \"${mode_apps}\"";
+              "${modifier}+s" = "mode \"${mode_sound}\"";
+              "${modifier}+o" = "mode \"${mode_power}\"";
+            };
+
           input = {
             # swaymsg -t get_inputs
             "1008:36:CHICONY_HP_Basic_USB_Keyboard" = {
@@ -184,26 +204,6 @@ in
             "8" = [{app_id = "^thunderbird$";}];
             "9" = [{title = "^KeeData.kdbx";}];
           };
-
-          keybindings = let
-            modifier = shared_config.modifier;
-            meh = "${modifier}+Ctrl+Shift";
-          in
-            shared_config.keybindings
-            // {
-              "${modifier}+d" = "exec --no-startup-id ${config.wayland.windowManager.sway.config.menu}";
-
-              # sway-contrib.grimshot
-              # slurp # wayland screenshots
-              # shotman # wayland screenshots
-              "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode $mode_record";
-              "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
-
-              "${meh}+r" = "mode resize";
-              "${meh}+a" = "mode $mode_applications";
-              "${modifier}+s" = "mode $mode_sound";
-              "${modifier}+o" = "mode $mode_power";
-            };
 
           startup = [
             {
