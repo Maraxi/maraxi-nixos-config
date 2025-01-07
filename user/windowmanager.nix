@@ -276,6 +276,7 @@ in
       config = let
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
         apps_mode = "Apps C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
+        exit_mode = "EXIT o:lock s:suspend h:hibernate e:logout u:switch-user p:poweroff x:screen-off";
       in
         shared_config
         // {
@@ -299,6 +300,7 @@ in
 
               "${meh}+s" = "mode \"${sound_mode}\"";
               "${meh}+a" = "mode \"${apps_mode}\"";
+              "${modifier}+o" = "mode \"${exit_mode}\"";
             };
 
           modes = {
@@ -330,6 +332,21 @@ in
               m = "mode \"default\", exec keymapp";
               f = "mode \"default\", exec flameshot gui";
               # g = "mode \"default\", exec gif";
+
+              Return = "mode \"default\"";
+              Escape = "mode \"default\"";
+            };
+            ${exit_mode} = let
+              lock = "i3lock -efc 000000 && sleep 1";
+              display_off = "xset dpms force off";
+            in {
+              o = "mode \"default\" , exec ${lock} && exec ${display_off}";
+              s = "mode \"default\" , exec ${lock} && exec systemctl suspend";
+              h = "mode \"default\" , exec ${lock} && exec systemctl hibernate";
+              e = "exit";
+              u = "mode \"default\" , exec gdmflexiserver";
+              p = "exec systemctl poweroff -i";
+              x = "mode \"default\" , exec ${display_off}";
 
               Return = "mode \"default\"";
               Escape = "mode \"default\"";
@@ -464,23 +481,6 @@ in
         no_focus [class="^Update-manager$"]
         # no_focus [class="KeePassXC$" title="^KeePassXC$"]
         # focus_on_window_activation [class="KeePassXC$" title="^KeePassXC$"] none
-
-        set $lock i3lock -efc 000000 && sleep 1
-        set $display_off xset dpms force off
-        set $exit_mode "EXIT o:lock s:suspend h:hibernate e:logout u:switch-user p:poweroff x:screen-off"
-        mode $exit_mode {
-                bindsym o mode "default" , exec $lock && exec $display_off
-                bindsym s mode "default" , exec $lock && exec systemctl suspend
-                bindsym h mode "default" , exec $lock && exec systemctl hibernate
-                bindsym e exit
-                bindsym u mode "default" , exec gdmflexiserver
-                bindsym p exec systemctl poweroff -i
-                bindsym x mode "default" , exec $display_off
-                # back to normal: Enter or Escape
-                bindsym Return mode "default"
-                bindsym Escape mode "default"
-        }
-        bindsym $mod+o mode $exit_mode
 
         # resize window (you can also use the mouse for that)
         mode "resize" {
