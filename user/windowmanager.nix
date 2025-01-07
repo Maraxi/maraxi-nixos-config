@@ -275,6 +275,7 @@ in
       enable = true;
       config = let
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
+        apps_mode = "Apps C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
       in
         shared_config
         // {
@@ -297,6 +298,7 @@ in
               "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
 
               "${meh}+s" = "mode \"${sound_mode}\"";
+              "${meh}+a" = "mode \"${apps_mode}\"";
             };
 
           modes = {
@@ -315,6 +317,22 @@ in
 
               Escape = "mode \"default\"";
               Return = "mode \"default\"";
+            };
+            ${apps_mode} = {
+              # c = mode "default", exec --no-startup-id "/snap/bin/chromium --proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
+              # Shift+c = mode "default", exec --no-startup-id "/snap/bin/chromium"
+              c = "mode \"default\", exec chromium";
+              r = "mode \"default\", exec remmina -i";
+              v = "mode \"default\", exec pavucontrol";
+              p = "mode \"default\", exec pycharm-professional";
+              s = "mode \"default\", exec pass";
+              k = "mode \"default\", exec keepassxc";
+              m = "mode \"default\", exec keymapp";
+              f = "mode \"default\", exec flameshot gui";
+              # g = "mode \"default\", exec gif";
+
+              Return = "mode \"default\"";
+              Escape = "mode \"default\"";
             };
           };
 
@@ -446,26 +464,6 @@ in
         no_focus [class="^Update-manager$"]
         # no_focus [class="KeePassXC$" title="^KeePassXC$"]
         # focus_on_window_activation [class="KeePassXC$" title="^KeePassXC$"] none
-
-        # Applications
-        set $apps_mode "Apps C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot"
-        mode $apps_mode {
-                # bindsym c mode "default", exec --no-startup-id "/snap/bin/chromium --proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
-                # bindsym Shift+c mode "default", exec --no-startup-id "/snap/bin/chromium"
-                bindsym c mode "default", exec chromium
-                bindsym r mode "default", exec remmina -i
-                bindsym v mode "default", exec pavucontrol
-                bindsym p mode "default", exec pycharm-professional
-                bindsym s mode "default", exec pass
-                bindsym k mode "default", exec keepassxc
-                bindsym m mode "default", exec keymapp
-                bindsym f mode "default", exec flameshot gui
-                # bindsym g mode "default", exec gif
-                # back to normal: Enter or Escape
-                bindsym Return mode "default"
-                bindsym Escape mode "default"
-        }
-        bindsym $meh+a mode $apps_mode
 
         set $lock i3lock -efc 000000 && sleep 1
         set $display_off xset dpms force off
