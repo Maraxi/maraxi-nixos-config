@@ -272,9 +272,15 @@ in
       # To regenerate a fresh i3 config file run i3-config-wizard(1).
       enable = true;
       config = let
+        window_mode = "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout 1-3:presets";
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
         apps_mode = "Apps C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
         exit_mode = "EXIT o:lock s:suspend h:hibernate e:logout u:switch-user p:poweroff x:screen-off";
+
+        # reference $ man xkeyboard-config
+        keyboard_layout = "setxkbmap de -variant nodeadkeys -option 'caps:escape,compose:rctrl'";
+        keyboard_layout_us = "setxkbmap us -option 'caps:escape,compose:rctrl'";
+        feh = "feh --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg";
       in
         shared_config
         // {
@@ -296,6 +302,7 @@ in
 
               "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
 
+              "${meh}+w" = "mode \"${window_mode}\"";
               "${meh}+s" = "mode \"${sound_mode}\"";
               "${meh}+a" = "mode \"${apps_mode}\"";
               "${modifier}+o" = "mode \"${exit_mode}\"";
@@ -303,6 +310,19 @@ in
             };
 
           modes = {
+            ${window_mode} = {
+              x = "exec --no-startup-id xrandr --auto";
+              a = "exec --no-startup-id arandr";
+              f = "exec --no-startup-id ${feh}";
+              k = "mode \"default\", exec --no-startup-id ${keyboard_layout}";
+              u = "mode \"default\", exec --no-startup-id ${keyboard_layout_us}";
+              "1" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-home.sh; ${feh}\"";
+              "2" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors.sh; ${feh}\"";
+              "3" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors-right.sh; ${feh}\"";
+
+              Escape = "mode \"default\"";
+            };
+
             ${sound_mode} = let
               hdmi_sink = "alsa_output.pci-0000_01_00.1.hdmi-stereo";
             in {
@@ -412,12 +432,17 @@ in
 
               # Compositor for transparency
               "picom &"
+
+              # Default screens and background
+              "--no-startup-id \"/home/iv546/.config/arandr/arandr-home.sh; ${feh}\""
             ]
             ++ map (cmd: {
               command = cmd;
               always = true;
               notification = false;
             }) [
+              "${keyboard_layout}"
+
               # screensaver
               "xset +dpms"
               "xset s 540"
@@ -427,33 +452,7 @@ in
             ];
         };
       extraConfig = ''
-        set $mod Mod1
-        set $meh Ctrl+Shift+Mod1
 
-        # Set monitors for home setup
-        # reference $ man xkeyboard-config
-        set $keyboard_layout "setxkbmap de -variant nodeadkeys -option 'caps:escape,compose:rctrl'"
-        set $keyboard_layout_us "setxkbmap us -option 'caps:escape,compose:rctrl'"
-        exec_always --no-startup-id $keyboard_layout
-        set $feh feh --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg
-        exec --no-startup-id "/home/iv546/.config/arandr/arandr-home.sh; $feh"
-
-        set $window_mode "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout 1-3:presets"
-        mode $window_mode {
-                bindsym x exec --no-startup-id xrandr --auto
-                bindsym a exec --no-startup-id arandr
-                bindsym f exec --no-startup-id $feh
-                bindsym k mode "default", exec --no-startup-id $keyboard_layout
-                bindsym u mode "default", exec --no-startup-id $keyboard_layout_us
-                bindsym 1 exec --no-startup-id "/home/iv546/.config/arandr/arandr-home.sh; $feh"
-                bindsym 2 exec --no-startup-id "/home/iv546/.config/arandr/arandr-office-2-monitors.sh; $feh"
-                bindsym 3 exec --no-startup-id "/home/iv546/.config/arandr/arandr-office-2-monitors-right.sh; $feh"
-
-                # back to normal: Enter or Escape or $mod+r
-                bindsym Return mode "default"
-                bindsym Escape mode "default"
-        }
-        bindsym $meh+w mode $window_mode
 
 
         # Identify windows with "xprop" or "xwininfo -tree -root"
