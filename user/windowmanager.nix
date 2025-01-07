@@ -273,7 +273,9 @@ in
   else {
     xsession.windowManager.i3 = {
       enable = true;
-      config =
+      config = let
+        sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
+      in
         shared_config
         // {
           keybindings = let
@@ -293,7 +295,28 @@ in
               # There also is i3-dmenu-desktop which only displays applications shipping a
               # .desktop file. It is a wrapper around dmenu, so you need that installed.
               "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
+
+              "${meh}+s" = "mode \"${sound_mode}\"";
             };
+
+          modes = {
+            ${sound_mode} = let
+              hdmi_sink = "alsa_output.pci-0000_01_00.1.hdmi-stereo";
+            in {
+              # Use pactl to adjust volume in PulseAudio.
+              # set $refresh_i3status killall -SIGUSR1 i3status
+              u = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%";
+              d = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%";
+              m = "exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle";
+              r = "exec --no-startup-id pactl set-sink-volume ${hdmi_sink} +5%";
+              l = "exec --no-startup-id pactl set-sink-volume ${hdmi_sink} -5%";
+              "0" = "exec --no-startup-id pactl set-sink-mute ${hdmi_sink} toggle";
+              i = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+
+              Escape = "mode \"default\"";
+              Return = "mode \"default\"";
+            };
+          };
 
           workspaceOutputAssign =
             map (workspace: {
@@ -328,7 +351,6 @@ in
             "10" = [{class = "^Keymapp$";}];
           };
 
-          modes = {};
           bars = [
             {
               fonts = shared_config.fonts;
@@ -380,23 +402,6 @@ in
 
         set $mod Mod1
         set $meh Ctrl+Shift+Mod1
-
-        # Use pactl to adjust volume in PulseAudio.
-        # set $refresh_i3status killall -SIGUSR1 i3status
-        set $hdmi_sink "alsa_output.pci-0000_01_00.1.hdmi-stereo"
-        set $sound_mode "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute"
-        mode $sound_mode {
-                bindsym u exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% # && $refresh_i3status
-                bindsym d exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% # && $refresh_i3status
-                bindsym m exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle # && $refresh_i3status
-                bindsym r exec --no-startup-id pactl set-sink-volume $hdmi_sink +5%
-                bindsym l exec --no-startup-id pactl set-sink-volume $hdmi_sink -5%
-                bindsym 0 exec --no-startup-id pactl set-sink-mute   $hdmi_sink toggle # && $refresh_i3status
-                bindsym i exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle # && $refresh_i3status
-                bindsym Escape mode "default"
-                bindsym Enter mode "default"
-        }
-        bindsym $meh+s mode $sound_mode
 
         # Set monitors for home setup
         # reference $ man xkeyboard-config
