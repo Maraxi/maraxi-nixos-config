@@ -274,7 +274,7 @@ in
       config = let
         window_mode = "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout 1-3:presets";
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
-        apps_mode = "Apps C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
+        apps_mode = "APPS C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
         exit_mode = "EXIT o:lock s:suspend h:hibernate e:logout u:switch-user p:poweroff x:screen-off";
 
         # reference $ man xkeyboard-config
@@ -337,8 +337,8 @@ in
               i = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
               Escape = "mode \"default\"";
-              Return = "mode \"default\"";
             };
+
             ${apps_mode} = {
               # c = mode "default", exec --no-startup-id "/snap/bin/chromium --proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
               # Shift+c = mode "default", exec --no-startup-id "/snap/bin/chromium"
@@ -352,9 +352,9 @@ in
               f = "mode \"default\", exec flameshot gui";
               # g = "mode \"default\", exec gif";
 
-              Return = "mode \"default\"";
               Escape = "mode \"default\"";
             };
+
             ${exit_mode} = let
               lock = "i3lock -efc 000000 && sleep 1";
               display_off = "xset dpms force off";
@@ -367,16 +367,15 @@ in
               p = "exec systemctl poweroff -i";
               x = "mode \"default\" , exec ${display_off}";
 
-              Return = "mode \"default\"";
               Escape = "mode \"default\"";
             };
+
             "resize" = {
               h = "resize shrink width  10 px or 10 ppt";
               j = "resize grow   height 10 px or 10 ppt";
               k = "resize shrink height 10 px or 10 ppt";
               l = "resize grow   width  10 px or 10 ppt";
 
-              Return = "mode \"default\"";
               Escape = "mode \"default\"";
             };
           };
@@ -413,7 +412,8 @@ in
           ];
 
           startup =
-            map (cmd: {
+            [{command = "${pkgs.keepassxc}/bin/keepassxc";}]
+            ++ map (cmd: {
               command = cmd;
               notification = false;
             }) [
@@ -446,32 +446,24 @@ in
               # screensaver
               "xset +dpms"
               "xset s 540"
-            ]
-            ++ [
-              {command = "${pkgs.keepassxc}/bin/keepassxc";}
             ];
         };
       extraConfig = ''
+        # No floating for pychrarm settings
+        for_window [class="^jetbrains-pycharm$" title="^Settings$"] floating disable
 
+        # No floating for cyberark connections
+        for_window [class="^xfreerdp$"] floating disable
 
+        # for_window [class="^Update-manager$"] floating disable
+        # no_focus [class="^Update-manager$"]
 
-        # Identify windows with "xprop" or "xwininfo -tree -root"
         # Floating windows in Citrix
-        # TODO
         for_window [class="^Adobe Acrobat$"] floating enable
         for_window [class="^Wfica$"] floating enable
         for_window [class="^Find$"] floating enable
         for_window [instance="^Notepad$"] floating enable
         for_window [class="^Microsoft Excel$"] floating enable
-        # No floating for cyberark connections
-        for_window [class="^xfreerdp$"] floating disable
-        # No floating for pychrarm settings
-        for_window [class="^jetbrains-pycharm$" title="^Settings$"] floating disable
-
-        for_window [class="^Update-manager$"] floating disable
-        no_focus [class="^Update-manager$"]
-        # no_focus [class="KeePassXC$" title="^KeePassXC$"]
-        # focus_on_window_activation [class="KeePassXC$" title="^KeePassXC$"] none
       '';
     };
   }
