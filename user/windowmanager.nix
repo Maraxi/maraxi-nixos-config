@@ -156,7 +156,12 @@ in
     wayland.windowManager.sway = {
       enable = true;
       checkConfig = false;
-      config =
+      config = let
+        mode_apps = "[t]hunderbird [f]irefox [k]eepass key[m]app";
+        mode_sound = "[m]ute [u]p [d]own";
+        mode_power = "Power: [h]ibernate [s]uspend [l]ogout [p]oweroff";
+        mode_record = "Recording: Ctrl+Esc to quit";
+      in
         shared_config
         // {
           keybindings = let
@@ -178,6 +183,32 @@ in
               "${modifier}+s" = "mode \"${mode_sound}\"";
               "${modifier}+o" = "mode \"${mode_power}\"";
             };
+          modes = {
+            ${mode_apps} = {
+              t = "exec ${pkgs.thunderbird}/bin/thunderbird";
+              f = "exec ${pkgs.firefox}/bin/firefox";
+              k = "exec ${pkgs.keepassxc}/bin/keepassxc";
+              m = "exec ${pkgs.keymapp}/bin/keymapp";
+              Escape = "mode default";
+            };
+            ${mode_sound} = {
+              m = "exec ${pkgs.pamixer}/bin/pamixer -t";
+              u = "exec ${pkgs.pamixer}/bin/pamixer -i 3";
+              d = "exec ${pkgs.pamixer}/bin/pamixer -d 3";
+              Escape = "mode default";
+            };
+            ${mode_power} = {
+              h = "exec --no-startup-id systemctl hibernate, mode default";
+              s = "exec --no-startup-id systemctl suspend, mode default";
+              l = "exit";
+              p = "exec --no-startup-id poweroff";
+              Escape = "mode default";
+            };
+            ${mode_record} = {
+              "Ctrl+Escape" = "exec pkill -SIGINT wf-recorder; mode default";
+            };
+            # resize = { };
+          };
 
           input = {
             # swaymsg -t get_inputs
@@ -213,38 +244,7 @@ in
             }
           ];
         };
-      extraConfig = ''
-        set $mode_applications "[t]hunderbird [f]irefox [k]eepass key[m]app"
-        mode $mode_applications {
-          bindsym t exec ${pkgs.thunderbird}/bin/thunderbird
-          bindsym f exec ${pkgs.firefox}/bin/firefox
-          bindsym k exec ${pkgs.keepassxc}/bin/keepassxc
-          bindsym m exec ${pkgs.keymapp}/bin/keymapp
-          bindsym Return mode default
-          bindsym Escape mode default
-        }
-        set $mode_record "Recording Ctrl+Esc to quit"
-        mode $mode_record {
-          bindsym Ctrl+Escape exec pkill -SIGINT wf-recorder; mode default
-        }
-        set $mode_sound "[m]ute [u]p [d]own"
-        mode $mode_sound {
-          bindsym m exec ${pkgs.pamixer}/bin/pamixer -t
-          bindsym u exec ${pkgs.pamixer}/bin/pamixer -i 3
-          bindsym d exec ${pkgs.pamixer}/bin/pamixer -d 3
-          bindsym Return mode default
-          bindsym Escape mode default
-        }
-        set $mode_power "Power: [h]ibernate [s]uspend [l]ogout [p]oweroff"
-        mode $mode_power {
-          bindsym h exec --no-startup-id systemctl hibernate, mode default
-          bindsym s exec --no-startup-id systemctl suspend, mode default
-          bindsym l exit
-          bindsym p exec --no-startup-id poweroff
-          bindsym Return mode default
-          bindsym Escape mode default
-        }
-      '';
+      # extraConfig = '' '';
       extraSessionCommands = ''
         export MOZ_ENABLE_WAYLAND=1
         export SDL_VIDEODRIVER=wayland
