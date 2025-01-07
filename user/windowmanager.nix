@@ -138,14 +138,8 @@ in
   if setup.isNixOS
   then {
     home.packages = with pkgs; [
-      # mako # wayland notification daemon
-      # sway-contrib.grimshot
-      # grim
-      # slurp # wayland screenshots
-      # wf-recorder
       # kanshi # hot switching output profiles
       wl-clipboard # wayland clipboard
-      # shotman # wayland screenshots
     ];
     services.mako.enable = true;
     services.swayidle = {
@@ -181,14 +175,8 @@ in
           };
           output = {
             # swaymsg -t get_outputs
-            eDP-1 = {
-              pos = "0 150";
-              # bg = "$HOME/.background.png fill";
-            };
-            HDMI-A-2 = {
-              pos = "1600 0";
-              # mode = "1920x1080@60Hz";
-            };
+            eDP-1 = {pos = "0 150";};
+            HDMI-A-2 = {pos = "1600 0";}; # mode = "1920x1080@60Hz";
           };
 
           assigns = {
@@ -205,6 +193,9 @@ in
             // {
               "${modifier}+d" = "exec --no-startup-id ${config.wayland.windowManager.sway.config.menu}";
 
+              # sway-contrib.grimshot
+              # slurp # wayland screenshots
+              # shotman # wayland screenshots
               "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode $mode_record";
               "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
 
@@ -293,7 +284,7 @@ in
               "${meh}+r" = "restart";
 
               # start dmenu (a program launcher)
-              "${modifier}+d" = "exec --no-startup-id dmenu_run";
+              "${modifier}+d" = "exec --no-startup-id dmenu_run -i";
               # A more modern dmenu replacement is rofi:
               # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
               # There also is i3-dmenu-desktop which only displays applications shipping a
