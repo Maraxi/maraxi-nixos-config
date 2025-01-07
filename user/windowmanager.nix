@@ -272,6 +272,7 @@ in
   }
   else {
     xsession.windowManager.i3 = {
+      # To regenerate a fresh i3 config file run i3-config-wizard(1).
       enable = true;
       config = let
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
@@ -429,9 +430,6 @@ in
             ];
         };
       extraConfig = ''
-        # Should you change your keyboard layout some time, delete
-        # this file and re-run i3-config-wizard(1).
-
         set $mod Mod1
         set $meh Ctrl+Shift+Mod1
 
