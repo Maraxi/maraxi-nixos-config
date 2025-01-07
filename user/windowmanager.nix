@@ -301,6 +301,7 @@ in
               "${meh}+s" = "mode \"${sound_mode}\"";
               "${meh}+a" = "mode \"${apps_mode}\"";
               "${modifier}+o" = "mode \"${exit_mode}\"";
+              "${modifier}+r" = "mode \"resize\"";
             };
 
           modes = {
@@ -351,6 +352,15 @@ in
               Return = "mode \"default\"";
               Escape = "mode \"default\"";
             };
+            "resize" = {
+              h = "resize shrink width  10 px or 10 ppt";
+              j = "resize grow   height 10 px or 10 ppt";
+              k = "resize shrink height 10 px or 10 ppt";
+              l = "resize grow   width  10 px or 10 ppt";
+
+              Return = "mode \"default\"";
+              Escape = "mode \"default\"";
+            };
           };
 
           workspaceOutputAssign =
@@ -367,22 +377,9 @@ in
             "1" = [{class = "^Chromium";}];
             "2" = [{class = "^jetbrains-pycharm$";}];
             "3" = [{class = "^org.remmina.Remmina$";}];
-            "4" = [
-              # Citrix
-              {class = "^File Explorer$";}
-              {class = "^Google Chrome$";}
-            ];
+            "4" = [{class = "^File Explorer$";} {class = "^Google Chrome$";}]; # Citrix
             "8" = [{class = "^pavucontrol$";}];
-            "9" = [
-              {
-                class = "^KeePassXC$";
-                title = "^KeePassXC$";
-              }
-              {
-                class = "^KeePassXC$";
-                title = "^Passwords.*KeePassXC$";
-              }
-            ];
+            "9" = [{title = "^KeePassXC$";} {title = "^Passwords.*KeePassXC$";}];
             "10" = [{class = "^Keymapp$";}];
           };
 
@@ -481,19 +478,6 @@ in
         no_focus [class="^Update-manager$"]
         # no_focus [class="KeePassXC$" title="^KeePassXC$"]
         # focus_on_window_activation [class="KeePassXC$" title="^KeePassXC$"] none
-
-        # resize window (you can also use the mouse for that)
-        mode "resize" {
-                bindsym h resize shrink width  10 px or 10 ppt
-                bindsym j resize grow   height 10 px or 10 ppt
-                bindsym k resize shrink height 10 px or 10 ppt
-                bindsym l resize grow   width  10 px or 10 ppt
-                # back to normal: Enter or Escape or $mod+r
-                bindsym Return mode "default"
-                bindsym Escape mode "default"
-                bindsym $mod+r mode "default"
-        }
-        bindsym $mod+r mode "resize"
       '';
     };
   }
