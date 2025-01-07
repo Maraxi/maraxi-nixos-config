@@ -297,7 +297,7 @@ in
               "${meh}+s" = "mode \"${sound_mode}\"";
               "${meh}+a" = "mode \"${apps_mode}\"";
               "${modifier}+o" = "mode \"${exit_mode}\"";
-              "${modifier}+r" = "mode \"resize\"";
+              "${modifier}+r" = "mode resize";
             };
 
           modes = {
@@ -305,13 +305,13 @@ in
               x = "exec --no-startup-id xrandr --auto";
               a = "exec --no-startup-id arandr";
               f = "exec --no-startup-id ${feh}";
-              k = "mode \"default\", exec --no-startup-id ${keyboard_layout}";
-              u = "mode \"default\", exec --no-startup-id ${keyboard_layout_us}";
+              k = "mode default, exec --no-startup-id ${keyboard_layout}";
+              u = "mode default, exec --no-startup-id ${keyboard_layout_us}";
               "1" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-home.sh; ${feh}\"";
               "2" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors.sh; ${feh}\"";
               "3" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors-right.sh; ${feh}\"";
 
-              Escape = "mode \"default\"";
+              Escape = "mode default";
             };
 
             ${sound_mode} = let
@@ -327,37 +327,37 @@ in
               "0" = "exec --no-startup-id pactl set-sink-mute ${hdmi_sink} toggle";
               i = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
-              Escape = "mode \"default\"";
+              Escape = "mode default";
             };
 
             ${apps_mode} = {
               # c = mode "default", exec --no-startup-id "/snap/bin/chromium --proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
               # Shift+c = mode "default", exec --no-startup-id "/snap/bin/chromium"
-              c = "mode \"default\", exec ${pkgs.chromium}/bin/chromium";
-              r = "mode \"default\", exec ${pkgs.remmina}/bin/remmina -i";
-              v = "mode \"default\", exec ${pkgs.pavucontrol}/bin/pavucontrol";
-              p = "mode \"default\", exec ${pkgs.jetbrains.pycharm-professional}/pycharm-professional/bin/pycharm";
-              s = "mode \"default\", exec pass";
-              k = "mode \"default\", exec ${pkgs.keepassxc}/bin/keepassxc";
-              m = "mode \"default\", exec ${pkgs.keymapp}/bin/keymapp";
-              f = "mode \"default\", exec ${pkgs.flameshot}/bin/flameshot gui";
+              c = "mode default, exec ${pkgs.chromium}/bin/chromium";
+              r = "mode default, exec ${pkgs.remmina}/bin/remmina -i";
+              v = "mode default, exec ${pkgs.pavucontrol}/bin/pavucontrol";
+              p = "mode default, exec ${pkgs.jetbrains.pycharm-professional}/pycharm-professional/bin/pycharm";
+              s = "mode default, exec pass";
+              k = "mode default, exec ${pkgs.keepassxc}/bin/keepassxc";
+              m = "mode default, exec ${pkgs.keymapp}/bin/keymapp";
+              f = "mode default, exec ${pkgs.flameshot}/bin/flameshot gui";
 
-              Escape = "mode \"default\"";
+              Escape = "mode default";
             };
 
             ${exit_mode} = let
               lock = "i3lock -efc 000000 && sleep 1";
               display_off = "xset dpms force off";
             in {
-              o = "mode \"default\" , exec ${lock} && exec ${display_off}";
-              s = "mode \"default\" , exec ${lock} && exec systemctl suspend";
-              h = "mode \"default\" , exec ${lock} && exec systemctl hibernate";
+              o = "mode default, exec ${lock} && exec ${display_off}";
+              s = "mode default, exec ${lock} && exec systemctl suspend";
+              h = "mode default, exec ${lock} && exec systemctl hibernate";
               e = "exit";
-              u = "mode \"default\" , exec gdmflexiserver";
+              u = "mode default, exec gdmflexiserver";
               p = "exec systemctl poweroff -i";
-              x = "mode \"default\" , exec ${display_off}";
+              x = "mode default, exec ${display_off}";
 
-              Escape = "mode \"default\"";
+              Escape = "mode default";
             };
 
             "resize" = {
@@ -366,7 +366,7 @@ in
               k = "resize shrink height 10 px or 10 ppt";
               l = "resize grow   width  10 px or 10 ppt";
 
-              Escape = "mode \"default\"";
+              Escape = "mode default";
             };
           };
 
