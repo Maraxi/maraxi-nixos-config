@@ -72,17 +72,12 @@
       up = "k";
       right = "l";
 
-      dmenu =
-        if setup.isNixOS
-        then config.wayland.windowManager.sway.config.menu
-        else "dmenu_run";
       dismiss_notifications =
         if setup.isNixOS
         then "${pkgs.mako}/bin/makoctl dismiss -a"
         else "dunstctl close-all";
     in {
       "${modifier}+Return" = "exec ${terminal}";
-      "${modifier}+d" = "exec --no-startup-id ${dmenu}";
       "${meh}+q" = "kill";
 
       "${modifier}+${left}" = "focus left";
@@ -208,6 +203,8 @@ in
           in
             shared_config.keybindings
             // {
+              "${modifier}+d" = "exec --no-startup-id ${config.wayland.windowManager.sway.config.menu}";
+
               "${meh}+r" = "mode resize";
               "${meh}+a" = "mode $mode_applications";
               "${modifier}+s" = "mode $mode_sound";
@@ -292,7 +289,7 @@ in
               "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
 
               # start dmenu (a program launcher)
-              # bindsym $mod+d exec --no-startup-id dmenu_run
+              "${modifier}+d" = "exec --no-startup-id dmenu_run";
               # A more modern dmenu replacement is rofi:
               # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
               # There also is i3-dmenu-desktop which only displays applications shipping a
