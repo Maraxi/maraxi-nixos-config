@@ -339,7 +339,7 @@ in
               p = "mode default, exec ${pkgs.jetbrains.pycharm-professional}/pycharm-professional/bin/pycharm";
               s = "mode default, exec pass";
               k = "mode default, exec ${pkgs.keepassxc}/bin/keepassxc";
-              m = "mode default, exec ${pkgs.keymapp}/bin/keymapp";
+              m = "mode default, exec keymapp";
               f = "mode default, exec ${pkgs.flameshot}/bin/flameshot gui";
               g = "mode default, exec ghostty";
 
