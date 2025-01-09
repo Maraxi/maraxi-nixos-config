@@ -1,11 +1,9 @@
 {
-  inputs,
   pkgs,
   config,
   nixgl,
   ...
 }: {
-  # nixGL.prefix = "${inputs.nixGL.packages."${pkgs.system}".nixGLIntel}/bin/nixGLIntel";
   nixGL.packages = nixgl.packages;
   nixGL.defaultWrapper = "mesa";
   # nixGL.offloadWrapper = "nvidiaPrime";

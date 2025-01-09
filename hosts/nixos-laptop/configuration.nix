@@ -80,7 +80,7 @@
   services.gvfs.enable = true; # userspace virtual filesystem
   services.udisks2.enable = true; # DBus service for applications to query storage devices
 
-  # enable keymapp for voyager
+  # allow non-free keymapp for voyager
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "keymapp"
