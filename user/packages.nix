@@ -82,7 +82,9 @@
         with pkgs; [
           jetbrains.pycharm-professional
           kubectl # for pycharm
+
           coreutils
+          gh # github cli
         ];
   in
     basic_pkgs ++ per_system_pkgs;
