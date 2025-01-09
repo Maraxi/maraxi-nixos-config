@@ -32,7 +32,6 @@
   };
   programs.nushell = {
     enable = true;
-    # for editing directly to config.nu
     extraConfig = ''
       # let carapace_completer = {|spans|
       #   carapace $spans.0 nushell $spans | from json
@@ -59,9 +58,6 @@
       # append /usr/bin/env
       # )
     '';
-    # shellAliases = {
-    #   nano = "hx";
-    # };
   };
   # programs.carapace = { # command line completions
   #   enable = true;
