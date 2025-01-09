@@ -108,7 +108,6 @@
   };
 
   programs.lesspipe.enable = true;
-
   xdg.configFile = {
     "lesskey".source = dotfiles/lesskey;
   };
