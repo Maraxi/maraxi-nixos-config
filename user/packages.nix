@@ -16,8 +16,6 @@
 
   home.packages = let
     basic_pkgs = with pkgs; [
-      ghostty
-
       feh
       keepassxc
       pavucontrol

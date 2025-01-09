@@ -18,6 +18,7 @@
     [
       ./alacritty.nix
       ./environment.nix
+      ./ghostty.nix
       ./git.nix
       ./gtk.nix
       ./nh.nix

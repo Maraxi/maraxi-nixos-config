@@ -265,7 +265,7 @@ in
       config = let
         window_mode = "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout 1-3:presets";
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
-        apps_mode = "APPS C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
+        apps_mode = "APPS C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot G:ghostty";
         exit_mode = "EXIT o:lock s:suspend h:hibernate e:logout u:switch-user p:poweroff x:screen-off";
 
         # reference $ man xkeyboard-config
@@ -341,6 +341,7 @@ in
               k = "mode default, exec ${pkgs.keepassxc}/bin/keepassxc";
               m = "mode default, exec ${pkgs.keymapp}/bin/keymapp";
               f = "mode default, exec ${pkgs.flameshot}/bin/flameshot gui";
+              g = "mode default, exec ghostty";
 
               Escape = "mode default";
             };

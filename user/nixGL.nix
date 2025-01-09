@@ -12,4 +12,5 @@
   nixGL.installScripts = ["mesa"];
 
   programs.alacritty.package = config.lib.nixGL.wrap pkgs.alacritty;
+  programs.ghostty.package = config.lib.nixGL.wrap pkgs.ghostty;
 }
