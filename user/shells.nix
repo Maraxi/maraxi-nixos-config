@@ -99,6 +99,7 @@
       "--smart-case"
       "--max-columns-preview"
       "--max-columns=100"
+      "--follow"
     ];
   };
   programs.direnv = {
