@@ -56,7 +56,10 @@
   # hardware.opengl.enable = true;
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [brlaser];
+  };
   # Enable sane for scanner
   hardware.sane.enable = true;
   services.avahi.enable = true;
