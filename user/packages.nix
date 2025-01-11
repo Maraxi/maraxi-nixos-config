@@ -50,6 +50,8 @@
       unzip
       unar
 
+      tty-clock
+
       alejandra
 
       pre-commit
