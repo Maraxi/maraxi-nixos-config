@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  setup,
+  ...
+}: {
   programs.bash = {
     enable = true;
 
