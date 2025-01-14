@@ -165,10 +165,10 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    optimise = {
-      automatic = true;
-      dates = ["weekly"];
-    };
+    # optimise = {
+    #   automatic = true;
+    #   dates = ["weekly"];
+    # };
   };
 
   system = {
