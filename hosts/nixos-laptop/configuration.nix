@@ -160,11 +160,11 @@
 
   nix.settings.auto-optimise-store = true;
   nix = {
-    # gc = {
-    #   automatic = true;
-    #   dates = "weekly";
-    #   options = "--delete-older-than 7d";
-    # };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
     optimise = {
       automatic = true;
       dates = ["weekly"];
