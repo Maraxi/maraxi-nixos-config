@@ -263,7 +263,7 @@ in
       # To regenerate a fresh i3 config file run i3-config-wizard(1).
       enable = true;
       config = let
-        window_mode = "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout 1-3:presets";
+        window_mode = "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout 1-3:presets 9:fix blackscreen";
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
         apps_mode = "APPS C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot G:ghostty";
         exit_mode = "EXIT o:lock s:suspend h:hibernate e:logout u:switch-user p:poweroff x:screen-off";
@@ -310,6 +310,7 @@ in
               "1" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-home.sh; ${feh}\"";
               "2" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors.sh; ${feh}\"";
               "3" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors-right.sh; ${feh}\"";
+              "9" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-overlapping.sh; ${feh}\"";
 
               Escape = "mode default";
             };
