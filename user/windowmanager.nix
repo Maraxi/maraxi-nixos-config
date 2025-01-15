@@ -269,8 +269,8 @@ in
         exit_mode = "EXIT o:lock s:suspend h:hibernate e:logout u:switch-user p:poweroff x:screen-off";
 
         # reference $ man xkeyboard-config
-        keyboard_layout = "setxkbmap de -variant nodeadkeys -option 'caps:escape,compose:rctrl'";
-        keyboard_layout_us = "setxkbmap us -option 'caps:escape,compose:rctrl'";
+        keyboard_layout = "setxkbmap de -variant nodeadkeys -option -option caps:escape -option compose:rctrl";
+        keyboard_layout_us = "setxkbmap us -option -option caps:escape -option compose:rctrl";
         feh = "feh --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg";
       in
         shared_config
