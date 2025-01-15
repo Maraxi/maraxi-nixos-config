@@ -86,8 +86,8 @@ symbol = " "
 symbol = "󱄅 "
 
 [shlvl]
-disabled = true
-threshold = 1
+disabled = false
+threshold = 2
 symbol = "↕"
 
 [os]
