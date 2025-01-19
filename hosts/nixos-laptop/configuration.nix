@@ -115,6 +115,10 @@
     git
   ];
 
+  environment.etc = {
+    "papersize".text = "a4";
+  };
+
   services.gnome.gnome-keyring.enable = true;
 
   fonts = {
