@@ -62,9 +62,11 @@
   };
   # Enable sane for scanner
   hardware.sane.enable = true;
-  services.avahi.enable = true;
-  services.avahi.nssmdns4 = true;
-  services.avahi.openFirewall = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Enable sound.
   # sound.enable = false;
