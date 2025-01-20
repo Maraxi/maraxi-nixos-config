@@ -20,6 +20,8 @@
       keepassxc
       pavucontrol
 
+      vlc
+
       python313
       uv
       ruff
