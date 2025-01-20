@@ -67,7 +67,6 @@
       model = "drv:///brlaser.drv/brl2710.ppd";
       ppdOptions = {
         PageSize = "A4";
-        Resolution = "1200dpi";
         Duplex = "DuplexNoTumble";
       };
     }
