@@ -87,6 +87,9 @@
           jetbrains.pycharm-professional
           kubectl # for pycharm
 
+          podman
+          kubernetes-helm
+
           coreutils
           gh # github cli
         ];
