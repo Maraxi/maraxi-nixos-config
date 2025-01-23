@@ -47,6 +47,8 @@
       lsof
       bat
 
+      nix-tree
+
       atool
       zip
       unzip
