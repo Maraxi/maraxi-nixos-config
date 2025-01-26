@@ -1,0 +1,20 @@
+#/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+git pull
+
+nix flake update
+
+git diff --exit-code flake.lock || {
+    git add flake.lock
+    git cm "Update flake"
+
+    if [[ $(uname -v) =~ "NixOS" ]]; then
+	nh os switch
+    else
+	nh home switch
+    fi
+
+    git push
+}
