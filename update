@@ -1,21 +1,29 @@
 #/usr/bin/env bash
+# Bash "strict mode"
 set -euo pipefail
 IFS=$'\n\t'
 
+# Get reference commit
 COMMIT=$(git rev-parse @)
 git pull
-UPDATED=$(git rev-parse @{u})
 
+# Update flake and commit on change
 nix flake update
-
-{ [[ "$COMMIT" == "$UPDATED" ]] && git diff --exit-code flake.lock ; } || {
+git diff --exit-code flake.lock || {
     git add flake.lock
-    git cm "Update flake" || true
+    git cm "Update flake"
+}
 
+# Check if commit changed
+UPDATED=$(git rev-parse @)
+REMOTE=$(git rev-parse @{u})
+
+# Rebuild and push
+[[ "$COMMIT" != "$UPDATED" ]] || [[ "$COMMIT" != "$REMOTE" ]] && {
     if [[ $(uname -v) =~ "NixOS" ]]; then
-	nh os switch
+        nh os switch
     else
-	nh home switch
+        nh home switch
     fi
 
     git push
