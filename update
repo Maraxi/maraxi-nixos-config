@@ -2,13 +2,15 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+COMMIT=$(git rev-parse @)
 git pull
+UPDATED=$(git rev-parse @{u})
 
 nix flake update
 
-git diff --exit-code flake.lock || {
+{ [[ "$COMMIT" == "$UPDATED" ]] && git diff --exit-code flake.lock ; } || {
     git add flake.lock
-    git cm "Update flake"
+    git cm "Update flake" || true
 
     if [[ $(uname -v) =~ "NixOS" ]]; then
 	nh os switch
