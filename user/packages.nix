@@ -47,6 +47,8 @@
       lsof
       bat
 
+      translate-shell
+
       nix-tree
 
       atool
