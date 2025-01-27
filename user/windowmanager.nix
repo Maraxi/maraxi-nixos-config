@@ -19,39 +19,41 @@
       size = 11.0;
     };
     colors = let
-      cl_high = "#080899";
-      cl_indi = "#d9d8d8";
-      cl_back = "#231f20";
-      cl_fore = "#d9d8d8";
-      cl_urge = "#9966ff";
+      cl_focused = "#082899";
+      cl_inactive = "#5f5456";
+      cl_background = "#231f20";
+      cl_border = "#181818";
+      cl_text = "#d9d8d8";
+      cl_urgent = "#9966ff";
+      cl_split_indicator = "#d9d8d8";
     in {
       focused = {
-        background = "${cl_high}";
-        border = "${cl_high}";
-        text = "${cl_fore}";
-        indicator = "${cl_indi}";
-        childBorder = "${cl_back}";
+        background = "${cl_focused}";
+        border = "${cl_focused}";
+        text = "${cl_text}";
+        indicator = "${cl_split_indicator}";
+        childBorder = "${cl_background}";
       };
       focusedInactive = {
-        background = "${cl_back}";
-        border = "${cl_back}";
-        text = "${cl_fore}";
-        indicator = "${cl_back}";
-        childBorder = "${cl_back}";
+        background = "${cl_inactive}";
+        border = "${cl_border}";
+        text = "${cl_text}";
+        indicator = "${cl_split_indicator}";
+        childBorder = "${cl_background}";
       };
       unfocused = {
-        background = "${cl_back}";
-        border = "${cl_back}";
-        text = "${cl_fore}";
-        indicator = "${cl_back}";
-        childBorder = "${cl_back}";
+        background = "${cl_background}";
+        border = "${cl_border}";
+        text = "${cl_text}";
+        indicator = "${cl_split_indicator}";
+        childBorder = "${cl_background}";
       };
       urgent = {
-        background = "${cl_urge}";
-        border = "${cl_urge}";
-        text = "${cl_fore}";
-        indicator = "${cl_urge}";
-        childBorder = "${cl_urge}";
+        background = "${cl_urgent}";
+        border = "${cl_urgent}";
+        text = "${cl_text}";
+        indicator = "${cl_split_indicator}";
+        childBorder = "${cl_background}";
       };
     };
 
