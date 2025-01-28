@@ -148,7 +148,7 @@ in
       enable = true;
       timeouts = [
         {
-          timeout = 120;
+          timeout = 300;
           command = ''${pkgs.sway}/bin/swaymsg "output * power off"'';
           resumeCommand = ''${pkgs.sway}/bin/swaymsg "output * power on"'';
         }
