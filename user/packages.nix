@@ -95,6 +95,8 @@
           kubernetes-helm
 
           coreutils
+          glibc
+
           gh # github cli
         ];
   in
