@@ -1,24 +1,48 @@
 {
   home.shellAliases = {
     s = "git status";
-    g = "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' -n10";
+    g = "git lgs";
   };
   programs.git = {
     enable = true;
     userName = "Maraxi";
     userEmail = "Maraxi@users.noreply.github.com";
-    aliases = {
+    aliases = let
+      formatted-log = "log --graph --abbrev-commit --date-order --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --tags HEAD";
+    in {
       aliases = "config --get-regexp alias";
-      pushd = "push -u origin HEAD";
+
+      root = "rev-parse --show-toplevel";
+
+      unstage = "reset HEAD --";
       s = "status";
+
+      d = "diff";
       diffs = "diff --staged";
+      ds = "diffs";
+
       p = "add -p";
       cm = "commit -m";
-      lg = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --branches --remotes --tags HEAD";
+      amend = "commit --amend -C HEAD";
+
+      pushd = "push -u origin HEAD";
+
+      lg = "${formatted-log} --branches --remotes";
       lgs = "lg -n 15";
+
+      lgx = "${formatted-log} --exclude master --exclude main --exclude release-candiate --branches --exclude *master --exclude *main --exclude *release-candiate --exclude *HEAD --remotes";
+      lgxs = "lgx -n 15";
+
+      lgf = "lg --name-status";
+      lgfs = "lgf -n 15";
     };
     extraConfig = {
+      core.editor = "nvim";
       init.defaultBranch = "main";
+      fetch = {
+        prune = true;
+        pruneTags = true;
+      };
     };
   };
 }
