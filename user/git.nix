@@ -44,5 +44,6 @@
         pruneTags = true;
       };
     };
+    diff-so-fancy.enable = true;
   };
 }
