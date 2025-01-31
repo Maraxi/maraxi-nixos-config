@@ -62,6 +62,7 @@
 
       pre-commit
 
+      evince
       libreoffice
       imagemagick
 
