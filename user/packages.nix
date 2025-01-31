@@ -23,6 +23,7 @@
       vlc
 
       python313
+      python313Packages.ipython
       uv
       ruff
 

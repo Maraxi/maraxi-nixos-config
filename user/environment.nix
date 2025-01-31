@@ -6,6 +6,8 @@
     XDG_CONFIG_HOME = "$HOME/.config";
     XDG_DATA_HOME = "$HOME/.local/share";
     XDG_STATE_HOME = "$HOME/.local/state";
+    PYTHON_HISTORY = "$HOME/.local/share/python-history";
+    IPYTHON_DIR = "$HOME/.local/share/ipython";
   };
   home.sessionPath = [
     "$HOME/bin"
