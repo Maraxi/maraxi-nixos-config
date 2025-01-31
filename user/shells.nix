@@ -112,7 +112,10 @@
   };
 
   programs.lesspipe.enable = true;
-  xdg.configFile = {
-    "lesskey".source = dotfiles/lesskey;
-  };
+  xdg.configFile."lesskey".source = dotfiles/lesskey;
+
+  xdg.dataFile."ipython/profile_default/ipython_config.py".text = ''
+    c = get_config()
+    c.TerminalInteractiveShell.confirm_exit = False
+  '';
 }
