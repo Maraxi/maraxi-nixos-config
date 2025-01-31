@@ -28,13 +28,13 @@
       pushd = "push -u origin HEAD";
 
       lg = "${formatted-log} --branches --remotes";
-      lgs = "lg -n 15";
+      lgs = "lg -n 20";
 
       lgx = "${formatted-log} --exclude master --exclude main --exclude release-candiate --branches --exclude *master --exclude *main --exclude *release-candiate --exclude *HEAD --remotes";
-      lgxs = "lgx -n 15";
+      lgxs = "lgx -n 20";
 
       lgf = "lg --name-status";
-      lgfs = "lgf -n 15";
+      lgfs = "lgf -n 20";
     };
     extraConfig = {
       core.editor = "nvim";
