@@ -11,11 +11,16 @@
     "$HOME/bin"
     "$HOME/.local/bin"
   ];
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "application/pdf" = ["org.gnome.Evince.desktop"];
+  xdg.mimeApps = let
+    association = {
+      "application/pdf" = ["org.gnome.Evince.desktop" "firefox.desktop"];
+      "x-scheme-handler/mailto" = "thunderbird.desktop";
+      "message/rfc822" = "thunderbird.desktop";
+      "image/png" = "feh.desktop";
     };
-    # associations.added = {};
+  in {
+    enable = true;
+    defaultApplications = association;
+    associations.added = association;
   };
 }
