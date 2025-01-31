@@ -187,10 +187,10 @@ in
             };
           modes = {
             ${mode_apps} = {
-              t = "exec ${pkgs.thunderbird}/bin/thunderbird";
-              f = "exec ${pkgs.firefox}/bin/firefox";
-              k = "exec ${pkgs.keepassxc}/bin/keepassxc";
-              m = "exec ${pkgs.keymapp}/bin/keymapp";
+              t = "mode default, exec ${pkgs.thunderbird}/bin/thunderbird";
+              f = "mode default, exec ${pkgs.firefox}/bin/firefox";
+              k = "mode default, exec ${pkgs.keepassxc}/bin/keepassxc";
+              m = "mode default, exec ${pkgs.keymapp}/bin/keymapp";
               Escape = "mode default";
             };
             ${mode_sound} = {
@@ -355,7 +355,7 @@ in
             in {
               o = "mode default, exec ${lock} && exec ${display_off}";
               s = "mode default, exec ${lock} && exec systemctl suspend";
-              h = "mode default, exec ${lock} && exec systemctl hibernate";
+              h = "mode default, exec ${lock} && exec systemctl hibernate -i";
               e = "exit";
               u = "mode default, exec gdmflexiserver";
               p = "exec systemctl poweroff -i";
