@@ -13,6 +13,11 @@
 
     initExtra = ''
       alias nv=nvim
+      ${
+        if setup.isNixOS
+        then "alias cal=\"cal -Sn9\""
+        else ""
+      }
 
       bind -x '"\C-o":${pkgs.ruff}/bin/ruff format; ${pkgs.ruff}/bin/ruff check --fix --unsafe-fixes'
       bind -x '"\C-p":${pkgs.pre-commit}/bin/pre-commit'
