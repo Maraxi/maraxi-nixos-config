@@ -16,8 +16,9 @@
 
   home.packages = let
     basic_pkgs = with pkgs; [
-      feh
       keepassxc
+
+      feh
       pavucontrol
 
       vlc
@@ -64,6 +65,7 @@
       pre-commit
 
       evince
+      pdfarranger
       libreoffice
       imagemagick
 
