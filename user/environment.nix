@@ -1,4 +1,4 @@
-{
+{setup, ...}: {
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
@@ -17,11 +17,22 @@
   ];
 
   xdg.mimeApps = let
+    browser =
+      if setup.isNixOS
+      then "firefox.desktop"
+      else "chromium-browser.desktop";
     association = {
-      "application/pdf" = ["org.gnome.Evince.desktop" "firefox.desktop"];
-      "x-scheme-handler/mailto" = "thunderbird.desktop";
-      "message/rfc822" = "thunderbird.desktop";
+      "application/pdf" = ["org.gnome.Evince.desktop" browser];
+      "default-url-scheme-handler" = browser;
+      "default-web-browser" = browser;
       "image/png" = "feh.desktop";
+      "message/rfc822" = "thunderbird.desktop";
+      "text/html" = browser;
+      "x-scheme-handler/about" = browser;
+      "x-scheme-handler/http" = browser;
+      "x-scheme-handler/https" = browser;
+      "x-scheme-handler/mailto" = "thunderbird.desktop";
+      "x-scheme-handler/unknown" = browser;
     };
   in {
     enable = true;

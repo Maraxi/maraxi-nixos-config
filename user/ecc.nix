@@ -9,4 +9,13 @@
   home.shellAliases = {
     cal = "ncal -b3A3";
   };
+
+  xdg.mimeApps = let
+    association = {
+      "application/x-remmina" = "xfreerdp-wrapper.desktop";
+    };
+  in {
+    defaultApplications = association;
+    associations.added = association;
+  };
 }
