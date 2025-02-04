@@ -386,10 +386,22 @@ in
             }) ["8" "9" "10"];
           assigns = {
             # i3-msg -t get_tree | jq -C | less
-            "1" = [{class = "^Chromium";}];
+            "1" = [
+              {
+                class = "^Chromium-browser$";
+                title = "^(?!File Explorer)(?!Secure Google Chrome)";
+              }
+            ];
             "2" = [{class = "^jetbrains-pycharm$";}];
             "3" = [{class = "^org.remmina.Remmina$";}];
-            "4" = [{class = "^File Explorer$";} {class = "^Google Chrome$";}]; # Citrix
+            "4" = [
+              {class = "^File Explorer$";} # Citrix
+              {class = "^Google Chrome$";} # Citrix
+              {
+                class = "^Chromium";
+                title = "^(File Explorer|Secure Google Chrome)";
+              }
+            ];
             "8" = [{class = "^pavucontrol$";}];
             "9" = [{title = "^KeePassXC$";} {title = "^Passwords.*KeePassXC$";}];
             "10" = [{class = "^Keymapp$";}];
