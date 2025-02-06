@@ -8,7 +8,7 @@
     userName = "Maraxi";
     userEmail = "Maraxi@users.noreply.github.com";
     aliases = let
-      formatted-log = "log --graph --abbrev-commit --date-order --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --tags HEAD";
+      formatted-log = "log --graph --abbrev-commit --date-order --date=relative --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --tags HEAD";
     in {
       aliases = "config --get-regexp alias";
 
