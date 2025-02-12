@@ -6,13 +6,10 @@
   ...
 }: let
   # See https://i3wm.org/docs/userguide.html for a complete reference to i3/sway!
+  profile-bin = config.home.profileDirectory + "/bin";
   shared_config = rec {
     modifier = "Mod1";
-    terminal =
-      if setup.isNixOS
-      then "${pkgs.alacritty}/bin/alacritty"
-      else "alacritty";
-
+    terminal = profile-bin + "/alacritty";
     fonts = {
       names = ["DejaVu Sans Mono" "FontAwesome5Free"];
       style = "Bold Semi-Condensed";
