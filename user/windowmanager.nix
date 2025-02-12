@@ -334,15 +334,15 @@ in
             ${apps_mode} = {
               # c = mode "default", exec --no-startup-id "/snap/bin/chromium --proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
               # Shift+c = mode "default", exec --no-startup-id "/snap/bin/chromium"
-              c = "mode default, exec chromium";
+              c = "mode default, exec ${profile-bin}/chromium";
               r = "mode default, exec ${pkgs.remmina}/bin/remmina -i";
               v = "mode default, exec ${pkgs.pavucontrol}/bin/pavucontrol";
-              p = "mode default, exec ${pkgs.jetbrains.pycharm-professional}/pycharm-professional/bin/pycharm";
+              p = "mode default, exec ${profile-bin}/pycharm-professional";
               s = "mode default, exec pass";
               k = "mode default, exec ${pkgs.keepassxc}/bin/keepassxc";
-              m = "mode default, exec keymapp";
+              m = "mode default, exec ${profile-bin}/keymapp";
               f = "mode default, exec ${pkgs.flameshot}/bin/flameshot gui";
-              g = "mode default, exec ghostty";
+              g = "mode default, exec ${profile-bin}/ghostty";
 
               Escape = "mode default";
             };
