@@ -9,7 +9,7 @@ git pull
 
 # Update flake and commit on change
 nix flake update
-git diff --exit-code flake.lock || {
+git diff --exit-code flake.lock 1>/dev/null || {
     git add flake.lock
     git cm "Update flake"
 }
@@ -21,6 +21,7 @@ REMOTE=$(git rev-parse @{u})
 # Rebuild and push
 [[ "$COMMIT" != "$UPDATED" ]] || [[ "$COMMIT" != "$REMOTE" ]] && {
     if [[ $(uname -v) =~ "NixOS" ]]; then
+        sudo true
         nh os switch
     else
         nh home switch
