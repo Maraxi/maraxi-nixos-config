@@ -1,10 +1,12 @@
 {
-  pkgs,
   setup,
   lib,
+  config,
   ...
 }: {
-  programs.bash = {
+  programs.bash = let
+    profile-bin = config.home.profileDirectory + "/bin";
+  in {
     enable = true;
 
     historySize = -1;
@@ -23,8 +25,8 @@
     };
 
     initExtra = lib.mkOrder 100 ''
-      bind -x '"\C-o":${pkgs.ruff}/bin/ruff format; ${pkgs.ruff}/bin/ruff check --fix --unsafe-fixes'
-      bind -x '"\C-p":${pkgs.pre-commit}/bin/pre-commit'
+      bind -x '"\C-o":${profile-bin}/ruff format; ${profile-bin}/ruff check --fix --unsafe-fixes'
+      bind -x '"\C-p":${profile-bin}/pre-commit'
     '';
   };
   programs.readline = {
