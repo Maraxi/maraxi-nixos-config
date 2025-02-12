@@ -1,6 +1,7 @@
 {
   pkgs,
   setup,
+  lib,
   ...
 }: {
   programs.bash = {
@@ -11,14 +12,11 @@
     historyFile = "$HOME/.bash_history_eternal";
     historyControl = ["ignorespace" "ignoredups"];
 
-    initExtra = ''
-      alias nv=nvim
-      ${
-        if setup.isNixOS
-        then "alias cal=\"cal -Sn9\""
-        else ""
-      }
+    shellAliases =
+      {nv = "nvim";}
+      // lib.optionalAttrs setup.isNixOS {cal = "cal -Sn9";};
 
+    initExtra = lib.mkOrder 100 ''
       bind -x '"\C-o":${pkgs.ruff}/bin/ruff format; ${pkgs.ruff}/bin/ruff check --fix --unsafe-fixes'
       bind -x '"\C-p":${pkgs.pre-commit}/bin/pre-commit'
 
