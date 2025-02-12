@@ -30,6 +30,8 @@
     initExtra = lib.mkOrder 100 ''
       bind -x '"\C-o":${profile-bin}/ruff format; ${profile-bin}/ruff check --fix --unsafe-fixes'
       bind -x '"\C-p":${profile-bin}/pre-commit'
+
+      stty -ixon
     '';
   };
   programs.readline = {
