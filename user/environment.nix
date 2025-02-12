@@ -1,5 +1,5 @@
 {setup, ...}: {
-  home.sessionVariables = {
+  home.sessionVariables = rec {
     EDITOR = "nvim";
     VISUAL = "nvim";
 
@@ -8,8 +8,10 @@
     XDG_DATA_HOME = "$HOME/.local/share";
     XDG_STATE_HOME = "$HOME/.local/state";
 
-    PYTHON_HISTORY = "$HOME/.local/share/python-history";
-    IPYTHON_DIR = "$HOME/.local/share/ipython";
+    PYTHON_HISTORY = XDG_DATA_HOME + "/python-history";
+    IPYTHON_DIR = XDG_DATA_HOME + "/ipython";
+    CARGO_HOME = XDG_DATA_HOME + "/cargo";
+    RUSTUP_HOME = XDG_DATA_HOME + "/rustup";
   };
   home.sessionPath = [
     "$HOME/bin"
