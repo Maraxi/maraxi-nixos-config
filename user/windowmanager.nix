@@ -271,7 +271,7 @@ in
         # reference $ man xkeyboard-config
         keyboard_layout = "setxkbmap de -variant nodeadkeys -option -option caps:escape -option compose:rctrl";
         keyboard_layout_us = "setxkbmap us -option -option caps:escape -option compose:rctrl";
-        feh = "feh --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg";
+        feh = "feh --no-fehbg --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg";
       in
         shared_config
         // {

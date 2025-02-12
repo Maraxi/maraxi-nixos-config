@@ -15,7 +15,10 @@
     historyControl = ["ignorespace" "ignoredups"];
 
     shellAliases =
-      {nv = "nvim";}
+      {
+        nv = "nvim";
+        feh = "feh --no-fehbg";
+      }
       // lib.optionalAttrs setup.isNixOS {cal = "cal -Sn9";};
 
     sessionVariables = {
