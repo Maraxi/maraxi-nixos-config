@@ -4,9 +4,7 @@
   config,
   ...
 }: {
-  programs.bash = let
-    profile-bin = config.home.profileDirectory + "/bin";
-  in {
+  programs.bash = {
     enable = true;
 
     historySize = -1;
@@ -27,12 +25,16 @@
       _ZO_DOCTOR = 0;
     };
 
-    initExtra = lib.mkOrder 100 ''
-      bind -x '"\C-o":${profile-bin}/ruff format; ${profile-bin}/ruff check --fix --unsafe-fixes'
-      bind -x '"\C-p":${profile-bin}/pre-commit'
+    initExtra = let
+      profile-bin = config.home.profileDirectory + "/bin";
+      check-git = "git rev-parse --is-inside-work-tree &>/dev/null";
+    in
+      lib.mkOrder 100 ''
+        bind -x '"\C-o":${check-git} && { ${profile-bin}/ruff format; ${profile-bin}/ruff check --fix --unsafe-fixes; }'
+        bind -x '"\C-p":${check-git} && ${profile-bin}/pre-commit'
 
-      stty -ixon
-    '';
+        stty -ixon
+      '';
   };
   programs.readline = {
     enable = true;
