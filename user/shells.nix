@@ -11,7 +11,7 @@
 
     historySize = -1;
     historyFileSize = -1;
-    historyFile = "$HOME/.bash_history_eternal";
+    historyFile = "$XDG_STATE_HOME/.bash_history_eternal";
     historyControl = ["ignorespace" "ignoredups"];
 
     shellAliases =
