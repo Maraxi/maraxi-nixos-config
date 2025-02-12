@@ -16,12 +16,14 @@
       {nv = "nvim";}
       // lib.optionalAttrs setup.isNixOS {cal = "cal -Sn9";};
 
+    sessionVariables = {
+      HISTTIMEFORMAT = "[%F %T] ";
+      PROMPT_COMMAND = "history -a; $PROMPT_COMMAND";
+    };
+
     initExtra = lib.mkOrder 100 ''
       bind -x '"\C-o":${pkgs.ruff}/bin/ruff format; ${pkgs.ruff}/bin/ruff check --fix --unsafe-fixes'
       bind -x '"\C-p":${pkgs.pre-commit}/bin/pre-commit'
-
-      export HISTTIMEFORMAT="[%F %T] "
-      PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
     '';
   };
   programs.readline = {
