@@ -19,6 +19,7 @@
     sessionVariables = {
       HISTTIMEFORMAT = "[%F %T] ";
       PROMPT_COMMAND = "history -a; $PROMPT_COMMAND";
+      _ZO_DOCTOR = 0;
     };
 
     initExtra = lib.mkOrder 100 ''
