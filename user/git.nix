@@ -25,8 +25,6 @@
       cm = "commit -m";
       amend = "commit --amend -C HEAD";
 
-      pushd = "push -u origin HEAD";
-
       lg = "${formatted-log} --branches --remotes";
       lgs = "lg -n 20";
 
@@ -43,6 +41,7 @@
         prune = true;
         pruneTags = true;
       };
+      push.autoSetupRemote = true;
     };
     diff-so-fancy.enable = true;
   };
