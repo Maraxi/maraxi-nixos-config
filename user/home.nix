@@ -31,15 +31,6 @@
 
   programs.home-manager.enable = true;
 
-  nixpkgs =
-    if setup.isNixOS
-    then {}
-    else {
-      overlays = [
-        # outputs.overlays.selective-update
-      ];
-    };
-
   home = {
     username = setup.username;
     homeDirectory = "/home/${setup.username}";

@@ -60,6 +60,7 @@
       modules = [
         ./user/home.nix
         ./user/ecc.nix
+        ./user/nixpkgs.nix
       ];
       extraSpecialArgs = {
         inherit nixgl;

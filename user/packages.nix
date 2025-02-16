@@ -4,16 +4,6 @@
   lib,
   ...
 }: {
-  nixpkgs.config.allowUnfreePredicate =
-    if setup.isNixOS
-    then {}
-    else
-      pkg:
-        builtins.elem (lib.getName pkg) [
-          "pycharm-professional"
-          "keymapp"
-        ];
-
   home.packages = let
     basic_pkgs = with pkgs; [
       keepassxc
