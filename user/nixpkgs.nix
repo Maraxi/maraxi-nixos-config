@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   nixpkgs.overlays = [
     # outputs.overlays.selective-update
   ];
