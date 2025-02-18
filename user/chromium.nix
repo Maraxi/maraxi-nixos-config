@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   programs.chromium = {
     enable = true;
     commandLineArgs = [
@@ -6,6 +6,7 @@
       "--high-dpi-support=1"
       "--force-device-scale-factor=1"
     ];
+    package = pkgs.ungoogled-chromium;
     extensions = [
       {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} # ublock origin
       {id = "ohcpnigalekghcmgcdcenkpelffpdolg";} # colorpick-eyedropper
