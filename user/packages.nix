@@ -56,7 +56,6 @@
 
       evince
       pdfarranger
-      libreoffice
       imagemagick
 
       # # overrides. You can do that directly here, just don't forget the
@@ -79,6 +78,7 @@
           thunderbird
           simple-scan
           nemo
+          libreoffice
         ]
       else
         with pkgs; [
