@@ -29,7 +29,7 @@
   } @ inputs:
   # let inherit (self) outputs; in
   {
-    overlays = import ./overlays {inherit inputs;};
+    # overlays = import ./overlays {inherit inputs;};
 
     nixosConfigurations."stefan-nixos" = let
       system = "x86_64-linux";
