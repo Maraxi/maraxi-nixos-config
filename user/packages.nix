@@ -20,6 +20,8 @@
 
       # cargo
       zig
+      gcc
+      gnumake
 
       glances
       htop
@@ -29,8 +31,6 @@
       ncdu
 
       libfaketime
-      gcc
-      gnumake
       fd
       difftastic
       fclones
