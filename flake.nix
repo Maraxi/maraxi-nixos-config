@@ -6,6 +6,7 @@
     # Only pull from 'nix-trunk' when channels are blocked by a Hydra jobset failure or
     # the 'unstable' channel has not otherwise updated recently for some other reason.
     # nix-trunk.url = "github:nixos/nixpkgs";
+    nixpkgs-73cf49.url = "github:NixOS/nixpkgs/73cf49b8ad837ade2de76f87eb53fc85ed5d4680";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -21,6 +22,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-73cf49,
     home-manager,
     nixgl,
     ...
@@ -29,32 +31,36 @@
   {
     overlays = import ./overlays {inherit inputs;};
 
-    nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations."stefan-nixos" = let
       system = "x86_64-linux";
-      # specialArgs = { inherit outputs; };
-      modules = [
-        ./hosts/nixos-laptop/configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.stefan = {
-              imports = [
-                ./user/home.nix
-              ];
-            };
-            extraSpecialArgs = {
-              setup = {
-                username = "stefan";
-                stateVersion = "24.05";
-                isNixOS = true;
+    in
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        # specialArgs = { };
+        modules = [
+          ./hosts/nixos-laptop/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.stefan = {
+                imports = [
+                  ./user/home.nix
+                ];
+              };
+              extraSpecialArgs = {
+                pkgs-73cf49 = import nixpkgs-73cf49 {inherit system;};
+                setup = {
+                  username = "stefan";
+                  stateVersion = "24.05";
+                  isNixOS = true;
+                };
               };
             };
-          };
-        }
-      ];
-    };
+          }
+        ];
+      };
     homeConfigurations."iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [
