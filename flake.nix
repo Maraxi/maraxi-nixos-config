@@ -59,7 +59,7 @@
       ];
     };
     homeConfigurations."iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      pkgs = import nixpkgs {inherit system;};
       modules = [
         ./user/home.nix
         ./user/ecc.nix
