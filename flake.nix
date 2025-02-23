@@ -20,47 +20,44 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     nixpkgs-73cf49,
     home-manager,
     nixgl,
     ...
-  } @ inputs:
-  # let inherit (self) outputs; in
-  {
+  }: let
+    # inherit (self) outputs;
+    system = "x86_64-linux";
+  in {
     # overlays = import ./overlays {inherit inputs;};
 
-    nixosConfigurations."stefan-nixos" = let
-      system = "x86_64-linux";
-    in
-      nixpkgs.lib.nixosSystem {
-        inherit system;
-        # specialArgs = { };
-        modules = [
-          ./hosts/nixos-laptop/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.stefan = {
-                imports = [
-                  ./user/home.nix
-                ];
-              };
-              extraSpecialArgs = {
-                pkgs-73cf49 = import nixpkgs-73cf49 {inherit system;};
-                setup = {
-                  username = "stefan";
-                  stateVersion = "24.05";
-                  isNixOS = true;
-                };
+    nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
+      inherit system;
+      # specialArgs = { };
+      modules = [
+        ./hosts/nixos-laptop/configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.stefan = {
+              imports = [
+                ./user/home.nix
+              ];
+            };
+            extraSpecialArgs = {
+              pkgs-73cf49 = import nixpkgs-73cf49 {inherit system;};
+              setup = {
+                username = "stefan";
+                stateVersion = "24.05";
+                isNixOS = true;
               };
             };
-          }
-        ];
-      };
+          };
+        }
+      ];
+    };
     homeConfigurations."iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [
