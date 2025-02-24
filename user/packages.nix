@@ -19,7 +19,7 @@
       ruff
 
       # cargo
-      zig
+      # zig
       gcc
       gnumake
 
