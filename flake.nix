@@ -90,8 +90,12 @@
         ];
       };
       zig = pkgs.mkShell {
-        packages = with pkgs; [zig];
+        packages = [pkgs.zig];
         shellHook = ''echo "zig version: $(zig version)"'';
+      };
+      protobuf = pkgs.mkShell {
+        packages = [pkgs.protobuf];
+        shellHook = ''protoc  --version'';
       };
     };
   };
