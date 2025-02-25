@@ -82,5 +82,17 @@
         };
       };
     };
+    devShells.${system} = {
+      latex = pkgs.mkShell {
+        packages = with pkgs; [
+          texlive.combined.scheme-full
+          texstudio
+        ];
+      };
+      zig = pkgs.mkShell {
+        packages = with pkgs; [zig];
+        shellHook = ''echo "zig version: $(zig version)"'';
+      };
+    };
   };
 }
