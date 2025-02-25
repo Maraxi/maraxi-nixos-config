@@ -33,8 +33,8 @@
     nixgl,
     ...
   }: let
-    # inherit (self) outputs;
     system = "x86_64-linux";
+    pkgs = import nixpkgs {inherit system;};
   in {
     # overlays = import ./overlays {inherit inputs;};
 
@@ -66,7 +66,7 @@
       ];
     };
     homeConfigurations."iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {inherit system;};
+      inherit pkgs;
       modules = [
         ./user/home.nix
         ./user/ecc.nix
