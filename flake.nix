@@ -87,7 +87,10 @@
       };
       "stefan@pc9d217" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [./user/home.nix];
+        modules = [
+          ./user/home.nix
+          ./user/nixpkgs.nix
+        ];
         extraSpecialArgs = {
           inherit nixgl;
           setup = {
