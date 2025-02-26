@@ -65,20 +65,22 @@
         }
       ];
     };
-    homeConfigurations."iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        ./user/home.nix
-        ./user/ecc.nix
-        ./user/nixpkgs.nix
-      ];
-      extraSpecialArgs = {
-        inherit nixgl;
-        pkgs-be02d8 = import nixpkgs-be02d8 {inherit system;};
-        setup = {
-          username = "iv546";
-          stateVersion = "24.05";
-          isNixOS = false;
+    homeConfigurations = {
+      "iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./user/home.nix
+          ./user/ecc.nix
+          ./user/nixpkgs.nix
+        ];
+        extraSpecialArgs = {
+          inherit nixgl;
+          pkgs-be02d8 = import nixpkgs-be02d8 {inherit system;};
+          setup = {
+            username = "iv546";
+            stateVersion = "24.05";
+            isNixOS = false;
+          };
         };
       };
     };
