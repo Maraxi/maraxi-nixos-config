@@ -1,6 +1,7 @@
 {
   setup,
   # outputs,
+  lib,
   ...
 }: {
   imports = let
@@ -11,9 +12,9 @@
         ./xdg-portal.nix
       ]
       else [
-        ./chromium.nix
         ./nixGL.nix
       ];
+    chromium = lib.lists.optional (!setup.installFirefox) ./chromium.nix;
   in
     [
       ./alacritty.nix
@@ -27,7 +28,8 @@
       ./shells.nix
       ./windowmanager.nix
     ]
-    ++ specific-imports;
+    ++ specific-imports
+    ++ chromium;
 
   programs.home-manager.enable = true;
 
