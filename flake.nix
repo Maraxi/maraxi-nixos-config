@@ -83,6 +83,18 @@
           };
         };
       };
+      "stefan@pc9d217" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [./user/home.nix];
+        extraSpecialArgs = {
+          inherit nixgl;
+          setup = {
+            username = "stefan";
+            stateVersion = "24.05";
+            isNixOS = false;
+          };
+        };
+      };
     };
     devShells.${system} = {
       latex = pkgs.mkShell {
