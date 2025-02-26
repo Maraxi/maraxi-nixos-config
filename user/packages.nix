@@ -74,7 +74,6 @@
       if setup.isNixOS
       then
         with pkgs; [
-          firefox
           thunderbird
           simple-scan
           nemo
@@ -93,8 +92,9 @@
 
           gh # github cli
         ];
+    firefox = lib.lists.optional setup.installFirefox pkgs.firefox;
   in
-    basic_pkgs ++ per_system_pkgs;
+    basic_pkgs ++ per_system_pkgs ++ firefox;
 
   dconf.settings = {
     "org/nemo/preferences" = {

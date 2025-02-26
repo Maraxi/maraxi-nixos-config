@@ -59,6 +59,7 @@
                 username = "stefan";
                 stateVersion = "24.05";
                 isNixOS = true;
+                installFirefox = true;
               };
             };
           };
@@ -80,6 +81,7 @@
             username = "iv546";
             stateVersion = "24.05";
             isNixOS = false;
+            installFirefox = false;
           };
         };
       };
@@ -92,6 +94,7 @@
             username = "stefan";
             stateVersion = "24.05";
             isNixOS = false;
+            installFirefox = true;
           };
         };
       };
