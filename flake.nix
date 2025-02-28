@@ -8,9 +8,6 @@
     # the 'unstable' channel has not otherwise updated recently for some other reason.
     # nix-trunk.url = "github:nixos/nixpkgs";
 
-    # Downgrade for broken pkgs.pamixer build
-    nixpkgs-73cf49.url = "github:NixOS/nixpkgs/73cf49b8ad837ade2de76f87eb53fc85ed5d4680";
-
     # Downgrade for bad feature in chromium
     nixpkgs-be02d8.url = "github:NixOS/nixpkgs/be02d861eace1ba8d9cac31d0493af1032ca4b2f";
 
@@ -27,7 +24,6 @@
 
   outputs = {
     nixpkgs,
-    nixpkgs-73cf49,
     nixpkgs-be02d8,
     home-manager,
     nixgl,
@@ -54,7 +50,6 @@
               ];
             };
             extraSpecialArgs = {
-              pkgs-73cf49 = import nixpkgs-73cf49 {inherit system;};
               setup = {
                 username = "stefan";
                 stateVersion = "24.05";

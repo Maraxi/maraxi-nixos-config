@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-73cf49,
   config,
   lib,
   setup,
@@ -193,7 +192,7 @@ in
               Escape = "mode default";
             };
             ${mode_sound} = let
-              pamixer-bin = "${pkgs-73cf49.pamixer}/bin/pamixer";
+              pamixer-bin = "${pkgs.pamixer}/bin/pamixer";
             in {
               m = "exec ${pamixer-bin} -t";
               u = "exec ${pamixer-bin} -i 3";
