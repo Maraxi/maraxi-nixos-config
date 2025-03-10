@@ -6,8 +6,6 @@
 }: {
   home.packages = let
     basic_pkgs = with pkgs; [
-      keepassxc
-
       feh
       pavucontrol
 
@@ -80,6 +78,8 @@
           thunderbird
 
           simple-scan
+
+          keepassxc
         ]
       else
         with pkgs; [

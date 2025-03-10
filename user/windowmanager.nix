@@ -334,7 +334,7 @@ in
               v = "mode default, exec ${pkgs.pavucontrol}/bin/pavucontrol";
               p = "mode default, exec pycharm-professional";
               s = "mode default, exec pass";
-              k = "mode default, exec ${pkgs.keepassxc}/bin/keepassxc";
+              k = "mode default, exec keepassxc";
               m = "mode default, exec ${profile-bin}/keymapp";
               f = "mode default, exec ${pkgs.flameshot}/bin/flameshot gui";
               g = "mode default, exec ${profile-bin}/ghostty";
