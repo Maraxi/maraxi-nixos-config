@@ -77,6 +77,7 @@
           evince
           pdfarranger
 
+          firefox
           thunderbird
 
           simple-scan
@@ -92,9 +93,8 @@
 
           gh # github cli
         ];
-    firefox = lib.lists.optional setup.installFirefox pkgs.firefox;
   in
-    basic_pkgs ++ per_system_pkgs ++ firefox;
+    basic_pkgs ++ per_system_pkgs;
 
   dconf.settings = {
     "org/nemo/preferences" = {
