@@ -74,10 +74,12 @@
       if setup.isNixOS
       then
         with pkgs; [
-          thunderbird
-          simple-scan
           nemo
           libreoffice
+
+          thunderbird
+
+          simple-scan
         ]
       else
         with pkgs; [
