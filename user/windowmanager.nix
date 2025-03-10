@@ -327,9 +327,9 @@ in
             };
 
             ${apps_mode} = {
-              # c = mode "default", exec --no-startup-id "/snap/bin/chromium --proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
+              c = "mode default, exec google-chrome-stable --proxy-pac-url=http://webproxy.deutsche-boerse.de:8080 --high-dpi-support=1 --force-device-scale-factor=1";
               # Shift+c = mode "default", exec --no-startup-id "/snap/bin/chromium"
-              c = "mode default, exec ${profile-bin}/chromium";
+              # c = "mode default, exec chromium";
               r = "mode default, exec remmina -i";
               v = "mode default, exec pavucontrol";
               p = "mode default, exec pycharm-professional";
@@ -379,7 +379,7 @@ in
             # i3-msg -t get_tree | jq -C | less
             "1" = [
               {
-                class = "^Chromium-browser$";
+                class = "^(Chromium-browser|Google-chrome)$";
                 title = "^(?!File Explorer)(?!Secure Google Chrome)";
               }
             ];
@@ -387,7 +387,6 @@ in
             "3" = [{class = "^org.remmina.Remmina$";}];
             "4" = [
               {class = "^File Explorer$";} # Citrix
-              {class = "^Google Chrome$";} # Citrix
               {
                 class = "^Chromium";
                 title = "^(File Explorer|Secure Google Chrome)";

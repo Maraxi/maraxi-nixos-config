@@ -37,7 +37,7 @@
     browser =
       if setup.isNixOS
       then "firefox.desktop"
-      else "chromium-browser.desktop";
+      else "google-chrome.desktop";
     association = {
       "application/pdf" = ["org.gnome.Evince.desktop" browser];
       "default-url-scheme-handler" = browser;
