@@ -7,9 +7,6 @@
   home.packages = let
     basic_pkgs = with pkgs; [
       feh
-      pavucontrol
-
-      vlc
 
       python313
       python313Packages.ipython
@@ -70,6 +67,9 @@
           libfaketime
 
           fclones
+
+          pavucontrol
+          vlc
 
           nemo
           libreoffice

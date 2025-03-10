@@ -331,7 +331,7 @@ in
               # Shift+c = mode "default", exec --no-startup-id "/snap/bin/chromium"
               c = "mode default, exec ${profile-bin}/chromium";
               r = "mode default, exec ${pkgs.remmina}/bin/remmina -i";
-              v = "mode default, exec ${pkgs.pavucontrol}/bin/pavucontrol";
+              v = "mode default, exec pavucontrol";
               p = "mode default, exec pycharm-professional";
               s = "mode default, exec pass";
               k = "mode default, exec keepassxc";
