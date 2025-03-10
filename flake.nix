@@ -31,6 +31,12 @@
   }: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
+    keyboard = {
+      layout = "de";
+      variant = "nodeadkeys";
+      # man xkeyboard-config  -> Options
+      options = "caps:escape, shift:both_capslock, compose:rctrl";
+    };
   in {
     # overlays = import ./overlays {inherit inputs;};
 
@@ -50,6 +56,7 @@
               ];
             };
             extraSpecialArgs = {
+              inherit keyboard;
               setup = {
                 username = "stefan";
                 stateVersion = "24.05";
@@ -70,7 +77,7 @@
           ./user/nixpkgs.nix
         ];
         extraSpecialArgs = {
-          inherit nixgl;
+          inherit nixgl keyboard;
           pkgs-be02d8 = import nixpkgs-be02d8 {inherit system;};
           setup = {
             username = "iv546";
@@ -87,7 +94,7 @@
           ./user/nixpkgs.nix
         ];
         extraSpecialArgs = {
-          inherit nixgl;
+          inherit nixgl keyboard;
           setup = {
             username = "stefan";
             stateVersion = "24.05";

@@ -3,6 +3,7 @@
   config,
   lib,
   setup,
+  keyboard,
   ...
 }: let
   # See https://i3wm.org/docs/userguide.html for a complete reference to i3/sway!
@@ -214,17 +215,8 @@ in
 
           input = {
             # swaymsg -t get_inputs
-            "1008:36:CHICONY_HP_Basic_USB_Keyboard" = {
-              xkb_layout = "de";
-              xkb_variant = "nodeadkeys";
-              xkb_options = "caps:escape_shifted_capslock,compose:sclk";
-              xkb_numlock = "enabled";
-            };
-            "type:keyboard" = {
-              xkb_layout = "de";
-              xkb_variant = "nodeadkeys";
-              xkb_options = "caps:escape_shifted_capslock,compose:sclk";
-            };
+            "1008:36:CHICONY_HP_Basic_USB_Keyboard" = keyboard // {xkb_numlock = "enabled";};
+            "type:keyboard" = keyboard;
           };
           output = {
             # swaymsg -t get_outputs
@@ -270,9 +262,10 @@ in
         apps_mode = "APPS C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot G:ghostty";
         exit_mode = "EXIT o:lock s:suspend h:hibernate e:logout u:switch-user p:poweroff x:screen-off";
 
-        # reference $ man xkeyboard-config
-        keyboard_layout = "setxkbmap de -variant nodeadkeys -option -option caps:escape -option compose:rctrl";
-        keyboard_layout_us = "setxkbmap us -option -option caps:escape -option compose:rctrl";
+        # check dconf-editor -> ord/gnome/desktop/input-sources/xkb-options
+        # reset options to empty by using "-option" with no argument
+        keyboard_layout = ''"setxkbmap ${keyboard.layout} -variant ${keyboard.options} -option -option ${keyboard.options}"'';
+        keyboard_layout_us = ''"setxkbmap us -option -option ${keyboard.options}"'';
         feh = "feh --no-fehbg --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg";
       in
         shared_config

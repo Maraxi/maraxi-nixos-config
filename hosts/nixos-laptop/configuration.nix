@@ -44,6 +44,7 @@
   };
 
   # Configure keymap in X11
+  # TODO: use central keyboard setting from flake.nix
   services.xserver.xkb = {
     layout = "de";
     variant = "nodeadkeys";

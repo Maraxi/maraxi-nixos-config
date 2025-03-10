@@ -1,7 +1,7 @@
 {
   setup,
-  # outputs,
   lib,
+  keyboard,
   ...
 }: {
   imports = let
@@ -37,11 +37,6 @@
     username = setup.username;
     homeDirectory = "/home/${setup.username}";
     stateVersion = setup.stateVersion;
-
-    keyboard = {
-      layout = "de";
-      variant = "nodeadkeys";
-      options = "caps:escape_shifted_capslock, compose:rctrl";
-    };
+    inherit keyboard;
   };
 }
