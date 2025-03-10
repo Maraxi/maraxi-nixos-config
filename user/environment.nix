@@ -48,7 +48,10 @@
       "x-scheme-handler/about" = browser;
       "x-scheme-handler/http" = browser;
       "x-scheme-handler/https" = browser;
-      "x-scheme-handler/mailto" = "thunderbird.desktop";
+      "x-scheme-handler/mailto" =
+        if setup.isNixOS
+        then "thunderbird.desktop"
+        else browser;
       "x-scheme-handler/unknown" = browser;
     };
   in {
