@@ -286,7 +286,7 @@ in
               # .desktop file. It is a wrapper around dmenu, so you need that installed.
               "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
 
-              "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui";
+              "Print" = "exec flameshot gui";
 
               "${meh}+w" = "mode \"${window_mode}\"";
               "${meh}+s" = "mode \"${sound_mode}\"";
@@ -336,7 +336,7 @@ in
               s = "mode default, exec pass";
               k = "mode default, exec keepassxc";
               m = "mode default, exec ${profile-bin}/keymapp";
-              f = "mode default, exec ${pkgs.flameshot}/bin/flameshot gui";
+              f = "mode default, exec flameshot gui";
               g = "mode default, exec ${profile-bin}/ghostty";
 
               Escape = "mode default";
