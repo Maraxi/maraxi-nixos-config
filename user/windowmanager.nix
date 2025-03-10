@@ -259,7 +259,7 @@ in
       config = let
         window_mode = "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout 1-3:presets 9:fix blackscreen";
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
-        apps_mode = "APPS C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot G:ghostty";
+        apps_mode = "APPS C:chrome R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
         exit_mode = "EXIT o:lock s:suspend h:hibernate e:logout u:switch-user p:poweroff x:screen-off";
 
         # check dconf-editor -> ord/gnome/desktop/input-sources/xkb-options
@@ -337,7 +337,6 @@ in
               k = "mode default, exec keepassxc";
               m = "mode default, exec ${profile-bin}/keymapp";
               f = "mode default, exec flameshot gui";
-              g = "mode default, exec ${profile-bin}/ghostty";
 
               Escape = "mode default";
             };
