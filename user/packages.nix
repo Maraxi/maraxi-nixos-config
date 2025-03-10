@@ -8,8 +8,6 @@
     basic_pkgs = with pkgs; [
       feh
 
-      python313
-      python313Packages.ipython
       uv
       ruff
 
@@ -63,6 +61,8 @@
         with pkgs; [
           gcc
           gnumake
+          python313
+          python313Packages.ipython
 
           libfaketime
 
