@@ -335,7 +335,7 @@ in
               p = "mode default, exec pycharm-professional";
               s = "mode default, exec pass";
               k = "mode default, exec keepassxc";
-              m = "mode default, exec ${profile-bin}/keymapp";
+              m = "mode default, exec keymapp";
               f = "mode default, exec flameshot gui";
 
               Escape = "mode default";
