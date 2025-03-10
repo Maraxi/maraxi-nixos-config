@@ -113,7 +113,7 @@
     arguments = [
       "--smart-case"
       "--max-columns-preview"
-      "--max-columns=100"
+      "--max-columns=200"
       "--follow"
     ];
   };
