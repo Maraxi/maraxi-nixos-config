@@ -332,7 +332,7 @@ in
               c = "mode default, exec ${profile-bin}/chromium";
               r = "mode default, exec ${pkgs.remmina}/bin/remmina -i";
               v = "mode default, exec ${pkgs.pavucontrol}/bin/pavucontrol";
-              p = "mode default, exec ${profile-bin}/pycharm-professional";
+              p = "mode default, exec pycharm-professional";
               s = "mode default, exec pass";
               k = "mode default, exec ${pkgs.keepassxc}/bin/keepassxc";
               m = "mode default, exec ${profile-bin}/keymapp";

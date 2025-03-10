@@ -81,7 +81,6 @@
         ]
       else
         with pkgs; [
-          jetbrains.pycharm-professional
           kubectl # for pycharm
 
           podman
