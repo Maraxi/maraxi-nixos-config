@@ -9,7 +9,7 @@
     # nix-trunk.url = "github:nixos/nixpkgs";
 
     # Downgrade for bad feature in chromium
-    nixpkgs-be02d8.url = "github:NixOS/nixpkgs/be02d861eace1ba8d9cac31d0493af1032ca4b2f";
+    # nixpkgs-be02d8.url = "github:NixOS/nixpkgs/be02d861eace1ba8d9cac31d0493af1032ca4b2f";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -19,7 +19,7 @@
 
   outputs = {
     nixpkgs,
-    nixpkgs-be02d8,
+    # nixpkgs-be02d8,
     home-manager,
     ...
   }: let
@@ -71,7 +71,7 @@
         ];
         extraSpecialArgs = {
           inherit keyboard;
-          pkgs-be02d8 = import nixpkgs-be02d8 {inherit system;};
+          # pkgs-be02d8 = import nixpkgs-be02d8 {inherit system;};
           setup = {
             username = "iv546";
             stateVersion = "24.05";
