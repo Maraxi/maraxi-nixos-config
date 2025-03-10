@@ -1,6 +1,5 @@
 {
   setup,
-  lib,
   keyboard,
   ...
 }: {
@@ -14,7 +13,6 @@
       else [
         ./nixGL.nix
       ];
-    chromium = lib.lists.optional (!setup.installFirefox) ./chromium.nix;
   in
     [
       ./alacritty.nix
@@ -28,8 +26,7 @@
       ./shells.nix
       ./windowmanager.nix
     ]
-    ++ specific-imports
-    ++ chromium;
+    ++ specific-imports;
 
   programs.home-manager.enable = true;
 
