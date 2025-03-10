@@ -52,10 +52,6 @@
 
       pre-commit
 
-      evince
-      pdfarranger
-      imagemagick
-
       # # overrides. You can do that directly here, just don't forget the
       # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
       # # fonts?
@@ -74,6 +70,9 @@
         with pkgs; [
           nemo
           libreoffice
+          evince
+          pdfarranger
+          imagemagick
 
           thunderbird
 
