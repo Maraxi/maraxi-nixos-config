@@ -330,7 +330,7 @@ in
               # c = mode "default", exec --no-startup-id "/snap/bin/chromium --proxy-pac-url=http://webproxy.deutsche-boerse.de:8080"
               # Shift+c = mode "default", exec --no-startup-id "/snap/bin/chromium"
               c = "mode default, exec ${profile-bin}/chromium";
-              r = "mode default, exec ${pkgs.remmina}/bin/remmina -i";
+              r = "mode default, exec remmina -i";
               v = "mode default, exec pavucontrol";
               p = "mode default, exec pycharm-professional";
               s = "mode default, exec pass";
