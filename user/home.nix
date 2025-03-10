@@ -11,9 +11,7 @@
         ./ssh.nix
         ./xdg-portal.nix
       ]
-      else [
-        ./nixGL.nix
-      ];
+      else [];
   in
     [
       ./environment.nix

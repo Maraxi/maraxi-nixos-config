@@ -15,18 +15,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixgl = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
     nixpkgs,
     nixpkgs-be02d8,
     home-manager,
-    nixgl,
     ...
   }: let
     system = "x86_64-linux";
@@ -77,7 +71,7 @@
           ./user/nixpkgs.nix
         ];
         extraSpecialArgs = {
-          inherit nixgl keyboard;
+          inherit keyboard;
           pkgs-be02d8 = import nixpkgs-be02d8 {inherit system;};
           setup = {
             username = "iv546";
@@ -94,7 +88,7 @@
           ./user/nixpkgs.nix
         ];
         extraSpecialArgs = {
-          inherit nixgl keyboard;
+          inherit keyboard;
           setup = {
             username = "stefan";
             stateVersion = "24.05";
