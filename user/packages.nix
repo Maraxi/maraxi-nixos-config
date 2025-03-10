@@ -18,8 +18,6 @@
 
       cargo
       # zig
-      gcc
-      gnumake
 
       glances
       htop
@@ -68,6 +66,9 @@
       if setup.isNixOS
       then
         with pkgs; [
+          gcc
+          gnumake
+
           nemo
           libreoffice
           evince
