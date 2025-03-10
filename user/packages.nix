@@ -87,9 +87,6 @@
           podman
           kubernetes-helm
 
-          coreutils
-          glibc
-
           gh # github cli
         ];
     firefox = lib.lists.optional setup.installFirefox pkgs.firefox;
