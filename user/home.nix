@@ -7,6 +7,7 @@
     specific-imports =
       if setup.isNixOS
       then [
+        ./alacritty.nix
         ./ssh.nix
         ./xdg-portal.nix
       ]
@@ -15,7 +16,6 @@
       ];
   in
     [
-      ./alacritty.nix
       ./environment.nix
       ./ghostty.nix
       ./git.nix
