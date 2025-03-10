@@ -26,10 +26,8 @@
       dust
       ncdu
 
-      libfaketime
       fd
       difftastic
-      fclones
       pciutils
       wget
       lsof
@@ -68,6 +66,10 @@
         with pkgs; [
           gcc
           gnumake
+
+          libfaketime
+
+          fclones
 
           nemo
           libreoffice
