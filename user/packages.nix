@@ -18,7 +18,7 @@
       uv
       ruff
 
-      # cargo
+      cargo
       # zig
       gcc
       gnumake
