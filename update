@@ -11,6 +11,7 @@ git pull
 nix flake update
 git diff --exit-code flake.lock 1>/dev/null || {
     git add flake.lock
+    pre-commit install
     git cm "Update flake"
 }
 
