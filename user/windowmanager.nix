@@ -264,7 +264,7 @@ in
 
         # check dconf-editor -> ord/gnome/desktop/input-sources/xkb-options
         # reset options to empty by using "-option" with no argument
-        keyboard_layout = ''"setxkbmap ${keyboard.layout} -variant ${keyboard.options} -option -option ${keyboard.options}"'';
+        keyboard_layout = ''"setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"'';
         keyboard_layout_us = ''"setxkbmap us -option -option ${keyboard.options}"'';
         feh = "feh --no-fehbg --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg";
       in
