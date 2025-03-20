@@ -18,9 +18,6 @@
       htop
       btop
 
-      dust
-      ncdu
-
       fd
       difftastic
       pciutils
@@ -71,6 +68,9 @@
 
           pavucontrol
           vlc
+
+	  # dust
+	  ncdu
 
           nemo
           libreoffice
