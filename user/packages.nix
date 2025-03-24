@@ -69,8 +69,8 @@
           pavucontrol
           vlc
 
-	  # dust
-	  ncdu
+          # dust
+          ncdu
 
           nemo
           libreoffice
