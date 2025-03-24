@@ -8,6 +8,7 @@
       if setup.isNixOS
       then [
         ./alacritty.nix
+        ./gtk.nix
         ./ssh.nix
         ./xdg-portal.nix
       ]
@@ -17,7 +18,6 @@
       ./environment.nix
       ./ghostty.nix
       ./git.nix
-      ./gtk.nix
       ./nh.nix
       ./neovim.nix
       ./packages.nix
