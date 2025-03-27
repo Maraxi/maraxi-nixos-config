@@ -369,11 +369,11 @@ in
           workspaceOutputAssign =
             map (workspace: {
               workspace = workspace;
-              output = ["DP-1-1.8" "DP-1-1.1" "DP-1-1.1.8" "DP-1-1.3" "DP-1.3"];
+              output = ["DP-1-1.8" "DP-1-1.1" "DP-1-1.1.8" "DP-1-1.3" "DP-1.3" "DP-1.1" "DP-1.8"];
             }) ["1" "2" "3"]
             ++ map (workspace: {
               workspace = workspace;
-              output = "eDP-1";
+              output = ["eDP-1" "eDP-1-1"];
             }) ["8" "9" "10"];
           assigns = {
             # i3-msg -t get_tree | jq -C | less
