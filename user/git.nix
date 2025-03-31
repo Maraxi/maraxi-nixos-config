@@ -37,10 +37,7 @@
     extraConfig = {
       core.editor = "nvim";
       init.defaultBranch = "main";
-      fetch = {
-        prune = true;
-        pruneTags = true;
-      };
+      fetch.prune = true;
       push.autoSetupRemote = true;
     };
     diff-so-fancy.enable = true;
