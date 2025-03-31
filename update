@@ -4,11 +4,10 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # Get reference commit
-COMMIT=$(git rev-parse @)
-git pull
+git pull --no-tags
 
 # Update flake and commit on change
-nix flake update
+nix flake update 2>/dev/null
 git diff --exit-code flake.lock 1>/dev/null || {
     git add flake.lock
     pre-commit install
@@ -16,11 +15,15 @@ git diff --exit-code flake.lock 1>/dev/null || {
 }
 
 # Check if commit changed
-UPDATED=$(git rev-parse @)
-REMOTE=$(git rev-parse @{u})
+CURRENT=$(git rev-parse @)
+
+set +e  # do not fail if tag is missing
+LAST_BUILD=$(git show-ref --hash --verify refs/tags/last-build 2>/dev/null)
+TAG_EXISTS=$?
+set -e
 
 # Rebuild and push
-[[ "$COMMIT" != "$UPDATED" ]] || [[ "$COMMIT" != "$REMOTE" ]] && {
+[[ $TAG_EXISTS != 0 ]] || [[ "$CURRENT" != "$LAST_BUILD" ]] && {
     if [[ $(uname -v) =~ "NixOS" ]]; then
         sudo true
         nh os switch
@@ -28,5 +31,6 @@ REMOTE=$(git rev-parse @{u})
         nh home switch
     fi
 
+    git tag -f last-build
     git push
 }
