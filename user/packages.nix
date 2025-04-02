@@ -11,6 +11,9 @@
       uv
       ruff
 
+      jq
+      yq
+
       cargo
       # zig
 
