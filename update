@@ -7,7 +7,7 @@ IFS=$'\n\t'
 git pull --no-tags
 
 # Update flake and commit on change
-nix flake update 2>/dev/null
+nix flake update
 git diff --exit-code flake.lock 1>/dev/null || {
     git add flake.lock
     pre-commit install
