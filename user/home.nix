@@ -1,5 +1,6 @@
 {
   setup,
+  lib,
   keyboard,
   ...
 }: {
@@ -13,6 +14,7 @@
         ./xdg-portal.nix
       ]
       else [];
+    chromium = lib.lists.optional (setup.installChromium) ./chromium.nix;
   in
     [
       ./environment.nix
@@ -24,7 +26,8 @@
       ./shells.nix
       ./windowmanager.nix
     ]
-    ++ specific-imports;
+    ++ specific-imports
+    ++ chromium;
 
   programs.home-manager.enable = true;
 
