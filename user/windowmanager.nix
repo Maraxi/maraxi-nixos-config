@@ -328,8 +328,7 @@ in
 
             ${apps_mode} = {
               c = "mode default, exec google-chrome-stable --proxy-pac-url=http://webproxy.deutsche-boerse.de:8080 --high-dpi-support=1 --force-device-scale-factor=1";
-              # Shift+c = mode "default", exec --no-startup-id "/snap/bin/chromium"
-              # c = "mode default, exec chromium";
+              "Shift+c" = "mode default, exec chromium";
               r = "mode default, exec remmina -i";
               v = "mode default, exec pavucontrol";
               p = "mode default, exec pycharm-professional";
