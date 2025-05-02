@@ -20,8 +20,8 @@
       ./environment.nix
       ./ghostty.nix
       ./git.nix
-      ./nh.nix
       ./neovim.nix
+      ./nh.nix
       ./packages.nix
       ./shells.nix
       ./windowmanager.nix
