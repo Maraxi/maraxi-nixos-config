@@ -40,6 +40,7 @@
       modules = [
         ./hosts/nixos/configuration.nix
         ./system/greetd.nix
+        ./system/hyprland.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {
