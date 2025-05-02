@@ -38,7 +38,7 @@
       inherit system;
       # specialArgs = { };
       modules = [
-        ./hosts/nixos-laptop/configuration.nix
+        ./hosts/nixos/configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {
@@ -53,7 +53,7 @@
               inherit keyboard;
               setup = {
                 username = "stefan";
-                stateVersion = "24.05";
+                stateVersion = "24.11";
                 isNixOS = true;
                 installChromium = false;
               };

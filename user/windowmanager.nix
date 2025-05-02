@@ -176,8 +176,8 @@ in
               # sway-contrib.grimshot
               # slurp # wayland screenshots
               # shotman # wayland screenshots
-              "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Bilder/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
-              "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Bilder/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode \"${mode_record}\"";
+              "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Pictures/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
+              "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Pictures/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode \"${mode_record}\"";
 
               "${meh}+r" = "mode resize";
               "${meh}+a" = "mode \"${mode_apps}\"";
