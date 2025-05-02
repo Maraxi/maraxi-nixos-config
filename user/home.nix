@@ -10,6 +10,7 @@
       then [
         ./alacritty.nix
         ./gtk.nix
+        ./hyprland.nix
         ./ssh.nix
         ./xdg-portal.nix
       ]
