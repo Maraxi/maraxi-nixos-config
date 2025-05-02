@@ -39,6 +39,7 @@
       # specialArgs = { };
       modules = [
         ./hosts/nixos/configuration.nix
+        ./system/greetd.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {

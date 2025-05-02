@@ -11,7 +11,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../../system/greetd.nix
   ];
 
   nix.package = pkgs.nixVersions.stable;
