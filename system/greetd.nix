@@ -9,12 +9,12 @@
          --user-menu \
          --remember \
          --theme border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red \
-         --cmd sway
+         --cmd Hyprland
       '';
     };
   };
 
   environment.etc."greetd/environments".text = ''
-    sway
+    Hyprland
   '';
 }
