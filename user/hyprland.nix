@@ -1,4 +1,7 @@
 {pkgs, ...}: {
   # wayland.windowManager.hyprland.enable = true;
-  home.packages = [pkgs.wofi];
+  home.packages = with pkgs; [
+    hyprpaper
+    wofi
+  ];
 }
