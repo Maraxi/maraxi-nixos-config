@@ -26,10 +26,10 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
     keyboard = {
-      layout = "de";
-      variant = "nodeadkeys";
+      xkb_layout = "de";
+      xkb_variant = "nodeadkeys";
       # man xkeyboard-config  -> Options
-      options = "caps:escape, shift:both_capslock, compose:rctrl";
+      xkb_options = "caps:escape,shift:both_capslock,compose:rctrl";
     };
   in {
     # overlays = import ./overlays {inherit inputs;};
