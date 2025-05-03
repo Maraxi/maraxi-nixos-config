@@ -42,6 +42,7 @@
         ./system/greetd.nix
         ./system/fonts.nix
         ./system/environment.nix
+        ./system/sound.nix
         ./system/hyprland.nix
         ./system/networking-ssh.nix
         ./system/steam.nix
