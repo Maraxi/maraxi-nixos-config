@@ -41,6 +41,7 @@
         ./hosts/nixos/configuration.nix
         ./system/greetd.nix
         ./system/hyprland.nix
+        ./system/steam.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {

@@ -28,6 +28,10 @@
         "keymapp" # allow non-free keymapp for voyager
         "nvidia-x11"
         "nvidia-settings"
+        "steam"
+        "steam-original"
+        "steam-unwrapped"
+        "steam-run"
       ];
   };
 
