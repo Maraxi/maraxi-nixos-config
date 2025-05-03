@@ -40,6 +40,7 @@
       modules = [
         ./hosts/nixos/configuration.nix
         ./system/greetd.nix
+        ./system/fonts.nix
         ./system/hyprland.nix
         ./system/networking-ssh.nix
         ./system/steam.nix

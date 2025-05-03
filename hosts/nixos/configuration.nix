@@ -54,20 +54,6 @@
 
   services.gnome.gnome-keyring.enable = true;
 
-  fonts = {
-    packages = with pkgs; [
-      nerd-fonts.droid-sans-mono
-      dejavu_fonts
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-    ];
-    fontconfig.defaultFonts = {
-      serif = ["Noto Serif" "Source Han Serif"];
-      sansSerif = ["Noto Sans" "Source Han Sans"];
-    };
-  };
-
   programs.dconf.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
