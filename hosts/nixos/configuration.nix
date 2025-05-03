@@ -27,8 +27,6 @@
       ];
   };
 
-  networking.hostName = "stefan-nixos";
-
   # wayland-related
   security.polkit.enable = true;
 

@@ -36,7 +36,10 @@
 
     nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = {inherit keyboard;};
+      specialArgs = {
+        inherit keyboard;
+        hostName = "stefan-nixos";
+      };
       modules = [
         ./hosts/nixos/configuration.nix
         ./system/boot-drives.nix

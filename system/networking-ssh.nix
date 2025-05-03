@@ -1,5 +1,7 @@
-{
+{hostName, ...}: {
   networking = {
+    inherit hostName;
+
     networkmanager.enable = true;
 
     # Configure network proxy if necessary
