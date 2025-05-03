@@ -48,6 +48,7 @@
         ./system/greetd.nix
         ./system/hyprland.nix
         ./system/locale.nix
+        ./system/misc.nix
         ./system/networking-ssh.nix
         ./system/nix.nix
         ./system/nvidia.nix
