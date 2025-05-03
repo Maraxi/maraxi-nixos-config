@@ -23,10 +23,8 @@
   #     allowBroken = true;
   #     allowUnfree = true;
   #   };
-  #   overlays = [
-  #     outputs.overlays.trunk-packages
-  #   ];
   # };
+  # nixpkgs.overlays = [outputs.overlays.trunk-packages];
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "keymapp" # allow non-free keymapp for voyager
