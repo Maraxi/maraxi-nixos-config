@@ -44,14 +44,6 @@
     #jack.enable = true;
   };
 
-  environment.variables.EDITOR = "nvim";
-
-  environment.systemPackages = with pkgs; [
-    neovim
-    vim
-    git
-  ];
-
   services.gnome.gnome-keyring.enable = true;
 
   programs.dconf.enable = true;
