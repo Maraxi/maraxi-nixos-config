@@ -26,17 +26,17 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
     keyboard = {
-      xkb_layout = "de";
-      xkb_variant = "nodeadkeys";
+      layout = "de";
+      variant = "nodeadkeys";
       # man xkeyboard-config  -> Options
-      xkb_options = "caps:escape,shift:both_capslock,compose:rctrl";
+      options = "caps:escape,shift:both_capslock,compose:rctrl";
     };
   in {
     # overlays = import ./overlays {inherit inputs;};
 
     nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
       inherit system;
-      # specialArgs = { };
+      specialArgs = {inherit keyboard;};
       modules = [
         ./hosts/nixos/configuration.nix
         ./system/boot-drives.nix
