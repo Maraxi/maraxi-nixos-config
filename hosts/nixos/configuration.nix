@@ -41,11 +41,6 @@
   boot.supportedFilesystems = ["ntfs"];
 
   networking.hostName = "stefan-nixos";
-  networking.networkmanager.enable = true;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # wayland-related
   security.polkit.enable = true;
@@ -103,22 +98,6 @@
   };
   # services.dbus.packages = [ pkgs.gcr ];
   # services.pcscd.enable = true;
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    ports = [36969];
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "no";
-    };
-  };
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [8000];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   nix = {
     settings.auto-optimise-store = true;

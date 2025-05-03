@@ -41,6 +41,7 @@
         ./hosts/nixos/configuration.nix
         ./system/greetd.nix
         ./system/hyprland.nix
+        ./system/networking-ssh.nix
         ./system/steam.nix
         ./system/print-scan.nix
         ./system/voyager.nix
