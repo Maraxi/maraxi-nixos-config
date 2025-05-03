@@ -9,9 +9,7 @@
   # outputs,
   ...
 }: {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [./hardware-configuration.nix];
 
   nix = {
     package = pkgs.nixVersions.stable;
