@@ -161,7 +161,7 @@
   users.users.stefan = {
     isNormalUser = true;
     description = "Stefan";
-    extraGroups = ["wheel" "networkmanager" "audio" "video" "scanner" "lp"];
+    extraGroups = ["wheel" "networkmanager" "input" "audio" "video" "scanner" "lp"];
     packages = with pkgs; [];
     # shell = pkgs.nushell;
     shell = pkgs.bash;
