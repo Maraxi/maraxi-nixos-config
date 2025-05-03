@@ -43,6 +43,7 @@
         ./system/hyprland.nix
         ./system/steam.nix
         ./system/print-scan.nix
+        ./system/voyager.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {

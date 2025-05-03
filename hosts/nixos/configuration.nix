@@ -130,12 +130,6 @@
   services.gvfs.enable = true; # userspace virtual filesystem
   services.udisks2.enable = true; # DBus service for applications to query storage devices
 
-  # udev rules for voyager keyboard
-  services.udev.extraRules = ''
-    KERNEL=="hidraw*", ATTRS{idVendor}=="3297", MODE="0664", GROUP="plugdev"
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", MODE:="0666", SYMLINK+="ignition_dfu"
-  '';
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.stefan = {
     isNormalUser = true;
