@@ -13,9 +13,13 @@
     ./hardware-configuration.nix
   ];
 
-  nix.package = pkgs.nixVersions.stable;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.trusted-users = ["stefan"];
+  nix = {
+    package = pkgs.nixVersions.stable;
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+      trusted-users = ["stefan"];
+    };
+  };
   # nixpkgs = {
   #   config = {
   #     allowBroken = true;
@@ -228,8 +232,8 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  nix.settings.auto-optimise-store = true;
   nix = {
+    settings.auto-optimise-store = true;
     gc = {
       automatic = true;
       dates = "weekly";
