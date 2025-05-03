@@ -25,6 +25,12 @@
   #     outputs.overlays.trunk-packages
   #   ];
   # };
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "keymapp" # allow non-free keymapp for voyager
+      "nvidia-x11"
+      "nvidia-settings"
+    ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -145,13 +151,7 @@
   services.gvfs.enable = true; # userspace virtual filesystem
   services.udisks2.enable = true; # DBus service for applications to query storage devices
 
-  # allow non-free keymapp for voyager
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "keymapp"
-      "nvidia-x11"
-      "nvidia-settings"
-    ];
+  # udev rules for voyager keyboard
   services.udev.extraRules = ''
     KERNEL=="hidraw*", ATTRS{idVendor}=="3297", MODE="0664", GROUP="plugdev"
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", MODE:="0666", SYMLINK+="ignition_dfu"
