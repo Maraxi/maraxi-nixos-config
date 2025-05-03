@@ -39,20 +39,20 @@
       # specialArgs = { };
       modules = [
         ./hosts/nixos/configuration.nix
-        ./system/greetd.nix
-        ./system/fonts.nix
-        ./system/environment.nix
-        ./system/sound.nix
-        ./system/hyprland.nix
-        ./system/networking-ssh.nix
-        ./system/steam.nix
         ./system/boot-drives.nix
-        ./system/print-scan.nix
-        ./system/voyager.nix
-        ./system/users.nix
+        ./system/environment.nix
+        ./system/fonts.nix
+        ./system/greetd.nix
+        ./system/hyprland.nix
         ./system/locale.nix
+        ./system/networking-ssh.nix
         ./system/nix.nix
         ./system/nvidia.nix
+        ./system/print-scan.nix
+        ./system/sound.nix
+        ./system/steam.nix
+        ./system/users.nix
+        ./system/voyager.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {
