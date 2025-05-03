@@ -11,13 +11,6 @@
 }: {
   imports = [./hardware-configuration.nix];
 
-  nix = {
-    package = pkgs.nixVersions.stable;
-    settings = {
-      experimental-features = ["nix-command" "flakes"];
-    };
-  };
-
   # nixpkgs.overlays = [outputs.overlays.trunk-packages];
   nixpkgs.config = {
     # allowBroken = true;
@@ -87,19 +80,6 @@
   };
   # services.dbus.packages = [ pkgs.gcr ];
   # services.pcscd.enable = true;
-
-  nix = {
-    settings.auto-optimise-store = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-    # optimise = {
-    #   automatic = true;
-    #   dates = ["weekly"];
-    # };
-  };
 
   system = {
     # This option defines the first version of NixOS you have installed on this particular machine,

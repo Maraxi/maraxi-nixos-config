@@ -48,6 +48,7 @@
         ./system/voyager.nix
         ./system/users.nix
         ./system/locale.nix
+        ./system/nix.nix
         ./system/nvidia.nix
         home-manager.nixosModules.home-manager
         {
