@@ -18,19 +18,18 @@
       trusted-users = ["stefan"];
     };
   };
-  # nixpkgs = {
-  #   config = {
-  #     allowBroken = true;
-  #     allowUnfree = true;
-  #   };
-  # };
+
   # nixpkgs.overlays = [outputs.overlays.trunk-packages];
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "keymapp" # allow non-free keymapp for voyager
-      "nvidia-x11"
-      "nvidia-settings"
-    ];
+  nixpkgs.config = {
+    # allowBroken = true;
+    # allowUnfree = true;
+    allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "keymapp" # allow non-free keymapp for voyager
+        "nvidia-x11"
+        "nvidia-settings"
+      ];
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
