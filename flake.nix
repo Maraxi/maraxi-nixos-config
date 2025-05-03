@@ -44,6 +44,7 @@
         ./system/steam.nix
         ./system/print-scan.nix
         ./system/voyager.nix
+        ./system/users.nix
         ./system/locale.nix
         ./system/nvidia.nix
         home-manager.nixosModules.home-manager
