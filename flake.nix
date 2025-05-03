@@ -43,6 +43,7 @@
         ./system/hyprland.nix
         ./system/networking-ssh.nix
         ./system/steam.nix
+        ./system/boot-drives.nix
         ./system/print-scan.nix
         ./system/voyager.nix
         ./system/users.nix

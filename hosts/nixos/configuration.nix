@@ -34,11 +34,6 @@
       ];
   };
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = ["ntfs"];
-
   networking.hostName = "stefan-nixos";
 
   # wayland-related
@@ -55,11 +50,6 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
-
-  # automount / unmount drives
-  services.devmon.enable = true; # automatic mounting of drives
-  services.gvfs.enable = true; # userspace virtual filesystem
-  services.udisks2.enable = true; # DBus service for applications to query storage devices
 
   environment.variables.EDITOR = "nvim";
 
