@@ -65,6 +65,8 @@
           python313
           python313Packages.ipython
 
+          inxi
+
           libfaketime
 
           fclones
