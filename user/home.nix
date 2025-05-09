@@ -15,7 +15,9 @@
         ./wayland-services.nix
         ./xdg-portal.nix
       ]
-      else [];
+      else [
+        ./windowmanager.nix
+      ];
     chromium = lib.lists.optional (setup.installChromium) ./chromium.nix;
   in
     [
@@ -26,7 +28,6 @@
       ./nh.nix
       ./packages.nix
       ./shells.nix
-      ./windowmanager.nix
     ]
     ++ specific-imports
     ++ chromium;
