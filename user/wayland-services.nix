@@ -15,4 +15,7 @@
       }
     ];
   };
+  programs.swaylock = {
+    enable = true;
+  };
 }

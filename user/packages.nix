@@ -68,6 +68,7 @@
           inxi
 
           libfaketime
+          libnotify
 
           fclones
 
