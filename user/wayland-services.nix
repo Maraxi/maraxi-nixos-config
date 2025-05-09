@@ -4,7 +4,7 @@
     wl-clipboard # wayland clipboard
     # wdisplays # arandr replacement
   ];
-  services.mako.enable = true;
+  services.dunst.enable = true;
   services.swayidle = {
     enable = true;
     timeouts = [
