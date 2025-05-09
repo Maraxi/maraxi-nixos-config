@@ -31,6 +31,11 @@
       fsType = "vfat";
       options = ["fmask=0077" "dmask=0077"];
     };
+
+    "/home/stefan/extra" = {
+      device = "/dev/disk/by-uuid/bb11e84b-ea33-400c-9e41-1c735203d973";
+      fsType = "ext4";
+    };
   };
 
   swapDevices = [{device = "/dev/disk/by-uuid/8f8a291d-e4fd-4f77-85a1-9dc1e744a0d0";}];
