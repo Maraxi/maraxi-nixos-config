@@ -12,6 +12,7 @@
         ./gtk.nix
         ./hyprland.nix
         ./ssh.nix
+        ./wayland-services.nix
         ./xdg-portal.nix
       ]
       else [];
