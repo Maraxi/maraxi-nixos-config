@@ -117,6 +117,9 @@
       };
     };
     devShells.${system} = {
+      appimage = pkgs.mkShell {
+        packages = [pkgs.appimage-run];
+      };
       latex = pkgs.mkShell {
         packages = with pkgs; [
           texlive.combined.scheme-full
