@@ -42,6 +42,7 @@
       };
       modules = [
         ./hosts/nixos/configuration.nix
+        ./system/android.nix
         ./system/boot-drives.nix
         ./system/environment.nix
         ./system/fonts.nix
