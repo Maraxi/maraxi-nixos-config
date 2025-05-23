@@ -135,6 +135,12 @@
         packages = [pkgs.protobuf];
         shellHook = ''protoc  --version'';
       };
+      python-jupyter = pkgs.mkShell {
+        packages = with pkgs.python313Packages; [
+          jupyterlab
+          matplotlib
+        ];
+      };
     };
   };
 }
