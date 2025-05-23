@@ -6,4 +6,6 @@
     waybar
     wofi
   ];
+
+  xdg.configFile."hypr/hypridle.conf".source = dotfiles/hypr/hypridle.conf;
 }
