@@ -42,6 +42,7 @@
       "application/pdf" = ["org.gnome.Evince.desktop" browser];
       "default-url-scheme-handler" = browser;
       "default-web-browser" = browser;
+      "image/jpeg" = "feh.desktop";
       "image/png" = "feh.desktop";
       "message/rfc822" = "thunderbird.desktop";
       "text/html" = browser;
