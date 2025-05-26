@@ -46,9 +46,10 @@ add_newline = true
 palette = "custom"
 
 [palettes.custom]
-peach = "#fab387"
-base = "#1e1e2e"
-highlight = "21"
+peach = "#fcd4bd"
+base = "#304a59"
+highlight = "#24773f"
+adjacent = "#0000ff"
 
 [character]
 error_symbol = '[✗](bold red)'
@@ -56,9 +57,9 @@ error_symbol = '[✗](bold red)'
 [directory]
 truncate_to_repo = false
 truncation_length = 100
-style = "highlight bg:peach"
+style = "bold highlight bg:peach"
 read_only_style = "red bg:peach"
-repo_root_style = 'bold highlight bg:peach'
+repo_root_style = 'bold adjacent bg:peach'
 before_repo_root_style = 'base bg:peach'
 format = '[$path]($style)[$read_only]($read_only_style)'
 repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)'
