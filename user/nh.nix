@@ -1,10 +1,6 @@
-{setup, ...}: {
+{config, ...}: {
   programs.nh = {
     enable = true;
-    flake = "/home/${setup.username}/${
-      if setup.isNixOS
-      then "nixconfig"
-      else ".config/home-manager"
-    }";
+    flake = config.lib.meta.flakeDir;
   };
 }
