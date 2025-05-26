@@ -24,6 +24,7 @@
       ./environment.nix
       ./ghostty.nix
       ./git.nix
+      ./meta.nix
       ./neovim.nix
       ./nh.nix
       ./packages.nix

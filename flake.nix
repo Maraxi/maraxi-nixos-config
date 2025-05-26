@@ -17,7 +17,7 @@
     };
   };
 
-  outputs = {
+  outputs = inputs @ {
     nixpkgs,
     # nixpkgs-be02d8,
     home-manager,
@@ -69,6 +69,7 @@
               ];
             };
             extraSpecialArgs = {
+              inherit inputs;
               inherit keyboard;
               setup = {
                 username = "stefan";
@@ -90,6 +91,7 @@
           ./user/nixpkgs.nix
         ];
         extraSpecialArgs = {
+          inherit inputs;
           inherit keyboard;
           # pkgs-be02d8 = import nixpkgs-be02d8 {inherit system;};
           setup = {
@@ -107,6 +109,7 @@
           ./user/nixpkgs.nix
         ];
         extraSpecialArgs = {
+          inherit inputs;
           inherit keyboard;
           setup = {
             username = "stefan";
