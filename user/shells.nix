@@ -98,7 +98,7 @@
     enable = true;
     enableBashIntegration = true;
   };
-  xdg.configFile."starship.toml".source = dotfiles/starship.toml;
+  xdg.configFile."starship.toml".source = config.lib.meta.mkMutableSymlink dotfiles/starship.toml;
 
   programs.eza = {
     enable = true;
