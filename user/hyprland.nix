@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   # wayland.windowManager.hyprland.enable = true;
   home.packages = with pkgs; [
     hyprpaper
@@ -10,5 +14,5 @@
     slurp
   ];
 
-  xdg.configFile."hypr/hypridle.conf".source = dotfiles/hypr/hypridle.conf;
+  xdg.configFile."hypr".source = config.lib.meta.mkMutableSymlink dotfiles/hypr;
 }
