@@ -5,6 +5,9 @@
     hypridle
     waybar
     wofi
+
+    grim
+    slurp
   ];
 
   xdg.configFile."hypr/hypridle.conf".source = dotfiles/hypr/hypridle.conf;
