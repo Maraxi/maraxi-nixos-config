@@ -63,6 +63,7 @@ repo_root_style = 'bold adjacent bg:peach'
 before_repo_root_style = 'base bg:peach'
 format = '[$path]($style)[$read_only]($read_only_style)'
 repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)'
+use_logical_path = false
 
 [directory.substitutions]
 '~/repositories/exg/app/ers' = 'ers'
