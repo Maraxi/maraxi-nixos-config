@@ -15,4 +15,5 @@
   ];
 
   xdg.configFile."hypr".source = config.lib.meta.mkMutableSymlink dotfiles/hypr;
+  xdg.configFile."waybar".source = config.lib.meta.mkMutableSymlink dotfiles/waybar;
 }

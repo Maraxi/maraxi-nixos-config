@@ -1,0 +1,92 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mode": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 30,
+    "modules-left": ["clock", "hyprland/workspaces", "hyprland/submap"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["network", "pulseaudio", "pulseaudio#microphone", "tray"],
+
+    "hyprland/window": {
+        "format": "{}"
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false
+    },
+
+    "hyprland/submap" : {
+        "tooltip": false,
+	"on-click": "hyprctl dispatch submap reset"
+    },
+    
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+
+    "clock": {
+        "format": "  {:%H:%M    %a, %d %b}",
+	"tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "left",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "tooltip": false,
+        "format-muted": " Muted",
+        "on-click": "pamixer -t",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " Muted",
+        "on-click": "pamixer --default-source -t",
+        "on-scroll-up": "pamixer --default-source -i 5",
+        "on-scroll-down": "pamixer --default-source -d 5",
+        "scroll-step": 5
+    },
+    
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "tooltip-format": "{essid} - {ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
+    },
+}
