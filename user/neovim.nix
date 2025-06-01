@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -14,8 +18,5 @@
     lua-language-server
   ];
 
-  # xdg.configFile."nvim" = {
-  #   recursive = true;
-  #   source = ./neovim;
-  # };
+  xdg.configFile."nvim".source = config.lib.meta.mkMutableSymlink dotfiles/nvim;
 }
