@@ -89,6 +89,9 @@ style = 'purple'
 # Only when inside git repository
 when = "git rev-parse --is-inside-work-tree >/dev/null 2>&1"
 
+[git_metrics]
+disabled = false
+
 [git_status]
 stashed = ''
 modified = '*'
