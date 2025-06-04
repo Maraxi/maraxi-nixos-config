@@ -41,5 +41,6 @@
       push.autoSetupRemote = true;
     };
     diff-so-fancy.enable = true;
+    diff-so-fancy.rulerWidth = 60;
   };
 }
