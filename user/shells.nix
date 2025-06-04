@@ -112,6 +112,7 @@
       "--max-columns-preview"
       "--max-columns=200"
       "--follow"
+      "--pretty"
     ];
   };
   programs.direnv = {
