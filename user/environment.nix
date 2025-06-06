@@ -38,12 +38,13 @@
       if setup.isNixOS
       then "firefox.desktop"
       else "google-chrome.desktop";
+    image_viewer = ["org.gnome.gThumb.desktop" "feh.desktop"];
     association = {
       "application/pdf" = ["org.gnome.Evince.desktop" browser];
       "default-url-scheme-handler" = browser;
       "default-web-browser" = browser;
-      "image/jpeg" = "feh.desktop";
-      "image/png" = "feh.desktop";
+      "image/jpeg" = image_viewer;
+      "image/png" = image_viewer;
       "message/rfc822" = "thunderbird.desktop";
       "text/html" = browser;
       "x-scheme-handler/about" = browser;
