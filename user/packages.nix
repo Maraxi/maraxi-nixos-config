@@ -6,6 +6,8 @@
 }: {
   home.packages = let
     basic_pkgs = with pkgs; [
+      neofetch
+
       feh
 
       uv
