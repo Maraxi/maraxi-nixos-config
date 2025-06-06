@@ -7,6 +7,7 @@
   home.packages = let
     basic_pkgs = with pkgs; [
       feh
+      gthumb
 
       uv
       ruff
