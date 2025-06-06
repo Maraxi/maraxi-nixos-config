@@ -414,7 +414,7 @@ in
               "picom &"
 
               # Default screens and background
-              "--no-startup-id \"/home/iv546/.config/arandr/arandr-home.sh; ${feh}\""
+              "--no-startup-id \"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\""
             ]
             ++ map (cmd: {
               command = cmd;
