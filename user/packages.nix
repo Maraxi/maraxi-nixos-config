@@ -7,7 +7,6 @@
   home.packages = let
     basic_pkgs = with pkgs; [
       feh
-      gthumb
 
       uv
       ruff
@@ -83,6 +82,7 @@
           libreoffice
           evince
           pdfarranger
+          gthumb
 
           firefox
           thunderbird
