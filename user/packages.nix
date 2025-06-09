@@ -69,6 +69,8 @@
 
           inxi
 
+          dig
+
           libfaketime
           libnotify
 
