@@ -57,6 +57,7 @@ error_symbol = '[✗](bold red)'
 [directory]
 truncate_to_repo = false
 truncation_length = 100
+read_only = " 🔒"
 style = "bold highlight bg:peach"
 read_only_style = "red bg:peach"
 repo_root_style = 'bold adjacent bg:peach'
