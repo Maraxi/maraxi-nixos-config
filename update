@@ -7,15 +7,7 @@ IFS=$'\n\t'
 git pull --no-tags
 
 # Update flake and commit on change
-root=$(git rev-parse --show-toplevel)
-flakelock="$root/flake.lock"
-
-nix flake update
-git diff --exit-code "$flakelock" 1>/dev/null || {
-    git add "$flakelock"
-    pre-commit install
-    git cm "Update flake"
-}
+nix flake update --commit-lock-file
 
 # Check if commit changed
 CURRENT=$(git rev-parse @)
