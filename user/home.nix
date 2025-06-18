@@ -11,6 +11,7 @@
         ./alacritty.nix
         ./gtk.nix
         ./hyprland.nix
+        ./podman.nix
         ./ssh.nix
         ./wayland-services.nix
         ./xdg-portal.nix
