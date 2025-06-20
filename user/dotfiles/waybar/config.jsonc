@@ -1,92 +1,108 @@
 {
-    "layer": "top",
-    "position": "top",
-    "mode": "dock",
-    "exclusive": true,
-    "passthrough": false,
-    "gtk-layer-shell": true,
-    "height": 30,
-    "modules-left": ["clock", "hyprland/workspaces", "hyprland/submap"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["network", "pulseaudio", "pulseaudio#microphone", "tray"],
+  "layer": "top",
+  "position": "top",
+  // "height": 30,
+  "mode": "dock",
+  "exclusive": true,
+  "passthrough": false,
 
-    "hyprland/window": {
-        "format": "{}"
-    },
+  "modules-left": [ "clock", "hyprland/workspaces", "hyprland/submap" ],
+  "modules-center": [ "hyprland/window" ],
+  "modules-right": [ "privacy", "network", "wireplumber", "idle_inhibitor", "tray" ],
+  // "modules-right": [ "privacy", "network", "wireplumber", "pulseaudio#microphone", "idle_inhibitor", "tray" ],
 
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": false
+  "clock": {
+    "format": "  {:%H:%M    %a, %d %b}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 4,
+      "weeks-pos": "left",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
     },
+    "actions": {
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
 
-    "hyprland/submap" : {
-        "tooltip": false,
-	"on-click": "hyprctl dispatch submap reset"
-    },
-    
-    "tray": {
-        "icon-size": 18,
-        "spacing": 10
-    },
+  "hyprland/workspaces": {
+    "all-outputs": false,
+    // "format": "<sub>{icon}</sub>{windows}",
+    // "window-rewrite-default": "",
+    // "window-rewrite": {
+      // "class<firefox>": "", // Windows whose classes are "firefox"
+      // "alacritty": "", // Windows that contain "foot" in either class or title. For optimization reasons, it will only match against a title if at least one other window explicitly matches against a title.
+      // "code": "󰨞",
+    // },
+  },
 
-    "clock": {
-        "format": "  {:%H:%M    %a, %d %b}",
-	"tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "calendar": {
-                    "mode"          : "year",
-                    "mode-mon-col"  : 3,
-                    "weeks-pos"     : "left",
-                    "on-scroll"     : 1,
-                    "format": {
-                              "months":     "<span color='#ffead3'><b>{}</b></span>",
-                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
-                              }
-                    },
-        "actions":  {
-                    "on-scroll-up": "shift_up",
-                    "on-scroll-down": "shift_down"
-                    }
-    },
+  "hyprland/submap": {
+    "tooltip": false,
+    "on-click": "hyprctl dispatch submap reset"
+  },
 
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "tooltip": false,
-        "format-muted": " Muted",
-        "on-click": "pamixer -t",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
-        "scroll-step": 5,
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        }
-    },
+  "hyprland/window": {
+    "separate-outputs": true,
+    "icon": true
+  },
 
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": " Muted",
-        "on-click": "pamixer --default-source -t",
-        "on-scroll-up": "pamixer --default-source -i 5",
-        "on-scroll-down": "pamixer --default-source -d 5",
-        "scroll-step": 5
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      { "type": "screenshare",},
+      { "type": "audio-out", },
+      { "type": "audio-in", }
+    ]
+  },
+
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "  {signalStrength}%",
+    "format-ethernet": "{ipaddr}/{cidr}",
+    "tooltip-format": "{essid} ({frequency}GHz) - {ifname} via {gwaddr}",
+    "format-linked": "{ifname} (No IP)",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
+  },
+
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 Muted",
+    "on-click": "pavucontrol",
+    "format-icons": ["  ", "  ", "  "]
+  },
+
+  // disabled
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": " Muted",
+    "on-click": "pamixer --default-source -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "scroll-step": 5
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "  ",
+      "deactivated": "  "
     },
-    
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "{ipaddr}/{cidr}",
-        "tooltip-format": "{essid} - {ifname} via {gwaddr}",
-        "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
-    },
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
 }
