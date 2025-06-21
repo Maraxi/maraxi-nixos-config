@@ -377,7 +377,7 @@ in
             ];
             "8" = [{class = "^pavucontrol$";}];
             "9" = [{title = "^KeePassXC$";} {title = "^Passwords.*KeePassXC$";}];
-            "10" = [{class = "^Keymapp$";}];
+            "10" = [{class = "^ZSTray$";} {class = "^Intune-portal$";} {class = "^Keymapp$";}];
           };
 
           bars = [
@@ -415,6 +415,9 @@ in
 
               # Default screens and background
               "--no-startup-id \"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\""
+
+              # Intune
+              "intune-portal"
             ]
             ++ map (cmd: {
               command = cmd;
@@ -444,6 +447,9 @@ in
         for_window [class="^Find$"] floating enable
         for_window [instance="^Notepad$"] floating enable
         for_window [class="^Microsoft Excel$"] floating enable
+
+        # Zscaler
+        for_window [class="^ZSTray$"] floating disable
       '';
     };
   }
