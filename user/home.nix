@@ -1,6 +1,5 @@
 {
   setup,
-  lib,
   keyboard,
   ...
 }: {
@@ -19,7 +18,7 @@
       else [
         ./windowmanager.nix
       ];
-    chromium = lib.lists.optional (setup.installChromium) ./chromium.nix;
+    # chromium = lib.lists.optional (setup.installChromium) ./chromium.nix;
   in
     [
       ./environment.nix
@@ -31,8 +30,7 @@
       ./packages.nix
       ./shells.nix
     ]
-    ++ specific-imports
-    ++ chromium;
+    ++ specific-imports;
 
   programs.home-manager.enable = true;
 
