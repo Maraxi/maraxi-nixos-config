@@ -39,6 +39,7 @@ $battery\
 $os\
 $container\
 $shell\
+$status\
 $character"""
 
 add_newline = true
@@ -52,7 +53,7 @@ highlight = "#24773f"
 adjacent = "#0000ff"
 
 [character]
-error_symbol = '[✗](bold red)'
+error_symbol = '[❯](bold red)'
 
 [directory]
 truncate_to_repo = false
@@ -116,6 +117,11 @@ symbols.NixOS = " "
 [shell]
 disabled = false
 bash_indicator = ""
+
+[status]
+disabled = false
+format = '[\($symbol$status\) ]($style)'
+symbol = ""
 
 [fill]
 symbol = " "
