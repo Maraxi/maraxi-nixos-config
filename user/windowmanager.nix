@@ -334,7 +334,7 @@ in
               e = "exit";
               u = "mode default, exec gdmflexiserver";
               p = "exec systemctl poweroff -i";
-              x = "mode default, exec ${display_off}";
+              x = "mode default, exec sleep 0.2 && ${display_off}";
 
               Escape = "mode default";
             };
