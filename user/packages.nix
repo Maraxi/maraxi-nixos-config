@@ -68,6 +68,7 @@
           python313Packages.ipython
 
           inxi
+          usbutils
 
           dig
 
