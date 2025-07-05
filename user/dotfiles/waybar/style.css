@@ -1,5 +1,5 @@
 @define-color base rgba(84,42,206,0.5);
-@define-color base-purple alpha(#6933ad, 0.8);
+@define-color base-purple shade(alpha(#8f00ff, 0.75), 0.6);
 @define-color base-blue alpha(#51c7fe, 0.3);
 @define-color base-solid rgba(84,42,206,1);
 @define-color content #cdd6f4;
@@ -9,7 +9,7 @@
 
 * {
     border: none;
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: 600;
     font-size: 15px;
@@ -30,32 +30,29 @@ tooltip {
 .modules-left,
 .modules-center,
 .modules-right {
-    margin-bottom: 2px;
+    margin-top: -2px;
+    margin-bottom: 3px;
 }
 .modules-left {
-    margin-left: 15px;
+    margin-left: 25px;
 }
 .modules-right {
-    margin-right: 15px;
+    margin-right: 25px;
 }
 
 #workspaces {
-    background: alpha(@base-blue, 3);
-    border: 1px solid @base-purple;
+    background: @base-purple;
 }
 #workspaces button {
     padding: 0px 0.4em;
-    color: @content;
-    color: #000;
+    color: #f9e2af;
 }
 #workspaces button.visible {
     color: @green;
-    border: 1px solid green;
 }
 #workspaces button.active {
-    color: @green;
-    text-shadow: 0 0 1px black;
-    background: @base-purple;
+    box-shadow: inset 0 0 5px #21adcd,
+                inset 0 0 2px #80daeb;
 }
 #workspaces button.urgent {
     color: #11111b;
@@ -78,6 +75,8 @@ tooltip {
     background: @base-purple;
     padding: 0px 10px;
     margin: 0 2px;
+    text-shadow: 0 0 1px white;
+    box-shadow: inset 0 0 2px shade(@base-purple, 3);
 }
 
 #clock {
@@ -93,7 +92,7 @@ tooltip {
     color: #8aba7c;
 }
 #window {
-    background: @base-blue;
+    /* background: @base-blue; */
 }
 
 /*
