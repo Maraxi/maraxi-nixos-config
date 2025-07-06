@@ -52,11 +52,11 @@
                 hyprctl --batch "dispatch submap reset ; keyword cursor:no_warps true" >> /dev/null
               fi
               ;;
-            fullscreen\>\>1)
-              if hyprctl activewindow | grep -q firefox ; then
-                  hyprctl dispatch fullscreenstate 0 -1 >> /dev/null
-              fi
-              ;;
+            # fullscreen\>\>1)
+              # if hyprctl activewindow | grep -q firefox ; then
+                # hyprctl dispatch fullscreenstate 0 -1 >> /dev/null
+              # fi
+              # ;;
           esac
           # SECONDS=0
         }
