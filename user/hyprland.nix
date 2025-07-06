@@ -22,10 +22,10 @@
   systemd.user.services.hyprland-ipc = {
     Unit = {
       Description = "React to Hyprland events via IPC";
-      ConditionEnvironment = "WAYLAND_DISPLAY";
+      # ConditionEnvironment = "WAYLAND_DISPLAY";
     };
     Install = {
-      WantedBy = ["graphical.target"];
+      # WantedBy = ["graphical.target"];
     };
     Service = {
       ExecStart = "${pkgs.writeShellScript "hyprland-ipc" ''
