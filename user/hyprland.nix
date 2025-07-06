@@ -44,12 +44,12 @@
           case $1 in
             activewindow\>\>dota2*)
               echo "entering no-binds"
-              hyprctl dispatch submap no-binds >> /dev/null
+              hyprctl --batch "dispatch submap no-binds ; keyword cursor:no_warps false" >> /dev/null
               ;;
             activewindow\>\>*)
               if [[ no-binds = $(hyprctl submap) ]] ; then
                 echo exiting no-binds
-                hyprctl dispatch submap reset >> /dev/null
+                hyprctl --batch "dispatch submap reset ; keyword cursor:no_warps true" >> /dev/null
               fi
               ;;
             fullscreen\>\>1)
