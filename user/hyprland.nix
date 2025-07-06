@@ -47,7 +47,15 @@
               hyprctl dispatch submap no-binds >> /dev/null
               ;;
             activewindow\>\>*)
-              [[ no-binds = $(hyprctl submap) ]] && echo exiting no-binds && hyprctl dispatch submap reset >> /dev/null || true
+              if [[ no-binds = $(hyprctl submap) ]] ; then
+                echo exiting no-binds
+                hyprctl dispatch submap reset >> /dev/null
+              fi
+              ;;
+            fullscreen\>\>1)
+              if hyprctl activewindow | grep -q firefox ; then
+                  hyprctl dispatch fullscreenstate 0 -1 >> /dev/null
+              fi
               ;;
           esac
           # SECONDS=0
