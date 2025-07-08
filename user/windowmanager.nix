@@ -9,7 +9,7 @@
   # See https://i3wm.org/docs/userguide.html for a complete reference to i3/sway!
   profile-bin = config.home.profileDirectory + "/bin";
   shared_config = rec {
-    modifier = "Mod1";
+    modifier = "Mod4";
     terminal = "alacritty";
     fonts = {
       names = ["DejaVu Sans Mono" "FontAwesome5Free"];
@@ -66,7 +66,7 @@
     floating.modifier = "${modifier}";
 
     keybindings = let
-      meh = "Mod1+Ctrl+Shift";
+      meh = "Mod4+Ctrl+Shift";
       left = "h";
       down = "j";
       up = "k";
