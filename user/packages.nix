@@ -95,6 +95,8 @@
           simple-scan
 
           keepassxc
+
+          gnome-maps
         ]
       else
         with pkgs; [
