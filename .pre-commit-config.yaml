@@ -1,5 +1,5 @@
 repos:
   - repo: https://github.com/kamadorueda/alejandra
-    rev: 2bb91e309ca99656addff5c74545acbf5813636d  # frozen: 3.1.0
+    rev: 3e2a85506627062313e131bf8a85315f3387c8e0  # frozen: 4.0.0
     hooks:
       - id: alejandra-system
