@@ -40,6 +40,13 @@
 
   swapDevices = [{device = "/dev/disk/by-uuid/8f8a291d-e4fd-4f77-85a1-9dc1e744a0d0";}];
 
+  # https://nixos.wiki/wiki/Power_Management
+  # /proc/acpi/wakeup -> GPP0, GPP7, DP40
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x1022", ATTR{device}=="0x14db", ATTR{power/wakeup}="disabled"
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x1022", ATTR{device}=="0x43f5", ATTR{power/wakeup}="disabled"
+  '';
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
