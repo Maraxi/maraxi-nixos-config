@@ -68,7 +68,7 @@ repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($re
 use_logical_path = false
 
 [directory.substitutions]
-'~/repositories/exg/app/ers' = 'ers'
+'~/repositories/exg.app.ers' = 'exg.app.ers'
 
 [direnv]
 # disabled = false
