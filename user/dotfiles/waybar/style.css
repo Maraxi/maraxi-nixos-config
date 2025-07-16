@@ -63,6 +63,11 @@ tooltip {
     color: #cdd6f4;
 }
 
+window#waybar.empty #window {
+    background: alpha(#000000, 0);
+    box-shadow: none;
+}
+
 #clock,
 /*#workspaces,*/
 #submap,
