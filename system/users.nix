@@ -1,6 +1,9 @@
 {pkgs, ...}: {
   nix.settings.trusted-users = ["stefan"];
 
+  users.groups = {
+    plugdev = {};
+  };
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.stefan = {
     isNormalUser = true;
