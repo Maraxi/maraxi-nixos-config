@@ -29,7 +29,7 @@
       layout = "de";
       variant = "nodeadkeys";
       # man xkeyboard-config  -> Options
-      options = "caps:escape,shift:both_capslock,compose:rctrl";
+      options = "caps:escape,shift:both_capslock_cancel,compose:rctrl";
     };
   in {
     # overlays = import ./overlays {inherit inputs;};
