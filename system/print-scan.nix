@@ -4,6 +4,8 @@
     enable = true;
     drivers = with pkgs; [brlaser];
   };
+  # Color management service for cups
+  services.colord.enable = true;
   hardware.printers.ensurePrinters = [
     {
       name = "Brother_MFC_L2710DW_series";
