@@ -34,53 +34,55 @@
   in {
     # overlays = import ./overlays {inherit inputs;};
 
-    nixosConfigurations."stefan-nixos" = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = {
-        inherit keyboard;
-        hostName = "stefan-nixos";
-      };
-      modules = [
-        ./hosts/nixos/configuration.nix
-        ./system/android.nix
-        ./system/boot-drives.nix
-        ./system/environment.nix
-        ./system/fonts.nix
-        ./system/greetd.nix
-        ./system/hyprland.nix
-        ./system/locale.nix
-        ./system/misc.nix
-        ./system/networking-ssh.nix
-        ./system/nix.nix
-        ./system/nvidia.nix
-        ./system/print-scan.nix
-        ./system/sound.nix
-        ./system/steam.nix
-        ./system/users.nix
-        ./system/voyager.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.stefan = {
-              imports = [
-                ./user/home.nix
-              ];
-            };
-            extraSpecialArgs = {
-              inherit inputs;
-              inherit keyboard;
-              setup = {
-                username = "stefan";
-                stateVersion = "24.11";
-                isNixOS = true;
-                installChromium = false;
+    nixosConfigurations = {
+      stefan-nixos = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit keyboard;
+          hostName = "stefan-nixos";
+        };
+        modules = [
+          ./hosts/nixos/configuration.nix
+          ./system/android.nix
+          ./system/boot-drives.nix
+          ./system/environment.nix
+          ./system/fonts.nix
+          ./system/greetd.nix
+          ./system/hyprland.nix
+          ./system/locale.nix
+          ./system/misc.nix
+          ./system/networking-ssh.nix
+          ./system/nix.nix
+          ./system/nvidia.nix
+          ./system/print-scan.nix
+          ./system/sound.nix
+          ./system/steam.nix
+          ./system/users.nix
+          ./system/voyager.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.stefan = {
+                imports = [
+                  ./user/home.nix
+                ];
+              };
+              extraSpecialArgs = {
+                inherit inputs;
+                inherit keyboard;
+                setup = {
+                  username = "stefan";
+                  stateVersion = "24.11";
+                  isNixOS = true;
+                  installChromium = false;
+                };
               };
             };
-          };
-        }
-      ];
+          }
+        ];
+      };
     };
     homeConfigurations = {
       "iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
