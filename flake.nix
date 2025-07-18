@@ -42,7 +42,7 @@
           hostName = "stefan-nixos";
         };
         modules = [
-          ./hosts/nixos/configuration.nix
+          ./hosts/nixos
           ./system/android.nix
           ./system/boot-drives.nix
           ./system/environment.nix
