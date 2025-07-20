@@ -83,6 +83,12 @@
           }
         ];
       };
+      raspberrypi = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./hosts/pi
+        ];
+      };
     };
     homeConfigurations = {
       "iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
