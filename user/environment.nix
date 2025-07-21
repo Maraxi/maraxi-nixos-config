@@ -41,6 +41,7 @@
     image_viewer = ["org.gnome.gThumb.desktop" "feh.desktop"];
     association = {
       "application/pdf" = ["org.gnome.Evince.desktop" browser];
+      "application/json" = "nvim.desktop";
       "application/x-gnome-saved-search" = "nemo.desktop";
       "default-url-scheme-handler" = browser;
       "default-web-browser" = browser;
