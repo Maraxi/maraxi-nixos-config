@@ -41,10 +41,12 @@
     image_viewer = ["org.gnome.gThumb.desktop" "feh.desktop"];
     association = {
       "application/pdf" = ["org.gnome.Evince.desktop" browser];
+      "application/x-gnome-saved-search" = "nemo.desktop";
       "default-url-scheme-handler" = browser;
       "default-web-browser" = browser;
       "image/jpeg" = image_viewer;
       "image/png" = image_viewer;
+      "inode/directory" = "nemo.desktop";
       "message/rfc822" = "thunderbird.desktop";
       "text/html" = browser;
       "x-scheme-handler/about" = browser;
