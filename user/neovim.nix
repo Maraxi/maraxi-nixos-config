@@ -20,5 +20,8 @@
 
   xdg.configFile."nvim".source = config.lib.meta.mkMutableSymlink dotfiles/nvim;
 
-  programs.bash.shellAliases = {nv = "nvim";};
+  programs.bash.shellAliases = {
+    nv = "nvim";
+    snv = "sudoedit";
+  };
 }
