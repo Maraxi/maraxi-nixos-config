@@ -49,6 +49,7 @@
       "inode/directory" = "nemo.desktop";
       "message/rfc822" = "thunderbird.desktop";
       "text/html" = browser;
+      "text/plain" = "nvim.desktop";
       "x-scheme-handler/about" = browser;
       "x-scheme-handler/http" = browser;
       "x-scheme-handler/https" = browser;
