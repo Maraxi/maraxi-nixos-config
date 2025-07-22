@@ -28,7 +28,7 @@
       lg = "${formatted-log} --branches --remotes";
       lgs = "lg -n 20";
 
-      lgx = "${formatted-log} --exclude master --exclude main --exclude release-candiate --branches --exclude *master --exclude *main --exclude *release-candiate --exclude *HEAD --remotes";
+      lgx = "${formatted-log} --exclude master --exclude main --exclude release-candiate --branches --exclude *master --exclude *main --exclude *release-candiate --remotes";
       lgxs = "lgx -n 20";
 
       lgf = "lg --name-status";
