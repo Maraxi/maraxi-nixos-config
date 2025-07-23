@@ -329,13 +329,13 @@ in
               lock = "i3lock -efc 000000 && sleep 1";
               display_off = "xset dpms force off";
             in {
+              x = "mode default, exec sleep 0.2 && ${display_off}";
               o = "mode default, exec ${lock} && exec ${display_off}";
               s = "mode default, exec ${lock} && exec systemctl suspend";
-              h = "mode default, exec ${lock} && exec systemctl hibernate -i";
+              h = "mode default, systemctl hibernate -i";
               e = "exit";
               u = "mode default, exec gdmflexiserver";
               p = "exec systemctl poweroff -i";
-              x = "mode default, exec sleep 0.2 && ${display_off}";
 
               Escape = "mode default";
             };
