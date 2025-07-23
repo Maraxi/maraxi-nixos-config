@@ -8,6 +8,7 @@ $shlvl\
 [\ue0b2](peach)\
 $directory\
 [\ue0b0](peach) \
+$direnv\
 $git_branch\
 $git_commit\
 ${custom.git_tags}\
@@ -29,7 +30,6 @@ $python\
 $rust\
 $zig\
 $nix_shell\
-$direnv\
 $cmd_duration\
 $fill\
 $time\
@@ -71,7 +71,12 @@ use_logical_path = false
 '~/repositories/exg.app.ers' = 'exg.app.ers'
 
 [direnv]
-# disabled = false
+disabled = false
+format = '[$allowed]($style)'
+allowed_msg = ''
+not_allowed_msg = 'direnv not allowed '
+denied_msg = 'direnv denied '
+
 
 [git_branch]
 symbol = ''
