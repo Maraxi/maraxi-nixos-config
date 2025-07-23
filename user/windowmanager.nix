@@ -332,7 +332,7 @@ in
               x = "mode default, exec sleep 0.2 && ${display_off}";
               o = "mode default, exec ${lock} && exec ${display_off}";
               s = "mode default, exec ${lock} && exec systemctl suspend";
-              h = "mode default, systemctl hibernate -i";
+              h = "mode default, exec systemctl hibernate -i";
               e = "exit";
               u = "mode default, exec gdmflexiserver";
               p = "exec systemctl poweroff -i";
