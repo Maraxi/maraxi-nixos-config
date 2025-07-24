@@ -1,4 +1,6 @@
 {
+  setup,
+  lib,
   config,
   pkgs,
   ...
@@ -18,7 +20,7 @@
     lua-language-server
   ];
 
-  xdg.configFile."nvim".source = config.lib.meta.mkMutableSymlink dotfiles/nvim;
+  xdg.configFile = lib.optionalAttrs setup.isNixOS {"nvim".source = config.lib.meta.mkMutableSymlink dotfiles/nvim;};
 
   programs.bash.shellAliases = {
     nv = "nvim";
