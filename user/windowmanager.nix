@@ -425,8 +425,6 @@ in
               always = true;
               notification = false;
             }) [
-              "${keyboard_layout}"
-
               # screensaver
               "xset +dpms"
               "xset s 540"
