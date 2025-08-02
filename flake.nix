@@ -128,7 +128,10 @@
         };
       };
     };
-    devShells.${system} = {
+    devShells.${system} = let
+      red = ''\e[0;31m'';
+      reset = ''\e[0m'';
+    in {
       appimage = pkgs.mkShell {
         packages = [pkgs.appimage-run];
       };
@@ -140,7 +143,7 @@
       };
       zig = pkgs.mkShell {
         packages = [pkgs.zig];
-        shellHook = ''echo "zig version: $(zig version)"'';
+        shellHook = ''echo "${red}zig${reset} version: $(zig version)"'';
       };
       protobuf = pkgs.mkShell {
         packages = [pkgs.protobuf];
@@ -151,6 +154,7 @@
           jupyterlab
           matplotlib
         ];
+        shellHook = ''echo -e "${red}jupyter-lab${reset} version: $(jupyter-lab --version)"'';
       };
     };
   };
