@@ -46,6 +46,7 @@
           ./system/android.nix
           ./system/boot-drives.nix
           ./system/environment.nix
+          ./system/bluetooth.nix
           ./system/fonts.nix
           ./system/greetd.nix
           ./system/hyprland.nix
