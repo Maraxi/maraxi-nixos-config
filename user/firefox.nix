@@ -6,12 +6,12 @@
     # languagePacks
     # policies
     # nativeMessagingHosts
-    profiles = {
-      default = {
-        id = 0;
-        name = "Default";
-        isDefault = true;
-      };
-    };
+    # profiles = {
+    #   default = {
+    #     id = 0;
+    #     name = "Default";
+    #     isDefault = true;
+    #   };
+    # };
   };
 }
