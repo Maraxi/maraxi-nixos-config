@@ -8,6 +8,7 @@
       if setup.isNixOS
       then [
         ./alacritty.nix
+        ./firefox.nix
         ./gtk.nix
         ./hyprland.nix
         ./podman.nix

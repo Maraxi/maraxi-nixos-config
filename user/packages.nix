@@ -89,7 +89,6 @@
           pdfarranger
           gthumb
 
-          firefox
           thunderbird
 
           simple-scan
