@@ -38,9 +38,10 @@
     };
     extraConfig = {
       core.editor = "nvim";
-      init.defaultBranch = "main";
       fetch.prune = true;
+      init.defaultBranch = "main";
       push.autoSetupRemote = true;
+      rebase.autoStash = true;
     };
     diff-so-fancy.enable = true;
     diff-so-fancy.rulerWidth = 60;
