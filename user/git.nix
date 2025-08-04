@@ -25,7 +25,8 @@
       cm = "commit -m";
       amend = "commit --amend -C HEAD";
 
-      continue = "-c core.editor=true rebase --continue";
+      rebase-continue = "-c core.editor=true rebase --continue";
+      rebase-with-dates = "rebase --committer-date-is-author-date";
 
       lg = "${formatted-log} --branches --remotes";
       lgs = "lg -n 20";
