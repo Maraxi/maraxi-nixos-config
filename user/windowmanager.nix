@@ -271,6 +271,11 @@ in
 
               "Print" = "exec flameshot gui";
 
+              "F12" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
+              "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
+              "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3%";
+              "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+
               "${meh}+w" = "mode \"${window_mode}\"";
               "${meh}+s" = "mode \"${sound_mode}\"";
               "${meh}+a" = "mode \"${apps_mode}\"";
@@ -299,11 +304,17 @@ in
             in {
               # Use pactl to adjust volume in PulseAudio.
               # set $refresh_i3status killall -SIGUSR1 i3status
-              u = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%";
-              d = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%";
-              m = "exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle";
-              r = "exec --no-startup-id pactl set-sink-volume ${hdmi_sink} +5%";
-              l = "exec --no-startup-id pactl set-sink-volume ${hdmi_sink} -5%";
+              u = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3%";
+              d = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
+              m = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+
+              "F12" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
+              "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
+              "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3%";
+              "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+
+              r = "exec --no-startup-id pactl set-sink-volume ${hdmi_sink} +3%";
+              l = "exec --no-startup-id pactl set-sink-volume ${hdmi_sink} -3%";
               "0" = "exec --no-startup-id pactl set-sink-mute ${hdmi_sink} toggle";
               i = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
