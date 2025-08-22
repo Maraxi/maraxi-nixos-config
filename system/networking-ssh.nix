@@ -17,7 +17,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh = {
-    enable = true;
+    enable = false;
     ports = [36969];
     settings = {
       PasswordAuthentication = false;
