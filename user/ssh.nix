@@ -1,8 +1,10 @@
 {
   programs.ssh = {
     enable = true;
-    compression = true;
     matchBlocks = {
+      "*" = {
+        compression = true;
+      };
       "pi" = {
         hostname = "raspberrypi";
         user = "stefan";
