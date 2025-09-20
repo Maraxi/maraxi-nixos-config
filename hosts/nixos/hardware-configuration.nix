@@ -11,16 +11,6 @@
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
   boot = {
-    kernelPackages = pkgs.linuxPackagesFor (pkgs.linux_6_12.override {
-      argsOverride = rec {
-        src = pkgs.fetchurl {
-          url = "mirror://kernel/linux/kernel/v6.x/linux-${version}.tar.xz";
-          sha256 = "sha256-3wRqSJceQM4LLgA+flW2sefaKRISDrIW1dbIRQyc+C4=";
-        };
-        version = "6.12.30";
-        modDirVersion = "6.12.30";
-      };
-    });
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
     initrd = {
