@@ -58,6 +58,8 @@
         if setup.isNixOS
         then "thunderbird.desktop"
         else browser;
+      "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
+      "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
       "x-scheme-handler/unknown" = browser;
     };
   in {
