@@ -83,6 +83,8 @@
           # dust
           ncdu
 
+          telegram-desktop
+
           nemo
           libreoffice
           evince
