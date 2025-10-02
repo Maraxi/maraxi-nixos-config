@@ -42,6 +42,7 @@
       tty-clock
 
       alejandra
+      shellcheck
 
       pre-commit
 
