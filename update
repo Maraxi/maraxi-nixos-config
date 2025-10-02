@@ -3,6 +3,9 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+# debug
+# set -x
+
 # Get reference commit
 git pull --no-tags
 
