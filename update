@@ -7,7 +7,11 @@ IFS=$'\n\t'
 git pull --no-tags
 
 # Update flake and commit on change
-nix flake update --commit-lock-file
+if [[ $(uname -v) =~ "NixOS" ]]; then
+    nix flake update --commit-lock-file
+else
+    sudo /root/.nix-profile/bin/nix flake update --commit-lock-file
+fi
 
 # Check if commit changed
 CURRENT=$(git rev-parse @)
