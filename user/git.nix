@@ -5,46 +5,52 @@
   };
   programs.git = {
     enable = true;
-    userName = "Maraxi";
-    userEmail = "Maraxi@users.noreply.github.com";
-    aliases = let
-      formatted-log = "log --graph --abbrev-commit --date-order --date=relative --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --tags HEAD";
-    in {
-      aliases = "config --get-regexp alias";
+    settings = {
+      user = {
+        name = "Maraxi";
+        email = "Maraxi@users.noreply.github.com";
+      };
+      alias = let
+        formatted-log = "log --graph --abbrev-commit --date-order --date=relative --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --tags HEAD";
+      in {
+        aliases = "config --get-regexp alias";
 
-      root = "rev-parse --show-toplevel";
+        root = "rev-parse --show-toplevel";
 
-      unstage = "reset HEAD --";
-      s = "status";
+        unstage = "reset HEAD --";
+        s = "status";
 
-      d = "diff";
-      diffs = "diff --staged";
-      ds = "diffs";
+        d = "diff";
+        diffs = "diff --staged";
+        ds = "diffs";
 
-      p = "add -p";
-      cm = "commit -m";
-      amend = "commit --amend -C HEAD";
+        p = "add -p";
+        cm = "commit -m";
+        amend = "commit --amend -C HEAD";
 
-      rebase-continue = "-c core.editor=true rebase --continue";
-      rebase-with-dates = "rebase --committer-date-is-author-date";
+        rebase-continue = "-c core.editor=true rebase --continue";
+        rebase-with-dates = "rebase --committer-date-is-author-date";
 
-      lg = "${formatted-log} --branches --remotes";
-      lgs = "lg -n 20";
+        lg = "${formatted-log} --branches --remotes";
+        lgs = "lg -n 20";
 
-      lgx = "${formatted-log} --exclude master --exclude main --exclude release-candiate --branches --exclude *master --exclude *main --exclude *release-candiate --remotes";
-      lgxs = "lgx -n 20";
+        lgx = "${formatted-log} --exclude master --exclude main --exclude release-candiate --branches --exclude *master --exclude *main --exclude *release-candiate --remotes";
+        lgxs = "lgx -n 20";
 
-      lgf = "lg --name-status";
-      lgfs = "lgf -n 20";
-    };
-    extraConfig = {
+        lgf = "lg --name-status";
+        lgfs = "lgf -n 20";
+      };
       core.editor = "nvim";
       fetch.prune = true;
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       rebase.autoStash = true;
     };
-    diff-so-fancy.enable = true;
-    diff-so-fancy.rulerWidth = 60;
+  };
+
+  programs.diff-so-fancy = {
+    enable = true;
+    settings.rulerWidth = 60;
+    enableGitIntegration = true;
   };
 }
