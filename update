@@ -13,6 +13,7 @@ git pull --no-tags
 if [[ $(uname -v) =~ "NixOS" ]]; then
     nix flake update --commit-lock-file
 else
+    pre-commit install
     sudo /root/.nix-profile/bin/nix flake update --commit-lock-file
 fi
 
