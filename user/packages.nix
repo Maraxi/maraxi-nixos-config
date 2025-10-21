@@ -29,6 +29,7 @@
       wget
       lsof
       bat
+      dust
 
       translate-shell
 
@@ -81,7 +82,6 @@
           pavucontrol
           vlc
 
-          # dust
           ncdu
 
           telegram-desktop
