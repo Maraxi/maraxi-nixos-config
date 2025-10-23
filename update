@@ -29,7 +29,7 @@ set -e
 [[ $TAG_EXISTS != 0 ]] || [[ "$CURRENT" != "$LAST_BUILD" ]] && {
     if [[ $(uname -v) =~ "NixOS" ]]; then
         sudo true
-        nh os switch
+        sudo nixos-rebuild switch --flake .
 	sleep 1.5
     else
         nh home switch
