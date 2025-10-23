@@ -1,4 +1,5 @@
-#! /usr/bin/env bash
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p bash nvd
 # Bash "strict mode"
 set -euo pipefail
 IFS=$'\n\t'
@@ -25,11 +26,20 @@ LAST_BUILD=$(git show-ref --hash --verify refs/tags/last-build 2>/dev/null)
 TAG_EXISTS=$?
 set -e
 
+find-generation () {
+    nixos-rebuild list-generations --json | jq '.[] | select(.current == true) | .generation'
+}
+
 # Rebuild and push
 [[ $TAG_EXISTS != 0 ]] || [[ "$CURRENT" != "$LAST_BUILD" ]] && {
     if [[ $(uname -v) =~ "NixOS" ]]; then
+	prev_generation=$(find-generation)
+
         sudo true
         sudo nixos-rebuild switch --flake .
+
+	nvd history --minimum-version "$prev_generation"
+
 	sleep 1.5
     else
         nh home switch
