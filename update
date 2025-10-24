@@ -11,6 +11,7 @@ IFS=$'\n\t'
 
 # Get reference commit
 git pull --no-tags
+echo
 
 # Update flake and commit on change
 if [[ $(uname -v) =~ "NixOS" ]]; then
@@ -19,6 +20,7 @@ else
     pre-commit install
     sudo /root/.nix-profile/bin/nix flake update --commit-lock-file
 fi
+echo
 
 # Check if commit changed
 CURRENT=$(git rev-parse @)
@@ -39,6 +41,7 @@ find-generation () {
 
         sudo true
         sudo nixos-rebuild switch --flake .
+	echo
 
 	nvd history --minimum-version "${prev_generation}"
 
@@ -46,6 +49,7 @@ find-generation () {
     else
         nh home switch
     fi
+    echo
 
     git tag -f last-build
     git push
