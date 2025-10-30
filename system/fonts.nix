@@ -5,7 +5,7 @@
       dejavu_fonts
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
     ];
     fontconfig.defaultFonts = {
       serif = ["Noto Serif" "Source Han Serif"];
