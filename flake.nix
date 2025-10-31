@@ -57,6 +57,7 @@
           ./system/print-scan.nix
           ./system/sound.nix
           ./system/steam.nix
+          ./system/systemd.nix
           ./system/users.nix
           ./system/voyager.nix
           home-manager.nixosModules.home-manager
