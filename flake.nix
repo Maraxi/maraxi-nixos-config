@@ -55,6 +55,7 @@
           ./system/nix.nix
           ./system/nvidia.nix
           ./system/print-scan.nix
+          ./system/shokz.nix
           ./system/sound.nix
           ./system/steam.nix
           ./system/users.nix
