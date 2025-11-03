@@ -31,7 +31,15 @@
       bat
       dust
 
-      translate-shell
+      (pkgs.symlinkJoin {
+        name = "trans";
+        buildInputs = [pkgs.makeWrapper];
+        paths = [pkgs.translate-shell];
+        postBuild = ''
+          wrapProgram $out/bin/trans \
+            --append-flags "-engine bing"
+        '';
+      })
 
       nix-tree
 
