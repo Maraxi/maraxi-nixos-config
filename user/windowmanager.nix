@@ -376,12 +376,7 @@ in
             }) ["8" "9" "10"];
           assigns = {
             # i3-msg -t get_tree | jq -C | less
-            "1" = [
-              {
-                class = "^(Chromium-browser|Google-chrome)$";
-                title = "^(?!File Explorer)(?!Secure Google Chrome)";
-              }
-            ];
+            # "1" = [ { class = "^(Chromium-browser|Google-chrome)$"; title = "^(?!File Explorer)(?!Secure Google Chrome)"; } ];
             "2" = [{class = "^jetbrains-pycharm$";}];
             "3" = [{class = "^org.remmina.Remmina$";}];
             "4" = [
