@@ -436,8 +436,10 @@ in
               notification = false;
             }) [
               # screensaver
-              "xset +dpms"
-              "xset s 540"
+              # "xset +dpms"
+              # "xset s 540"
+              "xset -dpms"
+              "xset s off"
             ];
         };
       extraConfig = ''
