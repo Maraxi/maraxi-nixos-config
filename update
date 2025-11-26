@@ -14,13 +14,8 @@ git pull --no-tags
 echo
 
 # Update flake and commit on change
-if [[ $(uname -v) =~ "NixOS" ]]; then
-    nix flake update --commit-lock-file
-else
-    pre-commit install
-    sudo /root/.nix-profile/bin/nix flake update --commit-lock-file
-fi
-echo
+pre-commit install
+nix flake update --commit-lock-file
 
 # Check if commit changed
 CURRENT=$(git rev-parse @)
