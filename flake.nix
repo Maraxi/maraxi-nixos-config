@@ -150,7 +150,7 @@
       };
       zig = pkgs.mkShell {
         packages = [pkgs.zig];
-        shellHook = ''echo "${red}zig${reset} version: $(zig version)"'';
+        shellHook = ''echo -e "${red}zig${reset} version: $(zig version)"'';
       };
       protobuf = pkgs.mkShell {
         packages = [pkgs.protobuf];
