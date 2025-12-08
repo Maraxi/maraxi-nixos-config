@@ -1,4 +1,4 @@
-{
+{setup, ...}: {
   home.shellAliases = {
     s = "git status";
     g = "git lgs";
@@ -6,10 +6,13 @@
   programs.git = {
     enable = true;
     settings = {
-      user = {
-        name = "Maraxi";
-        email = "Maraxi@users.noreply.github.com";
-      };
+      user =
+        if setup.isNixOS
+        then {
+          name = "Maraxi";
+          email = "Maraxi@users.noreply.github.com";
+        }
+        else {};
       alias = let
         formatted-log = "log --graph --abbrev-commit --date-order --date=relative --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --tags HEAD";
       in {
