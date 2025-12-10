@@ -14,7 +14,7 @@
         }
         else {};
       alias = let
-        formatted-log = "log --graph --abbrev-commit --topo-order --date=relative --decorate --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%f%C(reset) %C(dim white)- %an%C(reset)%C(auto)%<(90,trunc)%d%C(reset)' --tags HEAD";
+        formatted-log = "log --graph --abbrev-commit --topo-order --date=relative --decorate --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --tags HEAD";
       in {
         aliases = "config --get-regexp alias";
 
