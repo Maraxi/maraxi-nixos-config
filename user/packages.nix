@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   setup,
   lib,
   ...
@@ -119,6 +120,10 @@
         ];
   in
     basic_pkgs ++ per_system_pkgs;
+
+  home.file = {
+    "bin/create-venv".source = config.lib.meta.mkMutableSymlink dotfiles/bin/create-venv;
+  };
 
   dconf.settings = {
     "org/nemo/preferences" = {
