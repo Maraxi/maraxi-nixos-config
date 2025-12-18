@@ -2,6 +2,7 @@
   home.shellAliases = {
     s = "git status";
     g = "git lgs";
+    l = "git ls";
   };
   programs.git = {
     enable = true;
@@ -33,6 +34,9 @@
 
         rebase-continue = "-c core.editor=true rebase --continue";
         rebase-with-dates = "rebase --committer-date-is-author-date";
+
+        l = "${formatted-log}";
+        ls = "l -n 20";
 
         lg = "${formatted-log} --branches --remotes";
         lgs = "lg -n 20";
