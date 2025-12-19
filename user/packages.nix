@@ -13,6 +13,7 @@
 
       uv
       ruff
+      ty
 
       jq
       yq
