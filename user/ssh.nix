@@ -15,6 +15,9 @@
       "github.com" = {
         identityFile = "/home/stefan/.ssh/id_ed25519_github";
       };
+      "codeberg.org" = {
+        identityFile = "/home/stefan/.ssh/id_ed25519_codeberg";
+      };
     };
   };
 }
