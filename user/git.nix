@@ -35,7 +35,7 @@
         rebase-continue = "-c core.editor=true rebase --continue";
         rebase-with-dates = "rebase --committer-date-is-author-date";
 
-        ls-files = "ls-tree -r HEAD --name-only";
+        ls-tracked = "ls-tree -r HEAD --name-only";
 
         l = "${formatted-log}";
         ls = "l -n 20";
