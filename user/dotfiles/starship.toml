@@ -109,6 +109,9 @@ symbol = " "
 [nix_shell]
 symbol = "󱄅 "
 
+[zig]
+symbol = " "
+
 [shlvl]
 disabled = false
 threshold = 2
