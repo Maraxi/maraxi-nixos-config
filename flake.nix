@@ -49,7 +49,7 @@
         modules = [
           {nixpkgs.overlays = overlays;}
           ./hosts/nixos
-          ./system/default.nix
+          ./system
           home-manager.nixosModules.home-manager
           {
             home-manager = {
