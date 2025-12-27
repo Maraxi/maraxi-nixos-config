@@ -1,0 +1,21 @@
+{
+  imports = [
+    ./android.nix
+    ./boot-drives.nix
+    ./environment.nix
+    ./fonts.nix
+    ./greetd.nix
+    ./hyprland.nix
+    ./locale.nix
+    ./misc.nix
+    ./networking-ssh.nix
+    ./nix.nix
+    ./nvidia.nix
+    ./print-scan.nix
+    ./shokz.nix
+    ./sound.nix
+    ./steam.nix
+    ./users.nix
+    ./voyager.nix
+  ];
+}

@@ -49,23 +49,7 @@
         modules = [
           {nixpkgs.overlays = overlays;}
           ./hosts/nixos
-          ./system/android.nix
-          ./system/boot-drives.nix
-          ./system/environment.nix
-          ./system/fonts.nix
-          ./system/greetd.nix
-          ./system/hyprland.nix
-          ./system/locale.nix
-          ./system/misc.nix
-          ./system/networking-ssh.nix
-          ./system/nix.nix
-          ./system/nvidia.nix
-          ./system/print-scan.nix
-          ./system/shokz.nix
-          ./system/sound.nix
-          ./system/steam.nix
-          ./system/users.nix
-          ./system/voyager.nix
+          ./system/default.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
