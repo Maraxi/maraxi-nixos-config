@@ -143,10 +143,7 @@
         packages = [pkgs.appimage-run];
       };
       latex = pkgs.mkShell {
-        packages = with pkgs; [
-          texlive.combined.scheme-full
-          texstudio
-        ];
+        packages = with pkgs; [texlive.combined.scheme-full texstudio];
       };
       zig = pkgs.mkShell {
         packages = [pkgs.zig];
