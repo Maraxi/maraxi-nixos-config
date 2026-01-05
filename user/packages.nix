@@ -97,7 +97,7 @@
           telegram-desktop
 
           nemo
-          libreoffice
+          libreoffice-fresh
           evince
           pdfarranger
           gthumb
