@@ -52,6 +52,7 @@
 
       tty-clock
 
+      nixfmt
       alejandra
       shellcheck
 
