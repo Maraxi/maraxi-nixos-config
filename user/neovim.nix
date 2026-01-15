@@ -23,7 +23,7 @@
   xdg.configFile = lib.optionalAttrs setup.isNixOS {"nvim".source = config.lib.meta.mkMutableSymlink dotfiles/nvim;};
 
   programs.bash.shellAliases = {
-    nv = "nvim";
-    snv = "sudoedit";
+    v = "nvim";
+    sv = "sudoedit";
   };
 }
