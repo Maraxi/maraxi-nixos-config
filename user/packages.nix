@@ -11,6 +11,8 @@
 
       feh
 
+      telegram-desktop
+
       uv
       ruff
       ty
@@ -94,8 +96,6 @@
           vlc
 
           ncdu
-
-          telegram-desktop
 
           nemo
           libreoffice-fresh
