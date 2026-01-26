@@ -34,6 +34,7 @@
       lsof
       bat
       dust
+      file
 
       (pkgs.symlinkJoin {
         name = "trans";
