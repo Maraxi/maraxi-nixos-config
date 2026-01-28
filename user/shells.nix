@@ -13,7 +13,10 @@
     historyControl = ["ignorespace" "ignoredups"];
 
     shellAliases =
-      {feh = "feh --no-fehbg";}
+      {
+        feh = "feh --no-fehbg";
+        open = "xdg-open";
+      }
       // lib.optionalAttrs setup.isNixOS {cal = "cal -Sn9";};
 
     sessionVariables = {
