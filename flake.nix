@@ -138,8 +138,13 @@
         shellHook = ''echo -e ">> ${red}protoc: $(protoc  --version)${reset}"'';
       };
       python-jupyter = pkgs.mkShell {
-        packages = with pkgs.python313Packages; [jupyterlab matplotlib];
-        shellHook = ''echo -e ">> ${red}jupyter-lab version: $(jupyter-lab --version)${reset}"'';
+        packages = with pkgs.python314Packages; [jupyterlab matplotlib];
+        shellHook = ''
+          echo -e \
+          ">> ${red}jupyter-lab version: $(jupyter-lab --version)${reset}
+          >> start the server with:
+          >> ${red}jupyter-lab${reset}"
+        '';
       };
     };
   };

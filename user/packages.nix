@@ -80,8 +80,8 @@
         with pkgs; [
           gcc
           gnumake
-          python313
-          python313Packages.ipython
+          python314
+          python314Packages.ipython
 
           inxi
           usbutils
