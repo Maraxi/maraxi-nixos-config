@@ -27,6 +27,10 @@
 
     KUBECONFIG = XDG_CONFIG_HOME + "/kube";
     KUBECACHEDIR = XDG_CACHE_HOME + "/kube";
+
+    NPM_CONFIG_USERCONFIG = XDG_CONFIG_HOME + "/npm/npmrc";
+
+    CUDA_CACHE_PATH = XDG_CACHE_HOME + "/nv";
   };
   home.sessionPath = [
     "$HOME/bin"
