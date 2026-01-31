@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+while true
+do
+	mplayer http://streams.detektor.fm/musik/mp3-256/streams.detektor.fm/ || exit
+	mplayer http://streams.detektor.fm/wort/mp3-256/streams.detektor.fm/ || exit
+done
