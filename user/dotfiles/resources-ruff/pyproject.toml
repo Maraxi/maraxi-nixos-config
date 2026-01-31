@@ -1,0 +1,78 @@
+[tool.ruff]
+target-version = "py314"
+include = ["pyproject.toml", "src/**/*.py", "tests/**/*.py"]
+extend-exclude = ["*_pb2.py"]
+line-length = 120
+
+[tool.ruff.format]
+docstring-code-line-length = 79
+
+[tool.ruff.lint]
+unfixable = [ # do not auto fix the following issues during "ruff check --fix"
+    "F841",   # remove unused variables
+    "T201",   # remove print statements
+]
+select = [
+    "A",     # flake8-builtins - checks for Python builtins being used as variables or parameters
+    "ANN",   # flake8-annotations - checks for missing type annotations
+    "ARG",   # flake8-unused-arguments - checks for unused function arguments
+    "ASYNC", # flake8-async - checks for async/await misuse
+    "B",     # flake8-bugbear - finds likely bugs and design problems
+    "BLE",   # flake8-blind-except - do not catch generic exception
+    "C4",    # flake8-comprehensions - helps write better list/set/dict comprehensions
+    "COM",   # flake8-commas - enforces trailing commas in multi-line sequences
+    "D",     # pydocstyle - docstring style checking
+    "DTZ",   # flake8-datetimez - checks for naive datetime objects
+    "E",     # pycodestyle errors - serious code quality issues
+    "EXE",   # flake8-executable - checks file permissions
+    "F",     # Pyflakes - detects various errors like undefined names
+    "FA",    # flake8-future-annotations - checks for proper annotation imports
+    "FIX",   # flake8-fixme - hint to resolve todos
+    "FURB",  # refurb - hints for modern best practices
+    "I",     # isort - import sorting
+    "ICN",   # flake8-import-conventions - enforces import naming conventions
+    "ISC",   # flake8-implicit-str-concat - checks for implicit string concatenation
+    "N",     # pep8-naming - naming conventions from PEP 8
+    "PD",    # pandas-vet - pandas-specific checks
+    "PERF",  # perflint - performance issues
+    "PIE",   # flake8-pie - miscellaneous linting rules
+    "PL",    # pylint - pylint conventions and warnings
+    "PT",    # flake8-pytest-style - pytest-specific checks
+    "PTH",   # flake8-use-pathlib - encourages pathlib over os.path
+    "Q",     # flake8-quotes - enforces consistent string quotes
+    "RET",   # flake8-return - checks for unnecessary return statements
+    "RSE",   # flake8-raise - checks for proper exception raising
+    "RUF",   # ruff - ruff specific rules
+    "SIM",   # flake8-simplify - suggests code simplifications
+    "SLF",   # flake8-self - discourage private member access
+    "T20",   # flake8-print - checks for print statements
+    "TC",    # flake8-type-checking - checks for type checking related issues
+    "TD",    # flake8-todo - best practices for todos
+    "TID",   # flake8-tidy-imports - checks for banned imports and module-level imports
+    "UP",    # pyupgrade - upgrades syntax to newer Python versions
+    "W",     # pycodestyle warnings - style issues that aren't serious
+    "YTT",   # flake8-2020 - checks for misuse of sys.version or sys.version_info
+]
+ignore = [
+    "ANN002", # Checks that function `*args` arguments have type annotations.
+    "ANN003", # Checks that function `**kwargs` arguments have type annotations.
+    "ANN401", # Dynamically typed expressions (typing.Any) are disallowed in {name}
+    "COM812", # Trailing comma missing
+    "D100",   # Missing docstring in public module
+    "E501",   # Line too long ({width} > {limit})
+    "PD015",  # Use .merge method instead of pd.merge function. They have equivalent functionality.
+    "RET504", # Unnecessary assignment to {name} before return statement
+    "SIM108", # Use ternary operator {contents} instead of if-else-block
+    "SIM110", # Use {replacement} instead of for loop
+    "SIM115", # Use a context manager for opening files
+    "SIM118", # Use key {operator} dict instead of key {operator} dict.keys()
+    "W505",   # Doc line too long ({width} > {limit})
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["ANN", "ARG001", "D"]
+"__init__.py" = ["D104"]
+
