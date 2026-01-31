@@ -4,6 +4,7 @@
     package = pkgs.volantes-cursors;
     gtk.enable = true;
     x11.enable = true;
+    dotIcons.enable = false;
   };
   gtk = {
     enable = true;
