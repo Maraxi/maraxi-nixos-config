@@ -1,4 +1,8 @@
-{setup, ...}: {
+{
+  setup,
+  config,
+  ...
+}: {
   home.sessionVariables = rec {
     EDITOR = "nvim";
     VISUAL = "nvim";
@@ -34,8 +38,10 @@
   };
   home.sessionPath = [
     "$HOME/bin"
+    "$HOME/nixbin"
     "$HOME/.local/bin"
   ];
+  home.file.nixbin.source = config.lib.meta.mkMutableSymlink dotfiles/bin;
 
   xdg.mimeApps = let
     browser =

@@ -125,13 +125,6 @@
   in
     basic_pkgs ++ per_system_pkgs;
 
-  home.file = {
-    "bin/clean.py".source = config.lib.meta.mkMutableSymlink dotfiles/bin/clean.py;
-    "bin/create-venv".source = config.lib.meta.mkMutableSymlink dotfiles/bin/create-venv;
-    "bin/detektor".source = config.lib.meta.mkMutableSymlink dotfiles/bin/detektor;
-    "bin/fman".source = config.lib.meta.mkMutableSymlink dotfiles/bin/fman;
-  };
-
   dconf.settings = {
     "org/nemo/preferences" = {
       show-hidden-files = true;
