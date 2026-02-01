@@ -26,7 +26,7 @@
     paint_mode=rectangle
     early_exit=true
   '';
-  home.file."bin/hyprpaper-random".source = config.lib.meta.mkMutableSymlink dotfiles/hyprpaper-random;
+  home.file."bin/hyprpaper-random".source = config.lib.meta.mkMutableSymlink dotfiles/hypr-extra/hyprpaper-random;
 
   systemd.user.services.hyprland-ipc = {
     Unit = {
