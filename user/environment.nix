@@ -38,10 +38,9 @@
   };
   home.sessionPath = [
     "$HOME/bin"
-    "$HOME/nixbin"
     "$HOME/.local/bin"
   ];
-  home.file.nixbin.source = config.lib.meta.mkMutableSymlink dotfiles/bin;
+  home.file."bin".source = config.lib.meta.mkMutableSymlink dotfiles/bin;
 
   xdg.mimeApps = let
     browser =
