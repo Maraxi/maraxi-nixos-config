@@ -1,6 +1,6 @@
 [tool.ruff]
 target-version = "py314"
-include = ["pyproject.toml", "src/**/*.py", "tests/**/*.py"]
+include = ["src/**/*.py", "tests/**/*.py"]
 extend-exclude = ["*_pb2.py"]
 line-length = 120
 
