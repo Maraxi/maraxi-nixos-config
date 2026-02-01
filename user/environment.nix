@@ -42,6 +42,10 @@
       if setup.isNixOS
       then "firefox.desktop"
       else "google-chrome.desktop";
+    mailer =
+      if setup.isNixOS
+      then "thunderbird.desktop"
+      else browser;
     image_viewer = ["org.gnome.gThumb.desktop" "feh.desktop"];
     video_viewer = ["org.gnome.gThumb.desktop" "vlc.desktop"];
     association = {
@@ -60,10 +64,7 @@
       "x-scheme-handler/about" = browser;
       "x-scheme-handler/http" = browser;
       "x-scheme-handler/https" = browser;
-      "x-scheme-handler/mailto" =
-        if setup.isNixOS
-        then "thunderbird.desktop"
-        else browser;
+      "x-scheme-handler/mailto" = mailer;
       "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
       "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
       "x-scheme-handler/unknown" = browser;
