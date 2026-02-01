@@ -1,0 +1,12 @@
+#! /usr/bin/env nix
+#! nix shell nixpkgs#fd nixpkgs#fzf --command bash
+# shellcheck shell=bash
+
+set -euo pipefail
+
+manpage=$(
+    IFS=":"
+    fd -0 --format '{/.}' '.gz$' $(manpath) | sort -z | fzf --read0 --highlight-line --preview 'man {}'
+)
+
+man "$manpage"

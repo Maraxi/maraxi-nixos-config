@@ -128,6 +128,7 @@
   home.file = {
     "bin/create-venv".source = config.lib.meta.mkMutableSymlink dotfiles/bin/create-venv;
     "bin/detektor".source = config.lib.meta.mkMutableSymlink dotfiles/bin/detektor;
+    "bin/fman".source = config.lib.meta.mkMutableSymlink dotfiles/bin/fman;
   };
 
   dconf.settings = {
