@@ -1,0 +1,58 @@
+#! /usr/bin/env bash
+
+# bash "strict mode"
+set -o pipefail
+IFS=$'\n\t'
+
+shopt -s nullglob
+
+# Set filename
+filename="$HOME/.local/state/wallpaper-selection"
+
+# Create state file if missing
+if [[ ! -s "$filename" ]] then
+    cat >"$filename" <<- end_string
+	$HOME/Bilder
+	0
+	end_string
+    echo created file
+fi
+
+# Read both lines from file
+{ read -r folder; read -r number; } < "$filename"
+
+items=("$folder"/*.{jpg,jpeg,png})
+total="${#items[@]}"
+
+# Update state file if parameter was passed
+if [[ -v 1 ]] then
+    echo $1
+    if [[ $1 == p ]] then
+	number=$(( (number + 1) % total ))
+    elif [[ $1 == m ]] then
+	number=$(( (number - 1 + total) % total ))
+    elif [[ $1 =~ ^[0-9]+$ ]] then
+	[[ $1 -ge $total ]] && { echo $1 is bigger than image count $total; exit 1; }
+	number=$1
+    else
+	folder=$(realpath "$1")
+	[[ -d $folder ]] || { echo "$folder is not a valid folder"; exit 1; }
+	items=("$folder"/*.{jpg,jpeg,png})
+	total="${#items[@]}"
+	[[ total -eq 0 ]] && { echo "$folder contains no images"; exit 1; }
+	number=0
+    fi
+
+    cat >"$filename" <<- end_string
+	$folder
+	$number
+	end_string
+fi
+
+file="${items[$number]}"
+echo $folder: $number / $total - $file
+
+#escape file for swaymsg
+file=${file//\(/\\(}
+file=${file//)/\\)}
+swaymsg output "*" bg "$file" fill
