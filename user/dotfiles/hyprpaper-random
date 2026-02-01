@@ -1,10 +1,26 @@
 #! /usr/bin/env bash
 
+set -euo pipefail
+
 WALLPAPER_DIR="$HOME/Pictures/e6/"
-CURRENT_WALL=$(hyprctl hyprpaper listloaded)
+
+STATE_FILE="$XDG_STATE_HOME/hyprpaper-random"
+
+# Create state file if missing
+if [[ ! -s "$STATE_FILE" ]] then
+    cat >"$STATE_FILE" <<- end_string
+	0
+	end_string
+    echo created file
+fi
+
+# Read file name from state
+read -r current < "$STATE_FILE"
+current=$(basename "$current")
 
 # Get a random wallpaper that is not the current one
-WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
+WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$current" | shuf -n 1)
+echo $WALLPAPER > $STATE_FILE
 
 # Apply the selected wallpaper
 hyprctl hyprpaper wallpaper ,"$WALLPAPER"
