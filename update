@@ -32,15 +32,15 @@ find-generation () {
 # Rebuild and push
 [[ "${TAG_EXISTS}" != 0 ]] || [[ "${CURRENT}" != "${LAST_BUILD}" ]] && {
     if [[ $(uname -v) =~ "NixOS" ]]; then
-	prev_generation=$(find-generation)
+        prev_generation=$(find-generation)
 
         sudo true
         sudo nixos-rebuild switch --flake .
-	echo
+        echo
 
-	nvd history --minimum-version "${prev_generation}"
+        nvd history --minimum-version "${prev_generation}"
 
-	sleep 1.5
+        sleep 1.5
     else
         nh home switch
     fi
