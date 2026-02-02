@@ -119,6 +119,7 @@
 
           podman
           kubernetes-helm
+          openshift
 
           gh # github cli
         ];
