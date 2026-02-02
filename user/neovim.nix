@@ -24,6 +24,7 @@
 
   programs.bash.shellAliases = {
     v = "nvim";
+    nv = "nvim";
     sv = "sudoedit";
   };
 }
