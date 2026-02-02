@@ -436,10 +436,8 @@ in
               notification = false;
             }) [
               # screensaver
-              # "xset +dpms"
-              # "xset s 540"
-              "xset -dpms"
-              "xset s off"
+              # ''"xset +dpms; xset s 540"''
+              ''"sleep 10; xset -dpms; xset s off; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
             ];
         };
       extraConfig = ''
