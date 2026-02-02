@@ -20,6 +20,7 @@
       jq
       yq
 
+      lua
       cargo
       # zig
 
