@@ -35,9 +35,7 @@
       # man xkeyboard-config  -> Options
       options = "caps:escape,shift:both_capslock_cancel,compose:rctrl";
     };
-    overlays = [
-      inputs.neovim-nightly-overlay.overlays.default
-    ];
+    overlays = [inputs.neovim-nightly-overlay.overlays.default];
   in {
     nixosConfigurations = {
       stefan-nixos = nixpkgs.lib.nixosSystem {
@@ -55,11 +53,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.stefan = {
-                imports = [
-                  ./user/home.nix
-                ];
-              };
+              users.stefan = {imports = [./user/home.nix];};
               extraSpecialArgs = {
                 inherit inputs;
                 inherit keyboard;
@@ -76,9 +70,7 @@
       };
       raspberrypi = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
-        modules = [
-          ./hosts/pi
-        ];
+        modules = [./hosts/pi];
       };
     };
     homeConfigurations = {
@@ -119,13 +111,12 @@
         };
       };
     };
+
     devShells.${system} = let
       red = ''\e[0;31m'';
       reset = ''\e[0m'';
     in {
-      appimage = pkgs.mkShell {
-        packages = [pkgs.appimage-run];
-      };
+      appimage = pkgs.mkShell {packages = [pkgs.appimage-run];};
       latex = pkgs.mkShell {
         packages = with pkgs; [texlive.combined.scheme-full texstudio];
       };
