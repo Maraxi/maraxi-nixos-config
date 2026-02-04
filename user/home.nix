@@ -19,7 +19,6 @@
       else [
         ./windowmanager.nix
       ];
-    # chromium = lib.lists.optional (setup.installChromium) ./chromium.nix;
   in
     [
       ./environment.nix

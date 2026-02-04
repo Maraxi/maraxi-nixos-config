@@ -61,7 +61,6 @@
                   username = "stefan";
                   stateVersion = "24.11";
                   isNixOS = true;
-                  installChromium = false;
                 };
               };
             };
@@ -89,7 +88,6 @@
             username = "iv546";
             stateVersion = "24.05";
             isNixOS = false;
-            installChromium = true;
           };
         };
       };
@@ -106,7 +104,6 @@
             username = "stefan";
             stateVersion = "24.05";
             isNixOS = false;
-            installChromium = false;
           };
         };
       };
