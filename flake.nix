@@ -8,9 +8,6 @@
     # the 'unstable' channel has not otherwise updated recently for some other reason.
     # nix-trunk.url = "github:nixos/nixpkgs";
 
-    # Downgrade for bad feature in chromium
-    # nixpkgs-be02d8.url = "github:NixOS/nixpkgs/be02d861eace1ba8d9cac31d0493af1032ca4b2f";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +20,6 @@
 
   outputs = inputs @ {
     nixpkgs,
-    # nixpkgs-be02d8,
     home-manager,
     ...
   }: let
@@ -83,7 +79,6 @@
         extraSpecialArgs = {
           inherit inputs;
           inherit keyboard;
-          # pkgs-be02d8 = import nixpkgs-be02d8 {inherit system;};
           setup = {
             username = "iv546";
             stateVersion = "24.05";
