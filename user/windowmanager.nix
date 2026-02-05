@@ -429,15 +429,10 @@ in
 
               # Intune
               "intune-portal"
-            ]
-            ++ map (cmd: {
-              command = cmd;
-              always = true;
-              notification = false;
-            }) [
+
               # screensaver
               # ''"xset +dpms; xset s 540"''
-              ''"sleep 3; xset s off -dpms; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
+              ''"sleep 3; xset s off dpms 0 0 0; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
             ];
         };
       extraConfig = ''
