@@ -117,6 +117,8 @@
         with pkgs; [
           kubectl # for pycharm
 
+          freerdp
+
           podman
           kubernetes-helm
           openshift
