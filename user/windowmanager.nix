@@ -437,7 +437,7 @@ in
             }) [
               # screensaver
               # ''"xset +dpms; xset s 540"''
-              ''"sleep 10; xset -dpms; xset s off; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
+              ''"sleep 3; xset s off -dpms; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
             ];
         };
       extraConfig = ''
