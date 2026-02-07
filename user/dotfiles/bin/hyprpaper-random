@@ -1,13 +1,13 @@
 #! /usr/bin/env bash
 
 set -euo pipefail
+shopt -s nullglob  # ensure something like "*.jpeg" does not stay unresolved and is added into the array
 
 WALLPAPER_DIR="$HOME/Pictures/e6/"
-
 STATE_FILE="$XDG_STATE_HOME/hyprpaper-random"
 
 # Create state file if missing
-if [[ ! -s "$STATE_FILE" ]] then
+if [[ ! -s "$STATE_FILE" ]]; then
     cat >"$STATE_FILE" <<- end_string
 	0
 	end_string
@@ -16,11 +16,42 @@ fi
 
 # Read file name from state
 read -r current < "$STATE_FILE"
-current=$(basename "$current")
+# echo current: $current
 
-# Get a random wallpaper that is not the current one
-WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$current" | shuf -n 1)
-echo $WALLPAPER > $STATE_FILE
+# Check contents of folder
+[[ -d $WALLPAPER_DIR ]] || { echo "$WALLPAPER_DIR is not a valid folder"; exit 1; }
+items=("$WALLPAPER_DIR"*.{jpg,jpeg,png})
+mapfile -t items < <(IFS=$'\n'; sort -V <<<"${items[*]}") # sort items
+total="${#items[@]}"
+[[ total -eq 0 ]] && { echo "$WALLPAPER_DIR contains no images"; exit 1; }
+# echo total: $total
+# declare -p items
+# for element in ${items[@]}; do echo $element; done
+
+# Update depending on passed argument
+if [[ -v 1 ]]; then
+    # increment and decrement only one
+    if [[ $1 == p ]]; then
+	new=$(( current + 1 ))
+    elif [[ $1 == m ]]; then
+	new=$(( current - 1 ))
+    else
+	echo "unknown argument"
+	exit 1
+    fi
+else
+    # no argument. take random
+    count=$((total - 1)) # exclude current picture
+    new=$(($(seq $count | shuf -n1) - 1)) # shift from 1..n to 0..n-1
+    (( new >= current )) && new=$((new + 1)) # fix index to actually exclude current
+fi
+# Ensure is within bounds of array
+new=$(( (new + total) % total ))
+
+# update state
+echo $new > "$STATE_FILE"
+
+WALLPAPER=${items[new]}
 
 # Apply the selected wallpaper
 hyprctl hyprpaper wallpaper ,"$WALLPAPER"
