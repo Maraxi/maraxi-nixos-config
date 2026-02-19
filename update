@@ -16,6 +16,7 @@ echo
 # Update flake and commit on change
 pre-commit install
 nix flake update --commit-lock-file
+git push
 
 # Check if commit changed
 CURRENT=$(git rev-parse @)
@@ -29,7 +30,7 @@ find-generation () {
     nixos-rebuild list-generations --json | jq '.[] | select(.current == true) | .generation'
 }
 
-# Rebuild and push
+# Rebuild
 [[ "${TAG_EXISTS}" != 0 ]] || [[ "${CURRENT}" != "${LAST_BUILD}" ]] && {
     if [[ $(uname -v) =~ "NixOS" ]]; then
         prev_generation=$(find-generation)
@@ -39,13 +40,10 @@ find-generation () {
         echo
 
         nvd history --minimum-version "${prev_generation}"
-
-        sleep 1.5
     else
         nh home switch
     fi
     echo
 
     git tag -f last-build
-    git push
 }
