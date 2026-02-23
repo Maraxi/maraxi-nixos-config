@@ -14,9 +14,7 @@
           email = "Maraxi@users.noreply.github.com";
         }
         else {};
-      alias = let
-        formatted-log = "log --graph --abbrev-commit --date-order --date=human --decorate --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --tags HEAD";
-      in {
+      alias = {
         aliases = "config --get-regexp alias";
 
         root = "rev-parse --show-toplevel";
@@ -37,17 +35,17 @@
 
         ls-tracked = "ls-tree -r HEAD --name-only";
 
-        l = "${formatted-log}";
+        l = "log --graph --abbrev-commit --date-order --date=human --decorate --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --tags HEAD";
         ls = "l -n 20";
 
-        lg = "${formatted-log} --branches --remotes";
+        lg = "l --branches --remotes";
         lgs = "lg -n 20";
 
-        lgx = "${formatted-log} --exclude master --exclude main --exclude release-candiate --branches --exclude *master --exclude *main --exclude *release-candiate --remotes";
+        lgx = "lg --exclude master --exclude main --exclude release-candiate --branches --exclude *master --exclude *main --exclude *release-candiate --remotes";
         lgxs = "lgx -n 20";
 
-        lgf = "lg --name-status";
-        lgfs = "lgf -n 20";
+        lf = "l --name-status";
+        lfs = "lf -n 20";
       };
       core.editor = "nvim";
       fetch.prune = true;
