@@ -31,7 +31,7 @@
   services.xserver.xkb = {
     layout = "de";
     variant = "nodeadkeys";
-    options = "caps:escape_shifted_capslock";
+    options = "caps:escape";
   };
   console.useXkbConfig = true;
 

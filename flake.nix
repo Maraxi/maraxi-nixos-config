@@ -29,7 +29,7 @@
       layout = "de";
       variant = "nodeadkeys";
       # man xkeyboard-config  -> Options
-      options = "caps:escape,shift:both_capslock_cancel,compose:rctrl";
+      options = "caps:escape,compose:rctrl";
     };
     overlays = [inputs.neovim-nightly-overlay.overlays.default];
   in {
