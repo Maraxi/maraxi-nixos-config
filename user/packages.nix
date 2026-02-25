@@ -47,6 +47,7 @@
       })
 
       nix-tree
+      nvd
 
       atool
       zip
