@@ -125,6 +125,8 @@
           openshift
 
           gh # github cli
+
+          apache-directory-studio
         ];
   in
     basic_pkgs ++ per_system_pkgs;
