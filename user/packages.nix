@@ -6,7 +6,7 @@
 }: {
   home.packages = let
     basic_pkgs = with pkgs; [
-      neofetch
+      fastfetch
 
       feh
 
