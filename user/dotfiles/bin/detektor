@@ -2,6 +2,11 @@
 
 while true
 do
-	mplayer http://streams.detektor.fm/musik/mp3-256/streams.detektor.fm/ || exit
-	mplayer http://streams.detektor.fm/wort/mp3-256/streams.detektor.fm/ || exit
+	for url in \
+		http://streams.detektor.fm/musik/mp3-256/streams.detektor.fm/ \
+		http://streams.detektor.fm/wort/mp3-256/streams.detektor.fm/ \
+		http://mdr-284310-0.cast.mdr.de/mdr/284310/0/mp3/high/stream.mp3 \
+	; do
+		mplayer $url || exit
+	done
 done
