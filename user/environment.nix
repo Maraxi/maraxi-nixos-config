@@ -62,6 +62,7 @@
       "image/gif" = video_viewer;
       "image/jpeg" = image_viewer;
       "image/png" = image_viewer;
+      "image/webp" = image_viewer;
       "inode/directory" = "nemo.desktop";
       "message/rfc822" = "thunderbird.desktop";
       "text/html" = browser;
