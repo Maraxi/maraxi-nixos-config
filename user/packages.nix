@@ -100,6 +100,11 @@
 
           ncdu
 
+          gdk-pixbuf
+          webp-pixbuf-loader
+          ffmpeg-headless
+          ffmpegthumbnailer
+
           nemo
           libreoffice-fresh
           evince
