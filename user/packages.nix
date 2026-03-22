@@ -100,6 +100,7 @@
 
           ncdu
 
+          gimp
           gdk-pixbuf
           webp-pixbuf-loader
           ffmpeg-headless
