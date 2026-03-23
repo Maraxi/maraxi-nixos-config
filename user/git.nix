@@ -53,6 +53,7 @@
       push.autoSetupRemote = true;
       rebase.autoStash = true;
     };
+    signing.format = null;
   };
 
   programs.diff-so-fancy = {
