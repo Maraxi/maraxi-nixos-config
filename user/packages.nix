@@ -133,6 +133,8 @@
           gh # github cli
 
           apache-directory-studio
+
+          bluetuith
         ];
   in
     basic_pkgs ++ per_system_pkgs;
