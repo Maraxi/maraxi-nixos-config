@@ -7,7 +7,7 @@
     no_proxy = lib.strings.concatStringsSep "," ["$no_proxy" ".dbgcloud.io" ".testing" ".eex.energy" ".deutsche-boerse.de" ".oa.pnrad.net"];
   };
   home.shellAliases = {
-    cal = "ncal -bw3A3";
+    cal = "ncal -bw -B3 -A2";
   };
 
   xdg.mimeApps = let
