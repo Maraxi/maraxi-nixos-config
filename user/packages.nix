@@ -103,6 +103,9 @@
           gimp
           gdk-pixbuf
           webp-pixbuf-loader
+          # For general HEIF container support (this includes the AVIF file format)
+          libheif.bin # provides heif-thumbnailer (the program that generates HEIF thumbnails)
+          libheif.out # provides heif.thumbnailer (allows for the viewing of HEIF thumbnails)
           ffmpeg-headless
           ffmpegthumbnailer
 
