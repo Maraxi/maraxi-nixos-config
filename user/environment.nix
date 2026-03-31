@@ -59,6 +59,7 @@
       "application/x-gnome-saved-search" = "nemo.desktop";
       "default-url-scheme-handler" = browser;
       "default-web-browser" = browser;
+      "image/avif" = image_viewer;
       "image/gif" = video_viewer;
       "image/jpeg" = image_viewer;
       "image/png" = image_viewer;
