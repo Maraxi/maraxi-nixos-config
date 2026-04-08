@@ -12,10 +12,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs @ {
@@ -31,8 +27,9 @@
       # man xkeyboard-config  -> Options
       options = "caps:escape,compose:rctrl";
     };
-    overlays = [inputs.neovim-nightly-overlay.overlays.default];
   in {
+    # overlays = import ./overlays {inherit inputs;};
+
     nixosConfigurations = {
       stefan-nixos = nixpkgs.lib.nixosSystem {
         inherit system;
@@ -41,7 +38,6 @@
           hostName = "stefan-nixos";
         };
         modules = [
-          {nixpkgs.overlays = overlays;}
           ./hosts/nixos
           ./system
           home-manager.nixosModules.home-manager
