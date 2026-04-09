@@ -46,7 +46,7 @@
     browser =
       if setup.isNixOS
       then "firefox.desktop"
-      else "google-chrome.desktop";
+      else "microsoft-edge.desktop";
     mailer =
       if setup.isNixOS
       then "thunderbird.desktop"
