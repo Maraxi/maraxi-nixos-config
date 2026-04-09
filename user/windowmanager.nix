@@ -242,7 +242,7 @@ in
       config = let
         window_mode = "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout 1-4:presets 9:fix blackscreen";
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
-        apps_mode = "APPS C:chrome E:nemo R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
+        apps_mode = "APPS C:edge E:nemo R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
         exit_mode = "EXIT o:lock s:suspend h:hibernate e:logout u:switch-user p:poweroff x:screen-off";
 
         # check dconf-editor -> ord/gnome/desktop/input-sources/xkb-options
@@ -322,7 +322,8 @@ in
             };
 
             ${apps_mode} = {
-              c = "mode default, exec google-chrome-stable --high-dpi-support=1 --force-device-scale-factor=1";
+              c = "mode default, exec microsoft-edge-stable";
+              # c = "mode default, exec google-chrome-stable --high-dpi-support=1 --force-device-scale-factor=1";
               "Shift+c" = "mode default, exec chromium";
               e = "mode default, exec nemo";
               f = "mode default, exec flameshot gui";
