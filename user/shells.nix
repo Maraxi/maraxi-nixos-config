@@ -92,6 +92,7 @@
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
+    defaultOptions = ["--bind ctrl-up:preview-half-page-up,ctrl-down:preview-half-page-down"];
   };
 
   programs.starship = {
