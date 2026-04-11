@@ -44,7 +44,7 @@
     ];
     window = {
       dynamic_title = true;
-      opacity = 0.8;
+      opacity = 0.65;
     };
     window.padding = {
       x = 0;
