@@ -5,6 +5,7 @@
     UV_PYTHON_PREFERENCE = "only-managed";
     UV_NATIVE_TLS = "true";
     no_proxy = lib.strings.concatStringsSep "," ["$no_proxy" ".dbgcloud.io" ".testing" ".eex.energy" ".deutsche-boerse.de" ".oa.pnrad.net"];
+    TNS_ADMIN = "$HOME/.config/tns_ora/";
   };
   home.shellAliases = {
     cal = "ncal -bw -B3 -A2";

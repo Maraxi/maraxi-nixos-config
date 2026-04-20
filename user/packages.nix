@@ -129,6 +129,8 @@
 
           freerdp
 
+          sqlcl
+
           podman
           kubernetes-helm
           openshift
