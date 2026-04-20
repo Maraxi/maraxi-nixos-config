@@ -6,5 +6,6 @@
     builtins.elem (lib.getName pkg) [
       "pycharm-professional"
       "keymapp"
+      "sqlcl"
     ];
 }
