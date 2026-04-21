@@ -7,6 +7,7 @@
 }: {
   programs.neovim = {
     enable = true;
+    sideloadInitLua = true;
     vimAlias = true;
     # vimdiffAlias = true;
     withRuby = false;
