@@ -14,6 +14,7 @@
   xdg.mimeApps = let
     association = {
       "application/x-remmina" = "xfreerdp-wrapper.desktop";
+      "x-scheme-handler/jetbrains" = "jetbrainsd.desktop";
     };
   in {
     defaultApplications = association;
