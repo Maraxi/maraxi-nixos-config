@@ -4,7 +4,7 @@ set -euo pipefail
 
 manpage=$(
     IFS=":"
-    fd --print0 --follow --format '{/.}' '.gz$' $(manpath) \
+    fd --print0 --follow --format '{/.}' '\.(\d|gz)$' $(manpath) \
 	| sort --zero-terminated --unique \
 	| fzf --read0 --highlight-line --preview 'man {}'
 )
