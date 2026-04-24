@@ -26,6 +26,7 @@
       ./git.nix
       ./meta.nix
       ./neovim.nix
+      ./keepassxc.nix
       ./nh.nix
       ./packages.nix
       ./shells.nix
