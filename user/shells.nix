@@ -23,6 +23,26 @@
       HISTTIMEFORMAT = "[%F %T] ";
       PROMPT_COMMAND = "history -a; $PROMPT_COMMAND";
       _ZO_DOCTOR = 0;
+
+      # colored manpages - https://gist.github.com/bahamas10/542875bb47990933638d2b7dfaa501bf
+      LESS_TERMCAP_mb = "$(tput bold setaf 6)"; # blinking
+      LESS_TERMCAP_md = "$(tput bold setaf 6)"; # bold text
+      LESS_TERMCAP_me = "$(tput sgr0)"; # end all "_m." modes
+      LESS_TERMCAP_mh = "$(tput dim)"; # dim
+      LESS_TERMCAP_mr = "$(tput rev)"; # reverse-video
+      # standout mode
+      LESS_TERMCAP_se = "$(tput sgr0)";
+      LESS_TERMCAP_so = "$(tput bold setaf 0 setab 3)";
+      # "underline" mode
+      LESS_TERMCAP_ue = "$(tput sgr0)";
+      LESS_TERMCAP_us = "$(tput smul bold setaf 2)";
+      # Sub & Superscript
+      LESS_TERMCAP_ZN = "$(tput ssubm)";
+      LESS_TERMCAP_ZO = "$(tput ssupm)";
+      LESS_TERMCAP_ZV = "$(tput rsubm)";
+      LESS_TERMCAP_ZW = "$(tput rsupm)";
+      # Fix groff settings to show colors
+      GROFF_NO_SGR = 1;
     };
 
     initExtra = let
