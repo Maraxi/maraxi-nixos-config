@@ -23,26 +23,6 @@
       HISTTIMEFORMAT = "[%F %T] ";
       PROMPT_COMMAND = "history -a; $PROMPT_COMMAND";
       _ZO_DOCTOR = 0;
-
-      # colored manpages - https://gist.github.com/bahamas10/542875bb47990933638d2b7dfaa501bf
-      LESS_TERMCAP_mb = "$(tput bold setaf 6)"; # blinking
-      LESS_TERMCAP_md = "$(tput bold setaf 6)"; # bold text
-      LESS_TERMCAP_me = "$(tput sgr0)"; # end all "_m." modes
-      LESS_TERMCAP_mh = "$(tput dim)"; # dim
-      LESS_TERMCAP_mr = "$(tput rev)"; # reverse-video
-      # standout mode
-      LESS_TERMCAP_se = "$(tput sgr0)";
-      LESS_TERMCAP_so = "$(tput bold setaf 0 setab 3)";
-      # "underline" mode
-      LESS_TERMCAP_ue = "$(tput sgr0)";
-      LESS_TERMCAP_us = "$(tput smul bold setaf 2)";
-      # Sub & Superscript
-      LESS_TERMCAP_ZN = "$(tput ssubm)";
-      LESS_TERMCAP_ZO = "$(tput ssupm)";
-      LESS_TERMCAP_ZV = "$(tput rsubm)";
-      LESS_TERMCAP_ZW = "$(tput rsupm)";
-      # Fix groff settings to show colors
-      GROFF_NO_SGR = 1;
     };
 
     initExtra = let
@@ -54,6 +34,26 @@
         bind -x '"\C-p":${check-git} && ${profile-bin}/pre-commit'
 
         stty -ixon
+
+        # colored manpages - https://gist.github.com/bahamas10/542875bb47990933638d2b7dfaa501bf
+        export LESS_TERMCAP_mb=$'\e[1;36m'  # blinking
+        export LESS_TERMCAP_md=$'\e[1;36m'  # bold text
+        export LESS_TERMCAP_me=$'\e[0m'  # end all "_b." modes
+        export LESS_TERMCAP_mh=$'\e[2m'  # dim
+        export LESS_TERMCAP_mr=$'\e[7m'  # reverse-video
+        # standout mode
+        export LESS_TERMCAP_se=$'\e[0m'
+        export LESS_TERMCAP_so=$'\e[1;30;43m'
+        # "underline" mode
+        export LESS_TERMCAP_ue=$'\e[0m'
+        export LESS_TERMCAP_us=$'\e[4;1;32m'
+        # Sub & Superscript
+        export LESS_TERMCAP_ZN=$'\e[74m'
+        export LESS_TERMCAP_ZO=$'\e[73m'
+        export LESS_TERMCAP_ZV=$'\e[75m'
+        export LESS_TERMCAP_ZW=$'\e[75m'
+        # Fix groff settings to show colors
+        export GROFF_NO_SGR=1;
       '';
   };
   programs.readline = {
