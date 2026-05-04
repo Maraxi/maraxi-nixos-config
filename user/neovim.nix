@@ -21,13 +21,16 @@
 
     # lsp
     lua-language-server
+
+    (pkgs.runCommand "symlink-to-nvim" {} ''
+      mkdir -p $out/bin
+      ln -s ${pkgs.neovim}/bin/nvim $out/bin/v
+    '')
   ];
 
   xdg.configFile = lib.optionalAttrs setup.isNixOS {"nvim".source = config.lib.meta.mkMutableSymlink dotfiles/nvim;};
 
   programs.bash.shellAliases = {
-    v = "nvim";
-    nv = "nvim";
     sv = "sudoedit";
   };
 }
