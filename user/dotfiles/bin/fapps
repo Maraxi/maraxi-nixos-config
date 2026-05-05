@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+desktop_result=$(
+    IFS=": "
+    fd --follow --format '{/.};{}' '\.desktop$' $XDG_DATA_DIRS $XDG_CONFIG_HOME/autostart $XDG_CONFIG_DIRS 2>/dev/null \
+	| column -ts ';' -o ' >' \
+	| sort \
+	| fzf --highlight-line --preview $'cat $(echo {} | awk -F ">" \'{print $2}\')'
+)
+
+desktop_file=$(echo $desktop_result | awk -F '>' '{print $2}')
+
+$EDITOR "$desktop_file"
