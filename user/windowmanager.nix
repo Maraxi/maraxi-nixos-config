@@ -433,7 +433,8 @@ in
 
               # screensaver
               # ''"xset +dpms; xset s 540"''
-              ''"sleep 3; xset s off dpms 0 0 0; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
+              # ''"sleep 3; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
+              ''"xset s off dpms 0 0 0"''
             ];
         };
       extraConfig = ''
