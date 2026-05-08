@@ -70,7 +70,6 @@
         modules = [
           ./user/home.nix
           ./user/ecc.nix
-          ./user/nixpkgs.nix
         ];
         extraSpecialArgs = {
           inherit inputs;
@@ -86,7 +85,6 @@
         inherit pkgs;
         modules = [
           ./user/home.nix
-          ./user/nixpkgs.nix
         ];
         extraSpecialArgs = {
           inherit inputs;

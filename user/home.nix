@@ -18,6 +18,7 @@
       ]
       else [
         ./non-nixos.nix
+        ./nixpkgs.nix
         ./windowmanager.nix
       ];
   in
