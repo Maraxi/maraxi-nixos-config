@@ -1,3 +1,10 @@
 {
-  targets.genericLinux.enable = true;
+  targets.genericLinux = {
+    enable = true;
+    gpu.nvidia = {
+      enable = true;
+      version = "595.58.03";
+      sha256 = "sha256-jA1Plnt5MsSrVxQnKu6BAzkrCnAskq+lVRdtNiBYKfk=";
+    };
+  };
 }

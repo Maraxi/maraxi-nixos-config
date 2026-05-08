@@ -4,8 +4,10 @@
   ];
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
-      "pycharm-professional"
       "keymapp"
+      "nvidia-x11"
+      "pycharm-professional"
       "sqlcl"
     ];
+  nixpkgs.config.nvidia.acceptLicense = true;
 }
