@@ -45,7 +45,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.stefan = {imports = [./user/home.nix];};
+              users.stefan = {imports = [./user];};
               extraSpecialArgs = {
                 inherit inputs;
                 inherit keyboard;
@@ -67,10 +67,7 @@
     homeConfigurations = {
       "iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [
-          ./user/home.nix
-          ./user/ecc.nix
-        ];
+        modules = [./user ./user/ecc.nix];
         extraSpecialArgs = {
           inherit inputs;
           inherit keyboard;
@@ -83,9 +80,7 @@
       };
       "stefan@pc9d217" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [
-          ./user/home.nix
-        ];
+        modules = [./user];
         extraSpecialArgs = {
           inherit inputs;
           inherit keyboard;
