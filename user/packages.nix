@@ -123,6 +123,8 @@
         ]
       else
         with pkgs; [
+          curl
+
           kubectl # for pycharm
 
           freerdp
