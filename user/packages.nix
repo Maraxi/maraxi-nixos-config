@@ -123,6 +123,9 @@
         ]
       else
         with pkgs; [
+          python313
+          python313Packages.ipython
+
           curl
 
           kubectl # for pycharm
