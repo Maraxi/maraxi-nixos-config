@@ -48,12 +48,12 @@ if [[ "${TAG_EXISTS}" != 0 ]] || [[ "${CURRENT}" != "${LAST_BUILD}" ]]; then
 
         # Ask for sudo password early
         sudo true
-        sudo nixos-rebuild switch --flake .
+        sudo nixos-rebuild ${1:-switch} --flake .
         echo
 
         nvd history --minimum-version "${prev_generation}"
     else
-        nh home switch
+        nh home ${1:-switch}
     fi
     echo
 
