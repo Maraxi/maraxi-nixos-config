@@ -7,7 +7,7 @@
     TNS_ADMIN = "$HOME/.config/tns_ora";
   };
   home.shellAliases = {
-    cal = "ncal -bw -B3 -A2";
+    cal = "ncal -bw -B4 -A4";
   };
 
   xdg.mimeApps = let
