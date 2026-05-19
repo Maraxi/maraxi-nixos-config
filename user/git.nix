@@ -35,7 +35,7 @@
 
         ls-tracked = "ls-tree -r HEAD --name-only";
 
-        l = "log --graph --abbrev-commit --date-order --date=human --decorate --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --tags HEAD";
+        l = "log --graph --date-order --date=human --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --tags HEAD";
         ls = "l -n 20";
 
         lg = "l --branches --remotes";
