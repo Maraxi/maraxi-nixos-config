@@ -30,7 +30,7 @@
       check-git = "git rev-parse --is-inside-work-tree &>/dev/null";
     in
       lib.mkOrder 100 ''
-        bind -x '"\C-o":${check-git} && { ${profile-bin}/ruff format; ${profile-bin}/ruff check --fix --unsafe-fixes || ${profile-bin}/ruff check --output-format grouped; }'
+        bind -x '"\C-o":${check-git} && { ${profile-bin}/ruff format; ${profile-bin}/ruff check --fix || ${profile-bin}/ruff check --output-format grouped; }'
         bind -x '"\C-p":${check-git} && ${profile-bin}/pre-commit'
 
         stty -ixon
