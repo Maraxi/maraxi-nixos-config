@@ -4,19 +4,19 @@
     enableDefaultConfig = false;
     settings = {
       "*" = {
-        compression = true;
+        Compression = true;
       };
       "pi" = {
-        hostname = "raspberrypi";
-        user = "stefan";
-        port = 36969;
-        identityFile = "/home/stefan/.ssh/id_ed25519_raspberrypi";
+        Hostname = "raspberrypi";
+        User = "stefan";
+        Port = 36969;
+        IdentityFile = "/home/stefan/.ssh/id_ed25519_raspberrypi";
       };
       "github.com" = {
-        identityFile = "/home/stefan/.ssh/id_ed25519_github";
+        IdentityFile = "/home/stefan/.ssh/id_ed25519_github";
       };
       "codeberg.org" = {
-        identityFile = "/home/stefan/.ssh/id_ed25519_codeberg";
+        IdentityFile = "/home/stefan/.ssh/id_ed25519_codeberg";
       };
     };
   };
