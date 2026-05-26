@@ -270,6 +270,7 @@ in
               "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
 
               "Print" = "exec flameshot gui";
+              "${modifier}+p" = "exec flameshot gui";
 
               "F12" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
               "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
