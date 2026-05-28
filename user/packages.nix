@@ -86,6 +86,7 @@
 
           inxi
           usbutils
+          parallel
 
           dig
 
