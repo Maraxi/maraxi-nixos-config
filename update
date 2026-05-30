@@ -12,7 +12,7 @@ git pull --no-tags
 echo
 
 # Check for updates
-if [[ $(uname -v) =~ "NixOS" ]]; then
+if [[ $(hostname) =~ "stefan-nixos" ]]; then
     ROOT=$(git rev-parse --show-toplevel)
     LOCKED_REV=$(jq '.nodes.nixpkgs.locked.rev' "$ROOT/flake.lock")
     CURRENT_REV=$(curl -sL \
