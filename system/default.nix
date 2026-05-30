@@ -2,6 +2,7 @@
   imports = [
     ./android.nix
     ./boot-drives.nix
+    ./cross-compiling.nix
     ./environment.nix
     ./fonts.nix
     ./greetd.nix
