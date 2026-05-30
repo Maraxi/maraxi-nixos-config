@@ -12,11 +12,17 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
     nixpkgs,
     home-manager,
+    nixos-hardware,
     ...
   }: let
     system = "x86_64-linux";
@@ -61,7 +67,10 @@
       };
       raspberrypi = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
-        modules = [./hosts/pi];
+        modules = [
+          nixos-hardware.nixosModules.raspberry-pi-4
+          ./hosts/pi
+        ];
       };
     };
     homeConfigurations = {
