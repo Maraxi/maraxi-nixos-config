@@ -12,24 +12,20 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot = {
-    # kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
-    initrd.availableKernelModules = ["xhci_pci" "usbhid" "usb_storage"];
-    loader = {
-      grub.enable = false;
-      generic-extlinux-compatible.enable = true;
-    };
-  };
-  # boot.initrd.kernelModules = [ ];
-  # boot.kernelModules = [ ];
-  # boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["xhci_pci"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = [];
+  boot.extraModulePackages = [];
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
-      options = ["noatime"];
-    };
+  # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
+  boot.loader.grub.enable = false;
+  # Enables the generation of /boot/extlinux/extlinux.conf
+  boot.loader.generic-extlinux-compatible.enable = true;
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/NIXOS_SD";
+    fsType = "ext4";
+    options = ["noatime"];
   };
 
   swapDevices = [];
