@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nixstable.url = "github:NixOS/nixpkgs/nixos-26.05";
+
     # Only pull from 'nix-trunk' when channels are blocked by a Hydra jobset failure or
     # the 'unstable' channel has not otherwise updated recently for some other reason.
     # nix-trunk.url = "github:nixos/nixpkgs";
@@ -21,6 +23,7 @@
 
   outputs = inputs @ {
     nixpkgs,
+    nixstable,
     home-manager,
     nixos-hardware,
     ...
@@ -65,7 +68,7 @@
           }
         ];
       };
-      raspberrypi = nixpkgs.lib.nixosSystem {
+      raspberrypi = nixstable.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           nixos-hardware.nixosModules.raspberry-pi-4
