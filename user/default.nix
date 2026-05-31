@@ -11,6 +11,7 @@
         ./firefox.nix
         ./gtk.nix
         ./hyprland.nix
+        ./nextcloud-sync.nix
         ./podman.nix
         ./ssh.nix
         ./wayland-services.nix
