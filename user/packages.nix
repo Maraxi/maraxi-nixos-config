@@ -21,7 +21,7 @@
       yq
 
       lua
-      cargo
+      # cargo
       # zig
 
       glances
