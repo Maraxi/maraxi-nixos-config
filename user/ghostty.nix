@@ -1,10 +1,8 @@
-{...}: {
-  programs.ghostty.enable = false;
-
-  xdg.configFile = {
-    "ghostty" = {
-      source = dotfiles/ghostty;
-      recursive = true;
-    };
+{config, ...}: {
+  programs.ghostty = {
+    enable = true;
+    enableBashIntegration = true;
   };
+
+  xdg.configFile."ghostty".source = config.lib.meta.mkMutableSymlink dotfiles/ghostty;
 }
