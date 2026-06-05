@@ -1,3 +1,5 @@
+quit-after-last-window-closed = false
+
 theme = NightOwl
 minimum-contrast = 3
 background-opacity = 0.7

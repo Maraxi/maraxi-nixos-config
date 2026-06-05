@@ -1,6 +1,7 @@
 {config, ...}: {
   programs.ghostty = {
     enable = true;
+    systemd.enable = true;
     enableBashIntegration = true;
   };
 
