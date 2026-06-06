@@ -12,11 +12,7 @@
     historyFile = "$XDG_STATE_HOME/bash_history_eternal";
     historyControl = ["ignorespace" "ignoredups"];
 
-    shellAliases =
-      {
-        open = "xdg-open";
-      }
-      // lib.optionalAttrs setup.isNixOS {cal = "cal -Sn9";};
+    shellAliases = lib.optionalAttrs setup.isNixOS {cal = "cal -Sn9";};
 
     sessionVariables = {
       HISTTIMEFORMAT = "[%F %T] ";

@@ -9,6 +9,12 @@
       # Default terminal for gtk-launch / wofi
       (pkgs.writeShellScriptBin "xdg-terminal-exec" ''exec ${pkgs.ghostty}/bin/ghostty +new-window -e "$@"'')
 
+      (pkgs.symlinkJoin {
+        name = "xdg-utils-and-alias";
+        paths = [pkgs.xdg-utils];
+        postBuild = ''ln -s $out/bin/xdg-open $out/bin/open'';
+      })
+
       fastfetch
       tmux
 
