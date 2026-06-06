@@ -1,6 +1,7 @@
 {
   setup,
   config,
+  lib,
   ...
 }: {
   home.sessionVariables = rec {
@@ -60,30 +61,36 @@
       else browser;
     image_viewer = ["org.gnome.gThumb.desktop" "feh.desktop"];
     video_viewer = ["org.gnome.gThumb.desktop" "vlc.desktop"];
-    association = {
-      "application/json" = editor;
-      "application/pdf" = ["org.gnome.Evince.desktop" browser];
-      "application/x-desktop" = editor;
-      "application/x-gnome-saved-search" = "nemo.desktop";
-      "default-url-scheme-handler" = browser;
-      "default-web-browser" = browser;
-      "image/avif" = image_viewer;
-      "image/gif" = video_viewer;
-      "image/jpeg" = image_viewer;
-      "image/png" = image_viewer;
-      "image/webp" = image_viewer;
-      "inode/directory" = "nemo.desktop";
-      "message/rfc822" = "thunderbird.desktop";
-      "text/html" = browser;
-      "text/plain" = "nvim.desktop";
-      "x-scheme-handler/about" = browser;
-      "x-scheme-handler/http" = browser;
-      "x-scheme-handler/https" = browser;
-      "x-scheme-handler/mailto" = mailer;
-      "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
-      "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
-      "x-scheme-handler/unknown" = browser;
-    };
+    text-mime-types = builtins.readFile ./text-mime-types.txt |> lib.splitString "\n" |> builtins.filter (x: x != "");
+    association =
+      {
+        "application/json" = editor;
+        "application/pdf" = ["org.gnome.Evince.desktop" browser];
+        "application/x-desktop" = editor;
+        "application/x-gnome-saved-search" = "nemo.desktop";
+        "default-url-scheme-handler" = browser;
+        "default-web-browser" = browser;
+        "image/avif" = image_viewer;
+        "image/gif" = video_viewer;
+        "image/jpeg" = image_viewer;
+        "image/png" = image_viewer;
+        "image/webp" = image_viewer;
+        "inode/directory" = "nemo.desktop";
+        "message/rfc822" = "thunderbird.desktop";
+        "text/html" = browser;
+        "x-scheme-handler/about" = browser;
+        "x-scheme-handler/http" = browser;
+        "x-scheme-handler/https" = browser;
+        "x-scheme-handler/mailto" = mailer;
+        "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
+        "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
+        "x-scheme-handler/unknown" = browser;
+      }
+      // builtins.listToAttrs (map (type: {
+          name = "text/${type}";
+          value = editor;
+        })
+        text-mime-types);
   in {
     enable = true;
     defaultApplications = association;
