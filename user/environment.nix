@@ -49,6 +49,7 @@
   home.file."bin".source = config.lib.meta.mkMutableSymlink dotfiles/bin;
 
   xdg.mimeApps = let
+    editor = "nvim.desktop";
     browser =
       if setup.isNixOS
       then "firefox.desktop"
@@ -60,8 +61,9 @@
     image_viewer = ["org.gnome.gThumb.desktop" "feh.desktop"];
     video_viewer = ["org.gnome.gThumb.desktop" "vlc.desktop"];
     association = {
-      "application/json" = "nvim.desktop";
+      "application/json" = editor;
       "application/pdf" = ["org.gnome.Evince.desktop" browser];
+      "application/x-desktop" = editor;
       "application/x-gnome-saved-search" = "nemo.desktop";
       "default-url-scheme-handler" = browser;
       "default-web-browser" = browser;
