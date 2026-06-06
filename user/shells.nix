@@ -14,7 +14,6 @@
 
     shellAliases =
       {
-        feh = "feh --no-fehbg";
         open = "xdg-open";
       }
       // lib.optionalAttrs setup.isNixOS {cal = "cal -Sn9";};

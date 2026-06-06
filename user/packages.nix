@@ -12,7 +12,12 @@
       fastfetch
       tmux
 
-      feh
+      (pkgs.symlinkJoin {
+        name = "feh";
+        buildInputs = [pkgs.makeWrapper];
+        paths = [pkgs.feh];
+        postBuild = ''wrapProgram $out/bin/feh --append-flags "--no-fehbg"'';
+      })
 
       telegram-desktop
 
