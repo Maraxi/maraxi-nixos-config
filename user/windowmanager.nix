@@ -10,7 +10,7 @@
   profile-bin = config.home.profileDirectory + "/bin";
   shared_config = rec {
     modifier = "Mod4";
-    terminal = "alacritty";
+    terminal = "ghostty +new-window";
     fonts = {
       names = ["DejaVu Sans Mono" "FontAwesome5Free"];
       style = "Bold Semi-Condensed";
