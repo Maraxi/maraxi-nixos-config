@@ -6,6 +6,9 @@
 }: {
   home.packages = let
     basic_pkgs = with pkgs; [
+      # Default terminal for gtk-launch / wofi
+      (pkgs.writeShellScriptBin "xdg-terminal-exec" ''exec ${pkgs.ghostty}/bin/ghostty +new-window -e "$@"'')
+
       fastfetch
       tmux
 
