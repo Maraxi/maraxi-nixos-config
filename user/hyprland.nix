@@ -8,12 +8,15 @@
     hyprpaper
     hypridle
     waybar
-    wofi
 
     grim
     slurp
     swappy
   ];
+  programs.wofi = {
+    enable = true;
+    settings = {key_expand = "Left,Right";};
+  };
 
   services.hypridle.enable = true;
 
