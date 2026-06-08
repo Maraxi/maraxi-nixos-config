@@ -49,8 +49,15 @@
   ];
   home.file."bin".source = config.lib.meta.mkMutableSymlink dotfiles/bin;
 
+  xdg.desktopEntries."nvim-new-term" = {
+    type = "Application";
+    name = "Neovim in new term";
+    terminal = false;
+    exec = "ghostty +new-window -e nvim %F";
+  };
+
   xdg.mimeApps = let
-    editor = "nvim.desktop";
+    editor = "nvim-new-term.desktop";
     browser =
       if setup.isNixOS
       then "firefox.desktop"
