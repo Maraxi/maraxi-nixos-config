@@ -78,6 +78,7 @@
         else "dunstctl close-all";
     in {
       "${modifier}+Return" = "exec ${terminal}";
+      "${modifier}+Ctrl+Return" = "exec alacritty";
       "${meh}+q" = "kill";
 
       "${modifier}+${left}" = "focus left";
@@ -410,6 +411,9 @@ in
               command = cmd;
               notification = false;
             }) [
+              # Load environment vars from .profile to be available in "systemctl --user show-environment"
+              "dbus-update-activation-environment --systemd --all"
+
               # Start XDG autostart .desktop files using dex. See also
               # https://wiki.archlinux.org/index.php/XDG_Autostart
               "dex --autostart --environment i3"
