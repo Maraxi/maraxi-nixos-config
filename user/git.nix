@@ -36,7 +36,8 @@
         ls-tracked = "ls-tree -r HEAD --name-only";
         ls-untracked = "ls-files --others --directory";
 
-        l = "log --graph --date-order --date=human --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%(decorate:tag=)%C(reset)' --tags HEAD";
+        # using tformat intead of format does not quite fix the lf alias, there is still an extra empty line
+        l = "log --graph --date-order --date=human --format=tformat:'%C(bold blue)%h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%(decorate:tag=)%C(reset)' --tags HEAD";
         ls = "l -n 30";
 
         lg = "l --branches --remotes";
