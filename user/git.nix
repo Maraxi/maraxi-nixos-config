@@ -47,7 +47,7 @@
         lgs = "lg -n 30";
 
         lgx =
-          "lg"
+          "l"
           + " --exclude master --exclude main --exclude release-candiate --branches"
           + " --exclude *master --exclude *main --exclude *release-candiate --exclude *dependabot* --remotes";
         lgxs = "lgx -n 30";
