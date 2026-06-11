@@ -34,6 +34,7 @@
         rebase-with-dates = "rebase --committer-date-is-author-date";
 
         ls-tracked = "ls-tree -r HEAD --name-only";
+        ls-untracked = "ls-files --others --directory";
 
         l = "log --graph --date-order --date=human --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%(decorate:tag=)%C(reset)' --tags HEAD";
         ls = "l -n 20";
