@@ -37,16 +37,19 @@
         ls-untracked = "ls-files --others --directory";
 
         l = "log --graph --date-order --date=human --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%(decorate:tag=)%C(reset)' --tags HEAD";
-        ls = "l -n 20";
+        ls = "l -n 30";
 
         lg = "l --branches --remotes";
-        lgs = "lg -n 20";
+        lgs = "lg -n 30";
 
         lgx = "lg --exclude master --exclude main --exclude release-candiate --branches --exclude *master --exclude *main --exclude *release-candiate --remotes";
-        lgxs = "lgx -n 20";
+        lgxs = "lgx -n 30";
 
         lf = "l --name-status";
-        lfs = "lf -n 20";
+        lfs = "lf -n 30";
+
+        lgf = "lg --name-status";
+        lgfs = "lgf -n 30";
       };
       core.editor = "nvim";
       fetch.prune = true;
