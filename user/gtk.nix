@@ -1,11 +1,16 @@
-{pkgs, ...}: {
-  home.pointerCursor = {
-    name = "volantes_cursors";
+{pkgs, ...}: let
+  cursor = {
     package = pkgs.volantes-cursors;
-    gtk.enable = true;
-    x11.enable = true;
-    dotIcons.enable = false;
+    name = "volantes_cursors";
   };
+in {
+  home.pointerCursor =
+    cursor
+    // {
+      gtk.enable = true;
+      x11.enable = true;
+      dotIcons.enable = false;
+    };
   gtk = {
     enable = true;
     theme = {
@@ -19,10 +24,7 @@
       name = "MB-Plum-Suru-GLOW";
       package = pkgs.material-black-colors;
     };
-    cursorTheme = {
-      name = "volantes_cursors";
-      package = pkgs.volantes-cursors;
-    };
+    cursorTheme = cursor;
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
