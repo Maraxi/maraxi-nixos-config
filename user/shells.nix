@@ -63,6 +63,9 @@
       show-all-if-unmodified = true;
       visible-stats = true;
     };
+    bindings = {
+      "\\C-s" = "nop"; # unbind ^s
+    };
   };
   programs.nushell = {
     enable = false;
