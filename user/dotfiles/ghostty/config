@@ -10,7 +10,7 @@ notify-on-command-finish-after = 1m
 theme = NightOwl
 minimum-contrast = 3
 background-opacity = 0.7
-window-decoration = false
+window-decoration = server
 gtk-tabs-location = hidden
 
 font-family = droid-sas-mono
