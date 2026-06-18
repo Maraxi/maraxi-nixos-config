@@ -249,6 +249,12 @@ hl.bind(mainMod .. "H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. "L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. "K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. "J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. "SHIFT + " .. "H", hl.dsp.workspace.move({ monitor = "l" }))
+hl.bind(mainMod .. "SHIFT + " .. "L", hl.dsp.workspace.move({ monitor = "r" }))
+hl.bind(mainMod .. "SHIFT + " .. "left", hl.dsp.window.move({ direction = "l" }))
+hl.bind(mainMod .. "SHIFT + " .. "right", hl.dsp.window.move({ direction = "r" }))
+hl.bind(mainMod .. "SHIFT + " .. "up", hl.dsp.window.move({ direction = "u" }))
+hl.bind(mainMod .. "SHIFT + " .. "down", hl.dsp.window.move({ direction = "d" }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -257,6 +263,18 @@ for i = 1, 10 do
 	hl.bind(mainMod .. key, hl.dsp.focus({ workspace = i }))
 	hl.bind(mainMod .. "SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
+
+-- Alt tab to last active window
+hl.bind(mainMod .. "tab", hl.dsp.focus({ last = true }))
+hl.bind(mainMod .. "asciicircum", function()
+	hl.dispatch(hl.dsp.workspace.move({ workspace = 2, monitor = monitor_right }))
+	hl.dispatch(hl.dsp.focus({ workspace = 2 }))
+end)
+
+-- Full Screen
+hl.bind(mehMod .. "F", hl.dsp.window.fullscreen({ action = "toggle", mode = "fullscreen" }))
+hl.bind(mehMod .. "G", hl.dsp.window.fullscreen({ action = "toggle", mode = "maximized" }))
+hl.bind(mehMod .. "H", hl.dsp.window.fullscreen_state({ action = "toggle", internal = 0, client = 2 }))
 
 -- Example special workspace (scratchpad)
 -- hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
@@ -270,28 +288,16 @@ end
 hl.bind(mainMod .. "mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. "mouse:273", hl.dsp.window.resize(), { mouse = true })
 
+-- Screenshot
+hl.bind(mainMod .. "P", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
+
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind(
-	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 3%+"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"),
-	{ locked = true, repeating = true }
-)
-hl.bind("F12", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"), { locked = true, repeating = true })
-hl.bind(
-	"XF86AudioMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioMicMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
-	{ locked = true, repeating = true }
-)
+local soundOptions = { locked = true, repeating = true }
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 3%+"), soundOptions)
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"), soundOptions)
+hl.bind("F12", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"), soundOptions)
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), soundOptions)
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), soundOptions)
 -- hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
 -- hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
 
@@ -301,6 +307,33 @@ hl.bind(
 -- hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 -- hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
+----- Submaps -----
+
+-- Wallpaper
+hl.bind(mehMod .. "W", hl.dsp.submap("wallpaper"))
+hl.define_submap("wallpaper", function()
+	hl.bind("E", hl.dsp.exec_cmd("hyprctl hyprpaper wallpaper ,/home/stefan/Pictures/wallpaper/ef29_wallpaper_2_pc.png"))
+	hl.bind("D",
+		hl.dsp.exec_cmd("hyprctl hyprpaper wallpaper ,/home/stefan/Pictures/e6/28bf47c2383901e372940101003d9a03.png"))
+	hl.bind("R", hl.dsp.exec_cmd("hyprpaper-random"))
+	hl.bind("plus", hl.dsp.exec_cmd("hyprpaper-random p"))
+	hl.bind("minus", hl.dsp.exec_cmd("hyprpaper-random m"))
+	hl.bind("S",
+		hl.dsp.exec_cmd("hyprctl hyprpaper wallpaper ,/home/stefan/Pictures/wallpaper/galaxy-cosmic-5376x3584-14974.jpg"))
+
+	hl.bind("F", function()
+		hl.timer(function()
+			hl.dispatch(hl.dsp.dpms({ action = "off", monitor = monitor_right }))
+		end, { timeout = 100, type = "oneshot" })
+		hl.timer(function()
+			hl.dispatch(hl.dsp.dpms({ action = "on", monitor = monitor_right }))
+		end, { timeout = 1000, type = "oneshot" })
+	end)
+
+	hl.bind("escape", hl.dsp.submap("reset"))
+end)
+
+-- Lock screen, etc
 hl.bind(mainMod .. "O", hl.dsp.submap("lock"))
 hl.define_submap("lock", function()
 	hl.bind("O", function()
@@ -325,10 +358,32 @@ hl.define_submap("lock", function()
 	--hl.bind("H", hl.dsp.exec_cmd("hyprctl dispatch submap reset && systemctl hibernate"))
 	hl.bind("R", hl.dsp.exec_cmd("reboot"))
 
-	-- Use `reset` to go back to the global submap
 	hl.bind("catchall", hl.dsp.submap("reset"))
 end)
 
+-- Unbind all other keys
+hl.bind(mehMod .. "P", function()
+	hl.config({ cursor = { no_warps = false } })
+	hl.dispatch(hl.dsp.submap("no-binds"))
+end)
+hl.define_submap("no-binds", function()
+	hl.bind(mainMod .. "tab", hl.dsp.focus({ last = true }))
+	hl.bind(mainMod .. "asciicircum", function()
+		hl.dispatch(hl.dsp.workspace.move({ workspace = 2, monitor = monitor_right }))
+		hl.dispatch(hl.dsp.focus({ workspace = 2 }))
+	end)
+
+	hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 3%+"), soundOptions)
+	hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"), soundOptions)
+	hl.bind("F12", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"), soundOptions)
+	hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), soundOptions)
+	hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), soundOptions)
+
+	hl.bind(mehMod .. "P", function()
+		hl.config({ cursor = { no_warps = true } })
+		hl.dispatch(hl.dsp.submap("reset"))
+	end)
+end)
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
@@ -372,6 +427,7 @@ hl.window_rule({
 -- overlayLayerRule:set_enabled(false)
 
 -- Hyprland-run windowrule
+--[[
 hl.window_rule({
 	name = "move-hyprland-run",
 	match = { class = "hyprland-run" },
@@ -379,25 +435,13 @@ hl.window_rule({
 	move = "20 monitor_h-120",
 	float = true,
 })
+--]]
 
 -- Applications on fixed workspaces
-hl.window_rule({
-	match = { class = "^steam$", title = "^Steam.*$" },
-	workspace = "7",
-	tile = true,
-})
-hl.window_rule({
-	match = { class = "^thunderbird$" },
-	workspace = "8 silent",
-})
-hl.window_rule({
-	match = { class = "^org.keepassxc.KeePassXC$", title = "negative:^Unlock.*" },
-	workspace = "9 silent",
-})
-hl.window_rule({
-	match = { class = [[steam_app_\d+|dota2|FTL.*|Hollow Knight Silksong]] },
-	workspace = "10",
-})
+hl.window_rule({ match = { class = "^steam$", title = "^Steam.*$" }, workspace = "7", tile = true, })
+hl.window_rule({ match = { class = "^thunderbird$" }, workspace = "8 silent", })
+hl.window_rule({ match = { class = "^org.keepassxc.KeePassXC$", title = "negative:^Unlock.*" }, workspace = "9 silent", })
+hl.window_rule({ match = { class = [[steam_app_\d+|dota2|FTL.*|Hollow Knight Silksong]] }, workspace = "10", })
 hl.workspace_rule({ workspace = "2", monitor = monitor_right, on_created_empty = "firefox" })
 hl.workspace_rule({ workspace = "7", monitor = monitor_right, on_created_empty = "steam" })
 hl.workspace_rule({ workspace = "8", monitor = monitor_right, on_created_empty = "thunderbird" })
