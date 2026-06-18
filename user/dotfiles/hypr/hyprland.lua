@@ -5,8 +5,10 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({ output = "HDMI-A-2", mode = "preferred", position = "auto", scale = "auto" })
-hl.monitor({ output = "DP-5", mode = "preferred", position = "auto-left", scale = "auto" })
+local monitor_left = "DP-5"
+local monitor_right = "HDMI-A-2"
+hl.monitor({ output = monitor_right, mode = "preferred", position = "auto", scale = "auto" })
+hl.monitor({ output = monitor_left, mode = "preferred", position = "auto-left", scale = "auto" })
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "auto" })
 
 ---------------------
@@ -396,8 +398,8 @@ hl.window_rule({
 	match = { class = [[steam_app_\d+|dota2|FTL.*|Hollow Knight Silksong]] },
 	workspace = "10",
 })
-hl.workspace_rule({ workspace = "2", monitor = "HDMI_A-2", on_created_empty = "firefox" })
-hl.workspace_rule({ workspace = "7", monitor = "HDMI_A-2", on_created_empty = "steam" })
-hl.workspace_rule({ workspace = "8", monitor = "HDMI_A-2", on_created_empty = "thunderbird" })
-hl.workspace_rule({ workspace = "9", monitor = "HDMI_A-2", on_created_empty = "keepassxc" })
-hl.workspace_rule({ workspace = "10", monitor = "HDMI-A-2" })
+hl.workspace_rule({ workspace = "2", monitor = monitor_right, on_created_empty = "firefox" })
+hl.workspace_rule({ workspace = "7", monitor = monitor_right, on_created_empty = "steam" })
+hl.workspace_rule({ workspace = "8", monitor = monitor_right, on_created_empty = "thunderbird" })
+hl.workspace_rule({ workspace = "9", monitor = monitor_right, on_created_empty = "keepassxc" })
+hl.workspace_rule({ workspace = "10", monitor = monitor_right })
