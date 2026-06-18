@@ -131,6 +131,8 @@
         ]
       else
         with pkgs; [
+          util-linux
+
           python313
           python313Packages.ipython
 

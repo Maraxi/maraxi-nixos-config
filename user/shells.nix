@@ -1,5 +1,4 @@
 {
-  setup,
   lib,
   config,
   ...
@@ -11,8 +10,6 @@
     historyFileSize = -1;
     historyFile = "$XDG_STATE_HOME/bash_history_eternal";
     historyControl = ["ignorespace" "ignoredups"];
-
-    shellAliases = lib.optionalAttrs setup.isNixOS {cal = "cal -Sn9";};
 
     sessionVariables = {
       HISTTIMEFORMAT = "[%F %T] ";
