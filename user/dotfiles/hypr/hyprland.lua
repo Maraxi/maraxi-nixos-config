@@ -312,14 +312,14 @@ hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURC
 -- Wallpaper
 hl.bind(mehMod .. "W", hl.dsp.submap("wallpaper"))
 hl.define_submap("wallpaper", function()
-	hl.bind("E", hl.dsp.exec_cmd("hyprctl hyprpaper wallpaper ,/home/stefan/Pictures/wallpaper/ef29_wallpaper_2_pc.png"))
-	hl.bind("D",
-		hl.dsp.exec_cmd("hyprctl hyprpaper wallpaper ,/home/stefan/Pictures/e6/28bf47c2383901e372940101003d9a03.png"))
+	local function set_wp(file) return hl.dsp.exec_cmd("hyprctl hyprpaper wallpaper ," .. file) end
+
+	hl.bind("E", set_wp("/home/stefan/Pictures/wallpaper/ef29_wallpaper_2_pc.png"))
+	hl.bind("D", set_wp("/home/stefan/Pictures/e6/28bf47c2383901e372940101003d9a03.png"))
 	hl.bind("R", hl.dsp.exec_cmd("hyprpaper-random"))
 	hl.bind("plus", hl.dsp.exec_cmd("hyprpaper-random p"))
 	hl.bind("minus", hl.dsp.exec_cmd("hyprpaper-random m"))
-	hl.bind("S",
-		hl.dsp.exec_cmd("hyprctl hyprpaper wallpaper ,/home/stefan/Pictures/wallpaper/galaxy-cosmic-5376x3584-14974.jpg"))
+	hl.bind("S", set_wp("/home/stefan/Pictures/wallpaper/galaxy-cosmic-5376x3584-14974.jpg"))
 
 	hl.bind("F", function()
 		hl.timer(function()
