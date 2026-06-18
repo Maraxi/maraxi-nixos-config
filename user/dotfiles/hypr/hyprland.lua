@@ -234,7 +234,7 @@ local mainMod = "SUPER + "               -- Sets "Windows" key as main modifier
 local mehMod = "SUPER + CTRL + SHIFT + " -- Sets "Windows" key as main modifier
 
 hl.bind(mainMod .. "Return", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. "R", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. "D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. "E", hl.dsp.exec_cmd(fileManager))
 
 hl.bind(mehMod .. "Q", hl.dsp.window.close())
