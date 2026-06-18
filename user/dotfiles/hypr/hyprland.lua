@@ -1,6 +1,5 @@
 -- Remove after, just to hide warnings
 -- local hl = {}
-
 ------------------
 ---- MONITORS ----
 ------------------
@@ -67,7 +66,7 @@ hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.config({
 	general = {
 		gaps_in = 5,
-		gaps_out = { top = 0, right = 15, bottom = 12 },
+		gaps_out = { top = 0, right = 15, bottom = 12, left = 15 },
 
 		border_size = 1,
 
@@ -230,7 +229,7 @@ hl.config({
 ---------------------
 
 local mainMod = "SUPER + "               -- Sets "Windows" key as main modifier
-local mehMod = "SUPER + Ctrl + Shift + " -- Sets "Windows" key as main modifier
+local mehMod = "SUPER + CTRL + SHIFT + " -- Sets "Windows" key as main modifier
 
 hl.bind(mainMod .. "Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. "R", hl.dsp.exec_cmd(menu))
@@ -300,25 +299,33 @@ hl.bind(
 -- hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 -- hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
-
--- Switch to a submap called `resize`.
 hl.bind(mainMod .. "O", hl.dsp.submap("lock"))
 hl.define_submap("lock", function()
-	hl.bind("O", hl.dsp.exec_cmd([[sleep 0.1 && hyprctl --batch "dispatch submap reset ; dispatch dpms off" && swaylock]]),
-		{ release = true })
-	hl.bind("X", hl.dsp.exec_cmd([[sleep 0.1 && hyprctl --batch "dispatch submap reset ; dispatch dpms off"]]),
-		{ release = true })
+	hl.bind("O", function()
+		hl.timer(function()
+			hl.dispatch(hl.dsp.submap("reset"))
+			hl.dispatch(hl.dsp.dpms("off"))
+			hl.dispatch(hl.dsp.exec_cmd("swaylock"))
+		end, { timeout = 100, type = "oneshot" })
+	end, { release = true })
+	hl.bind("X", function()
+		hl.timer(function()
+			hl.dispatch(hl.dsp.submap("reset"))
+			hl.dispatch(hl.dsp.dpms("off"))
+		end, { timeout = 100, type = "oneshot" })
+	end, { release = true })
 	hl.bind("E", hl.dsp.exit())
 	hl.bind("P", hl.dsp.exec_cmd("poweroff"))
-	hl.bind("S", hl.dsp.exec_cmd("hyprctl dispatch submap reset && systemctl suspend"))
+	hl.bind("S", function()
+		hl.dispatch(hl.dsp.submap("reset"))
+		hl.dispatch(hl.dsp.exec_cmd("systemctl suspend"))
+	end)
 	--hl.bind("H", hl.dsp.exec_cmd("hyprctl dispatch submap reset && systemctl hibernate"))
 	hl.bind("R", hl.dsp.exec_cmd("reboot"))
 
 	-- Use `reset` to go back to the global submap
 	hl.bind("catchall", hl.dsp.submap("reset"))
 end)
-
--- Keybinds further down will be global again...
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
