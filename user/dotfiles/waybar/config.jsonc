@@ -46,7 +46,7 @@
 
   "hyprland/submap": {
     "tooltip": false,
-    "on-click": "hyprctl dispatch submap reset"
+    "on-click": "hyprctl dispatch 'hl.dsp.submap(\"reset\")'"
   },
 
   "hyprland/window": {
