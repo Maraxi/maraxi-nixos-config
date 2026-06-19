@@ -47,7 +47,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.stefan = {imports = [./user];};
+              users.stefan.imports = [./user];
               extraSpecialArgs = {
                 inherit inputs;
                 inherit keyboard;
