@@ -57,17 +57,23 @@
           case $1 in
             activewindow\>\>dota2*)
               echo "entering no-binds"
-              hyprctl --batch "dispatch submap no-binds ; keyword cursor:no_warps false" >> /dev/null
+              hyprctl eval 'function f()
+                                hl.dispatch(hl.dsp.submap("no-binds"))
+                                hl.config({cursor = {no_warps = false}})
+                            end; f()' >> /dev/null
               ;;
             activewindow\>\>*)
-              if [[ no-binds = $(hyprctl submap) ]] ; then
+              if [[ "no-binds" = $(hyprctl submap) ]] ; then
                 echo exiting no-binds
-                hyprctl --batch "dispatch submap reset ; keyword cursor:no_warps true" >> /dev/null
+                hyprctl eval 'function f()
+                                  hl.dispatch(hl.dsp.submap("reset"))
+                                  hl.config({cursor = {no_warps = true}})
+                              end; f()' >> /dev/null
               fi
               ;;
             # fullscreen\>\>1)
               # if hyprctl activewindow | grep -q firefox ; then
-                # hyprctl dispatch fullscreenstate 0 -1 >> /dev/null
+              #   hyprctl dispatch fullscreenstate 0 -1 >> /dev/null
               # fi
               # ;;
           esac
