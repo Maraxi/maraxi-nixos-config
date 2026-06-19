@@ -1,18 +1,20 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   # wayland.windowManager.hyprland.enable = true;
-  home.packages = with pkgs; [
-    hyprpaper
-    hypridle
-    waybar
+  home.packages = with pkgs;
+    [
+      hyprpaper
+      hypridle
 
-    grim
-    slurp
-    swappy
-  ];
+      grim
+      slurp
+      swappy
+    ]
+    ++ [inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default];
   programs.wofi = {
     enable = true;
     settings = {key_expand = "Left,Right";};
