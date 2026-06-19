@@ -71,11 +71,6 @@
                               end; f()' >> /dev/null
               fi
               ;;
-            # fullscreen\>\>1)
-              # if hyprctl activewindow | grep -q firefox ; then
-              #   hyprctl dispatch fullscreenstate 0 -1 >> /dev/null
-              # fi
-              # ;;
           esac
           # SECONDS=0
         }

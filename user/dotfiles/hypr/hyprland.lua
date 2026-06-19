@@ -391,7 +391,19 @@ end)
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 
--- Example window rules that are useful
+hl.window_rule({
+	match = { class = "^org.keepassxc.KeePassXC$" },
+	no_screen_share = true,
+})
+hl.window_rule({
+	match = { initial_title = "^Unlock Database - KeePassXC$" },
+	stay_focused = true,
+})
+hl.window_rule({
+	name = "fullscreen requests from firefox stay inside its own borders",
+	match = { class = "^firefox$" },
+	fullscreen_state = "0 -1",
+})
 
 -- local suppressMaximizeRule =
 hl.window_rule({
