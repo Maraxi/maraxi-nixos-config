@@ -163,7 +163,7 @@ hl.workspace_rule({ workspace = "f[1]", gaps_out = 0, gaps_in = 0 })
 hl.config({
 	-- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 	dwindle = {
-		preserve_split = true, -- You probably want this
+		preserve_split = false, -- You probably want this
 	},
 	-- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
 	master = {
