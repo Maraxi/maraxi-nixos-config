@@ -1,8 +1,12 @@
 {pkgs, ...}: {
   home.packages = [pkgs.nextcloud-client];
 
-  systemd.user = {
-    services.nextcloud-autosync = {
+  systemd.user = let
+    nextcloud = "nextcloud-autosync";
+  in {
+    startServices = true;
+
+    services.${nextcloud} = {
       Unit = {
         Description = "Auto sync Nextcloud";
         After = "network-online.target";
@@ -16,12 +20,15 @@
       };
       Install.WantedBy = ["multi-user.target"];
     };
-    timers.nextcloud-autosync = {
+    timers.${nextcloud} = {
       Unit.Description = "Automatic sync files with Nextcloud when booted up after 5 minutes then rerun every 60 minutes";
       Timer.OnBootSec = "5min";
       Timer.OnUnitActiveSec = "60min";
       Install.WantedBy = ["multi-user.target" "timers.target"];
     };
-    startServices = true;
+    paths.${nextcloud} = {
+      Path.PathModified = "/home/stefan/Documents/nextcloud/KeePass";
+      Install.WantedBy = ["multi-user.target" "paths.target"];
+    };
   };
 }
