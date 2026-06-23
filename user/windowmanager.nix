@@ -389,6 +389,7 @@ in
                 title = "^(File Explorer|Secure Google Chrome)";
               }
             ];
+            "6" = [{class = "^xfreerdp$";}];
             "8" = [{class = "^pavucontrol$";}];
             "9" = [{title = "^KeePassXC$";} {title = "^Passwords.*KeePassXC$";}];
             "10" = [{class = "^ZSTray$";} {class = "^Intune-portal$";} {class = "^Keymapp$";}];
