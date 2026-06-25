@@ -9,7 +9,7 @@
     services.${nextcloud} = {
       Unit = {
         Description = "Auto sync Nextcloud";
-        After = "network-online.target";
+        # After = ["network-online.target" "suspend.target"];
       };
       Service = {
         Type = "simple";
@@ -18,17 +18,17 @@
         KillMode = "process";
         KillSignal = "SIGINT";
       };
-      Install.WantedBy = ["multi-user.target"];
+      # Install.WantedBy = ["multi-user.target" "suspend.target"];
     };
     timers.${nextcloud} = {
       Unit.Description = "Automatic sync files with Nextcloud when booted up after 5 minutes then rerun every 60 minutes";
       Timer.OnBootSec = "5min";
       Timer.OnUnitActiveSec = "60min";
-      Install.WantedBy = ["multi-user.target" "timers.target"];
+      Install.WantedBy = ["timers.target"];
     };
     paths.${nextcloud} = {
       Path.PathModified = "/home/stefan/Documents/nextcloud/KeePass";
-      Install.WantedBy = ["multi-user.target" "paths.target"];
+      Install.WantedBy = ["paths.target"];
     };
   };
 }
