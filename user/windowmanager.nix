@@ -340,7 +340,7 @@ in
             };
 
             ${exit_mode} = let
-              lock = "i3lock -efc 000000 && sleep 1";
+              lock = "i3lock --show-failed-attempts --color=000000 && sleep 1";
               display_off = "xset dpms force off";
             in {
               x = "mode default, exec sleep 0.2 && ${display_off}";
