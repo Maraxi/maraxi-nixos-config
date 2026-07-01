@@ -3,6 +3,7 @@
   security.polkit.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true;
 
   programs.dconf.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
