@@ -44,7 +44,6 @@
       btop
 
       fd
-      difftastic
       pciutils
       wget
       lsof
