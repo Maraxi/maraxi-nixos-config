@@ -59,17 +59,25 @@
         lgfs = "lgf -n 30";
       };
       core.editor = "nvim";
+      diff.colorMoved = "default";
       fetch.prune = true;
       init.defaultBranch = "main";
+      merge.conflictStyle = "zdiff3";
       push.autoSetupRemote = true;
       rebase.autoStash = true;
     };
     signing.format = null;
   };
 
-  programs.diff-so-fancy = {
+  programs.delta = {
     enable = true;
-    settings.rulerWidth = 60;
     enableGitIntegration = true;
+    options = {
+      hunk-header-style = "omit";
+      hyperlinks = true;
+      navigate = true;
+      side-by-side = true;
+      tabs = 4;
+    };
   };
 }
