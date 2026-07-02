@@ -72,6 +72,7 @@
       nixfmt
       alejandra
       shellcheck
+      shfmt
 
       pre-commit
 
