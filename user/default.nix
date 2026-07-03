@@ -18,7 +18,7 @@
         ./xdg-portal.nix
       ]
       else [
-        # ./non-nixos.nix
+        ./non-nixos.nix
         ./nixpkgs.nix
         ./windowmanager.nix
       ];
