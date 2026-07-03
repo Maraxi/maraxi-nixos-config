@@ -407,40 +407,40 @@ in
           ];
 
           startup =
-            [{command = "${pkgs.keepassxc}/bin/keepassxc";}]
-            ++ map (cmd: {
-              command = cmd;
-              notification = false;
-            }) [
-              # Load environment vars from .profile to be available in "systemctl --user show-environment"
-              "dbus-update-activation-environment --systemd --all"
+            (map (cmd: {
+                command = cmd;
+                notification = false;
+              }) [
+                # Load environment vars from .profile to be available in "systemctl --user show-environment"
+                "dbus-update-activation-environment --systemd --all"
 
-              # Start XDG autostart .desktop files using dex. See also
-              # https://wiki.archlinux.org/index.php/XDG_Autostart
-              "dex --autostart --environment i3"
+                # Start XDG autostart .desktop files using dex. See also
+                # https://wiki.archlinux.org/index.php/XDG_Autostart
+                "dex --autostart --environment i3"
 
-              # The combination of xss-lock, nm-applet and pactl is a popular choice, so
-              # they are included here as an example. Modify as you see fit.
-              # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-              # screen before suspend. Use loginctl lock-session to lock your screen.
-              "xss-lock --transfer-sleep-lock -- i3lock --nofork"
-              # NetworkManager is the most popular way to manage wireless networks on Linux,
-              # and nm-applet is a desktop environment-independent system tray GUI for it.
-              "nm-applet"
+                # The combination of xss-lock, nm-applet and pactl is a popular choice, so
+                # they are included here as an example. Modify as you see fit.
+                # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+                # screen before suspend. Use loginctl lock-session to lock your screen.
+                "xss-lock --transfer-sleep-lock -- i3lock --nofork"
+                # NetworkManager is the most popular way to manage wireless networks on Linux,
+                # and nm-applet is a desktop environment-independent system tray GUI for it.
+                "nm-applet"
 
-              # Compositor for transparency
-              "picom &"
+                # Compositor for transparency
+                "picom &"
 
-              # Default screens and background
-              "--no-startup-id \"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\""
+                # Default screens and background
+                "--no-startup-id \"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\""
 
-              # Intune
-              "intune-portal"
+                # Intune
+                "intune-portal"
 
-              # screensaver
-              # ''"xset +dpms; xset s 540"''
-              ''"sleep 3; xset s off dpms 0 0 0; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
-            ];
+                # screensaver
+                # ''"xset +dpms; xset s 540"''
+                ''"sleep 3; xset s off dpms 0 0 0; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
+              ])
+            ++ [{command = "${pkgs.keepassxc}/bin/keepassxc";}];
         };
       extraConfig = ''
         # No floating for pychrarm settings
