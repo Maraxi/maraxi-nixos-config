@@ -7,7 +7,6 @@
   ...
 }: let
   # See https://i3wm.org/docs/userguide.html for a complete reference to i3/sway!
-  profile-bin = config.home.profileDirectory + "/bin";
   shared_config = rec {
     modifier = "Mod4";
     terminal = "ghostty +new-window";
@@ -398,8 +397,8 @@ in
           bars = [
             {
               fonts = shared_config.fonts;
-              command = "${pkgs.i3}/bin/i3bar -t";
-              statusCommand = "${pkgs.i3status}/bin/i3status";
+              command = ''"${pkgs.i3}/bin/i3bar -t"'';
+              statusCommand = ''"${pkgs.i3status}/bin/i3status"'';
               colors = {
                 urgentWorkspace = lib.attrsets.getAttrs ["background" "border" "text"] shared_config.colors.urgent;
               };
@@ -412,7 +411,7 @@ in
                 notification = false;
               }) [
                 # Load environment vars from .profile to be available in "systemctl --user show-environment"
-                "dbus-update-activation-environment --systemd --all"
+                "export XDG_CURRENT_DESKTOP=i3; dbus-update-activation-environment --systemd --all"
 
                 # Start XDG autostart .desktop files using dex. See also
                 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -440,6 +439,8 @@ in
             ++ [{command = "${pkgs.keepassxc}/bin/keepassxc";} {command = "intune-portal";}];
         };
       extraConfig = ''
+        for_window [workspace="10"] layout splith
+
         # No floating for pychrarm settings
         for_window [class="^jetbrains-pycharm$" title="^Settings$"] floating disable
 
