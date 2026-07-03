@@ -12,7 +12,7 @@ minimum-contrast = 1.5
 background-opacity = 0.6
 window-decoration = server
 
-font-size = 11
+font-size = 12
 window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = true
