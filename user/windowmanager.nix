@@ -433,14 +433,11 @@ in
                 # Default screens and background
                 "--no-startup-id \"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\""
 
-                # Intune
-                "intune-portal"
-
                 # screensaver
                 # ''"xset +dpms; xset s 540"''
                 ''"sleep 3; xset s off dpms 0 0 0; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
               ])
-            ++ [{command = "${pkgs.keepassxc}/bin/keepassxc";}];
+            ++ [{command = "${pkgs.keepassxc}/bin/keepassxc";} {command = "intune-portal";}];
         };
       extraConfig = ''
         # No floating for pychrarm settings
