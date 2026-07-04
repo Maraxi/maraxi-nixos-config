@@ -3,11 +3,11 @@
 set -euo pipefail
 
 manpage=$(
-    IFS=":"
-    fd --print0 --follow --format '{/}' '\.(\d|gz)$' $(manpath) \
-	| sed --null-data --expression 's/\.gz$//' \
-	| sort --zero-terminated --unique \
-	| fzf --read0 --highlight-line --preview 'man {}'
+	IFS=":"
+	fd --print0 --follow --format '{/}' '\.(\d|gz)$' $(manpath) |
+		sed --null-data --expression 's/\.gz$//' |
+		sort --zero-terminated --unique |
+		fzf --read0 --highlight-line --preview 'man {} 2>/dev/null'
 )
 
 man "$manpage"
