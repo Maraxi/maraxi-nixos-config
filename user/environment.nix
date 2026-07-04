@@ -2,6 +2,7 @@
   setup,
   config,
   lib,
+  pkgs,
   ...
 }: {
   home.sessionVariables = rec {
@@ -54,8 +55,36 @@
     type = "Application";
     name = "Neovim in new term";
     terminal = false;
-    exec = "ghostty +new-window -e nvim %F";
+    exec = "ghostty +new-window -e Neovim %u";
+    mimeType = ["x-scheme-handler/nvim"];
   };
+  home.packages = [
+    (pkgs.writeShellScriptBin "Neovim" ''
+      set -euo pipefail
+
+      if [[ -z ''${1:-} ]]; then
+          nvim
+          exit 0
+      fi
+
+      protocol="''${1%%://*}"
+      case "$protocol" in
+          nvim)
+              file=$(echo "$1" | sed -E 's|.*file=([^&]*).*|\1|')
+              line=$(echo "$1" | sed -E 's|.*line=([^&]*).*|\1|')
+              nvim "+$line" "$file"
+              ;;
+          file)
+              nvim "''${1#file://}"
+              ;;
+          *)
+              echo -n unknown protocol, press enter to exit
+              read -r
+              exit 1
+              ;;
+      esac
+    '')
+  ];
 
   xdg.mimeApps = let
     editor = "nvim-new-term.desktop";
