@@ -55,11 +55,11 @@
     type = "Application";
     name = "Neovim in new term";
     terminal = false;
-    exec = "ghostty +new-window -e Neovim %u";
+    exec = "ghostty +new-window -e nvim-link-handler %u";
     mimeType = ["x-scheme-handler/nvim"];
   };
   home.packages = [
-    (pkgs.writeShellScriptBin "Neovim" ''
+    (pkgs.writeShellScriptBin "nvim-link-handler" ''
       set -euo pipefail
 
       if [[ -z ''${1:-} ]]; then
