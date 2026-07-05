@@ -44,6 +44,7 @@ $status\
 $character"""
 
 add_newline = true
+scan_timeout = 40  # milli sec
 
 palette = "custom"
 
