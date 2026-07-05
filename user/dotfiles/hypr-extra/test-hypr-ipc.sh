@@ -9,28 +9,35 @@ IFS=$'\n\t'
 # set -x
 
 handle() {
-  ((SECONDS > 0)) && echo -e '\nreceived batch'
+  # ((SECONDS > 0)) && echo -e '\nreceived batch'
   echo "$1"
 
   case $1 in
     activewindow\>\>dota2*)
-	echo "entering no-binds"
-	hyprctl dispatch submap no-binds >> /dev/null
-	;;
+      echo "entering no-binds"
+      hyprctl eval 'function f()
+                        hl.dispatch(hl.dsp.submap("no-binds"))
+                        hl.config({cursor = {no_warps = false}})
+                    end; f()' >>/dev/null
+      ;;
     activewindow\>\>*)
-	if [[ no-binds = $(hyprctl submap) ]]; then
-	    echo exiting no-binds
-	    hyprctl dispatch submap reset >> /dev/null
-	fi
-	;;
-    fullscreen\>\>1)
-	if hyprctl activewindow | grep -z firefox | grep -qz "fullscreen: 2" ; then
-	    echo foo;
-	    hyprctl dispatch fullscreenstate 0 -1
-	fi
-	;;
+      if [[ "no-binds" == $(hyprctl submap) ]]; then
+        echo exiting no-binds
+        hyprctl eval 'function f()
+                          hl.dispatch(hl.dsp.submap("reset"))
+                          hl.config({cursor = {no_warps = true}})
+                      end; f()' >>/dev/null
+      fi
+      ;;
+      # fullscreen\>\>1)
+      #   if hyprctl activewindow | grep -q firefox ; then
+      #     hyprctl dispatch 'hl.dsp.window.fullscreen_state({internal=0, client=-1})' >> /dev/null
+      #   fi
+      #   ;;
   esac
-  SECONDS=0
+  # SECONDS=0
 }
 
-socat -U - UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock | while read -r line; do handle "$line"; done
+socat -U - \
+  UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock |
+  while read -r line; do handle "$line"; done

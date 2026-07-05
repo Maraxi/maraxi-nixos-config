@@ -42,7 +42,7 @@
     };
     Service = {
       ExecStart = "${pkgs.writeShellScript "hyprland-ipc" ''
-        #! /usr/bin/env bash
+        # shellcheck shell=bash
 
         # Strict mode
         set -euo pipefail
@@ -52,7 +52,7 @@
 
         handle() {
           # ((SECONDS > 0)) && echo -e '\nreceived batch'
-          # echo $1
+          # echo "$1"
 
           case $1 in
             activewindow\>\>dota2*)
@@ -60,15 +60,15 @@
               hyprctl eval 'function f()
                                 hl.dispatch(hl.dsp.submap("no-binds"))
                                 hl.config({cursor = {no_warps = false}})
-                            end; f()' >> /dev/null
+                            end; f()' >>/dev/null
               ;;
             activewindow\>\>*)
-              if [[ "no-binds" = $(hyprctl submap) ]] ; then
+              if [[ "no-binds" == $(hyprctl submap) ]]; then
                 echo exiting no-binds
                 hyprctl eval 'function f()
                                   hl.dispatch(hl.dsp.submap("reset"))
                                   hl.config({cursor = {no_warps = true}})
-                              end; f()' >> /dev/null
+                              end; f()' >>/dev/null
               fi
               ;;
           esac
@@ -76,8 +76,8 @@
         }
 
         ${pkgs.socat}/bin/socat -U - \
-          UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock \
-          | while read -r line; do handle "$line"; done
+          UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock |
+          while read -r line; do handle "$line"; done
       ''}";
     };
   };
