@@ -77,6 +77,7 @@
       hunk-header-style = "omit";
       hyperlinks = true;
       hyperlinks-file-link-format = "nvim://open?file={path}&line={line}";
+      line-numbers-zero-style = "#707070";
       navigate = true;
       side-by-side = true;
       tabs = 4;
