@@ -21,7 +21,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'
-vim.opt.showtabline = 2
+-- vim.opt.showtabline = 2
 
 vim.opt.wrap = false
 
@@ -34,6 +34,7 @@ vim.opt.sidescrolloff = 10
 -- ##      PLUGINS      ##
 -- #######################
 
+-- ensure plugin specific updates run after vim.pack.update()
 vim.api.nvim_create_autocmd('PackChanged', { callback = function(ev)
   local name, kind = ev.data.spec.name, ev.data.kind
   if name == 'nvim-treesitter' and kind == 'update' then
@@ -51,6 +52,8 @@ vim.pack.add {
 
 vim.cmd.colorscheme 'tokyonight'
 
+require('mini.statusline').setup {}
+
 -- TODO: https://tduyng.com/blog/neovim-git-tools/
 
 -- ########################
@@ -58,6 +61,7 @@ vim.cmd.colorscheme 'tokyonight'
 -- ########################
 
 -- Run lines in lua
+vim.keymap.set('n', '<leader><leader>X', '<cmd>restart<CR>')
 vim.keymap.set('n', '<leader><leader>x', '<cmd>source $MYVIMRC<CR>')
 vim.keymap.set('n', '<leader>x', ':.lua<CR>')
 vim.keymap.set('v', '<leader>x', ':lua<CR>')
