@@ -55,13 +55,15 @@ vim.opt.cursorline = true
 -- ########################
 
 -- ensure plugin specific updates run after vim.pack.update()
-vim.api.nvim_create_autocmd('PackChanged', { callback = function(ev)
-  local name, kind = ev.data.spec.name, ev.data.kind
-  if name == 'nvim-treesitter' and kind == 'update' then
-    if not ev.data.active then vim.cmd.packadd('nvim-treesitter') end
-    vim.cmd('TSUpdate')
-  end
-end })
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == 'nvim-treesitter' and kind == 'update' then
+      if not ev.data.active then vim.cmd.packadd 'nvim-treesitter' end
+      vim.cmd 'TSUpdate'
+    end
+  end,
+})
 
 vim.pack.add {
   { src = 'https://github.com/folke/tokyonight.nvim' },
@@ -74,14 +76,13 @@ vim.cmd.colorscheme 'tokyonight'
 
 require('mini.statusline').setup {}
 
-require('gitsigns').setup { signs = { add = { text = '+' }, change = { text = '~' }, }, }
+require('gitsigns').setup { signs = { add = { text = '+' }, change = { text = '~' } } }
 
 -- TODO: https://tduyng.com/blog/neovim-git-tools/
 
 -- TODO: check if needed:
 -- https://github.com/NMAC427/guess-indent.nvim
 -- require('guess-indent').setup {}
-
 
 -- #########################
 -- ##      Key Binds      ##
@@ -113,7 +114,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   -- TODO: do I need the group?
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  callback = function() vim.highlight.on_yank() end,
 })
