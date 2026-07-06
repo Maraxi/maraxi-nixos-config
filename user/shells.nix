@@ -151,4 +151,20 @@
     c = get_config()
     c.TerminalInteractiveShell.confirm_exit = False
   '';
+
+  editorconfig = {
+    enable = true;
+    settings = {
+      "*" = {
+        charset = "utf-8";
+        end_of_line = "lf";
+        insert_final_newline = true;
+        trim_trailing_whitespace = true;
+      };
+      "*.py" = {
+        indent_size = 4;
+        indent_style = "space";
+      };
+    };
+  };
 }
