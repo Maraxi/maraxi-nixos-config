@@ -42,4 +42,6 @@ keybind = ctrl+shift+f=start_search
 keybind = chain=search_selection
 keybind = unconsumed:escape=end_search
 
+keybind = shift+enter=text:\n
+
 keybind = ctrl+shift+,=reload_config
