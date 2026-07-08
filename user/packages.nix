@@ -72,6 +72,7 @@
       alejandra
       shellcheck
       shfmt
+      shellharden
 
       pre-commit
 
