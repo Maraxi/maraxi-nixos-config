@@ -63,7 +63,14 @@
       set -euo pipefail
 
       if [[ -z ''${1:-} ]]; then
+          # no argument
           nvim
+          exit 0
+      fi
+
+      if [[ "''$1" != *:* ]]; then
+          # no protocol, just file name
+          nvim "$1"
           exit 0
       fi
 
@@ -78,11 +85,12 @@
               nvim "''${1#file://}"
               ;;
           *)
-              echo -n unknown protocol, press enter to exit
+              echo -ne "unknown protocol:\n$protocol\npress enter to exit"
               read -r
               exit 1
               ;;
       esac
+      exit 0
     '')
   ];
 
