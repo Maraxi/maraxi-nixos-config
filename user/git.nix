@@ -34,7 +34,8 @@
         rebase-with-dates = "rebase --committer-date-is-author-date";
 
         ls-tracked = "ls-tree -r HEAD --name-only";
-        ls-untracked = "ls-files --others --directory";
+        ls-untracked = "ls-files --others --exclude-standard --directory";
+        ls-ignored = "ls-files --others --ignored --exclude-standard --directory";
 
         # using tformat intead of format does not quite fix the lf alias, there is still an extra empty line
         l =
