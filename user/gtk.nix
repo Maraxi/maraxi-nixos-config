@@ -5,12 +5,13 @@
   };
 in {
   home.pointerCursor =
-    cursor
-    // {
+    {
+      enable = true;
       gtk.enable = true;
       x11.enable = true;
       dotIcons.enable = false;
-    };
+    }
+    // cursor;
   gtk = {
     enable = true;
     theme = {
