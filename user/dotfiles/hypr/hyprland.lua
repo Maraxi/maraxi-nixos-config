@@ -240,7 +240,7 @@ hl.bind(mainMod .. "E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mehMod .. "Q", hl.dsp.window.close())
 hl.bind(mehMod .. "K", hl.dsp.window.kill())
 
-hl.bind(mainMod .. "V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mehMod .. "L", hl.dsp.window.float({ action = "toggle" }))
 -- hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
@@ -395,7 +395,7 @@ end)
 hl.window_rule({ match = { class = "^steam$", title = "^Steam.*$" }, workspace = "7", tile = true, })
 hl.window_rule({ match = { class = "^thunderbird$" }, workspace = "8 silent", })
 hl.window_rule({ match = { class = "^org.keepassxc.KeePassXC$", title = "negative:^Unlock.*" }, workspace = "9 silent", })
-hl.window_rule({ match = { class = [[steam_app_\d+|dota2|FTL.*|Hollow Knight Silksong]] }, workspace = "10", })
+hl.window_rule({ match = { class = [[steam_app_\d+|dota2|FTL.*|Hollow Knight Silksong]] }, workspace = "10", fullscreen = true, })
 hl.workspace_rule({ workspace = "2", monitor = monitor_right, on_created_empty = "firefox" })
 hl.workspace_rule({ workspace = "7", monitor = monitor_right, on_created_empty = "steam" })
 hl.workspace_rule({ workspace = "8", monitor = monitor_right, on_created_empty = "thunderbird" })
