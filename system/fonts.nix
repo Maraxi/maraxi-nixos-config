@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.droid-sans-mono
+      nerd-fonts.jetbrains-mono
       dejavu_fonts
       noto-fonts
       noto-fonts-cjk-sans
