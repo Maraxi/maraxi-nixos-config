@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
 
+# www.radio-browser.info
 mpv --loop-playlist \
 	https://streams.detektor.fm/musik/mp3-256 \
 	https://streams.detektor.fm/wort/mp3-256 \
 	https://mdr-284310-0.sslcast.mdr.de/mdr/284310/0/mp3/high/stream.mp3 \
+	http://www.ndr.de/resources/metadaten/audio/m3u/ndrkultur.m3u \
+	https://st01.sslstream.dlf.de/dlf/01/high/aac/stream.aac \
+	https://st02.sslstream.dlf.de/dlf/02/high/aac/stream.aac \
+	https://st03.sslstream.dlf.de/dlf/03/high/aac/stream.aac \
+	https://st04.sslstream.dlf.de/dlf/04/high/aac/stream.aac \
+	https://streams.radiobob.de/bob-national/mp3-192 \
+	https://bytefm.cast.addradio.de/bytefm/main/high/stream \
+	https://mangoradio.stream.laut.fm/mangoradio \
+	http://stream.laut.fm/furryradio \
+	https://icecast.bungles.net/furry_pirate_radio \
 	;
