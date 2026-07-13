@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  setup,
   ...
 }: {
   programs.bash = {
@@ -21,32 +22,43 @@
       profile-bin = config.home.profileDirectory + "/bin";
       check-git = "git rev-parse --is-inside-work-tree &>/dev/null";
     in
-      lib.mkOrder 100 ''
-        bind -x '"\C-o":${check-git} && { ${profile-bin}/ruff format; ${profile-bin}/ruff check --fix || ${profile-bin}/ruff check --output-format grouped; }'
-        bind -x '"\C-p":${check-git} && ${profile-bin}/pre-commit'
+      lib.mkMerge ([
+          (lib.mkOrder 100 ''
+            bind -x '"\C-o":${check-git} && { ${profile-bin}/ruff format; ${profile-bin}/ruff check --fix || ${profile-bin}/ruff check --output-format grouped; }'
+            bind -x '"\C-p":${check-git} && ${profile-bin}/pre-commit'
 
-        stty -ixon
+            stty -ixon
 
-        # colored manpages - https://gist.github.com/bahamas10/542875bb47990933638d2b7dfaa501bf
-        export LESS_TERMCAP_mb=$'\e[1;36m'  # blinking
-        export LESS_TERMCAP_md=$'\e[1;36m'  # bold text
-        export LESS_TERMCAP_me=$'\e[0m'  # end all "_b." modes
-        export LESS_TERMCAP_mh=$'\e[2m'  # dim
-        export LESS_TERMCAP_mr=$'\e[7m'  # reverse-video
-        # standout mode
-        export LESS_TERMCAP_se=$'\e[0m'
-        export LESS_TERMCAP_so=$'\e[1;30;43m'
-        # "underline" mode
-        export LESS_TERMCAP_ue=$'\e[0m'
-        export LESS_TERMCAP_us=$'\e[4;1;32m'
-        # Sub & Superscript
-        export LESS_TERMCAP_ZN=$'\e[74m'
-        export LESS_TERMCAP_ZO=$'\e[73m'
-        export LESS_TERMCAP_ZV=$'\e[75m'
-        export LESS_TERMCAP_ZW=$'\e[75m'
-        # Fix groff settings to show colors
-        export GROFF_NO_SGR=1;
-      '';
+            # colored manpages - https://gist.github.com/bahamas10/542875bb47990933638d2b7dfaa501bf
+            export LESS_TERMCAP_mb=$'\e[1;36m'  # blinking
+            export LESS_TERMCAP_md=$'\e[1;36m'  # bold text
+            export LESS_TERMCAP_me=$'\e[0m'  # end all "_b." modes
+            export LESS_TERMCAP_mh=$'\e[2m'  # dim
+            export LESS_TERMCAP_mr=$'\e[7m'  # reverse-video
+            # standout mode
+            export LESS_TERMCAP_se=$'\e[0m'
+            export LESS_TERMCAP_so=$'\e[1;30;43m'
+            # "underline" mode
+            export LESS_TERMCAP_ue=$'\e[0m'
+            export LESS_TERMCAP_us=$'\e[4;1;32m'
+            # Sub & Superscript
+            export LESS_TERMCAP_ZN=$'\e[74m'
+            export LESS_TERMCAP_ZO=$'\e[73m'
+            export LESS_TERMCAP_ZV=$'\e[75m'
+            export LESS_TERMCAP_ZW=$'\e[75m'
+            # Fix groff settings to show colors
+            export GROFF_NO_SGR=1;
+          '')
+        ]
+        ++ lib.optionals (!setup.isNixOS) [
+          (lib.mkAfter ''
+            # Deduplicate PATH while preserving order
+            if [ -n "$PATH" ]; then
+              PATH=$(echo -n "$PATH" | awk -v RS=: -v ORS=: '!a[$0]{a[$0]=1;print}' | sed 's/:$//')
+              export PATH
+            fi
+          '')
+        ]);
   };
   programs.readline = {
     enable = true;
