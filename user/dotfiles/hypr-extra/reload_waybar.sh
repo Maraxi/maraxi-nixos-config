@@ -1,4 +1,4 @@
-#! /usr/bin/env nix
+#!/usr/bin/env nix
 #! nix shell nixpkgs#inotify-tools --command bash
 
 # Strict mode

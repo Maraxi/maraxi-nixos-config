@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 [[ $(id -u) -gt 0 ]] && {
 	echo "please run with sudo"
