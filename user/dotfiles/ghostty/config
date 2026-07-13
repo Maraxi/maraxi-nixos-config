@@ -12,6 +12,7 @@ minimum-contrast = 1.5
 background-opacity = 0.7
 window-decoration = server
 
+mouse-scroll-multiplier = 8
 font-size = 12
 window-padding-x = 0
 window-padding-y = 0
