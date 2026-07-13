@@ -22,10 +22,10 @@ if [[ $(hostname) =~ "stefan-nixos" ]]; then
                   | jq '.sha')
 
     if [[ "$LOCKED_REV" != "$CURRENT_REV" ]]; then
-	# Update flake and commit on change
-	pre-commit install
-	echo "Updating flake.lock"
-	nix flake update --commit-lock-file
+        # Update flake and commit on change
+        pre-commit install
+        echo "Updating flake.lock"
+        nix flake update --commit-lock-file
     fi
 fi
 
@@ -36,24 +36,24 @@ REMOTE=$(git rev-parse "@{u}")
 # Push any changes
 [[ "$CURRENT" = "$REMOTE" ]] || git push
 
-set +e  # do not fail if tag is missing
+set +e # do not fail if tag is missing
 LAST_BUILD=$(git show-ref --hash --verify refs/tags/last-build 2>/dev/null)
 TAG_EXISTS=$?
 set -e
 
 # Rebuild
-if [[ "${TAG_EXISTS}" != 0 ]] || [[ "${CURRENT}" != "${LAST_BUILD}" ]]; then
+if [[ "$TAG_EXISTS" != 0 ]] || [[ "$CURRENT" != "$LAST_BUILD" ]]; then
     if [[ $(uname -v) =~ "NixOS" ]]; then
         prev_generation=$(nixos-rebuild list-generations --json | jq '.[] | select(.current == true) | .generation')
 
         # Ask for sudo password early
         sudo true
-        sudo nixos-rebuild ${1:-switch} --flake .
+        sudo nixos-rebuild "${1:-switch}" --flake "${NH_FLAKE:-.}"
         echo
 
-        nvd history --minimum-version "${prev_generation}"
+        nvd history --minimum-version "$prev_generation"
     else
-        nh home ${1:-switch}
+        home-manager "${1:-switch}"
     fi
     echo
 
