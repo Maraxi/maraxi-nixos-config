@@ -461,4 +461,10 @@ in
         for_window [class="^ZSTray$"] floating disable
       '';
     };
+    services.dunst = {
+      enable = true;
+      configFile = dotfiles/dunstrc;
+    };
+    xdg.configFile."dunst/dunstrc".enable = false;
+    xdg.configFile."dunst/readme".text = "Managed by home-manager. See the config used by service instead:\nsystemctl --user status dunst.service";
   }
