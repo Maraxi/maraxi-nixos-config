@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 
-while true
-do
-	for url in \
-		http://streams.detektor.fm/musik/aac/streams.detektor.fm/ \
-		http://streams.detektor.fm/wort/aac/streams.detektor.fm/ \
-		https://mdr-284310-0.sslcast.mdr.de/mdr/284310/0/mp3/high/stream.mp3 \
-	; do
-		mplayer -msgcolor "$url" || exit
-	done
-done
+mpv --loop-playlist \
+	https://streams.detektor.fm/musik/mp3-256 \
+	https://streams.detektor.fm/wort/mp3-256 \
+	https://mdr-284310-0.sslcast.mdr.de/mdr/284310/0/mp3/high/stream.mp3 \
+	;

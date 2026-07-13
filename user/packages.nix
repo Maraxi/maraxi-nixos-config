@@ -105,7 +105,7 @@
 
           pavucontrol
           vlc
-          mplayer
+          mpv
 
           ncdu
 
