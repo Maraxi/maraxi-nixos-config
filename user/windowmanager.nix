@@ -430,13 +430,21 @@ in
                 "picom &"
 
                 # Default screens and background
-                "--no-startup-id \"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\""
+                "\"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\""
+
+                # Define placeholders for Edge and launch
+                "i3-msg 'workspace 1; append_layout ~/.config/i3/edge.json'"
+                "i3-msg 'workspace 4; append_layout ~/.config/i3/edge.json'"
+                "microsoft-edge-stable"
 
                 # screensaver
                 # ''"xset +dpms; xset s 540"''
                 ''"sleep 3; xset s off dpms 0 0 0; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
               ])
-            ++ [{command = "${pkgs.keepassxc}/bin/keepassxc";} {command = "intune-portal";}];
+            ++ [
+              {command = "${pkgs.keepassxc}/bin/keepassxc";}
+              {command = "intune-portal";}
+            ];
         };
       extraConfig = ''
         for_window [workspace="10"] layout splith
@@ -461,6 +469,9 @@ in
         for_window [class="^ZSTray$"] floating disable
       '';
     };
+
+    xdg.configFile."i3/edge.json".source = dotfiles/i3/edge.json;
+
     services.dunst = {
       enable = true;
       configFile = config.lib.meta.mkMutableSymlink dotfiles/dunstrc;

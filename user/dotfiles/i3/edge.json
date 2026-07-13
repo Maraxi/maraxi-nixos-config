@@ -1,0 +1,14 @@
+{
+  "type": "con",
+  "layout": "tabbed",
+  "nodes": [
+    {
+      "type": "con",
+      "swallows": [
+        {
+          "class": "^Microsoft-edge$"
+        }
+      ]
+    }
+  ]
+}
