@@ -5,8 +5,8 @@ do
 	for url in \
 		http://streams.detektor.fm/musik/aac/streams.detektor.fm/ \
 		http://streams.detektor.fm/wort/aac/streams.detektor.fm/ \
-		http://mdr-284310-0.cast.mdr.de/mdr/284310/0/mp3/high/stream.mp3 \
+		https://mdr-284310-0.sslcast.mdr.de/mdr/284310/0/mp3/high/stream.mp3 \
 	; do
-		mplayer $url || exit
+		mplayer -msgcolor "$url" || exit
 	done
 done
