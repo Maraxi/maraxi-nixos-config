@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ "$1" == "off" ]]; then
+	echo "turning off"
+	sudo pkill ZSTray
+	sudo pkill zstunnel
+	sudo pkill zsaservice
+elif [[ "$1" == "on" ]]; then
+	echo "turning on"
+	/opt/zscaler/scripts/zstray_desktop.sh %u
+else
+	echo "invalid argument"
+fi
