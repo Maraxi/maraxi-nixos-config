@@ -32,6 +32,7 @@
       ./neovim.nix
       ./nh.nix
       ./packages.nix
+      ./radio.nix
       ./shells.nix
     ]
     ++ specific-imports;

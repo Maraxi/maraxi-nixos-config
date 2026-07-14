@@ -26,7 +26,6 @@
       })
 
       telegram-desktop
-      mpv
 
       uv
       ruff
