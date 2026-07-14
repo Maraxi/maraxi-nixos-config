@@ -120,7 +120,6 @@ vim.api.nvim_create_autocmd('PackChanged', {
 vim.pack.add {
   { src = 'https://github.com/folke/tokyonight.nvim' },
   { src = 'https://github.com/nvim-mini/mini.nvim' },
-  { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   -- { src = 'https://GitHub.com/nvim-telescope/telescope.nvim' },
 }
 
@@ -128,6 +127,7 @@ vim.cmd.colorscheme 'tokyonight'
 
 require('mini.statusline').setup {}
 
+vim.pack.add { 'https://github.com/lewis6991/gitsigns.nvim' }
 require('gitsigns').setup {
   signs = { add = { text = '+' }, change = { text = '~' } },
   signs_staged = { add = { text = '+' }, change = { text = '~' } },
