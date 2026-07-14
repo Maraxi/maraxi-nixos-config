@@ -293,9 +293,6 @@
     # user defined timeout.
     ignore_dbusclose = true
 
-    # Overwrite settings from dbus, this would take priority over the normal timeout
-    override_dbus_timeout = 1
-
     ### Wayland ###
     # These settings are Wayland-specific. They have no effect when using X11
 
@@ -517,5 +514,7 @@
     body = "*teams.microsoft.com*"
     urgency = normal
     timeout = 12
+    # Overwrite settings from dbus, this would take priority over the normal timeout
+    override_dbus_timeout = 12
     # 1. Force a static icon (fixes the shifting /tmp path issue)
     new_icon = dialog-information

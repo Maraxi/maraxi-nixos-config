@@ -10,5 +10,5 @@ dunstctl history | jq --arg boot "$boot_time" '.data[0] | reverse | map({
   message: .message.data,
   timeout: (.timeout.data / 1000 / 1000),
   urgency: .urgency.data,
-  timestamp: (($boot | tonumber) + (.timestamp.data / 1000 / 1000) | todate)
+  timestamp: (($boot | tonumber) + (.timestamp.data / 1000 / 1000) | strflocaltime("%Y-%m-%dT%H:%M:%S %Z"))
 })'
