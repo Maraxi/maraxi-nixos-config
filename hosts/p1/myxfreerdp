@@ -7,10 +7,22 @@ set -euo pipefail
 	exit 1
 }
 
+[[ -f $1 ]] || {
+	echo first argument is not a valid file
+	exit 1
+}
+
+# Remove file(s) on exit
+trap 'rm "$*"' EXIT
+
 # change display settings
-sed -i "s/desktopwidth:.*/desktopwidth:i:2556/g" "$*"
-sed -i "s/desktopheight:.*/desktopheight:i:1392/g" "$*"
-sed -i "/smart sizing/d" "$*"
+sed_args=(
+	-i
+	-e "s/desktopwidth:.*/desktopwidth:i:2556/g"
+	-e "s/desktopheight:.*/desktopheight:i:1392/g"
+	# -e "/smart sizing/d"
+)
+sed "${sed_args[@]}" "$*"
 
 # start xfreerdp with the rdp file
 xfreerdp "$*" -grab-keyboard
