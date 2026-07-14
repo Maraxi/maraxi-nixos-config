@@ -139,17 +139,19 @@ vim.api.nvim_create_autocmd('PackChanged', {
   end,
 })
 
+local gh = function(x) return 'https://github.com/' .. x end
+
 -- ##############################
 -- ##      UI/UX Plug ins      ##
 -- ##############################
 
 -- [[ colorscheme ]]
-vim.pack.add { 'https://github.com/folke/tokyonight.nvim' }
+vim.pack.add { gh 'folke/tokyonight.nvim' }
 vim.cmd.colorscheme 'tokyonight-moon'
 
 -- [[ which key ]]
 -- Useful plugin to show you pending keybinds.
-vim.pack.add { 'https://github.com/folke/which-key.nvim' }
+vim.pack.add { gh 'folke/which-key.nvim' }
 require('which-key').setup {
   -- Delay between pressing a key and opening which-key (milliseconds)
   delay = 0,
@@ -163,14 +165,14 @@ require('which-key').setup {
 }
 
 -- [[ git signs ]]
-vim.pack.add { 'https://github.com/lewis6991/gitsigns.nvim' }
+vim.pack.add { gh 'lewis6991/gitsigns.nvim' }
 require('gitsigns').setup {
   signs = { add = { text = '+' }, change = { text = '~' } },
   signs_staged = { add = { text = '+' }, change = { text = '~' } },
 }
 
 -- [[ todo comments ]]
-vim.pack.add { 'https://github.com/folke/todo-comments.nvim' }
+vim.pack.add { gh 'folke/todo-comments.nvim' }
 -- TODO: optional reqs:
 --      plenary.nvim
 --      trouble
@@ -179,7 +181,7 @@ vim.pack.add { 'https://github.com/folke/todo-comments.nvim' }
 require('todo-comments').setup { signs = false }
 
 -- [[ mini.nvim ]]
-vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
+vim.pack.add { gh 'nvim-mini/mini.nvim' }
 require('mini.icons').setup()
 -- Used for backwards compatibility with plugins that require `nvim-web-devicons` (e.g. telescope.nvim)
 MiniIcons.mock_nvim_web_devicons()
@@ -213,10 +215,10 @@ statusline.setup {}
 -- ############################################
 
 vim.pack.add {
-  'https://github.com/nvim-lua/plenary.nvim',
-  'https://github.com/nvim-telescope/telescope.nvim',
-  'https://github.com/nvim-telescope/telescope-ui-select.nvim',
-  'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
+  gh 'nvim-lua/plenary.nvim',
+  gh 'nvim-telescope/telescope.nvim',
+  gh 'nvim-telescope/telescope-ui-select.nvim',
+  gh 'nvim-telescope/telescope-fzf-native.nvim',
 }
 
 -- TODO: https://tduyng.com/blog/neovim-git-tools/
