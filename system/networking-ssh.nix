@@ -15,6 +15,10 @@
 
     # nftables instead of iptbles for firewall
     nftables.enable = true;
+
+    hosts = {
+      "104.26.10.35" = ["static1.e621.net"];
+    };
   };
 
   # Enable the OpenSSH daemon.
