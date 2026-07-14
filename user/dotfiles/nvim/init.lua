@@ -97,10 +97,19 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- ########################
 -- ##      Plug ins      ##
 -- ########################
+--  To inspect plugin state and pending updates, run
+--    :lua vim.pack.update(nil, { offline = true })
+--
+--  To update plugins, run
+--    :lua vim.pack.update()
+
 -- ensure plugin specific updates run after vim.pack.update()
 vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
-    local name, kind = ev.data.spec.name, ev.data.kind
+    local name = ev.data.spec.name
+    local kind = ev.data.kind
+    if kind ~= 'install' and kind ~= 'update' then return end
+
     if name == 'nvim-treesitter' and kind == 'update' then
       if not ev.data.active then vim.cmd.packadd 'nvim-treesitter' end
       vim.cmd 'TSUpdate'
