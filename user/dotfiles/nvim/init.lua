@@ -97,6 +97,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- ########################
 -- ##      Plug ins      ##
 -- ########################
+
 --  To inspect plugin state and pending updates, run
 --    :lua vim.pack.update(nil, { offline = true })
 --
@@ -116,6 +117,10 @@ vim.api.nvim_create_autocmd('PackChanged', {
     end
   end,
 })
+
+-- ##############################
+-- ##      UI/UX Plug ins      ##
+-- ##############################
 
 -- [[ colorscheme ]]
 vim.pack.add { 'https://github.com/folke/tokyonight.nvim' }
@@ -170,17 +175,13 @@ require('mini.ai').setup {
 -- TODO: figure out how that works
 require('mini.surround').setup()
 
-local statusline = require('mini.statusline')
+local statusline = require 'mini.statusline'
 statusline.setup {}
 -- set the section for cursor location to LINE:COLUMN
 -- statusline.section_location = function() return '%2l:%-2v' end
 
 -- TODO: more mini tools
 -- https://github.com/nvim-mini/mini.nvim
-
--- vim.pack.add { 'https://GitHub.com/nvim-telescope/telescope.nvim' }
-
--- TODO: https://tduyng.com/blog/neovim-git-tools/
 
 -- TODO: check if needed:
 -- https://github.com/NMAC427/guess-indent.nvim
