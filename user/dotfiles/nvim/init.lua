@@ -157,7 +157,26 @@ vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
 require('mini.icons').setup()
 -- Used for backwards compatibility with plugins that require `nvim-web-devicons` (e.g. telescope.nvim)
 MiniIcons.mock_nvim_web_devicons()
-require('mini.statusline').setup {}
+
+require('mini.ai').setup {
+  -- NOTE: Avoid conflicts with the built-in incremental selection mappings on Neovim>=0.12 (see `:help treesitter-incremental-selection`)
+  mappings = {
+    around_next = 'aa',
+    inside_next = 'ii',
+  },
+  n_lines = 500,
+}
+
+-- TODO: figure out how that works
+require('mini.surround').setup()
+
+local statusline = require('mini.statusline')
+statusline.setup {}
+-- set the section for cursor location to LINE:COLUMN
+-- statusline.section_location = function() return '%2l:%-2v' end
+
+-- TODO: more mini tools
+-- https://github.com/nvim-mini/mini.nvim
 
 -- vim.pack.add { 'https://GitHub.com/nvim-telescope/telescope.nvim' }
 
