@@ -26,6 +26,7 @@
       })
 
       telegram-desktop
+      mpv
 
       uv
       ruff
@@ -105,7 +106,6 @@
 
           pavucontrol
           vlc
-          mpv
 
           ncdu
 
