@@ -117,9 +117,11 @@ vim.api.nvim_create_autocmd('PackChanged', {
   end,
 })
 
+-- [[ colorscheme ]]
 vim.pack.add { 'https://github.com/folke/tokyonight.nvim' }
 vim.cmd.colorscheme 'tokyonight-moon'
 
+-- [[ which key ]]
 -- Useful plugin to show you pending keybinds.
 vim.pack.add { 'https://github.com/folke/which-key.nvim' }
 require('which-key').setup {
@@ -134,12 +136,14 @@ require('which-key').setup {
   },
 }
 
+-- [[ git signs ]]
 vim.pack.add { 'https://github.com/lewis6991/gitsigns.nvim' }
 require('gitsigns').setup {
   signs = { add = { text = '+' }, change = { text = '~' } },
   signs_staged = { add = { text = '+' }, change = { text = '~' } },
 }
 
+-- [[ todo comments ]]
 vim.pack.add { 'https://github.com/folke/todo-comments.nvim' }
 -- TODO: optional reqs:
 --      plenary.nvim
@@ -148,7 +152,11 @@ vim.pack.add { 'https://github.com/folke/todo-comments.nvim' }
 --      fzflua
 require('todo-comments').setup { signs = false }
 
+-- [[ mini.nvim ]]
 vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
+require('mini.icons').setup()
+-- Used for backwards compatibility with plugins that require `nvim-web-devicons` (e.g. telescope.nvim)
+MiniIcons.mock_nvim_web_devicons()
 require('mini.statusline').setup {}
 
 -- vim.pack.add { 'https://GitHub.com/nvim-telescope/telescope.nvim' }
