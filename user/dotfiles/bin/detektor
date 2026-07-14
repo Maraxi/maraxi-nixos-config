@@ -2,6 +2,8 @@
 
 # www.radio-browser.info
 mpv --loop-playlist \
+	--osd-playlist-entry=both \
+	--term-status-msg='A: ${time-pos} - Cache: ${time-remaining}' \
 	https://streams.detektor.fm/musik/mp3-256 \
 	https://streams.detektor.fm/wort/mp3-256 \
 	https://mdr-284310-0.sslcast.mdr.de/mdr/284310/0/mp3/high/stream.mp3 \
