@@ -293,6 +293,8 @@
     # user defined timeout.
     ignore_dbusclose = false
 
+    override_dbus_timeout = 1
+
     ### Wayland ###
     # These settings are Wayland-specific. They have no effect when using X11
 
@@ -513,4 +515,4 @@
 [teams-timeout-override]
     body = "*teams.microsoft.com*"
     urgency = normal
-    timeout = 10
+    timeout = 15
