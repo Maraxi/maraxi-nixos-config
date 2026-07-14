@@ -65,7 +65,7 @@ vim.opt.cursorline = true
 -- ##      Key Maps      ##
 -- ########################
 
--- Run lines in lua
+-- Run files or just active lines in lua
 vim.keymap.set('n', '<leader><leader>X', '<cmd>restart<CR>')
 vim.keymap.set('n', '<leader><leader>x', '<cmd>source $MYVIMRC<CR>')
 vim.keymap.set('n', '<leader>x', ':.lua<CR>')
@@ -82,6 +82,17 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
+vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
+vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
+vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking text',
+  -- TODO: do I need the group?
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function() vim.highlight.on_yank() end,
+})
 
 -- ########################
 -- ##      Plug ins      ##
@@ -116,13 +127,3 @@ require('gitsigns').setup { signs = { add = { text = '+' }, change = { text = '~
 -- https://github.com/NMAC427/guess-indent.nvim
 -- require('guess-indent').setup {}
 
--- #############################
--- ##      Auto commands      ##
--- #############################
-
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  -- TODO: do I need the group?
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function() vim.highlight.on_yank() end,
-})
