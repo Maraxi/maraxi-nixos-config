@@ -214,6 +214,10 @@ statusline.setup {}
 -- ##      Search / Navigation Plug ins      ##
 -- ############################################
 
+  -- Two important keymaps to use while in Telescope are:
+  --  - Insert mode: <c-/>
+  --  - Normal mode: ?
+
 vim.pack.add {
   gh 'nvim-lua/plenary.nvim',
   gh 'nvim-telescope/telescope.nvim',
