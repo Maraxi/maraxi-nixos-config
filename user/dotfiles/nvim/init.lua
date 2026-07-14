@@ -6,21 +6,34 @@
 -- vim.cmd([[set mouse=]])  -- TODO: need to fix jump, usually ^] / :tag
 -- vim.opt.mouse = '' / 'a'
 
+--    #### global keys ####
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+--    #### generic window and system interactions ####
+vim.opt.title = true
 vim.opt.undofile = true
--- Decrease update time
+-- Decrease update time, debounce this long until writing to swap
 vim.opt.updatetime = 250
--- Decrease mapped sequence wait time
--- Displays which-key pop-up sooner
-vim.opt.timeoutlen = 300
 
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.title = true
+-- TODO: check if this makes a difference
+-- vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
+
+--    #### window decorations, etc. ####
+-- Don't show the mode, since it's already in the status line
+vim.opt.showmode = false
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+--    #### editor / display behaviour ####
+-- Decrease mapped sequence wait time
+-- Displays which-key pop-up sooner
+-- TODO: this breaks gO / outline at low values
+vim.opt.timeoutlen = 1000
+-- prompt instead of failing with unsaved changes with commands like `:q`
+vim.opt.confirm = true
 
 vim.opt.tabstop = 8
 vim.opt.shiftwidth = 8
@@ -33,9 +46,6 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes'
 -- vim.opt.showtabline = 2
-
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
 
 vim.opt.wrap = false
 vim.opt.breakindent = true
