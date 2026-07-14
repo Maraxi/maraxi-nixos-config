@@ -118,13 +118,21 @@ vim.api.nvim_create_autocmd('PackChanged', {
 })
 
 vim.pack.add { 'https://github.com/folke/tokyonight.nvim' }
-vim.cmd.colorscheme 'tokyonight'
+vim.cmd.colorscheme 'tokyonight-moon'
 
 vim.pack.add { 'https://github.com/lewis6991/gitsigns.nvim' }
 require('gitsigns').setup {
   signs = { add = { text = '+' }, change = { text = '~' } },
   signs_staged = { add = { text = '+' }, change = { text = '~' } },
 }
+
+vim.pack.add { 'https://github.com/folke/todo-comments.nvim' }
+-- TODO: optional reqs:
+--      plenary.nvim
+--      trouble
+--      telescope
+--      fzflua
+require('todo-comments').setup { signs = false }
 
 vim.pack.add { 'https://github.com/nvim-mini/mini.nvim' }
 require('mini.statusline').setup {}
