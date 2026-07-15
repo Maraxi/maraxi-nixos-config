@@ -19,7 +19,7 @@
 
         root = "rev-parse --show-toplevel";
 
-        unstage = "restore --staged --";
+        unstage = "reset HEAD --";
         s = "status";
 
         d = "diff";
