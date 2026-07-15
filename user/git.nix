@@ -83,6 +83,10 @@
       navigate = true;
       side-by-side = true;
       tabs = 4;
+      map-styles = let
+        git-moved-from-color = "bold purple";
+        git-moved-to-color = "bold cyan";
+      in "${git-moved-from-color} => syntax #3f2054, ${git-moved-to-color} => auto #132852";
     };
   };
 }
