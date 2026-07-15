@@ -51,7 +51,7 @@
         lgx =
           "l"
           + " --exclude master --exclude main --exclude release-candiate --branches"
-          + " --exclude *master --exclude *main --exclude *release-candiate --exclude *dependabot* --remotes";
+          + " --exclude *master --exclude *main --exclude *release-candiate --exclude *dependabot* --exclude */renovate/* --remotes";
         lgxs = "lgx -n 30";
 
         lf = "l --name-status";
