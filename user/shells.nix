@@ -131,10 +131,7 @@
   programs.eza = {
     enable = true;
     icons = "auto";
-    extraOptions = [
-      "--group-directories-first"
-      "--classify"
-    ];
+    extraOptions = ["--group-directories-first"];
   };
   programs.ripgrep = {
     enable = true;
