@@ -243,7 +243,7 @@ in
         window_mode = "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout 1-4:presets 9:fix blackscreen";
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
         apps_mode = "APPS C:edge E:nemo R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
-        exit_mode = "EXIT o:lock s:suspend h:hibernate e:logout u:switch-user p:poweroff x:screen-off";
+        exit_mode = "EXIT o:lock x:screen-off s:suspend h:hibernate e:logout u:switch-user p:poweroff r:reboot";
 
         # check dconf-editor -> ord/gnome/desktop/input-sources/xkb-options
         # reset options to empty by using "-option" with no argument
@@ -346,6 +346,7 @@ in
               o = "mode default, exec ${lock} && exec ${display_off}";
               s = "mode default, exec ${lock} && exec systemctl suspend";
               h = "mode default, exec systemctl hibernate -i";
+              r = "mode default, exec systemctl reboot";
               e = "exit";
               u = "mode default, exec gdmflexiserver";
               p = "exec systemctl poweroff -i";
