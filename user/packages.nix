@@ -39,7 +39,6 @@
       # cargo
       # zig
 
-      glances
       htop
       btop
 
@@ -106,6 +105,7 @@
           pavucontrol
           vlc
 
+          glances
           ncdu
 
           gimp
