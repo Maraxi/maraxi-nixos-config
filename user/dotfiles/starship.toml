@@ -118,6 +118,9 @@ symbol = " "
 [nix_shell]
 symbol = "󱄅 "
 
+[golang]
+symbol = "go "
+
 [zig]
 symbol = " "
 
