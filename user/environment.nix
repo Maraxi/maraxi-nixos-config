@@ -23,6 +23,9 @@
     CARGO_HOME = XDG_DATA_HOME + "/cargo";
     RUSTUP_HOME = XDG_DATA_HOME + "/rustup";
 
+    GOPATH = XDG_DATA_HOME + "/go";
+    GOMODCACHE = XDG_CACHE_HOME + "/go/mod";
+
     PARALLEL_HOME = XDG_CONFIG_HOME + "/parallel";
 
     MPLAYER_HOME = XDG_CONFIG_HOME + "/mplayer";
