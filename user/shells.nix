@@ -19,13 +19,12 @@
     };
 
     initExtra = let
-      profile-bin = config.home.profileDirectory + "/bin";
       check-git = "git rev-parse --is-inside-work-tree &>/dev/null";
     in
       lib.mkMerge ([
           (lib.mkOrder 100 ''
-            bind -x '"\C-o":${check-git} && { ${profile-bin}/ruff format; ${profile-bin}/ruff check --fix || ${profile-bin}/ruff check --output-format grouped; }'
-            bind -x '"\C-p":${check-git} && ${profile-bin}/pre-commit'
+            bind -x '"\C-o":${check-git} && { ruff format; ruff check --fix || ruff check --output-format grouped; }'
+            bind -x '"\C-p":${check-git} && pre-commit'
 
             stty -ixon
 
