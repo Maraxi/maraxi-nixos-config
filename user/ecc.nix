@@ -7,6 +7,10 @@
     TNS_ADMIN = "$HOME/.config/tns_ora";
   };
 
+  programs.bash.shellAliases = {
+    tox = "TERM=xterm-256color tox";
+  };
+
   home.sessionPath = ["$HOME/p1-bin"];
   home.file."p1-bin".source = config.lib.meta.mkMutableSymlink ../hosts/p1;
 
