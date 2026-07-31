@@ -240,7 +240,7 @@ in
       # To regenerate a fresh i3 config file run i3-config-wizard(1).
       enable = true;
       config = let
-        window_mode = "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout 1-4:presets 9:fix blackscreen";
+        window_mode = "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout p:fix picom 1-4:presets 9:fix blackscreen";
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
         apps_mode = "APPS C:edge E:nemo R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
         exit_mode = "EXIT o:lock x:screen-off s:suspend h:hibernate e:logout u:switch-user p:poweroff r:reboot";
@@ -291,6 +291,7 @@ in
               f = "exec --no-startup-id ${feh}";
               k = "mode default, exec --no-startup-id ${keyboard_layout}";
               u = "mode default, exec --no-startup-id ${keyboard_layout_us}";
+              p = "exec --no-startup-id \"killall -q picom; picom -b\"";
               "1" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\"";
               "2" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-home.sh; ${feh}\"";
               "3" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors.sh; ${feh}\"";
@@ -427,11 +428,11 @@ in
                 # and nm-applet is a desktop environment-independent system tray GUI for it.
                 "nm-applet"
 
-                # Compositor for transparency
-                "picom &"
-
                 # Default screens and background
                 "\"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\""
+
+                # Compositor for transparency
+                "sleep 2 && kill -q picom; picom -b"
 
                 # Define placeholders for Edge and launch
                 "i3-msg 'workspace 1; append_layout ~/.config/i3/edge.json'"
