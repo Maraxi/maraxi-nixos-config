@@ -117,6 +117,7 @@
           ffmpeg-headless
           ffmpegthumbnailer
 
+          glib
           nemo
           libreoffice-fresh
           evince
