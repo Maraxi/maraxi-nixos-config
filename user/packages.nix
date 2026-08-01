@@ -159,6 +159,9 @@
     basic_pkgs ++ per_system_pkgs;
 
   dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
     "org/nemo/preferences" = {
       show-hidden-files = true;
       thumbnail-limit = lib.hm.gvariant.mkUint64 1073741824;
