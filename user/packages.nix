@@ -91,6 +91,7 @@
           python314
           python314Packages.ipython
 
+          wev
           inxi
           usbutils
           parallel
