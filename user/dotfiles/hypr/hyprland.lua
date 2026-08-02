@@ -7,8 +7,8 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 local monitor_left = "DP-5"
 local monitor_right = "HDMI-A-2"
-hl.monitor({ output = monitor_left, mode = "preferred", position = "auto", scale = "auto" })
-hl.monitor({ output = monitor_right, mode = "preferred", position = "auto-right", scale = "auto" })
+hl.monitor({ output = monitor_left, mode = "preferred", position = "0x0", scale = "auto" })
+hl.monitor({ output = monitor_right, mode = "preferred", position = "2560x0", scale = "auto" })
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "auto" })
 
 ---------------------
