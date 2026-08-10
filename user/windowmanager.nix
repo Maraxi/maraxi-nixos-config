@@ -253,6 +253,8 @@ in
         keyboard_layout = ''"setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"'';
         keyboard_layout_us = ''"setxkbmap us -option -option ${keyboard.options}"'';
         feh = "feh --no-fehbg --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg";
+
+        pactl = "exec --no-startup-id pactl";
       in
         shared_config
         // {
@@ -275,10 +277,11 @@ in
               "Print" = "exec flameshot gui";
               "${modifier}+p" = "exec flameshot gui";
 
-              "F12" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
-              "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
-              "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3%";
-              "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+              "F7" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
+              "F8" = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
+              "XF86AudioLowerVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
+              "XF86AudioRaiseVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
+              "XF86AudioMute" = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
 
               "${meh}+w" = "mode \"${window_mode}\"";
               "${meh}+s" = "mode \"${sound_mode}\"";
@@ -309,19 +312,19 @@ in
             in {
               # Use pactl to adjust volume in PulseAudio.
               # set $refresh_i3status killall -SIGUSR1 i3status
-              u = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3%";
-              d = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
-              m = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+              u = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
+              d = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
+              m = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
 
-              "F12" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
-              "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3%";
-              "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3%";
-              "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
+              "F12" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
+              "XF86AudioLowerVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
+              "XF86AudioRaiseVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
+              "XF86AudioMute" = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
 
-              r = "exec --no-startup-id pactl set-sink-volume ${hdmi_sink} +3%";
-              l = "exec --no-startup-id pactl set-sink-volume ${hdmi_sink} -3%";
-              "0" = "exec --no-startup-id pactl set-sink-mute ${hdmi_sink} toggle";
-              i = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+              r = "${pactl} set-sink-volume ${hdmi_sink} +3%";
+              l = "${pactl} set-sink-volume ${hdmi_sink} -3%";
+              "0" = "${pactl} set-sink-mute ${hdmi_sink} toggle";
+              i = "${pactl} set-source-mute @DEFAULT_SOURCE@ toggle";
 
               Escape = "mode default";
             };
