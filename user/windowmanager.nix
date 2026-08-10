@@ -478,7 +478,7 @@ in
       '';
     };
 
-    xdg.configFile."i3status/config".source = dotfiles/i3/i3status;
+    xdg.configFile."i3status/config".source = config.lib.meta.mkMutableSymlink dotfiles/i3/i3status;
     xdg.configFile."i3/edge.json".source = dotfiles/i3/edge.json;
 
     services.dunst = {
