@@ -7,9 +7,12 @@
   ...
 }: let
   # See https://i3wm.org/docs/userguide.html for a complete reference to i3/sway!
-  shared_config = rec {
+  shared_config = let
+    terminal_primary = "alacritty";
+    terminal_backup = "ghostty +new-window";
+  in rec {
     modifier = "Mod4";
-    terminal = "ghostty +new-window";
+    terminal = terminal_primary;
     fonts = {
       names = ["DejaVu Sans Mono" "FontAwesome5Free"];
       style = "Bold Semi-Condensed";
@@ -77,7 +80,7 @@
         else "dunstctl close-all";
     in {
       "${modifier}+Return" = "exec ${terminal}";
-      "${modifier}+Ctrl+Return" = "exec alacritty";
+      "${modifier}+Ctrl+Return" = "exec ${terminal_backup}";
       "${meh}+q" = "kill";
 
       "${modifier}+${left}" = "focus left";
