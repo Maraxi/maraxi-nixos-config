@@ -375,7 +375,7 @@ in
             }) ["1" "2" "3"]
             ++ map (workspace: {
               workspace = workspace;
-              output = ["DP-1-1.1"];
+              output = ["DP-1-1.1" "DP-1.1"];
             }) ["4" "5" "6"]
             ++ map (workspace: {
               workspace = workspace;
