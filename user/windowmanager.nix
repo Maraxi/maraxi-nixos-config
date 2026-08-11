@@ -5,156 +5,166 @@
   setup,
   keyboard,
   ...
-}: let
+}:
+let
   # See https://i3wm.org/docs/userguide.html for a complete reference to i3/sway!
-  shared_config = let
-    terminal_primary = "alacritty";
-    terminal_backup = "ghostty +new-window";
-  in rec {
-    modifier = "Mod4";
-    terminal = terminal_primary;
-    fonts = {
-      names = ["DejaVu Sans Mono" "FontAwesome5Free"];
-      style = "Bold Semi-Condensed";
-      size = 11.0;
-    };
-    colors = let
-      cl_focused = "#082899";
-      cl_inactive = "#5f5456";
-      cl_background = "#231f20";
-      cl_border = "#181818";
-      cl_text = "#d9d8d8";
-      cl_urgent = "#9966ff";
-      cl_split_indicator = "#d9d8d8";
-    in {
-      focused = {
-        background = "${cl_focused}";
-        border = "${cl_focused}";
-        text = "${cl_text}";
-        indicator = "${cl_split_indicator}";
-        childBorder = "${cl_background}";
+  shared_config =
+    let
+      terminal_primary = "alacritty";
+      terminal_backup = "ghostty +new-window";
+    in
+    rec {
+      modifier = "Mod4";
+      terminal = terminal_primary;
+      fonts = {
+        names = [
+          "DejaVu Sans Mono"
+          "FontAwesome5Free"
+        ];
+        style = "Bold Semi-Condensed";
+        size = 11.0;
       };
-      focusedInactive = {
-        background = "${cl_inactive}";
-        border = "${cl_border}";
-        text = "${cl_text}";
-        indicator = "${cl_split_indicator}";
-        childBorder = "${cl_background}";
+      colors =
+        let
+          cl_focused = "#082899";
+          cl_inactive = "#5f5456";
+          cl_background = "#231f20";
+          cl_border = "#181818";
+          cl_text = "#d9d8d8";
+          cl_urgent = "#9966ff";
+          cl_split_indicator = "#d9d8d8";
+        in
+        {
+          focused = {
+            background = "${cl_focused}";
+            border = "${cl_focused}";
+            text = "${cl_text}";
+            indicator = "${cl_split_indicator}";
+            childBorder = "${cl_background}";
+          };
+          focusedInactive = {
+            background = "${cl_inactive}";
+            border = "${cl_border}";
+            text = "${cl_text}";
+            indicator = "${cl_split_indicator}";
+            childBorder = "${cl_background}";
+          };
+          unfocused = {
+            background = "${cl_background}";
+            border = "${cl_border}";
+            text = "${cl_text}";
+            indicator = "${cl_split_indicator}";
+            childBorder = "${cl_background}";
+          };
+          urgent = {
+            background = "${cl_urgent}";
+            border = "${cl_urgent}";
+            text = "${cl_text}";
+            indicator = "${cl_split_indicator}";
+            childBorder = "${cl_background}";
+          };
+        };
+
+      focus = {
+        followMouse = false;
+        mouseWarping = false;
+        newWindow = "smart";
       };
-      unfocused = {
-        background = "${cl_background}";
-        border = "${cl_border}";
-        text = "${cl_text}";
-        indicator = "${cl_split_indicator}";
-        childBorder = "${cl_background}";
-      };
-      urgent = {
-        background = "${cl_urgent}";
-        border = "${cl_urgent}";
-        text = "${cl_text}";
-        indicator = "${cl_split_indicator}";
-        childBorder = "${cl_background}";
-      };
+      workspaceLayout = "tabbed";
+      defaultWorkspace = "workspace number 1";
+
+      floating.modifier = "${modifier}";
+
+      keybindings =
+        let
+          meh = "Mod4+Ctrl+Shift";
+          left = "h";
+          down = "j";
+          up = "k";
+          right = "l";
+
+          dismiss_notifications =
+            if setup.isNixOS then "${pkgs.mako}/bin/makoctl dismiss -a" else "dunstctl close-all";
+        in
+        {
+          "${modifier}+Return" = "exec ${terminal}";
+          "${modifier}+Ctrl+Return" = "exec ${terminal_backup}";
+          "${meh}+q" = "kill";
+
+          "${modifier}+${left}" = "focus left";
+          "${modifier}+${down}" = "focus down";
+          "${modifier}+${up}" = "focus up";
+          "${modifier}+${right}" = "focus right";
+
+          "${modifier}+Shift+${left}" = "move workspace to output left";
+          "${modifier}+Shift+${down}" = "move down";
+          "${modifier}+Shift+${up}" = "move up";
+          "${modifier}+Shift+${right}" = "move workspace to output right";
+
+          "${meh}+h" = "split h";
+          "${meh}+v" = "split v";
+          # "${meh}+a" = "focus parent";
+          # "${meh}+d" = "focus child";
+          "${meh}+t" = "layout toggle tabbed splith";
+
+          "${meh}+f" = "fullscreen toggle";
+          "${meh}+l" = "floating toggle"; # toggle tiling / floating for active window
+          "${meh}+o" = "focus mode_toggle"; # change focus between tiling / floating windows
+
+          "${modifier}+1" = "workspace number 1";
+          "${modifier}+2" = "workspace number 2";
+          "${modifier}+3" = "workspace number 3";
+          "${modifier}+4" = "workspace number 4";
+          "${modifier}+5" = "workspace number 5";
+          "${modifier}+6" = "workspace number 6";
+          "${modifier}+7" = "workspace number 7";
+          "${modifier}+8" = "workspace number 8";
+          "${modifier}+9" = "workspace number 9";
+          "${modifier}+0" = "workspace number 10";
+
+          "${modifier}+Shift+1" = "move container to workspace number 1";
+          "${modifier}+Shift+2" = "move container to workspace number 2";
+          "${modifier}+Shift+3" = "move container to workspace number 3";
+          "${modifier}+Shift+4" = "move container to workspace number 4";
+          "${modifier}+Shift+5" = "move container to workspace number 5";
+          "${modifier}+Shift+6" = "move container to workspace number 6";
+          "${modifier}+Shift+7" = "move container to workspace number 7";
+          "${modifier}+Shift+8" = "move container to workspace number 8";
+          "${modifier}+Shift+9" = "move container to workspace number 9";
+          "${modifier}+Shift+0" = "move container to workspace number 10";
+
+          "${modifier}+Shift+comma" = "move scratchpad";
+          "${modifier}+comma" = "scratchpad show";
+
+          "${modifier}+Tab" = "workspace back_and_forth";
+          # focus urgent/recent
+          "${meh}+u" = "[urgent=\"latest\"] focus";
+
+          "${meh}+c" = "reload";
+
+          "${meh}+d" = "exec --no-startup-id ${dismiss_notifications}";
+        };
     };
-
-    focus = {
-      followMouse = false;
-      mouseWarping = false;
-      newWindow = "smart";
-    };
-    workspaceLayout = "tabbed";
-    defaultWorkspace = "workspace number 1";
-
-    floating.modifier = "${modifier}";
-
-    keybindings = let
-      meh = "Mod4+Ctrl+Shift";
-      left = "h";
-      down = "j";
-      up = "k";
-      right = "l";
-
-      dismiss_notifications =
-        if setup.isNixOS
-        then "${pkgs.mako}/bin/makoctl dismiss -a"
-        else "dunstctl close-all";
-    in {
-      "${modifier}+Return" = "exec ${terminal}";
-      "${modifier}+Ctrl+Return" = "exec ${terminal_backup}";
-      "${meh}+q" = "kill";
-
-      "${modifier}+${left}" = "focus left";
-      "${modifier}+${down}" = "focus down";
-      "${modifier}+${up}" = "focus up";
-      "${modifier}+${right}" = "focus right";
-
-      "${modifier}+Shift+${left}" = "move workspace to output left";
-      "${modifier}+Shift+${down}" = "move down";
-      "${modifier}+Shift+${up}" = "move up";
-      "${modifier}+Shift+${right}" = "move workspace to output right";
-
-      "${meh}+h" = "split h";
-      "${meh}+v" = "split v";
-      # "${meh}+a" = "focus parent";
-      # "${meh}+d" = "focus child";
-      "${meh}+t" = "layout toggle tabbed splith";
-
-      "${meh}+f" = "fullscreen toggle";
-      "${meh}+l" = "floating toggle"; # toggle tiling / floating for active window
-      "${meh}+o" = "focus mode_toggle"; # change focus between tiling / floating windows
-
-      "${modifier}+1" = "workspace number 1";
-      "${modifier}+2" = "workspace number 2";
-      "${modifier}+3" = "workspace number 3";
-      "${modifier}+4" = "workspace number 4";
-      "${modifier}+5" = "workspace number 5";
-      "${modifier}+6" = "workspace number 6";
-      "${modifier}+7" = "workspace number 7";
-      "${modifier}+8" = "workspace number 8";
-      "${modifier}+9" = "workspace number 9";
-      "${modifier}+0" = "workspace number 10";
-
-      "${modifier}+Shift+1" = "move container to workspace number 1";
-      "${modifier}+Shift+2" = "move container to workspace number 2";
-      "${modifier}+Shift+3" = "move container to workspace number 3";
-      "${modifier}+Shift+4" = "move container to workspace number 4";
-      "${modifier}+Shift+5" = "move container to workspace number 5";
-      "${modifier}+Shift+6" = "move container to workspace number 6";
-      "${modifier}+Shift+7" = "move container to workspace number 7";
-      "${modifier}+Shift+8" = "move container to workspace number 8";
-      "${modifier}+Shift+9" = "move container to workspace number 9";
-      "${modifier}+Shift+0" = "move container to workspace number 10";
-
-      "${modifier}+Shift+comma" = "move scratchpad";
-      "${modifier}+comma" = "scratchpad show";
-
-      "${modifier}+Tab" = "workspace back_and_forth";
-      # focus urgent/recent
-      "${meh}+u" = "[urgent=\"latest\"] focus";
-
-      "${meh}+c" = "reload";
-
-      "${meh}+d" = "exec --no-startup-id ${dismiss_notifications}";
-    };
-  };
 in
-  if setup.isNixOS
-  then {
+if setup.isNixOS then
+  {
     wayland.windowManager.sway = {
       enable = true;
       checkConfig = false;
-      config = let
-        mode_apps = "[t]hunderbird [f]irefox [k]eepass key[m]app";
-        mode_sound = "[m]ute [u]p [d]own";
-        mode_power = "Power: [h]ibernate [s]uspend [l]ogout [p]oweroff";
-        mode_record = "Recording: Ctrl+Esc to quit";
-      in
+      config =
+        let
+          mode_apps = "[t]hunderbird [f]irefox [k]eepass key[m]app";
+          mode_sound = "[m]ute [u]p [d]own";
+          mode_power = "Power: [h]ibernate [s]uspend [l]ogout [p]oweroff";
+          mode_record = "Recording: Ctrl+Esc to quit";
+        in
         shared_config
         // {
-          keybindings = let
-            modifier = shared_config.modifier;
-            meh = "${modifier}+Ctrl+Shift";
-          in
+          keybindings =
+            let
+              modifier = shared_config.modifier;
+              meh = "${modifier}+Ctrl+Shift";
+            in
             shared_config.keybindings
             // {
               "${modifier}+d" = "exec --no-startup-id ${config.wayland.windowManager.sway.config.menu}";
@@ -162,8 +172,10 @@ in
               # sway-contrib.grimshot
               # slurp # wayland screenshots
               # shotman # wayland screenshots
-              "${modifier}+p" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Pictures/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
-              "${meh}+p" = "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Pictures/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode \"${mode_record}\"";
+              "${modifier}+p" =
+                "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Pictures/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
+              "${meh}+p" =
+                "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Pictures/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode \"${mode_record}\"";
 
               "${meh}+r" = "mode resize";
               "${meh}+a" = "mode \"${mode_apps}\"";
@@ -178,14 +190,16 @@ in
               m = "mode default, exec ${pkgs.keymapp}/bin/keymapp";
               Escape = "mode default";
             };
-            ${mode_sound} = let
-              pamixer-bin = "${pkgs.pamixer}/bin/pamixer";
-            in {
-              m = "exec ${pamixer-bin} -t";
-              u = "exec ${pamixer-bin} -i 3";
-              d = "exec ${pamixer-bin} -d 3";
-              Escape = "mode default";
-            };
+            ${mode_sound} =
+              let
+                pamixer-bin = "${pkgs.pamixer}/bin/pamixer";
+              in
+              {
+                m = "exec ${pamixer-bin} -t";
+                u = "exec ${pamixer-bin} -i 3";
+                d = "exec ${pamixer-bin} -d 3";
+                Escape = "mode default";
+              };
             ${mode_power} = {
               h = "exec --no-startup-id systemctl hibernate, mode default";
               s = "exec --no-startup-id systemctl suspend, mode default";
@@ -201,19 +215,25 @@ in
 
           input = {
             # swaymsg -t get_inputs
-            "1008:36:CHICONY_HP_Basic_USB_Keyboard" = keyboard // {xkb_numlock = "enabled";};
+            "1008:36:CHICONY_HP_Basic_USB_Keyboard" = keyboard // {
+              xkb_numlock = "enabled";
+            };
             "type:keyboard" = keyboard;
           };
           output = {
             # swaymsg -t get_outputs
-            eDP-1 = {pos = "0 150";};
-            HDMI-A-2 = {pos = "1600 0";}; # mode = "1920x1080@60Hz";
+            eDP-1 = {
+              pos = "0 150";
+            };
+            HDMI-A-2 = {
+              pos = "1600 0";
+            }; # mode = "1920x1080@60Hz";
           };
 
           assigns = {
             # swaymsg -t get_tree
-            "8" = [{app_id = "^thunderbird$";}];
-            "9" = [{title = "^KeeData.kdbx";}];
+            "8" = [ { app_id = "^thunderbird$"; } ];
+            "9" = [ { title = "^KeeData.kdbx"; } ];
           };
 
           startup = [
@@ -238,30 +258,33 @@ in
       wrapperFeatures.gtk = true;
     };
   }
-  else {
+else
+  {
     xsession.windowManager.i3 = {
       # To regenerate a fresh i3 config file run i3-config-wizard(1).
       enable = true;
-      config = let
-        window_mode = "WINDOW x:xrandr a:arandr r:autorandr f:feh k:keyboard u:us-layout p:fix picom 1-4:presets 9:fix blackscreen";
-        sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
-        apps_mode = "APPS C:edge E:nemo R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
-        exit_mode = "EXIT o:lock x:screen-off s:suspend h:hibernate e:logout u:switch-user p:poweroff r:reboot";
+      config =
+        let
+          window_mode = "WINDOW x:xrandr a:arandr r:autorandr f:feh k:keyboard u:us-layout p:fix picom 1-4:presets 9:fix blackscreen";
+          sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
+          apps_mode = "APPS C:edge E:nemo R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
+          exit_mode = "EXIT o:lock x:screen-off s:suspend h:hibernate e:logout u:switch-user p:poweroff r:reboot";
 
-        # check dconf-editor -> ord/gnome/desktop/input-sources/xkb-options
-        # reset options to empty by using "-option" with no argument
-        keyboard_layout = ''"setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"'';
-        keyboard_layout_us = ''"setxkbmap us -option -option ${keyboard.options}"'';
-        feh = "feh --no-fehbg --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg";
+          # check dconf-editor -> ord/gnome/desktop/input-sources/xkb-options
+          # reset options to empty by using "-option" with no argument
+          keyboard_layout = ''"setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"'';
+          keyboard_layout_us = ''"setxkbmap us -option -option ${keyboard.options}"'';
+          feh = "feh --no-fehbg --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg";
 
-        pactl = "exec --no-startup-id pactl";
-      in
+          pactl = "exec --no-startup-id pactl";
+        in
         shared_config
         // {
-          keybindings = let
-            modifier = shared_config.modifier;
-            meh = "${modifier}+Ctrl+Shift";
-          in
+          keybindings =
+            let
+              modifier = shared_config.modifier;
+              meh = "${modifier}+Ctrl+Shift";
+            in
             shared_config.keybindings
             // {
               "${meh}+r" = "restart";
@@ -302,33 +325,36 @@ in
               "1" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\"";
               "2" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-home.sh; ${feh}\"";
               "3" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors.sh; ${feh}\"";
-              "4" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors-right.sh; ${feh}\"";
+              "4" =
+                "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors-right.sh; ${feh}\"";
               "9" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-overlapping.sh; ${feh}\"";
 
               Escape = "mode default";
             };
 
-            ${sound_mode} = let
-              hdmi_sink = "alsa_output.pci-0000_01_00.1.hdmi-stereo";
-            in {
-              # Use pactl to adjust volume in PulseAudio.
-              # set $refresh_i3status killall -SIGUSR1 i3status
-              u = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
-              d = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
-              m = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
+            ${sound_mode} =
+              let
+                hdmi_sink = "alsa_output.pci-0000_01_00.1.hdmi-stereo";
+              in
+              {
+                # Use pactl to adjust volume in PulseAudio.
+                # set $refresh_i3status killall -SIGUSR1 i3status
+                u = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
+                d = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
+                m = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
 
-              "F12" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
-              "XF86AudioLowerVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
-              "XF86AudioRaiseVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
-              "XF86AudioMute" = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
+                "F12" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
+                "XF86AudioLowerVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
+                "XF86AudioRaiseVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
+                "XF86AudioMute" = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
 
-              r = "${pactl} set-sink-volume ${hdmi_sink} +3%";
-              l = "${pactl} set-sink-volume ${hdmi_sink} -3%";
-              "0" = "${pactl} set-sink-mute ${hdmi_sink} toggle";
-              i = "${pactl} set-source-mute @DEFAULT_SOURCE@ toggle";
+                r = "${pactl} set-sink-volume ${hdmi_sink} +3%";
+                l = "${pactl} set-sink-volume ${hdmi_sink} -3%";
+                "0" = "${pactl} set-sink-mute ${hdmi_sink} toggle";
+                i = "${pactl} set-source-mute @DEFAULT_SOURCE@ toggle";
 
-              Escape = "mode default";
-            };
+                Escape = "mode default";
+              };
 
             ${apps_mode} = {
               c = "mode default, exec microsoft-edge-stable";
@@ -346,21 +372,23 @@ in
               Escape = "mode default";
             };
 
-            ${exit_mode} = let
-              lock = "i3lock --show-failed-attempts --color=000000 && sleep 1";
-              display_off = "xset dpms force off";
-            in {
-              x = "mode default, exec sleep 0.2 && ${display_off}";
-              o = "mode default, exec ${lock} && exec ${display_off}";
-              s = "mode default, exec ${lock} && exec systemctl suspend";
-              h = "mode default, exec systemctl hibernate -i";
-              r = "mode default, exec systemctl reboot";
-              e = "exit";
-              u = "mode default, exec gdmflexiserver";
-              p = "exec systemctl poweroff -i";
+            ${exit_mode} =
+              let
+                lock = "i3lock --show-failed-attempts --color=000000 && sleep 1";
+                display_off = "xset dpms force off";
+              in
+              {
+                x = "mode default, exec sleep 0.2 && ${display_off}";
+                o = "mode default, exec ${lock} && exec ${display_off}";
+                s = "mode default, exec ${lock} && exec systemctl suspend";
+                h = "mode default, exec systemctl hibernate -i";
+                r = "mode default, exec systemctl reboot";
+                e = "exit";
+                u = "mode default, exec gdmflexiserver";
+                p = "exec systemctl poweroff -i";
 
-              Escape = "mode default";
-            };
+                Escape = "mode default";
+              };
 
             "resize" = {
               h = "resize shrink width  10 px or 10 ppt";
@@ -373,34 +401,73 @@ in
           };
 
           workspaceOutputAssign =
-            map (workspace: {
-              workspace = workspace;
-              output = ["DP-1-1.8" "DP-1-1.1.8" "DP-1-1.3" "DP-1.3" "DP-1.8"];
-            }) ["1" "2" "3"]
-            ++ map (workspace: {
-              workspace = workspace;
-              output = ["DP-1-1.1" "DP-1.1"];
-            }) ["4" "5" "6"]
-            ++ map (workspace: {
-              workspace = workspace;
-              output = ["eDP-1" "eDP-1-1"];
-            }) ["8" "9" "10"];
+            map
+              (workspace: {
+                workspace = workspace;
+                output = [
+                  "DP-1-1.8"
+                  "DP-1-1.1.8"
+                  "DP-1-1.3"
+                  "DP-1.3"
+                  "DP-1.8"
+                ];
+              })
+              [
+                "1"
+                "2"
+                "3"
+              ]
+            ++
+              map
+                (workspace: {
+                  workspace = workspace;
+                  output = [
+                    "DP-1-1.1"
+                    "DP-1.1"
+                  ];
+                })
+                [
+                  "4"
+                  "5"
+                  "6"
+                ]
+            ++
+              map
+                (workspace: {
+                  workspace = workspace;
+                  output = [
+                    "eDP-1"
+                    "eDP-1-1"
+                  ];
+                })
+                [
+                  "8"
+                  "9"
+                  "10"
+                ];
           assigns = {
             # i3-msg -t get_tree | jq -C | less
             # "1" = [ { class = "^(Chromium-browser|Google-chrome)$"; title = "^(?!File Explorer)(?!Secure Google Chrome)"; } ];
-            "2" = [{class = "^jetbrains-pycharm$";}];
-            "3" = [{class = "^org.remmina.Remmina$";}];
+            "2" = [ { class = "^jetbrains-pycharm$"; } ];
+            "3" = [ { class = "^org.remmina.Remmina$"; } ];
             "4" = [
-              {class = "^File Explorer$";} # Citrix
+              { class = "^File Explorer$"; } # Citrix
               {
                 class = "^Chromium";
                 title = "^(File Explorer|Secure Google Chrome)";
               }
             ];
-            "6" = [{class = "^xfreerdp$";}];
-            "8" = [{class = "^pavucontrol$";}];
-            "9" = [{title = "^KeePassXC$";} {title = "^Passwords.*KeePassXC$";}];
-            "10" = [{class = "^ZSTray$";} {class = "^Intune-portal$";} {class = "^Keymapp$";}];
+            "6" = [ { class = "^xfreerdp$"; } ];
+            "8" = [ { class = "^pavucontrol$"; } ];
+            "9" = [
+              { title = "^KeePassXC$"; }
+              { title = "^Passwords.*KeePassXC$"; }
+            ];
+            "10" = [
+              { class = "^ZSTray$"; }
+              { class = "^Intune-portal$"; }
+              { class = "^Keymapp$"; }
+            ];
           };
 
           bars = [
@@ -409,16 +476,22 @@ in
               command = ''"${pkgs.i3}/bin/i3bar -t"'';
               statusCommand = ''"${pkgs.i3status}/bin/i3status"'';
               colors = {
-                urgentWorkspace = lib.attrsets.getAttrs ["background" "border" "text"] shared_config.colors.urgent;
+                urgentWorkspace = lib.attrsets.getAttrs [
+                  "background"
+                  "border"
+                  "text"
+                ] shared_config.colors.urgent;
               };
             }
           ];
 
           startup =
-            (map (cmd: {
+            (map
+              (cmd: {
                 command = cmd;
                 notification = false;
-              }) [
+              })
+              [
                 # Load environment vars from .profile to be available in "systemctl --user show-environment"
                 "export XDG_CURRENT_DESKTOP=i3; systemctl --user import-environmet XDG_DATA_DIRS; dbus-update-activation-environment --systemd --all"
 
@@ -449,10 +522,11 @@ in
                 # screensaver
                 # ''"xset +dpms; xset s 540"''
                 ''"sleep 3; xset s off dpms 0 0 0; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
-              ])
+              ]
+            )
             ++ [
-              {command = "${pkgs.keepassxc}/bin/keepassxc";}
-              {command = "intune-portal";}
+              { command = "${pkgs.keepassxc}/bin/keepassxc"; }
+              { command = "intune-portal"; }
             ];
         };
       extraConfig = ''
@@ -491,5 +565,6 @@ in
       pkgs.autorandr
     ];
     xdg.configFile."dunst/dunstrc".enable = false;
-    xdg.configFile."dunst/readme".text = "Managed by home-manager. See the config used by service instead:\nsystemctl --user status dunst.service";
+    xdg.configFile."dunst/readme".text =
+      "Managed by home-manager. See the config used by service instead:\nsystemctl --user status dunst.service";
   }

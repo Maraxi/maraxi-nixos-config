@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     # kanshi # hot switching output profiles
     wl-clipboard # wayland clipboard

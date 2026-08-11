@@ -1,4 +1,4 @@
-{config, ...}: {
+{ config, ... }: {
   programs.ghostty = {
     enable = true;
     systemd.enable = true;

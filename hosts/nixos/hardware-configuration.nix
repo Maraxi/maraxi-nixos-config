@@ -7,17 +7,26 @@
   pkgs,
   modulesPath,
   ...
-}: {
-  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+}:
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot = {
     # kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
     initrd = {
-      availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
-      kernelModules = [];
-      luks.devices."luks-0ab0e28a-8209-4391-9a4f-dc1240c8bea4".device = "/dev/disk/by-uuid/0ab0e28a-8209-4391-9a4f-dc1240c8bea4";
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+      ];
+      kernelModules = [ ];
+      luks.devices."luks-0ab0e28a-8209-4391-9a4f-dc1240c8bea4".device =
+        "/dev/disk/by-uuid/0ab0e28a-8209-4391-9a4f-dc1240c8bea4";
     };
   };
 
@@ -30,7 +39,10 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/B2B2-768D";
       fsType = "vfat";
-      options = ["fmask=0077" "dmask=0077"];
+      options = [
+        "fmask=0077"
+        "dmask=0077"
+      ];
     };
 
     "/home/stefan/extra" = {
@@ -39,7 +51,7 @@
     };
   };
 
-  swapDevices = [{device = "/dev/disk/by-uuid/8f8a291d-e4fd-4f77-85a1-9dc1e744a0d0";}];
+  swapDevices = [ { device = "/dev/disk/by-uuid/8f8a291d-e4fd-4f77-85a1-9dc1e744a0d0"; } ];
 
   # https://nixos.wiki/wiki/Power_Management
   # /proc/acpi/wakeup -> GPP0, GPP7, DP40

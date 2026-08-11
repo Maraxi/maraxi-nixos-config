@@ -1,4 +1,4 @@
-{pkgs, ...}: {
-  environment.systemPackages = [pkgs.android-tools];
-  users.users.stefan.extraGroups = ["adbusers"];
+{ pkgs, ... }: {
+  environment.systemPackages = [ pkgs.android-tools ];
+  users.users.stefan.extraGroups = [ "adbusers" ];
 }

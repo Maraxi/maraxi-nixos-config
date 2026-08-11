@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   programs.steam = {
     enable = true;
     # extest.enable = true; # Using steam input on wayland

@@ -1,4 +1,4 @@
-{hostName, ...}: {
+{ hostName, ... }: {
   networking = {
     inherit hostName;
 
@@ -17,14 +17,14 @@
     nftables.enable = true;
 
     hosts = {
-      "104.26.10.35" = ["static1.e621.net"];
+      "104.26.10.35" = [ "static1.e621.net" ];
     };
   };
 
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = false;
-    ports = [36969];
+    ports = [ 36969 ];
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "no";

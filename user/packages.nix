@@ -3,160 +3,163 @@
   setup,
   lib,
   ...
-}: {
-  home.packages = let
-    basic_pkgs = with pkgs; [
-      # Default terminal for gtk-launch / wofi
-      (pkgs.writeShellScriptBin "xdg-terminal-exec" ''exec ${pkgs.ghostty}/bin/ghostty +new-window -e "$@"'')
+}:
+{
+  home.packages =
+    let
+      basic_pkgs = with pkgs; [
+        # Default terminal for gtk-launch / wofi
+        (pkgs.writeShellScriptBin "xdg-terminal-exec" ''exec ${pkgs.ghostty}/bin/ghostty +new-window -e "$@"'')
 
-      (pkgs.symlinkJoin {
-        name = "xdg-utils-and-alias";
-        paths = [pkgs.xdg-utils];
-        postBuild = ''ln -s $out/bin/xdg-open $out/bin/open'';
-      })
+        (pkgs.symlinkJoin {
+          name = "xdg-utils-and-alias";
+          paths = [ pkgs.xdg-utils ];
+          postBuild = "ln -s $out/bin/xdg-open $out/bin/open";
+        })
 
-      fastfetch
-      tmux
+        fastfetch
+        tmux
 
-      (pkgs.symlinkJoin {
-        name = "feh";
-        buildInputs = [pkgs.makeWrapper];
-        paths = [pkgs.feh];
-        postBuild = ''wrapProgram $out/bin/feh --append-flags "--no-fehbg"'';
-      })
+        (pkgs.symlinkJoin {
+          name = "feh";
+          buildInputs = [ pkgs.makeWrapper ];
+          paths = [ pkgs.feh ];
+          postBuild = ''wrapProgram $out/bin/feh --append-flags "--no-fehbg"'';
+        })
 
-      telegram-desktop
+        telegram-desktop
 
-      uv
-      ruff
-      ty
+        uv
+        ruff
+        ty
 
-      jq
-      yq
+        jq
+        yq
 
-      lua
-      stylua
-      # cargo
-      # zig
+        lua
+        stylua
+        # cargo
+        # zig
 
-      htop
-      btop
+        htop
+        btop
 
-      fd
-      pciutils
-      wget
-      lsof
-      bat
-      dust
-      file
+        fd
+        pciutils
+        wget
+        lsof
+        bat
+        dust
+        file
 
-      (pkgs.symlinkJoin {
-        name = "trans";
-        buildInputs = [pkgs.makeWrapper];
-        paths = [pkgs.translate-shell];
-        postBuild = ''wrapProgram $out/bin/trans --append-flags "-engine bing"'';
-      })
+        (pkgs.symlinkJoin {
+          name = "trans";
+          buildInputs = [ pkgs.makeWrapper ];
+          paths = [ pkgs.translate-shell ];
+          postBuild = ''wrapProgram $out/bin/trans --append-flags "-engine bing"'';
+        })
 
-      nix-tree
-      nvd
+        nix-tree
+        nvd
 
-      atool
-      zip
-      unzip
-      unar
+        atool
+        zip
+        unzip
+        unar
 
-      tty-clock
+        tty-clock
 
-      nixfmt
-      alejandra
-      shellcheck
-      shfmt
-      shellharden
+        nixfmt
+        alejandra
+        shellcheck
+        shfmt
+        shellharden
 
-      pre-commit
+        pre-commit
 
-      imagemagick
+        imagemagick
 
-      # # overrides. You can do that directly here, just don't forget the
-      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-      # # fonts?
-      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-    ];
-    per_system_pkgs =
-      if setup.isNixOS
-      then
-        with pkgs; [
-          gcc
-          gnumake
-          python314
-          python314Packages.ipython
+        # # overrides. You can do that directly here, just don't forget the
+        # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+        # # fonts?
+        # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+      ];
+      per_system_pkgs =
+        if setup.isNixOS then
+          with pkgs;
+          [
+            gcc
+            gnumake
+            python314
+            python314Packages.ipython
 
-          wev
-          inxi
-          usbutils
-          parallel
+            wev
+            inxi
+            usbutils
+            parallel
 
-          dig
+            dig
 
-          libfaketime
-          libnotify
+            libfaketime
+            libnotify
 
-          fclones
+            fclones
 
-          pavucontrol
-          vlc
+            pavucontrol
+            vlc
 
-          glances
-          ncdu
+            glances
+            ncdu
 
-          gimp
-          gdk-pixbuf
-          webp-pixbuf-loader
-          # For general HEIF container support (this includes the AVIF file format)
-          libheif.bin # provides heif-thumbnailer (the program that generates HEIF thumbnails)
-          libheif.out # provides heif.thumbnailer (allows for the viewing of HEIF thumbnails)
-          ffmpeg-headless
-          ffmpegthumbnailer
+            gimp
+            gdk-pixbuf
+            webp-pixbuf-loader
+            # For general HEIF container support (this includes the AVIF file format)
+            libheif.bin # provides heif-thumbnailer (the program that generates HEIF thumbnails)
+            libheif.out # provides heif.thumbnailer (allows for the viewing of HEIF thumbnails)
+            ffmpeg-headless
+            ffmpegthumbnailer
 
-          glib
-          nemo
-          libreoffice-fresh
-          evince
-          pdfarranger
-          gthumb
+            glib
+            nemo
+            libreoffice-fresh
+            evince
+            pdfarranger
+            gthumb
 
-          thunderbird
+            thunderbird
 
-          simple-scan
+            simple-scan
 
-          gnome-maps
-        ]
-      else
-        with pkgs; [
-          util-linux
+            gnome-maps
+          ]
+        else
+          with pkgs;
+          [
+            util-linux
 
-          python313
-          python313Packages.ipython
+            python313
+            python313Packages.ipython
 
-          curl
+            curl
 
-          kubectl # for pycharm
+            kubectl # for pycharm
 
-          freerdp
+            freerdp
 
-          sqlcl
+            sqlcl
 
-          podman
-          kubernetes-helm
-          openshift
+            podman
+            kubernetes-helm
+            openshift
 
-          gh # github cli
+            gh # github cli
 
-          apache-directory-studio
+            apache-directory-studio
 
-          bluetuith
-        ];
-  in
+            bluetuith
+          ];
+    in
     basic_pkgs ++ per_system_pkgs;
 
   dconf.settings = {

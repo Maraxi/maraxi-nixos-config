@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   cursor = {
     package = pkgs.volantes-cursors;
     name = "volantes_cursors";
@@ -6,21 +7,21 @@
   cat-variant = "mocha";
   cat-accents = "mauve";
   cat-size = "standard";
-in {
-  home.pointerCursor =
-    {
-      enable = true;
-      gtk.enable = true;
-      x11.enable = true;
-      dotIcons.enable = false;
-    }
-    // cursor;
+in
+{
+  home.pointerCursor = {
+    enable = true;
+    gtk.enable = true;
+    x11.enable = true;
+    dotIcons.enable = false;
+  }
+  // cursor;
   gtk = {
     enable = true;
     theme = {
       package = pkgs.catppuccin-gtk.override {
         variant = cat-variant;
-        accents = [cat-accents];
+        accents = [ cat-accents ];
         size = cat-size;
       };
       name = "catppuccin-${cat-variant}-${cat-accents}-${cat-size}";

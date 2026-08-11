@@ -1,8 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
-    drivers = with pkgs; [brlaser];
+    drivers = with pkgs; [ brlaser ];
   };
   # Color management service for cups
   services.colord.enable = true;

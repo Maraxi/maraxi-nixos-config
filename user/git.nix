@@ -1,4 +1,4 @@
-{setup, ...}: {
+{ setup, ... }: {
   home.shellAliases = {
     s = "git status";
     g = "git lgs";
@@ -8,12 +8,13 @@
     enable = true;
     settings = {
       user =
-        if setup.isNixOS
-        then {
-          name = "Maraxi";
-          email = "Maraxi@users.noreply.github.com";
-        }
-        else {};
+        if setup.isNixOS then
+          {
+            name = "Maraxi";
+            email = "Maraxi@users.noreply.github.com";
+          }
+        else
+          { };
       alias = {
         aliases = "config --get-regexp alias";
 
@@ -83,10 +84,12 @@
       navigate = true;
       side-by-side = true;
       tabs = 4;
-      map-styles = let
-        git-moved-from-color = "bold purple";
-        git-moved-to-color = "bold cyan";
-      in "${git-moved-from-color} => syntax #3f2054, ${git-moved-to-color} => auto #132852";
+      map-styles =
+        let
+          git-moved-from-color = "bold purple";
+          git-moved-to-color = "bold cyan";
+        in
+        "${git-moved-from-color} => syntax #3f2054, ${git-moved-to-color} => auto #132852";
     };
   };
 }

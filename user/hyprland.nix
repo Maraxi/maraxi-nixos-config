@@ -3,9 +3,11 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   # wayland.windowManager.hyprland.enable = true;
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       hyprpaper
       hypridle
@@ -14,10 +16,12 @@
       slurp
       swappy
     ]
-    ++ [inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default];
+    ++ [ inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default ];
   programs.wofi = {
     enable = true;
-    settings = {key_expand = "Left,Right";};
+    settings = {
+      key_expand = "Left,Right";
+    };
   };
 
   services.hypridle.enable = true;

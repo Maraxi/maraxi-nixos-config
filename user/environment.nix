@@ -4,7 +4,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   home.sessionVariables = rec {
     EDITOR = "nvim";
     VISUAL = "nvim";
@@ -59,7 +60,7 @@
     name = "Neovim in new term";
     terminal = false;
     exec = "ghostty +new-window -e nvim-link-handler %u";
-    mimeType = ["x-scheme-handler/nvim"];
+    mimeType = [ "x-scheme-handler/nvim" ];
   };
   home.packages = [
     (pkgs.writeShellScriptBin "nvim-link-handler" ''
@@ -97,23 +98,27 @@
     '')
   ];
 
-  xdg.mimeApps = let
-    editor = "nvim-new-term.desktop";
-    browser =
-      if setup.isNixOS
-      then "firefox.desktop"
-      else "microsoft-edge.desktop";
-    mailer =
-      if setup.isNixOS
-      then "thunderbird.desktop"
-      else browser;
-    image_viewer = ["org.gnome.gThumb.desktop" "feh.desktop"];
-    video_viewer = ["org.gnome.gThumb.desktop" "vlc.desktop"];
-    text-mime-types = builtins.readFile ./text-mime-types.txt |> lib.splitString "\n" |> builtins.filter (x: x != "");
-    association =
-      {
+  xdg.mimeApps =
+    let
+      editor = "nvim-new-term.desktop";
+      browser = if setup.isNixOS then "firefox.desktop" else "microsoft-edge.desktop";
+      mailer = if setup.isNixOS then "thunderbird.desktop" else browser;
+      image_viewer = [
+        "org.gnome.gThumb.desktop"
+        "feh.desktop"
+      ];
+      video_viewer = [
+        "org.gnome.gThumb.desktop"
+        "vlc.desktop"
+      ];
+      text-mime-types =
+        builtins.readFile ./text-mime-types.txt |> lib.splitString "\n" |> builtins.filter (x: x != "");
+      association = {
         "application/json" = editor;
-        "application/pdf" = ["org.gnome.Evince.desktop" browser];
+        "application/pdf" = [
+          "org.gnome.Evince.desktop"
+          browser
+        ];
         "application/x-desktop" = editor;
         "application/x-gnome-saved-search" = "nemo.desktop";
         "default-url-scheme-handler" = browser;
@@ -134,14 +139,16 @@
         "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
         "x-scheme-handler/unknown" = browser;
       }
-      // builtins.listToAttrs (map (type: {
+      // builtins.listToAttrs (
+        map (type: {
           name = "text/${type}";
           value = editor;
-        })
-        text-mime-types);
-  in {
-    enable = true;
-    defaultApplications = association;
-    associations.added = association;
-  };
+        }) text-mime-types
+      );
+    in
+    {
+      enable = true;
+      defaultApplications = association;
+      associations.added = association;
+    };
 }

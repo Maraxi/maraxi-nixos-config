@@ -1,9 +1,9 @@
-{config, ...}: {
+{ config, ... }: {
   # Enable OpenGL
   hardware.graphics.enable = true;
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     # Modesetting is required.

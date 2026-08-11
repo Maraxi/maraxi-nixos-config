@@ -6,7 +6,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -38,11 +39,14 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  nix.settings.trusted-users = ["@wheel"];
+  nix.settings.trusted-users = [ "@wheel" ];
 
   users.users.stefan = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBziLu3faqEDq699nIh1/+YhtUF20q5gkuPRZwk/esPo stefan@fujitsu-nixos 2024-05-20 for raspberrypi"
     ];
@@ -74,7 +78,7 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    ports = [36969];
+    ports = [ 36969 ];
   };
 
   # Open ports in the firewall.
@@ -83,6 +87,9 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   system.stateVersion = "25.11";
 }

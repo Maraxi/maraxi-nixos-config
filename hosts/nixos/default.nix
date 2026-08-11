@@ -1,14 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{lib, ...}: {
-  imports = [./hardware-configuration.nix];
+{ lib, ... }: {
+  imports = [ ./hardware-configuration.nix ];
 
   # nixpkgs.overlays = [outputs.overlays.trunk-packages];
   nixpkgs.config = {
     # allowBroken = true;
     # allowUnfree = true;
-    allowUnfreePredicate = pkg:
+    allowUnfreePredicate =
+      pkg:
       builtins.elem (lib.getName pkg) [
         "keymapp" # allow non-free keymapp for voyager
         "nvidia-x11"

@@ -3,14 +3,18 @@
   config,
   setup,
   ...
-}: {
+}:
+{
   programs.bash = {
     enable = true;
 
     historySize = -1;
     historyFileSize = -1;
     historyFile = "$XDG_STATE_HOME/bash_history_eternal";
-    historyControl = ["ignorespace" "ignoredups"];
+    historyControl = [
+      "ignorespace"
+      "ignoredups"
+    ];
 
     sessionVariables = {
       HISTTIMEFORMAT = "[%F %T] ";
@@ -18,10 +22,12 @@
       _ZO_DOCTOR = 0;
     };
 
-    initExtra = let
-      check-git = "git rev-parse --is-inside-work-tree &>/dev/null";
-    in
-      lib.mkMerge ([
+    initExtra =
+      let
+        check-git = "git rev-parse --is-inside-work-tree &>/dev/null";
+      in
+      lib.mkMerge (
+        [
           (lib.mkOrder 100 ''
             bind -x '"\C-o":${check-git} && { ruff format; ruff check --fix || ruff check --output-format grouped; }'
             bind -x '"\C-p":${check-git} && pre-commit'
@@ -57,7 +63,8 @@
               export PATH
             fi
           '')
-        ]);
+        ]
+      );
   };
   programs.readline = {
     enable = true;
@@ -112,13 +119,16 @@
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
-    options = ["--cmd" "cd"];
+    options = [
+      "--cmd"
+      "cd"
+    ];
   };
 
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
-    defaultOptions = ["--bind ctrl-up:preview-half-page-up,ctrl-down:preview-half-page-down"];
+    defaultOptions = [ "--bind ctrl-up:preview-half-page-up,ctrl-down:preview-half-page-down" ];
   };
 
   programs.starship = {
@@ -130,7 +140,7 @@
   programs.eza = {
     enable = true;
     icons = "auto";
-    extraOptions = ["--group-directories-first"];
+    extraOptions = [ "--group-directories-first" ];
   };
   programs.ripgrep = {
     enable = true;

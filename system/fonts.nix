@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   fonts = {
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
@@ -8,8 +8,14 @@
       noto-fonts-color-emoji
     ];
     fontconfig.defaultFonts = {
-      serif = ["Noto Serif" "Source Han Serif"];
-      sansSerif = ["Noto Sans" "Source Han Sans"];
+      serif = [
+        "Noto Serif"
+        "Source Han Serif"
+      ];
+      sansSerif = [
+        "Noto Sans"
+        "Source Han Sans"
+      ];
     };
   };
 }
