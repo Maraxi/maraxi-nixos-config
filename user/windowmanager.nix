@@ -243,7 +243,7 @@ in
       # To regenerate a fresh i3 config file run i3-config-wizard(1).
       enable = true;
       config = let
-        window_mode = "WINDOW x:xrandr a:arandr f:feh k:keyboard u:us-layout p:fix picom 1-4:presets 9:fix blackscreen";
+        window_mode = "WINDOW x:xrandr a:arandr r:autorandr f:feh k:keyboard u:us-layout p:fix picom 1-4:presets 9:fix blackscreen";
         sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
         apps_mode = "APPS C:edge E:nemo R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
         exit_mode = "EXIT o:lock x:screen-off s:suspend h:hibernate e:logout u:switch-user p:poweroff r:reboot";
@@ -294,6 +294,7 @@ in
             ${window_mode} = {
               x = "exec --no-startup-id xrandr --auto";
               a = "exec --no-startup-id arandr";
+              r = "exec --no-startup-id \"autorandr --change; ${feh}\"";
               f = "exec --no-startup-id ${feh}";
               k = "mode default, exec --no-startup-id ${keyboard_layout}";
               u = "mode default, exec --no-startup-id ${keyboard_layout_us}";
