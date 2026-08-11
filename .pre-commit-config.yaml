@@ -1,5 +1,5 @@
 repos:
-  - repo: https://github.com/kamadorueda/alejandra
-    rev: 3e2a85506627062313e131bf8a85315f3387c8e0  # frozen: 4.0.0
+  - repo: https://github.com/MaxMatti/treefmt-pre-commit
+    rev: 04ed8d82314d966aeeacf14daebc13e12a49fb1a  # frozen: v2.5.0
     hooks:
-      - id: alejandra-system
+      - id: treefmt
