@@ -69,8 +69,9 @@
 
         tty-clock
 
+        treefmt
         nixfmt
-        alejandra
+
         shellcheck
         shfmt
         shellharden
