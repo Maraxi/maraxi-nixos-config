@@ -16,7 +16,7 @@
             ./nextcloud-sync.nix
             ./podman.nix
             ./ssh.nix
-            ./wayland-services.nix
+            ./wayland.nix
           ]
         else
           [
