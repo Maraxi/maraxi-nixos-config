@@ -1,6 +1,4 @@
 { pkgs, ... }: {
-  nix.settings.trusted-users = [ "stefan" ];
-
   users.groups = {
     plugdev = { };
   };

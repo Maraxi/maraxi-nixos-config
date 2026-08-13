@@ -39,8 +39,6 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  nix.settings.trusted-users = [ "@wheel" ];
-
   users.users.stefan = {
     isNormalUser = true;
     extraGroups = [
