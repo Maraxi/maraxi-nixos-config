@@ -17,7 +17,6 @@
             ./podman.nix
             ./ssh.nix
             ./wayland-services.nix
-            ./xdg-portal.nix
           ]
         else
           [
