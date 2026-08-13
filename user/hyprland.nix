@@ -39,12 +39,19 @@
   systemd.user.services.hyprland-ipc = {
     Unit = {
       Description = "React to Hyprland events via IPC";
-      # ConditionEnvironment = "WAYLAND_DISPLAY";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+      ConditionEnvironment = [
+        "WAYLAND_DISPLAY"
+        "HYPRLAND_INSTANCE_SIGNATURE"
+      ];
     };
     Install = {
-      # WantedBy = ["graphical.target"];
+      WantedBy = [ "graphical-session.target" ];
     };
     Service = {
+      Restart = "on-failure";
+      RestartSec = 1;
       ExecStart = "${pkgs.writeShellScript "hyprland-ipc" ''
         # shellcheck shell=bash
 
