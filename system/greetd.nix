@@ -11,7 +11,7 @@
     settings = {
       default_session.command = lib.replaceString "\n" " " ''
         ${pkgs.tuigreet}/bin/tuigreet
-        --cmd "start-hyprland"
+        --cmd "uwsm start hyprland.desktop"
         --remember
         --asterisks
         --user-menu
