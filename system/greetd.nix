@@ -12,12 +12,12 @@
     settings = {
       default_session.command = lib.replaceString "\n" " " ''
         ${pkgs.tuigreet}/bin/tuigreet
-        --time
+        --cmd "start-hyprland"
+        --remember
         --asterisks
         --user-menu
-        --remember
         --theme border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red
-        --cmd Hyprland'';
+        --time'';
     };
     useTextGreeter = true;
   };
