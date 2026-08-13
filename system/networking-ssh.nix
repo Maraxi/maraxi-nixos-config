@@ -10,7 +10,7 @@
 
     firewall.enable = true;
     # Open ports in the firewall.
-    # firewall.allowedTCPPorts = [8000];
+    # firewall.allowedTCPPorts = [8000 8080];
     # firewall.allowedUDPPorts = [ ... ];
 
     # nftables instead of iptbles for firewall
