@@ -4,7 +4,6 @@
   ...
 }:
 {
-  environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID"; # set the runtime directory to unlock keyring
   security.pam.services.greetd.enableGnomeKeyring = true;
 
   services.greetd = {
