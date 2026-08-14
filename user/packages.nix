@@ -99,6 +99,7 @@
             usbutils
             parallel
 
+            iw
             dig
 
             libfaketime
