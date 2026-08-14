@@ -146,417 +146,304 @@ let
         };
     };
 in
-if setup.isNixOS then
-  {
-    wayland.windowManager.sway = {
-      enable = true;
-      checkConfig = false;
-      config =
-        let
-          mode_apps = "[t]hunderbird [f]irefox [k]eepass key[m]app";
-          mode_sound = "[m]ute [u]p [d]own";
-          mode_power = "Power: [h]ibernate [s]uspend [l]ogout [p]oweroff";
-          mode_record = "Recording: Ctrl+Esc to quit";
-        in
-        shared_config
-        // {
-          keybindings =
+{
+  xsession.windowManager.i3 = {
+    # To regenerate a fresh i3 config file run i3-config-wizard(1).
+    enable = true;
+    config =
+      let
+        window_mode = "WINDOW x:xrandr a:arandr r:autorandr f:feh k:keyboard u:us-layout p:fix picom 1-4:presets 9:fix blackscreen";
+        sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
+        apps_mode = "APPS C:edge E:nemo R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
+        exit_mode = "EXIT o:lock x:screen-off s:suspend h:hibernate e:logout u:switch-user p:poweroff r:reboot";
+
+        # check dconf-editor -> ord/gnome/desktop/input-sources/xkb-options
+        # reset options to empty by using "-option" with no argument
+        keyboard_layout = ''"setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"'';
+        keyboard_layout_us = ''"setxkbmap us -option -option ${keyboard.options}"'';
+        feh = "feh --no-fehbg --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg";
+
+        pactl = "exec --no-startup-id pactl";
+      in
+      shared_config
+      // {
+        keybindings =
+          let
+            modifier = shared_config.modifier;
+            meh = "${modifier}+Ctrl+Shift";
+          in
+          shared_config.keybindings
+          // {
+            "${meh}+r" = "restart";
+
+            # start dmenu (a program launcher)
+            "${modifier}+d" = "exec --no-startup-id dmenu_run -i";
+            # A more modern dmenu replacement is rofi:
+            # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+            # There also is i3-dmenu-desktop which only displays applications shipping a
+            # .desktop file. It is a wrapper around dmenu, so you need that installed.
+            "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
+
+            "Print" = "exec flameshot gui";
+            "${modifier}+p" = "exec flameshot gui";
+
+            "F7" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
+            "F8" = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
+            "XF86AudioLowerVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
+            "XF86AudioRaiseVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
+            "XF86AudioMute" = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
+
+            "${meh}+w" = "mode \"${window_mode}\"";
+            "${meh}+s" = "mode \"${sound_mode}\"";
+            "${meh}+a" = "mode \"${apps_mode}\"";
+            "${modifier}+o" = "mode \"${exit_mode}\"";
+            "${modifier}+r" = "mode resize";
+          };
+
+        modes = {
+          ${window_mode} = {
+            x = "exec --no-startup-id xrandr --auto";
+            a = "exec --no-startup-id arandr";
+            r = "exec --no-startup-id \"autorandr --change; ${feh}\"";
+            f = "exec --no-startup-id ${feh}";
+            k = "mode default, exec --no-startup-id ${keyboard_layout}";
+            u = "mode default, exec --no-startup-id ${keyboard_layout_us}";
+            p = "exec --no-startup-id \"killall -q picom; picom -b\"";
+            "1" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\"";
+            "2" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-home.sh; ${feh}\"";
+            "3" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors.sh; ${feh}\"";
+            "4" =
+              "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors-right.sh; ${feh}\"";
+            "9" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-overlapping.sh; ${feh}\"";
+
+            Escape = "mode default";
+          };
+
+          ${sound_mode} =
             let
-              modifier = shared_config.modifier;
-              meh = "${modifier}+Ctrl+Shift";
+              hdmi_sink = "alsa_output.pci-0000_01_00.1.hdmi-stereo";
             in
-            shared_config.keybindings
-            // {
-              "${modifier}+d" = "exec --no-startup-id ${config.wayland.windowManager.sway.config.menu}";
-
-              # sway-contrib.grimshot
-              # slurp # wayland screenshots
-              # shotman # wayland screenshots
-              "${modifier}+p" =
-                "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Pictures/\"$(date +'grim_%Y-%m-%dT%H-%M-%S%z.png')\"";
-              "${meh}+p" =
-                "exec ${pkgs.wf-recorder}/bin/wf-recorder -g \"$(${pkgs.slurp}/bin/slurp)\" -c gif --file ~/Pictures/\"$(date +'recording_%Y-%m-%dT%H-%M-%S%z.gif')\" && mode \"${mode_record}\"";
-
-              "${meh}+r" = "mode resize";
-              "${meh}+a" = "mode \"${mode_apps}\"";
-              "${modifier}+s" = "mode \"${mode_sound}\"";
-              "${modifier}+o" = "mode \"${mode_power}\"";
-            };
-          modes = {
-            ${mode_apps} = {
-              t = "mode default, exec ${pkgs.thunderbird}/bin/thunderbird";
-              f = "mode default, exec ${pkgs.firefox}/bin/firefox";
-              k = "mode default, exec ${pkgs.keepassxc}/bin/keepassxc";
-              m = "mode default, exec ${pkgs.keymapp}/bin/keymapp";
-              Escape = "mode default";
-            };
-            ${mode_sound} =
-              let
-                pamixer-bin = "${pkgs.pamixer}/bin/pamixer";
-              in
-              {
-                m = "exec ${pamixer-bin} -t";
-                u = "exec ${pamixer-bin} -i 3";
-                d = "exec ${pamixer-bin} -d 3";
-                Escape = "mode default";
-              };
-            ${mode_power} = {
-              h = "exec --no-startup-id systemctl hibernate, mode default";
-              s = "exec --no-startup-id systemctl suspend, mode default";
-              l = "exit";
-              p = "exec --no-startup-id poweroff";
-              Escape = "mode default";
-            };
-            ${mode_record} = {
-              "Ctrl+Escape" = "exec pkill -SIGINT wf-recorder; mode default";
-            };
-            # resize = { };
-          };
-
-          input = {
-            # swaymsg -t get_inputs
-            "1008:36:CHICONY_HP_Basic_USB_Keyboard" = keyboard // {
-              xkb_numlock = "enabled";
-            };
-            "type:keyboard" = keyboard;
-          };
-          output = {
-            # swaymsg -t get_outputs
-            eDP-1 = {
-              pos = "0 150";
-            };
-            HDMI-A-2 = {
-              pos = "1600 0";
-            }; # mode = "1920x1080@60Hz";
-          };
-
-          assigns = {
-            # swaymsg -t get_tree
-            "8" = [ { app_id = "^thunderbird$"; } ];
-            "9" = [ { title = "^KeeData.kdbx"; } ];
-          };
-
-          startup = [
             {
-              command = "wallpaper";
-              always = true;
-              # notification = false;
-            }
-          ];
-        };
-      # extraConfig = '' '';
-      extraSessionCommands = ''
-        export MOZ_ENABLE_WAYLAND=1
-        export SDL_VIDEODRIVER=wayland
-        # needs qt5.qtwayland in systemPackages
-        # export QT_QPA_PLATFORM=wayland
-        # export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-        # Fix for some Java AWT applications (e.g. Android Studio),
-        # use this if they aren't displayed properly:
-        # export _JAVA_AWT_WM_NONREPARENTING=1
-      '';
-      wrapperFeatures.gtk = true;
-    };
-  }
-else
-  {
-    xsession.windowManager.i3 = {
-      # To regenerate a fresh i3 config file run i3-config-wizard(1).
-      enable = true;
-      config =
-        let
-          window_mode = "WINDOW x:xrandr a:arandr r:autorandr f:feh k:keyboard u:us-layout p:fix picom 1-4:presets 9:fix blackscreen";
-          sound_mode = "SOUND volume [u]p [d]own [m]ute - hdmi [r]aise [l]ower [0]mute - i:toggle mic mute";
-          apps_mode = "APPS C:edge E:nemo R:remmina V:pavucontrol P:pycharm S:pass K:keepass M:keymapp F:flameshot";
-          exit_mode = "EXIT o:lock x:screen-off s:suspend h:hibernate e:logout u:switch-user p:poweroff r:reboot";
+              # Use pactl to adjust volume in PulseAudio.
+              # set $refresh_i3status killall -SIGUSR1 i3status
+              u = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
+              d = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
+              m = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
 
-          # check dconf-editor -> ord/gnome/desktop/input-sources/xkb-options
-          # reset options to empty by using "-option" with no argument
-          keyboard_layout = ''"setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"'';
-          keyboard_layout_us = ''"setxkbmap us -option -option ${keyboard.options}"'';
-          feh = "feh --no-fehbg --bg-fill /home/iv546/Pictures/wallpaper/wallpaperflare.com_wallpaper.jpg";
-
-          pactl = "exec --no-startup-id pactl";
-        in
-        shared_config
-        // {
-          keybindings =
-            let
-              modifier = shared_config.modifier;
-              meh = "${modifier}+Ctrl+Shift";
-            in
-            shared_config.keybindings
-            // {
-              "${meh}+r" = "restart";
-
-              # start dmenu (a program launcher)
-              "${modifier}+d" = "exec --no-startup-id dmenu_run -i";
-              # A more modern dmenu replacement is rofi:
-              # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-              # There also is i3-dmenu-desktop which only displays applications shipping a
-              # .desktop file. It is a wrapper around dmenu, so you need that installed.
-              "${modifier}+Shift+d" = "exec --no-startup-id i3-dmenu-desktop";
-
-              "Print" = "exec flameshot gui";
-              "${modifier}+p" = "exec flameshot gui";
-
-              "F7" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
-              "F8" = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
+              "F12" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
               "XF86AudioLowerVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
               "XF86AudioRaiseVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
               "XF86AudioMute" = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
 
-              "${meh}+w" = "mode \"${window_mode}\"";
-              "${meh}+s" = "mode \"${sound_mode}\"";
-              "${meh}+a" = "mode \"${apps_mode}\"";
-              "${modifier}+o" = "mode \"${exit_mode}\"";
-              "${modifier}+r" = "mode resize";
-            };
-
-          modes = {
-            ${window_mode} = {
-              x = "exec --no-startup-id xrandr --auto";
-              a = "exec --no-startup-id arandr";
-              r = "exec --no-startup-id \"autorandr --change; ${feh}\"";
-              f = "exec --no-startup-id ${feh}";
-              k = "mode default, exec --no-startup-id ${keyboard_layout}";
-              u = "mode default, exec --no-startup-id ${keyboard_layout_us}";
-              p = "exec --no-startup-id \"killall -q picom; picom -b\"";
-              "1" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-home-3.sh; ${feh}\"";
-              "2" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-home.sh; ${feh}\"";
-              "3" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors.sh; ${feh}\"";
-              "4" =
-                "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-office-2-monitors-right.sh; ${feh}\"";
-              "9" = "exec --no-startup-id \"/home/iv546/.config/arandr/arandr-overlapping.sh; ${feh}\"";
+              r = "${pactl} set-sink-volume ${hdmi_sink} +3%";
+              l = "${pactl} set-sink-volume ${hdmi_sink} -3%";
+              "0" = "${pactl} set-sink-mute ${hdmi_sink} toggle";
+              i = "${pactl} set-source-mute @DEFAULT_SOURCE@ toggle";
 
               Escape = "mode default";
             };
 
-            ${sound_mode} =
-              let
-                hdmi_sink = "alsa_output.pci-0000_01_00.1.hdmi-stereo";
-              in
-              {
-                # Use pactl to adjust volume in PulseAudio.
-                # set $refresh_i3status killall -SIGUSR1 i3status
-                u = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
-                d = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
-                m = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
+          ${apps_mode} = {
+            c = "mode default, exec microsoft-edge-stable";
+            # c = "mode default, exec google-chrome-stable --high-dpi-support=1 --force-device-scale-factor=1";
+            "Shift+c" = "mode default, exec chromium";
+            e = "mode default, exec nemo";
+            f = "mode default, exec flameshot gui";
+            k = "mode default, exec keepassxc";
+            m = "mode default, exec keymapp";
+            p = "mode default, exec pycharm-professional";
+            r = "mode default, exec remmina -i";
+            s = "mode default, exec pass";
+            v = "mode default, exec pavucontrol";
 
-                "F12" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
-                "XF86AudioLowerVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ -3%";
-                "XF86AudioRaiseVolume" = "${pactl} set-sink-volume @DEFAULT_SINK@ +3%";
-                "XF86AudioMute" = "${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
-
-                r = "${pactl} set-sink-volume ${hdmi_sink} +3%";
-                l = "${pactl} set-sink-volume ${hdmi_sink} -3%";
-                "0" = "${pactl} set-sink-mute ${hdmi_sink} toggle";
-                i = "${pactl} set-source-mute @DEFAULT_SOURCE@ toggle";
-
-                Escape = "mode default";
-              };
-
-            ${apps_mode} = {
-              c = "mode default, exec microsoft-edge-stable";
-              # c = "mode default, exec google-chrome-stable --high-dpi-support=1 --force-device-scale-factor=1";
-              "Shift+c" = "mode default, exec chromium";
-              e = "mode default, exec nemo";
-              f = "mode default, exec flameshot gui";
-              k = "mode default, exec keepassxc";
-              m = "mode default, exec keymapp";
-              p = "mode default, exec pycharm-professional";
-              r = "mode default, exec remmina -i";
-              s = "mode default, exec pass";
-              v = "mode default, exec pavucontrol";
-
-              Escape = "mode default";
-            };
-
-            ${exit_mode} =
-              let
-                lock = "i3lock --show-failed-attempts --color=000000 && sleep 1";
-                display_off = "xset dpms force off";
-              in
-              {
-                x = "mode default, exec sleep 0.2 && ${display_off}";
-                o = "mode default, exec ${lock} && exec ${display_off}";
-                s = "mode default, exec ${lock} && exec systemctl suspend";
-                h = "mode default, exec systemctl hibernate -i";
-                r = "mode default, exec systemctl reboot";
-                e = "exit";
-                u = "mode default, exec gdmflexiserver";
-                p = "exec systemctl poweroff -i";
-
-                Escape = "mode default";
-              };
-
-            "resize" = {
-              h = "resize shrink width  10 px or 10 ppt";
-              j = "resize grow   height 10 px or 10 ppt";
-              k = "resize shrink height 10 px or 10 ppt";
-              l = "resize grow   width  10 px or 10 ppt";
-
-              Escape = "mode default";
-            };
+            Escape = "mode default";
           };
 
-          workspaceOutputAssign =
+          ${exit_mode} =
+            let
+              lock = "i3lock --show-failed-attempts --color=000000 && sleep 1";
+              display_off = "xset dpms force off";
+            in
+            {
+              x = "mode default, exec sleep 0.2 && ${display_off}";
+              o = "mode default, exec ${lock} && exec ${display_off}";
+              s = "mode default, exec ${lock} && exec systemctl suspend";
+              h = "mode default, exec systemctl hibernate -i";
+              r = "mode default, exec systemctl reboot";
+              e = "exit";
+              u = "mode default, exec gdmflexiserver";
+              p = "exec systemctl poweroff -i";
+
+              Escape = "mode default";
+            };
+
+          "resize" = {
+            h = "resize shrink width  10 px or 10 ppt";
+            j = "resize grow   height 10 px or 10 ppt";
+            k = "resize shrink height 10 px or 10 ppt";
+            l = "resize grow   width  10 px or 10 ppt";
+
+            Escape = "mode default";
+          };
+        };
+
+        workspaceOutputAssign =
+          map
+            (workspace: {
+              workspace = workspace;
+              output = [
+                "DP-1-1.8"
+                "DP-1-1.1.8"
+                "DP-1-1.3"
+                "DP-1.3"
+                "DP-1.8"
+              ];
+            })
+            [
+              "1"
+              "2"
+              "3"
+            ]
+          ++
             map
               (workspace: {
                 workspace = workspace;
                 output = [
-                  "DP-1-1.8"
-                  "DP-1-1.1.8"
-                  "DP-1-1.3"
-                  "DP-1.3"
-                  "DP-1.8"
+                  "DP-1-1.1"
+                  "DP-1.1"
                 ];
               })
               [
-                "1"
-                "2"
-                "3"
+                "4"
+                "5"
+                "6"
               ]
-            ++
-              map
-                (workspace: {
-                  workspace = workspace;
-                  output = [
-                    "DP-1-1.1"
-                    "DP-1.1"
-                  ];
-                })
-                [
-                  "4"
-                  "5"
-                  "6"
-                ]
-            ++
-              map
-                (workspace: {
-                  workspace = workspace;
-                  output = [
-                    "eDP-1"
-                    "eDP-1-1"
-                  ];
-                })
-                [
-                  "8"
-                  "9"
-                  "10"
+          ++
+            map
+              (workspace: {
+                workspace = workspace;
+                output = [
+                  "eDP-1"
+                  "eDP-1-1"
                 ];
-          assigns = {
-            # i3-msg -t get_tree | jq -C | less
-            # "1" = [ { class = "^(Chromium-browser|Google-chrome)$"; title = "^(?!File Explorer)(?!Secure Google Chrome)"; } ];
-            "2" = [ { class = "^jetbrains-pycharm$"; } ];
-            "3" = [ { class = "^org.remmina.Remmina$"; } ];
-            "4" = [
-              { class = "^File Explorer$"; } # Citrix
-              {
-                class = "^Chromium";
-                title = "^(File Explorer|Secure Google Chrome)";
-              }
-            ];
-            "6" = [ { class = "^xfreerdp$"; } ];
-            "8" = [ { class = "^pavucontrol$"; } ];
-            "9" = [
-              { title = "^KeePassXC$"; }
-              { title = "^Passwords.*KeePassXC$"; }
-            ];
-            "10" = [
-              { class = "^ZSTray$"; }
-              { class = "^Intune-portal$"; }
-              { class = "^Keymapp$"; }
-            ];
-          };
-
-          bars = [
+              })
+              [
+                "8"
+                "9"
+                "10"
+              ];
+        assigns = {
+          # i3-msg -t get_tree | jq -C | less
+          # "1" = [ { class = "^(Chromium-browser|Google-chrome)$"; title = "^(?!File Explorer)(?!Secure Google Chrome)"; } ];
+          "2" = [ { class = "^jetbrains-pycharm$"; } ];
+          "3" = [ { class = "^org.remmina.Remmina$"; } ];
+          "4" = [
+            { class = "^File Explorer$"; } # Citrix
             {
-              fonts = shared_config.fonts;
-              command = ''"${pkgs.i3}/bin/i3bar -t"'';
-              statusCommand = ''"${pkgs.i3status}/bin/i3status"'';
-              colors = {
-                urgentWorkspace = lib.attrsets.getAttrs [
-                  "background"
-                  "border"
-                  "text"
-                ] shared_config.colors.urgent;
-              };
+              class = "^Chromium";
+              title = "^(File Explorer|Secure Google Chrome)";
             }
           ];
-
-          startup =
-            (map
-              (cmd: {
-                command = cmd;
-                notification = false;
-              })
-              [
-                # Load environment vars from .profile to be available in "systemctl --user show-environment"
-                "export XDG_CURRENT_DESKTOP=i3; systemctl --user import-environmet XDG_DATA_DIRS; dbus-update-activation-environment --systemd --all"
-
-                # Start XDG autostart .desktop files using dex. See also
-                # https://wiki.archlinux.org/index.php/XDG_Autostart
-                "dex --autostart --environment i3"
-
-                # The combination of xss-lock, nm-applet and pactl is a popular choice, so
-                # they are included here as an example. Modify as you see fit.
-                # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-                # screen before suspend. Use loginctl lock-session to lock your screen.
-                "xss-lock --transfer-sleep-lock -- i3lock --nofork"
-                # NetworkManager is the most popular way to manage wireless networks on Linux,
-                # and nm-applet is a desktop environment-independent system tray GUI for it.
-                "nm-applet"
-
-                # Default screens and background
-                "autorandr --change && ${feh}"
-
-                # Compositor for transparency
-                "sleep 2 && kill -q picom; picom -b"
-
-                # Define placeholders for Edge and launch
-                "i3-msg 'workspace 1; append_layout ~/.config/i3/edge.json'"
-                "i3-msg 'workspace 4; append_layout ~/.config/i3/edge.json'"
-                "microsoft-edge-stable"
-
-                # screensaver
-                # ''"xset +dpms; xset s 540"''
-                ''"sleep 3; xset s off dpms 0 0 0; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
-              ]
-            )
-            ++ [
-              { command = "${pkgs.keepassxc}/bin/keepassxc"; }
-              { command = "intune-portal"; }
-            ];
+          "6" = [ { class = "^xfreerdp$"; } ];
+          "8" = [ { class = "^pavucontrol$"; } ];
+          "9" = [
+            { title = "^KeePassXC$"; }
+            { title = "^Passwords.*KeePassXC$"; }
+          ];
+          "10" = [
+            { class = "^ZSTray$"; }
+            { class = "^Intune-portal$"; }
+            { class = "^Keymapp$"; }
+          ];
         };
-      extraConfig = ''
-        for_window [workspace="10"] layout splith
 
-        # No floating for pychrarm settings
-        for_window [class="^jetbrains-pycharm$" title="^Settings$"] floating disable
+        bars = [
+          {
+            fonts = shared_config.fonts;
+            command = ''"${pkgs.i3}/bin/i3bar -t"'';
+            statusCommand = ''"${pkgs.i3status}/bin/i3status"'';
+            colors = {
+              urgentWorkspace = lib.attrsets.getAttrs [
+                "background"
+                "border"
+                "text"
+              ] shared_config.colors.urgent;
+            };
+          }
+        ];
 
-        # No floating for cyberark connections
-        for_window [class="^xfreerdp$"] floating disable
+        startup =
+          (map
+            (cmd: {
+              command = cmd;
+              notification = false;
+            })
+            [
+              # Load environment vars from .profile to be available in "systemctl --user show-environment"
+              "export XDG_CURRENT_DESKTOP=i3; systemctl --user import-environmet XDG_DATA_DIRS; dbus-update-activation-environment --systemd --all"
 
-        # for_window [class="^Update-manager$"] floating disable
-        # no_focus [class="^Update-manager$"]
+              # Start XDG autostart .desktop files using dex. See also
+              # https://wiki.archlinux.org/index.php/XDG_Autostart
+              "dex --autostart --environment i3"
 
-        # Floating windows in Citrix
-        for_window [class="^Adobe Acrobat$"] floating enable
-        for_window [class="^Wfica$"] floating enable
-        for_window [class="^Find$"] floating enable
-        for_window [instance="^Notepad$"] floating enable
-        for_window [class="^Microsoft Excel$"] floating enable
+              # The combination of xss-lock, nm-applet and pactl is a popular choice, so
+              # they are included here as an example. Modify as you see fit.
+              # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+              # screen before suspend. Use loginctl lock-session to lock your screen.
+              "xss-lock --transfer-sleep-lock -- i3lock --nofork"
+              # NetworkManager is the most popular way to manage wireless networks on Linux,
+              # and nm-applet is a desktop environment-independent system tray GUI for it.
+              "nm-applet"
 
-        # Zscaler
-        for_window [class="^ZSTray$"] floating disable
-      '';
-    };
+              # Default screens and background
+              "autorandr --change && ${feh}"
 
-    xdg.configFile."i3status/config".source = config.lib.meta.mkMutableSymlink dotfiles/i3/i3status;
-    xdg.configFile."i3/edge.json".source = dotfiles/i3/edge.json;
+              # Compositor for transparency
+              "sleep 2 && kill -q picom; picom -b"
 
-    home.packages = [
-      pkgs.autorandr
-    ];
-  }
+              # Define placeholders for Edge and launch
+              "i3-msg 'workspace 1; append_layout ~/.config/i3/edge.json'"
+              "i3-msg 'workspace 4; append_layout ~/.config/i3/edge.json'"
+              "microsoft-edge-stable"
+
+              # screensaver
+              # ''"xset +dpms; xset s 540"''
+              ''"sleep 3; xset s off dpms 0 0 0; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
+            ]
+          )
+          ++ [
+            { command = "${pkgs.keepassxc}/bin/keepassxc"; }
+            { command = "intune-portal"; }
+          ];
+      };
+    extraConfig = ''
+      for_window [workspace="10"] layout splith
+
+      # No floating for pychrarm settings
+      for_window [class="^jetbrains-pycharm$" title="^Settings$"] floating disable
+
+      # No floating for cyberark connections
+      for_window [class="^xfreerdp$"] floating disable
+
+      # for_window [class="^Update-manager$"] floating disable
+      # no_focus [class="^Update-manager$"]
+
+      # Floating windows in Citrix
+      for_window [class="^Adobe Acrobat$"] floating enable
+      for_window [class="^Wfica$"] floating enable
+      for_window [class="^Find$"] floating enable
+      for_window [instance="^Notepad$"] floating enable
+      for_window [class="^Microsoft Excel$"] floating enable
+
+      # Zscaler
+      for_window [class="^ZSTray$"] floating disable
+    '';
+  };
+
+  xdg.configFile."i3status/config".source = config.lib.meta.mkMutableSymlink dotfiles/i3/i3status;
+  xdg.configFile."i3/edge.json".source = dotfiles/i3/edge.json;
+
+  home.packages = [
+    pkgs.autorandr
+  ];
+}
