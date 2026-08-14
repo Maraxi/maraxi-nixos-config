@@ -1,4 +1,10 @@
-{ pkgs, setup, ... }: {
+{
+  pkgs,
+  lib,
+  setup,
+  ...
+}:
+{
   services.dunst = {
     enable = true;
     iconTheme = {
@@ -67,15 +73,17 @@
         timeout = 0;
         default_icon = "dialog-warning";
       };
-      teams-timeout-override = {
-        body = "*teams.microsoft.com*";
-        urgency = "normal";
-        timeout = 12;
-        # Overwrite settings from dbus, this would take priority over the normal timeout
-        override_dbus_timeout = 12;
-        # 1. Force a static icon (fixes the shifting /tmp path issue)
-        new_icon = "dialog-information";
-      };
+      teams-timeout-override =
+        lib.hm.dag.entryAfter [ "urgency_low" "urgency_normal" "urgency_critical" ]
+          {
+            body = "*teams.microsoft.com*";
+            urgency = "normal";
+            timeout = 12;
+            # Overwrite settings from dbus, this would take priority over the normal timeout
+            override_dbus_timeout = 12;
+            # 1. Force a static icon (fixes the shifting /tmp path issue)
+            new_icon = "dialog-information";
+          };
     };
   };
 }
