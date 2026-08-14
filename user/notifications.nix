@@ -4,7 +4,7 @@
     configFile = config.lib.meta.mkMutableSymlink dotfiles/dunstrc;
   };
   home.packages = [
-    pkgs.hicolor-icon-theme
+    pkgs.papirus-icon-theme
   ];
   xdg.configFile."dunst/dunstrc".enable = false;
   xdg.configFile."dunst/readme".text =
