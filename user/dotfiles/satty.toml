@@ -30,7 +30,7 @@ annotation-size-factor = 2
 # Filename to use for saving action. Omit to disable saving to file. Might contain format specifiers: https://docs.rs/chrono/latest/chrono/format/strftime/index.html
 # starting with 0.20.0, can contain leading tilde (~) for home directory
 # starting with 0.21.0, save as uses this as initial filename/path when available
-output-filename = "/tmp/test-%Y-%m-%d_%H:%M:%S.png"
+output-filename = "~/Pictures/satty-%Y-%m-%d_%H:%M:%S.png"
 # After copying the screenshot, save it to a file as well
 save-after-copy = false
 # Hide toolbars by default
@@ -82,70 +82,6 @@ app-id = "org.satty.satty"
 # experimental feature (0.22.0): show thumbnail as notifcation icon
 # notification-thumbnail = "app-icon"
 notification-thumbnail = "screenshot"
-
-# Generic keyboard shortcuts (NEXTRELEASE)
-[keybinds]
-# "<Control>q" = "run-actions-on-escape" # additionally to Escape
-# "i" = "none" # unbind "i" default for line
-# "l" = "line"
-
-# Global
-"<Shift><Control>d" = "open-gtk-inspector"
-"<Shift><Control>i" = "open-gtk-inspector"
-"<Alt>Left" = "pan-left"
-"<Alt>Right" = "pan-right"
-"<Alt>Up" = "pan-up"
-"<Alt>Down" = "pan-down"
-"Delete" = "delete-selection"
-"Escape" = "run-actions-on-escape"
-"Return" = "run-actions-on-enter"
-"<Control>t" = "toggle-toolbars"
-
-# scale is in %, 0 is fit to window
-"<Alt>2" = "scale:50"
-"<Alt>3" = "scale:33"
-"<Alt>4" = "scale:25"
-"<Control>2" = "scale:200"
-"<Control>3" = "scale:300"
-"<Control>4" = "scale:400"
-
-# top toolbar
-"<Alt>1" = "scale:100"
-"<Control>1" = "scale:0"
-"<Shift>Delete" = "clear-all"
-"<Control>z" = "undo"
-"<Control>y" = "redo"
-"p" = "pointer"
-"c" = "crop"
-"b" = "brush"
-"i" = "line"
-"z" = "arrow"
-"r" = "rectangle"
-"e" = "ellipse"
-"t" = "text"
-"m" = "marker"
-"u" = "blur"
-"g" = "highlight"
-"<Control>s" = "save-to-file"
-"<Shift><Control>s" = "save-to-file-as"
-"<Control>c" = "save-to-clipboard"
-"<Shift><Control>c" = "copy-filepath-to-clipboard"
-
-# bottom toolbar
-"1" = "select-color-index:1"
-"2" = "select-color-index:2"
-"3" = "select-color-index:3"
-"4" = "select-color-index:4"
-"5" = "select-color-index:5"
-"6" = "select-color-index:6"
-"7" = "select-color-index:7"
-"8" = "select-color-index:8"
-"9" = "select-color-index:9"
-"minus" = "cycle-size"
-#"..." = "select-size:(small|medium|large)"
-"s" = "focus-annotation-size-factor"
-"f" = "toggle-fill"
-"k" = "toggle-round-caps"
 
 # Font to use for text annotations
 [font]
