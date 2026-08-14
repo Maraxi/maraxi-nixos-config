@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # nixstable.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixstable.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     # Only pull from 'nix-trunk' when channels are blocked by a Hydra jobset failure or
     # the 'unstable' channel has not otherwise updated recently for some other reason.
@@ -22,6 +22,7 @@
   outputs =
     inputs@{
       nixpkgs,
+      nixstable,
       home-manager,
       waybar,
       ...
@@ -29,6 +30,7 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+      pkgs-stable = import nixstable { inherit system; };
       keyboard = {
         layout = "de";
         variant = "nodeadkeys";
@@ -60,6 +62,7 @@
                 extraSpecialArgs = {
                   inherit inputs;
                   inherit keyboard;
+                  inherit pkgs-stable;
                   setup = {
                     username = "stefan";
                     stateVersion = "24.11";

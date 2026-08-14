@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-stable,
   inputs,
   ...
 }:
@@ -15,7 +16,9 @@
       grim
       slurp
       satty
+      # wf-recorder
     ]
+    ++ [ pkgs-stable.wf-recorder ]
     ++ [ inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
   # dmenu like launcher
