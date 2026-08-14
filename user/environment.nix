@@ -40,7 +40,7 @@
       + "/openjfx";
 
     DOCKER_CONFIG = XDG_CONFIG_HOME + "/docker";
-    MACHINE_STORAGE_PATH = XDG_DATA_HOME + " /docker-machine";
+    MACHINE_STORAGE_PATH = XDG_DATA_HOME + "/docker-machine";
 
     KUBECONFIG = XDG_CONFIG_HOME + "/kube";
     KUBECACHEDIR = XDG_CACHE_HOME + "/kube";
