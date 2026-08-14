@@ -110,7 +110,8 @@
     "format": "{}",
     "return-type": "json",
     "exec": "~/.config/waybar/scripts/recording-status",
-    "interval": 1,
+    "interval": 60,
+    "signal": 12,
     "tooltip": true
   },
 }
