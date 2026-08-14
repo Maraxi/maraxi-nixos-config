@@ -29,6 +29,7 @@
     };
   };
 
+  xdg.configFile."wofi/wallpaper".source = config.lib.meta.mkMutableSymlink dotfiles/wofi-wallpaper;
   xdg.configFile."hypr".source = config.lib.meta.mkMutableSymlink dotfiles/hypr;
   xdg.configFile."waybar".source = config.lib.meta.mkMutableSymlink dotfiles/waybar;
   xdg.configFile."satty/config.toml".source = config.lib.meta.mkMutableSymlink dotfiles/satty.toml;
