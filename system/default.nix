@@ -10,7 +10,6 @@
     ./locale.nix
     ./misc.nix
     ./networking-ssh.nix
-    ./nix-ld.nix
     ./nix.nix
     ./nvidia.nix
     ./print-scan.nix
