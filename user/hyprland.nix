@@ -14,7 +14,6 @@
 
       grim
       slurp
-      swappy
       satty
     ]
     ++ [ inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default ];
@@ -30,13 +29,6 @@
   xdg.configFile."hypr".source = config.lib.meta.mkMutableSymlink dotfiles/hypr;
   xdg.configFile."waybar".source = config.lib.meta.mkMutableSymlink dotfiles/waybar;
   xdg.configFile."satty/config.toml".source = config.lib.meta.mkMutableSymlink dotfiles/satty.toml;
-  xdg.configFile."swappy/config".text = ''
-    [Default]
-    save_dir=$HOME/Pictures
-    save_filename_format=swappy-%Y%m%d-%H%M%S%z.png
-    paint_mode=rectangle
-    early_exit=true
-  '';
 
   services.hypridle.enable = true;
 
