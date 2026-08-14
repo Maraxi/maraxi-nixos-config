@@ -291,8 +291,7 @@ local screenShot = hl.dsp.exec_cmd('grim -g "$(slurp)" -t ppm - | satty --filena
 hl.bind(mainMod .. "P", screenShot)
 hl.bind("Print", screenShot)
 local screenRecord = hl.dsp.exec_cmd('record-screen')
-hl.bind(mehMod .. "P", screenRecord)
-hl.bind(mehMod .. "Print", screenRecord)
+hl.bind(mainMod .. "Print", screenRecord)
 
 -- Laptop multimedia keys for volume and LCD brightness
 local soundOptions = { locked = true, repeating = true }
