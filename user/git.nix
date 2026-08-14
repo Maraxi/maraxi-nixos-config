@@ -1,5 +1,6 @@
 { setup, ... }: {
   home.shellAliases = {
+    gti = "git";
     s = "git status";
     g = "git lgs";
     l = "git ls";
