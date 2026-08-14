@@ -17,14 +17,14 @@
       swappy
     ]
     ++ [ inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+
+  # dmenu like launcher
   programs.wofi = {
     enable = true;
     settings = {
       key_expand = "Left,Right";
     };
   };
-
-  services.hypridle.enable = true;
 
   xdg.configFile."hypr".source = config.lib.meta.mkMutableSymlink dotfiles/hypr;
   xdg.configFile."waybar".source = config.lib.meta.mkMutableSymlink dotfiles/waybar;
@@ -35,6 +35,8 @@
     paint_mode=rectangle
     early_exit=true
   '';
+
+  services.hypridle.enable = true;
 
   systemd.user.services.hyprland-ipc = {
     Unit = {
