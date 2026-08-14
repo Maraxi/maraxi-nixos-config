@@ -314,6 +314,7 @@ hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_S
 ----- Submaps -----
 
 -- Wallpaper
+hl.bind(mehMod .. "E", hl.dsp.exec_cmd("wofi-wallpaper-selector.sh"))
 hl.bind(mehMod .. "W", hl.dsp.submap("wallpaper"))
 hl.define_submap("wallpaper", function()
 	local function set_wp(file) return hl.dsp.exec_cmd("hyprctl hyprpaper wallpaper ," .. file) end
