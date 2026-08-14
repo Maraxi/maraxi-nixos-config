@@ -33,6 +33,7 @@
       ./meta.nix
       ./neovim.nix
       ./nh.nix
+      ./notifications.nix
       ./packages.nix
       ./radio.nix
       ./shells.nix

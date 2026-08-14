@@ -4,7 +4,6 @@
     wl-clipboard # wayland clipboard
     wdisplays # arandr replacement
   ];
-  services.dunst.enable = true;
 
   programs.swaylock = {
     enable = true;

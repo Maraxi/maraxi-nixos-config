@@ -556,15 +556,7 @@ else
     xdg.configFile."i3status/config".source = config.lib.meta.mkMutableSymlink dotfiles/i3/i3status;
     xdg.configFile."i3/edge.json".source = dotfiles/i3/edge.json;
 
-    services.dunst = {
-      enable = true;
-      configFile = config.lib.meta.mkMutableSymlink dotfiles/dunstrc;
-    };
     home.packages = [
-      pkgs.hicolor-icon-theme
       pkgs.autorandr
     ];
-    xdg.configFile."dunst/dunstrc".enable = false;
-    xdg.configFile."dunst/readme".text =
-      "Managed by home-manager. See the config used by service instead:\nsystemctl --user status dunst.service";
   }
