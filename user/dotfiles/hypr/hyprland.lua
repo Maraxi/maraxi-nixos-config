@@ -287,7 +287,9 @@ hl.bind(mainMod .. "mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. "mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Screenshot
-hl.bind(mainMod .. "P", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
+local screenShot = hl.dsp.exec_cmd('grim -g "$(slurp)" -t ppm - | satty --filename -')
+hl.bind(mainMod .. "P", screenShot)
+hl.bind("Print", screenShot)
 
 -- Laptop multimedia keys for volume and LCD brightness
 local soundOptions = { locked = true, repeating = true }
