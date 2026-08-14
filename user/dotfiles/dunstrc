@@ -229,7 +229,7 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = "Paprius, Humanity, Yaru, hicolor"
+    icon_theme = "Paprius, Humanity, Yaru, Adwaita, hicolor"
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, breeze"
 
