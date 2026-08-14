@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if pgrep -x wf-recorder >/dev/null; then
+    printf '{"text":"● REC","class":"recording","tooltip":"Screen recording is active"}\n'
+else
+    printf '{"text":"","class":"inactive"}\n'
+fi

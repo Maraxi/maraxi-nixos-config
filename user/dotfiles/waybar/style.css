@@ -77,7 +77,8 @@ window#waybar.empty #window {
 #network,
 #wireplumber,
 #idle_inhibitor,
-#tray {
+#tray,
+#custom-recording {
     background: @base-purple;
     padding: 0px 10px;
     margin: 0 2px;
