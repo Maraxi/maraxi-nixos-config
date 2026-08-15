@@ -174,7 +174,7 @@
       thumbnail-limit = lib.hm.gvariant.mkUint64 1073741824;
     };
     "org/cinnamon/desktop/applications/terminal" = {
-      exec = "ghostty"; # for nemo -> open in terminal
+      exec = "ghostty --working-directory=inherit"; # for nemo -> open in terminal
     };
   };
 }
