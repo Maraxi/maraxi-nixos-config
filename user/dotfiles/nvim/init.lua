@@ -128,7 +128,9 @@ vim.api.nvim_create_autocmd('PackChanged', {
     end
 
     if name == 'LuaSnip' then
-      if vim.fn.has 'win32' ~= 1 and vim.fn.executable 'make' == 1 then run_build(name, { 'make', 'install_jsregexp' }, ev.data.path) end
+      if vim.fn.has 'win32' ~= 1 and vim.fn.executable 'make' == 1 then
+        run_build(name, { 'make', 'install_jsregexp' }, ev.data.path)
+      end
       return
     end
 
@@ -214,9 +216,9 @@ statusline.setup {}
 -- ##      Search / Navigation Plug ins      ##
 -- ############################################
 
-  -- Two important keymaps to use while in Telescope are:
-  --  - Insert mode: <c-/>
-  --  - Normal mode: ?
+-- Two important keymaps to use while in Telescope are:
+--  - Insert mode: <c-/>
+--  - Normal mode: ?
 
 vim.pack.add {
   gh 'nvim-lua/plenary.nvim',
@@ -317,7 +319,12 @@ vim.keymap.set(
 )
 
 -- Shortcut for searching your Neovim configuration files
-vim.keymap.set('n', '<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config', follow = true } end, { desc = '[S]earch [N]eovim files' })
+vim.keymap.set(
+  'n',
+  '<leader>sn',
+  function() builtin.find_files { cwd = vim.fn.stdpath 'config', follow = true } end,
+  { desc = '[S]earch [N]eovim files' }
+)
 
 -- ###################
 -- ##      LSP      ##
@@ -392,7 +399,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --
     -- This may be unwanted, since they displace some of your code
     if client and client:supports_method('textDocument/inlayHint', event.buf) then
-      map('<leader>th', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end, '[T]oggle Inlay [H]ints')
+      map(
+        '<leader>th',
+        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end,
+        '[T]oggle Inlay [H]ints'
+      )
     end
   end,
 })
@@ -422,7 +433,12 @@ local servers = {
 
       if client.workspace_folders then
         local path = client.workspace_folders[1].name
-        if path ~= vim.fn.stdpath 'config' and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then return end
+        if
+          path ~= vim.fn.stdpath 'config'
+          and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+        then
+          return
+        end
       end
 
       client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
