@@ -2,7 +2,7 @@
 # Thanks to https://github.com/highonskooma/Wofi-Wallpaper-Picker
 
 # Configuration
-WALLPAPER_DIR="$HOME/Pictures/my-wallpaper" # Change this to your wallpaper directory
+WALLPAPER_DIR="$HOME/Pictures/e6" # Change this to your wallpaper directory
 CACHE_DIR="$HOME/.cache/wallpaper-selector"
 THUMBNAIL_WIDTH="250" # Size of thumbnails in pixels (16:9)
 THUMBNAIL_HEIGHT="141"
