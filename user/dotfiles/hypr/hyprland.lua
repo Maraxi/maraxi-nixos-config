@@ -257,9 +257,19 @@ hl.bind(mainMod .. "SHIFT + " .. "down", hl.dsp.window.move({ direction = "d" })
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
-	local key = i % 10 -- 10 maps to key 0
-	hl.bind(mainMod .. key, hl.dsp.focus({ workspace = i }))
-	hl.bind(mainMod .. "SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+  local key = i % 10 -- 10 maps to key 0
+  hl.bind(mainMod .. key, function()
+    hl.dispatch(hl.dsp.focus({ workspace = i }))
+    -- If the workspace was newly created then focus can move back to the window under the mouse
+    -- Find the monitor that owns this workspace.
+    local workspace = hl.get_workspace(i)
+    local active_monitor = hl.get_active_monitor()
+    if workspace and workspace.monitor and workspace.monitor ~= active_monitor then
+      -- Explicitly focus that monitor.
+      hl.dispatch(hl.dsp.focus({ monitor = workspace.monitor.name, }))
+    end
+  end)
+  hl.bind(mainMod .. "SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Alt tab to last active window
