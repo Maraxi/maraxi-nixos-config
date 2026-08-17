@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  setup,
   keyboard,
   ...
 }:
@@ -82,9 +81,6 @@ let
           down = "j";
           up = "k";
           right = "l";
-
-          dismiss_notifications =
-            if setup.isNixOS then "${pkgs.mako}/bin/makoctl dismiss -a" else "dunstctl close-all";
         in
         {
           "${modifier}+Return" = "exec ${terminal}";
@@ -142,7 +138,7 @@ let
 
           "${meh}+c" = "reload";
 
-          "${meh}+d" = "exec --no-startup-id ${dismiss_notifications}";
+          "${meh}+d" = "exec --no-startup-id dunstctl close-all";
         };
     };
 in
