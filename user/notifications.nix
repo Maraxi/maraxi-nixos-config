@@ -48,7 +48,7 @@
         hide_duplicate_count = false;
 
         enable_recursive_icon_lookup = false;
-        icon_theme = "Paprius, Humanity, Yaru, Adwaita, hicolor";
+        icon_theme = "Papirus, Humanity, Yaru, Adwaita, hicolor";
 
         corner_radius = 0;
         corners = "all";
