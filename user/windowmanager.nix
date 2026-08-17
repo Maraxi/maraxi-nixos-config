@@ -376,7 +376,7 @@ in
             })
             [
               # Load environment vars from .profile to be available in "systemctl --user show-environment"
-              "export XDG_CURRENT_DESKTOP=i3; systemctl --user import-environmet XDG_DATA_DIRS; dbus-update-activation-environment --systemd --all"
+              "export XDG_CURRENT_DESKTOP=i3; systemctl --user import-environment XDG_DATA_DIRS; dbus-update-activation-environment --systemd --all"
 
               # Start XDG autostart .desktop files using dex. See also
               # https://wiki.archlinux.org/index.php/XDG_Autostart
