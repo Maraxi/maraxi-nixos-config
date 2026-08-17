@@ -6,7 +6,7 @@
       nextcloud = "nextcloud-autosync";
     in
     {
-      startServices = true;
+      startServices = "sd-switch";
 
       services.${nextcloud} = {
         Unit = {
