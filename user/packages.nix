@@ -124,7 +124,7 @@
 
             glib
             nemo
-            libreoffice-fresh
+            libreoffice-stable
             evince
             pdfarranger
             gthumb
