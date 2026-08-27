@@ -404,6 +404,8 @@ in
 
               # screensaver
               # ''"xset +dpms; xset s 540"''
+
+              "numlockx on"
               ''"sleep 3; xset s off dpms 0 0 0; setxkbmap ${keyboard.layout} -variant ${keyboard.variant} -option -option ${keyboard.options}"''
             ]
           )
