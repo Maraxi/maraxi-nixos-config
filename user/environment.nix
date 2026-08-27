@@ -16,7 +16,7 @@
     XDG_STATE_HOME = "$HOME/.local/state";
 
     RUFF_CACHE_DIR = XDG_CACHE_HOME + "/ruff_cache";
-    UV_EXCLUDE_NEWER = "3 days";
+    # UV_EXCLUDE_NEWER = "3 days";
 
     PYTHON_HISTORY = XDG_STATE_HOME + "/python-history";
     IPYTHONDIR = XDG_DATA_HOME + "/ipython";
