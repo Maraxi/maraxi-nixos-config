@@ -239,6 +239,16 @@ hl.bind(mehMod .. 'Q', hl.dsp.window.close())
 hl.bind(mehMod .. 'K', hl.dsp.window.kill())
 
 hl.bind(mehMod .. 'L', hl.dsp.window.float { action = 'toggle' })
+hl.bind(
+  mainMod .. 'space',
+  function()
+    hl.dispatch(hl.dsp.window.cycle_next {
+      floating = not hl.get_active_window().floating,
+    })
+  end,
+  { description = 'Switch focus between tiled and floating windows' }
+)
+
 -- hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
