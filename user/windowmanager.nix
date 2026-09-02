@@ -9,8 +9,8 @@ let
   # See https://i3wm.org/docs/userguide.html for a complete reference to i3/sway!
   shared_config =
     let
-      terminal_primary = "alacritty";
-      terminal_backup = "ghostty +new-window";
+      terminal_primary = "ghostty +new-window";
+      terminal_backup = "alacritty";
     in
     rec {
       modifier = "Mod4";
