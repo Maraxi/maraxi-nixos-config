@@ -347,14 +347,8 @@ hl.define_submap('wallpaper', function()
   hl.bind('S', set_wp '/home/stefan/Pictures/wallpaper/galaxy-cosmic-5376x3584-14974.jpg')
 
   hl.bind('F', function()
-    hl.timer(
-      function() hl.dispatch(hl.dsp.dpms { action = 'off', monitor = monitor_right }) end,
-      { timeout = 100, type = 'oneshot' }
-    )
-    hl.timer(
-      function() hl.dispatch(hl.dsp.dpms { action = 'on', monitor = monitor_right }) end,
-      { timeout = 1000, type = 'oneshot' }
-    )
+    hl.timer(function() hl.dispatch(hl.dsp.dpms { action = 'off', monitor = monitor_right }) end, { timeout = 100, type = 'oneshot' })
+    hl.timer(function() hl.dispatch(hl.dsp.dpms { action = 'on', monitor = monitor_right }) end, { timeout = 1000, type = 'oneshot' })
   end)
 
   hl.bind('escape', hl.dsp.submap 'reset')
