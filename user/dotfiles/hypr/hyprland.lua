@@ -413,14 +413,12 @@ end)
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 
 -- Applications on fixed workspaces
-hl.window_rule { match = { class = '^steam$', title = '^Steam.*$' }, workspace = '7', tile = true }
-hl.window_rule { match = { class = '^thunderbird$' }, workspace = '8 silent' }
+hl.window_rule { match = { class = '^steam$' }, workspace = '7', no_initial_focus = true, suppress_event = 'activatefocus' }
+hl.window_rule { match = { title = '^Steam$' }, tile = true }
+hl.window_rule { match = { class = '^thunderbird$' }, workspace = '8', suppress_event = 'activatefocus' }
+hl.window_rule { match = { class = '^org.keepassxc.KeePassXC$', title = 'negative:^Unlock.*' }, workspace = '9', no_initial_focus = true }
 hl.window_rule {
-  match = { class = '^org.keepassxc.KeePassXC$', title = 'negative:^Unlock.*' },
-  workspace = '9 silent',
-}
-hl.window_rule {
-  match = { class = [[steam_app_\d+|dota2|FTL.*|Hollow Knight Silksong]] },
+  match = { class = [[steam_app_\d+|dota2|FTL.*|Hollow Knight Silksong]], float = false },
   workspace = '10',
   fullscreen = true,
 }
