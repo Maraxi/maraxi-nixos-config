@@ -1,5 +1,12 @@
 -- Remove after, just to hide warnings
 -- local hl = {}
+
+-----------------
+---- HELPERS ----
+-----------------
+
+function notify(text) hl.notification.create { text = text, timeout = 15000, icon = 'info', font_size = 20 } end
+
 ------------------
 ---- MONITORS ----
 ------------------
