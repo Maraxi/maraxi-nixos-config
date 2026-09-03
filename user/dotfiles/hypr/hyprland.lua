@@ -347,8 +347,14 @@ hl.define_submap('wallpaper', function()
   hl.bind('S', set_wp '/home/stefan/Pictures/wallpaper/galaxy-cosmic-5376x3584-14974.jpg')
 
   hl.bind('F', function()
-    hl.timer(function() hl.dispatch(hl.dsp.dpms { action = 'off', monitor = monitor_right }) end, { timeout = 100, type = 'oneshot' })
-    hl.timer(function() hl.dispatch(hl.dsp.dpms { action = 'on', monitor = monitor_right }) end, { timeout = 1000, type = 'oneshot' })
+    hl.timer(
+      function() hl.dispatch(hl.dsp.dpms { action = 'off', monitor = monitor_right }) end,
+      { timeout = 100, type = 'oneshot' }
+    )
+    hl.timer(
+      function() hl.dispatch(hl.dsp.dpms { action = 'on', monitor = monitor_right }) end,
+      { timeout = 1000, type = 'oneshot' }
+    )
   end)
 
   hl.bind('escape', hl.dsp.submap 'reset')
@@ -419,18 +425,23 @@ hl.workspace_rule { workspace = '8', monitor = monitor_right, on_created_empty =
 hl.workspace_rule { workspace = '9', monitor = monitor_right, on_created_empty = 'keepassxc' }
 hl.workspace_rule { workspace = '10', monitor = monitor_right }
 
+-- Application specific settings
 hl.window_rule { match = { class = '^steam$' }, workspace = '7', no_initial_focus = true, suppress_event = 'activatefocus' }
 hl.window_rule { match = { title = '^Steam$' }, tile = true }
-hl.window_rule { match = { class = '^thunderbird$' }, workspace = '8', suppress_event = 'activatefocus' }
-hl.window_rule { match = { class = '^org.keepassxc.KeePassXC$', title = 'negative:^Unlock.*' }, workspace = '9', no_initial_focus = true }
 hl.window_rule {
   match = { class = [[steam_app_\d+|dota2|FTL.*|Hollow Knight Silksong]], float = false },
   workspace = '10',
   fullscreen = true,
 }
 
--- Application specific settings
-hl.window_rule { match = { class = '^org.keepassxc.KeePassXC$' }, no_screen_share = true }
+hl.window_rule { match = { class = '^thunderbird$' }, workspace = '8', suppress_event = 'activatefocus' }
+
+hl.window_rule {
+  match = { class = '^org.keepassxc.KeePassXC$', title = 'negative:^Unlock.*' },
+  workspace = '9',
+  no_initial_focus = true,
+  no_screen_share = true,
+}
 hl.window_rule { match = { initial_title = '^Unlock Database - KeePassXC$' }, stay_focused = true }
 -- fullscreen requests from firefox stay inside its own borders
 hl.window_rule { match = { class = '^firefox$' }, fullscreen_state = '0 -1' }
