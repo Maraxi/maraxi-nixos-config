@@ -310,25 +310,28 @@ local screenRecord = hl.dsp.exec_cmd 'record-screen'
 hl.bind(mainMod .. 'Print', screenRecord)
 
 -- Laptop multimedia keys for volume and LCD brightness
-local soundBinds = {
-  ['wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-'] = { 'F7', 'XF86AudioLowerVolume' },
-  ['wpctl set-volume --limit 1 @DEFAULT_AUDIO_SINK@ 3%+'] = { 'F8', 'XF86AudioRaiseVolume' },
-  ['wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'] = { 'F9', 'XF86AudioMute' },
-  ['wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'] = { 'XF86AudioMicMute' },
-}
-for command, keys in pairs(soundBinds) do
-  for _, key in ipairs(keys) do
-    hl.bind(key, hl.dsp.exec_cmd(command), { locked = true, repeating = true })
+function bindSoundKeys()
+  local soundBinds = {
+    ['wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-'] = { keys = { 'F7', 'XF86AudioLowerVolume' } },
+    ['wpctl set-volume --limit 1 @DEFAULT_AUDIO_SINK@ 3%+'] = { keys = { 'F8', 'XF86AudioRaiseVolume' } },
+    ['wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'] = { keys = { 'F9', 'XF86AudioMute' } },
+    ['wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'] = { keys = { 'XF86AudioMicMute' } },
+  }
+  for command, options in pairs(soundBinds) do
+    for _, key in ipairs(options['keys']) do
+      hl.bind(key, hl.dsp.exec_cmd(command), { locked = true, repeating = true })
+    end
   end
-end
--- hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
--- hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+  -- hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
+  -- hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
 
--- Requires playerctl
--- hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
--- hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
--- hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
--- hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+  -- Requires playerctl
+  -- hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
+  -- hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+  -- hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+  -- hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+end
+bindSoundKeys()
 
 ----- Submaps -----
 
@@ -399,11 +402,7 @@ hl.define_submap('no-binds', function()
     hl.dispatch(hl.dsp.focus { workspace = 2 })
   end)
 
-  hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd 'wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 3%+', soundOptions)
-  hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-', soundOptions)
-  hl.bind('F12', hl.dsp.exec_cmd 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-', soundOptions)
-  hl.bind('XF86AudioMute', hl.dsp.exec_cmd 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle', soundOptions)
-  hl.bind('XF86AudioMicMute', hl.dsp.exec_cmd 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle', soundOptions)
+  bindSoundKeys()
 
   hl.bind(mehMod .. 'P', function()
     hl.config { cursor = { no_warps = true } }
