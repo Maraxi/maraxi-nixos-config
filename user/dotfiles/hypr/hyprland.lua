@@ -443,8 +443,10 @@ hl.window_rule {
   no_screen_share = true,
 }
 hl.window_rule { match = { initial_title = '^Unlock Database - KeePassXC$' }, stay_focused = true }
+
 -- fullscreen requests from firefox stay inside its own borders
 hl.window_rule { match = { class = '^firefox$' }, fullscreen_state = '0 -1' }
+hl.window_rule { match = { title = '^About Mozilla Firefox$' }, float = true }
 
 -- Ignore maximize requests from all apps. You'll probably like this.
 -- local suppressMaximizeRule =
