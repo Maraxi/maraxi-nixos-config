@@ -418,7 +418,7 @@ end)
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 
--- Applications on fixed workspaces
+-- Workspaces on fixed monitors with default apps
 hl.workspace_rule { workspace = '2', monitor = monitor_right, on_created_empty = 'firefox' }
 hl.workspace_rule { workspace = '7', monitor = monitor_right, on_created_empty = 'steam' }
 hl.workspace_rule { workspace = '8', monitor = monitor_right, on_created_empty = 'thunderbird' }
@@ -444,49 +444,15 @@ hl.window_rule {
 }
 hl.window_rule { match = { initial_title = '^Unlock Database - KeePassXC$' }, stay_focused = true }
 
--- fullscreen requests from firefox stay inside its own borders
-hl.window_rule { match = { class = '^firefox$' }, fullscreen_state = '0 -1' }
+hl.window_rule { match = { class = '^firefox$' }, fullscreen_state = '0 -1' } -- full screen inside its own borders
 hl.window_rule { match = { title = '^About Mozilla Firefox$' }, float = true }
 
--- Ignore maximize requests from all apps. You'll probably like this.
--- local suppressMaximizeRule =
-hl.window_rule {
-  name = 'suppress-maximize-events',
-  match = { class = '.*' },
-
-  suppress_event = 'maximize',
-} -- suppressMaximizeRule:set_enabled(false)
+-- Ignore maximize requests from all apps
+hl.window_rule { name = 'suppress-maximize-events', match = { class = '.*' }, suppress_event = 'maximize' }
 
 -- Fix some dragging issues with XWayland
 hl.window_rule {
   name = 'fix-xwayland-drags',
-  match = {
-    class = '^$',
-    title = '^$',
-    xwayland = true,
-    float = true,
-    fullscreen = false,
-    pin = false,
-  },
-
+  match = { class = '^$', title = '^$', xwayland = true, float = true, fullscreen = false, pin = false },
   no_focus = true,
 }
-
--- Layer rules also return a handle.
--- local overlayLayerRule = hl.layer_rule({
---     name  = "no-anim-overlay",
---     match = { namespace = "^my-overlay$" },
---     no_anim = true,
--- })
--- overlayLayerRule:set_enabled(false)
-
--- Hyprland-run windowrule
---[[
-hl.window_rule({
-	name = "move-hyprland-run",
-	match = { class = "hyprland-run" },
-
-	move = "20 monitor_h-120",
-	float = true,
-})
---]]
