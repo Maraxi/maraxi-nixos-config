@@ -323,20 +323,20 @@ function bindSoundKeys()
     ['wpctl set-volume --limit 1 @DEFAULT_AUDIO_SINK@ 3%+'] = { keys = { 'F8', 'XF86AudioRaiseVolume' }, repeating = true },
     ['wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'] = { keys = { 'F9', 'XF86AudioMute' } },
     ['wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'] = { keys = { 'XF86AudioMicMute' } },
+
+    -- ['brightnessctl -e4 -n2 set 5%+'] = { keys = { 'XF86MonBrightnessUp' }, repeating = true },
+    -- ['brightnessctl -e4 -n2 set 5%-'] = { keys = { 'XF86MonBrightnessDown' }, repeating = true },
+
+    -- Requires playerctl
+    -- ['playerctl next'] = { keys = { 'XF86AudioNext' } },
+    -- ['playerctl play-pause'] = { keys = { 'XF86AudioPause', 'XF86AudioPlay'} },
+    -- ['playerctl previous'] = { keys = { 'XF86AudioPrev' } },
   }
   for command, options in pairs(soundBinds) do
     for _, key in ipairs(options['keys']) do
       hl.bind(key, hl.dsp.exec_cmd(command), { locked = true, repeating = options['repeating'] or false })
     end
   end
-  -- hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-  -- hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
-
-  -- Requires playerctl
-  -- hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-  -- hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-  -- hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-  -- hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 end
 bindSoundKeys()
 
