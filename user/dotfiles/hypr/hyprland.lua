@@ -379,18 +379,22 @@ hl.define_submap('lock', function()
       hl.dispatch(hl.dsp.exec_cmd 'swaylock')
     end, { timeout = 100, type = 'oneshot' })
   end, { release = true })
+
   hl.bind('X', function()
     hl.timer(function()
       hl.dispatch(hl.dsp.submap 'reset')
       hl.dispatch(hl.dsp.dpms 'off')
     end, { timeout = 100, type = 'oneshot' })
   end, { release = true })
+
   hl.bind('E', hl.dsp.exit())
   hl.bind('P', hl.dsp.exec_cmd 'poweroff')
+
   hl.bind('S', function()
     hl.dispatch(hl.dsp.submap 'reset')
     hl.dispatch(hl.dsp.exec_cmd 'systemctl suspend')
   end)
+
   --hl.bind("H", hl.dsp.exec_cmd("hyprctl dispatch submap reset && systemctl hibernate"))
   hl.bind('R', hl.dsp.exec_cmd 'reboot')
 
