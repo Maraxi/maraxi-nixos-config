@@ -91,6 +91,11 @@ hl.config {
     layout = 'dwindle',
   },
 
+  dwindle = {
+    preserve_split = false,
+    force_split = 2,
+  },
+
   decoration = {
     rounding = 8,
     rounding_power = 2,
@@ -166,21 +171,6 @@ hl.workspace_rule { workspace = 'f[1]', gaps_out = 0, gaps_in = 0 }
 --     border_size = 0,
 --     rounding    = 0,
 -- })
-
-hl.config {
-  -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
-  dwindle = {
-    preserve_split = false, -- You probably want this
-  },
-  -- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
-  master = {
-    new_status = 'master',
-  },
-  -- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
-  scrolling = {
-    fullscreen_on_one_column = true,
-  },
-}
 
 ----------------
 ----  MISC  ----
