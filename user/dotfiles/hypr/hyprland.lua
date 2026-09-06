@@ -217,6 +217,8 @@ hl.bind(mainMod .. 'Return', hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. 'D', hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. 'E', hl.dsp.exec_cmd(fileManager))
 
+hl.bind(mehMod .. 'R', hl.dsp.exec_cmd 'hyprctl reload')
+
 hl.bind(mehMod .. 'Q', hl.dsp.window.close())
 hl.bind(mehMod .. 'K', hl.dsp.window.kill())
 
