@@ -72,7 +72,7 @@ hl.env('__GLX_VENDOR_LIBRARY_NAME', 'nvidia')
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config {
   general = {
-    gaps_in = 5,
+    gaps_in = 4,
     gaps_out = { top = 0, right = 15, bottom = 12, left = 15 },
 
     border_size = 1,
