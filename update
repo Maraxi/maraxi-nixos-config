@@ -42,8 +42,8 @@ TAG_EXISTS=$?
 set -e
 
 # Rebuild
-if [[ $TAG_EXISTS != 0 ]] || [[ $CURRENT != "$LAST_BUILD" ]]; then
-	if [[ $(uname -v) =~ "NixOS" ]]; then
+if [[ $(uname -v) =~ "NixOS" ]]; then
+	if [[ $TAG_EXISTS != 0 ]] || [[ $CURRENT != "$LAST_BUILD" ]]; then
 		prev_generation=$(nixos-rebuild list-generations --json | jq '.[] | select(.current == true) | .generation')
 
 		# Ask for sudo password early
@@ -52,10 +52,10 @@ if [[ $TAG_EXISTS != 0 ]] || [[ $CURRENT != "$LAST_BUILD" ]]; then
 		echo
 
 		nvd history --minimum-version "$prev_generation"
-	else
-		home-manager "${1:-switch}"
+		echo
+		git tag -f last-build
 	fi
-	echo
-
+else
+	home-manager "${1:-switch}"
 	git tag -f last-build
 fi
