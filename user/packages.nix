@@ -29,6 +29,8 @@
 
         telegram-desktop
 
+        devenv
+
         uv
         ruff
         ty
