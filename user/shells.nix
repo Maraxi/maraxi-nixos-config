@@ -29,6 +29,8 @@
       lib.mkMerge (
         [
           (lib.mkOrder 100 ''
+            eval "$(devenv hook bash)"
+
             bind -x '"\C-o":${check-git} && { ruff format; ruff check --fix || ruff check --output-format grouped; }'
             bind -x '"\C-p":${check-git} && pre-commit'
 
