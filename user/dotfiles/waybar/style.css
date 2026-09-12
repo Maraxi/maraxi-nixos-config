@@ -7,17 +7,15 @@
 @define-color blue #0000ff;
 @define-color font-workspace #018284;
 
-* {
+window#waybar {
+    background: alpha(#000000, 0);
+}
+
+window#waybar * {
     border: none;
-    border-radius: 0 0 10px 10px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: 600;
     font-size: 15px;
-    min-height: 0;
-}
-
-window#waybar {
-    background: alpha(#000000, 0);
 }
 
 tooltip {
@@ -42,6 +40,7 @@ tooltip {
 }
 
 #workspaces {
+    border-radius: 0 0 10px 10px;
     background: @base-purple;
 }
 #workspaces button {
@@ -80,6 +79,7 @@ window#waybar.empty #window {
 #tray,
 #custom-recording {
     background: @base-purple;
+    border-radius: 0 0 10px 10px;
     padding: 0px 10px;
     margin: 0 2px;
     text-shadow: 0 0 1px white;
