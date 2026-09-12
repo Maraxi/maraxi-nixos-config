@@ -424,6 +424,7 @@ hl.window_rule {
   match = { class = [[steam_app_\d+|dota2|FTL.*|Hollow Knight Silksong]], float = false },
   workspace = '10',
   fullscreen = true,
+  confine_pointer = true,
 }
 
 hl.window_rule { match = { class = '^thunderbird$' }, workspace = '8', suppress_event = 'activatefocus' }
