@@ -439,6 +439,8 @@ hl.window_rule { match = { initial_title = '^Unlock Database - KeePassXC$' }, st
 hl.window_rule { match = { class = '^firefox$' }, fullscreen_state = '0 -1' } -- full screen inside its own borders
 hl.window_rule { match = { title = '^About Mozilla Firefox$' }, float = true }
 
+hl.window_rule { match = { class = '^nemo$', title = '.*Properties$' }, float = true }
+
 -- Ignore maximize requests from all apps
 hl.window_rule { name = 'suppress-maximize-events', match = { class = '.*' }, suppress_event = 'maximize' }
 
