@@ -9,7 +9,6 @@
   "modules-left": [ "clock", "hyprland/workspaces", "hyprland/submap" ],
   "modules-center": [ "hyprland/window" ],
   "modules-right": [ "custom/recording", "privacy", "network", "wireplumber", "idle_inhibitor", "tray" ],
-  // "modules-right": [ "privacy", "network", "wireplumber", "pulseaudio#microphone", "idle_inhibitor", "tray" ],
 
   "clock": {
     "format": "  {:%H:%M    %a, %d %b}",
