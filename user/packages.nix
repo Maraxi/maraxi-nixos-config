@@ -78,7 +78,7 @@
         shfmt
         shellharden
 
-        pre-commit
+        prek
 
         imagemagick
 
