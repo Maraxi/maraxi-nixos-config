@@ -14,14 +14,14 @@
             ./gtk.nix
             ./hyprland.nix
             ./nextcloud-sync.nix
-            ./podman.nix
             ./ssh.nix
             ./wayland.nix
           ]
         else
           [
-            ./non-nixos.nix
             ./nixpkgs.nix
+            ./non-nixos.nix
+            ./podman.nix
             ./windowmanager.nix
           ];
     in

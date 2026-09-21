@@ -153,7 +153,6 @@
 
             sqlcl
 
-            podman
             kubernetes-helm
             openshift
 
