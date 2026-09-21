@@ -112,7 +112,6 @@
             pavucontrol
             vlc
 
-            glances
             ncdu
 
             gimp
