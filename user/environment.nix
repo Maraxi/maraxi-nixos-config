@@ -89,9 +89,13 @@
               nvim "''${1#file://}"
               ;;
           *)
-              echo -ne "unknown protocol:\n$protocol\npress enter to exit"
-              read -r
-              exit 1
+              if [[ -e $1 ]]; then
+                  nvim "$1"
+              else
+                  echo -ne "unknown protocol:\n$protocol\npress enter to exit"
+                  read -r
+                  exit 1
+              fi
               ;;
       esac
       exit 0
