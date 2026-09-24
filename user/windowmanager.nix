@@ -28,7 +28,7 @@ let
           cl_focused = "#082899";
           cl_inactive = "#5f5456";
           cl_background = "#231f20";
-          cl_border = "#181818";
+          cl_border = "#555575";
           cl_text = "#d9d8d8";
           cl_urgent = "#9966ff";
           cl_split_indicator = "#d9d8d8";
@@ -43,7 +43,7 @@ let
           };
           focusedInactive = {
             background = "${cl_inactive}";
-            border = "${cl_border}";
+            border = "${cl_inactive}";
             text = "${cl_text}";
             indicator = "${cl_split_indicator}";
             childBorder = "${cl_background}";
