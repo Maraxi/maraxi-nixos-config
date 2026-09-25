@@ -4,62 +4,65 @@
 
 -- TODO: test: vim.loader.enable()
 -- vim.cmd([[set mouse=]])  -- TODO: need to fix jump, usually ^] / :tag
--- vim.opt.mouse = '' / 'a'
+-- vim.o.mouse = '' / 'a'
 
 --    #### global keys ####
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 --    #### generic window and system interactions ####
-vim.opt.title = true
-vim.opt.undofile = true
+vim.o.title = true
+vim.o.undofile = true
 -- Decrease update time, debounce this long until writing to swap
-vim.opt.updatetime = 250
+vim.o.updatetime = 250
 
-vim.opt.clipboard = 'unnamedplus'
+vim.o.clipboard = 'unnamedplus'
 -- TODO: check if this makes a difference
 -- vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 
 --    #### window decorations, etc. ####
 -- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+vim.o.showmode = false
 
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 --    #### editor / display behaviour ####
 -- Decrease mapped sequence wait time
 -- Displays which-key pop-up sooner
 -- TODO: this breaks gO / outline at low values
-vim.opt.timeoutlen = 1000
+vim.o.timeoutlen = 1000
 -- prompt instead of failing with unsaved changes with commands like `:q`
-vim.opt.confirm = true
+vim.o.confirm = true
 
-vim.opt.tabstop = 8
-vim.opt.shiftwidth = 8
-vim.opt.softtabstop = -1
+vim.o.tabstop = 8
+vim.o.shiftwidth = 8
+vim.o.softtabstop = -1
 
-vim.opt.list = true
+-- Use vim.opt to configure with a table
+--   See `:help lua-options`
+--   and `:help lua-guide-options`
+vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.signcolumn = 'yes'
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.signcolumn = 'yes'
 -- vim.opt.showtabline = 2
 
-vim.opt.wrap = false
-vim.opt.breakindent = true
+vim.o.wrap = false
+vim.o.breakindent = true
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.scrolloff = 20
-vim.opt.sidescrolloff = 10
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.scrolloff = 20
+vim.o.sidescrolloff = 10
 
-vim.opt.spell = true
-vim.opt.spelllang = 'en_gb,de_de'
+vim.o.spell = true
+vim.o.spelllang = 'en_gb,de_de'
 
-vim.opt.inccommand = 'split'
-vim.opt.cursorline = true
+vim.o.inccommand = 'split'
+vim.o.cursorline = true
 
 -- ########################
 -- ##      Key Maps      ##
