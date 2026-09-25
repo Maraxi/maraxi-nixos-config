@@ -1,68 +1,69 @@
 -- #######################
 -- ##      Options      ##
 -- #######################
+do
+  -- TODO: test: vim.loader.enable()
+  -- vim.cmd([[set mouse=]])  -- TODO: need to fix jump, usually ^] / :tag
+  -- vim.o.mouse = '' / 'a'
 
--- TODO: test: vim.loader.enable()
--- vim.cmd([[set mouse=]])  -- TODO: need to fix jump, usually ^] / :tag
--- vim.o.mouse = '' / 'a'
+  --    #### global keys ####
+  vim.g.mapleader = ' '
+  vim.g.maplocalleader = ' '
 
---    #### global keys ####
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+  --    #### generic window and system interactions ####
+  vim.o.title = true
+  vim.o.undofile = true
+  -- Decrease update time, debounce this long until writing to swap
+  vim.o.updatetime = 250
 
---    #### generic window and system interactions ####
-vim.o.title = true
-vim.o.undofile = true
--- Decrease update time, debounce this long until writing to swap
-vim.o.updatetime = 250
+  vim.o.clipboard = 'unnamedplus'
+  -- TODO: check if this makes a difference
+  -- vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 
-vim.o.clipboard = 'unnamedplus'
--- TODO: check if this makes a difference
--- vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
+  --    #### window decorations, etc. ####
+  -- Don't show the mode, since it's already in the status line
+  vim.o.showmode = false
 
---    #### window decorations, etc. ####
--- Don't show the mode, since it's already in the status line
-vim.o.showmode = false
+  vim.o.splitright = true
+  vim.o.splitbelow = true
 
-vim.o.splitright = true
-vim.o.splitbelow = true
+  --    #### editor / display behaviour ####
+  -- Decrease mapped sequence wait time
+  -- Displays which-key pop-up sooner
+  -- TODO: this breaks gO / outline at low values
+  vim.o.timeoutlen = 1000
+  -- prompt instead of failing with unsaved changes with commands like `:q`
+  vim.o.confirm = true
 
---    #### editor / display behaviour ####
--- Decrease mapped sequence wait time
--- Displays which-key pop-up sooner
--- TODO: this breaks gO / outline at low values
-vim.o.timeoutlen = 1000
--- prompt instead of failing with unsaved changes with commands like `:q`
-vim.o.confirm = true
+  vim.o.tabstop = 8
+  vim.o.shiftwidth = 8
+  vim.o.softtabstop = -1
 
-vim.o.tabstop = 8
-vim.o.shiftwidth = 8
-vim.o.softtabstop = -1
+  -- Use vim.opt to configure with a table
+  --   See `:help lua-options`
+  --   and `:help lua-guide-options`
+  vim.o.list = true
+  vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- Use vim.opt to configure with a table
---   See `:help lua-options`
---   and `:help lua-guide-options`
-vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+  vim.o.number = true
+  vim.o.relativenumber = true
+  vim.o.signcolumn = 'yes'
+  -- vim.opt.showtabline = 2
 
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.signcolumn = 'yes'
--- vim.opt.showtabline = 2
+  vim.o.wrap = false
+  vim.o.breakindent = true
 
-vim.o.wrap = false
-vim.o.breakindent = true
+  vim.o.ignorecase = true
+  vim.o.smartcase = true
+  vim.o.scrolloff = 20
+  vim.o.sidescrolloff = 10
 
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.scrolloff = 20
-vim.o.sidescrolloff = 10
+  vim.o.spell = true
+  vim.o.spelllang = 'en_gb,de_de'
 
-vim.o.spell = true
-vim.o.spelllang = 'en_gb,de_de'
-
-vim.o.inccommand = 'split'
-vim.o.cursorline = true
+  vim.o.inccommand = 'split'
+  vim.o.cursorline = true
+end
 
 -- ########################
 -- ##      Key Maps      ##
