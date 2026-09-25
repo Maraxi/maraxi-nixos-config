@@ -193,6 +193,9 @@ do
   vim.pack.add { gh 'folke/tokyonight.nvim' }
   vim.cmd.colorscheme 'tokyonight-moon'
 
+  vim.pack.add { gh 'NMAC427/guess-indent.nvim' }
+  require('guess-indent').setup {}
+
   -- [[ which key ]]
   -- Useful plugin to show you pending keybinds.
   vim.pack.add { gh 'folke/which-key.nvim' }
