@@ -233,35 +233,33 @@ do
   --      fzflua
   require('todo-comments').setup { signs = false }
 
-  -- [[ mini.nvim ]]
-  vim.pack.add { gh 'nvim-mini/mini.nvim' }
-  require('mini.icons').setup()
-  -- Used for backwards compatibility with plugins that require `nvim-web-devicons` (e.g. telescope.nvim)
-  MiniIcons.mock_nvim_web_devicons()
+  do -- [[ mini.nvim ]]
+    vim.pack.add { gh 'nvim-mini/mini.nvim' }
 
-  require('mini.ai').setup {
-    -- NOTE: Avoid conflicts with the built-in incremental selection mappings on Neovim>=0.12 (see `:help treesitter-incremental-selection`)
-    mappings = {
-      around_next = 'aa',
-      inside_next = 'ii',
-    },
-    n_lines = 500,
-  }
+    require('mini.icons').setup()
+    -- Used for backwards compatibility with plugins that require `nvim-web-devicons` (e.g. telescope.nvim)
+    MiniIcons.mock_nvim_web_devicons()
 
-  -- TODO: figure out how that works
-  require('mini.surround').setup()
+    require('mini.ai').setup {
+      -- NOTE: Avoid conflicts with the built-in incremental selection mappings on Neovim>=0.12 (see `:help treesitter-incremental-selection`)
+      mappings = {
+        around_next = 'aa',
+        inside_next = 'ii',
+      },
+      n_lines = 500,
+    }
 
-  local statusline = require 'mini.statusline'
-  statusline.setup {}
-  -- set the section for cursor location to LINE:COLUMN
-  -- statusline.section_location = function() return '%2l:%-2v' end
+    -- TODO: figure out how that works
+    require('mini.surround').setup()
 
-  -- TODO: more mini tools
-  -- https://github.com/nvim-mini/mini.nvim
+    local statusline = require 'mini.statusline'
+    statusline.setup {}
+    -- set the section for cursor location to LINE:COLUMN
+    -- statusline.section_location = function() return '%2l:%-2v' end
 
-  -- TODO: check if needed:
-  -- https://github.com/NMAC427/guess-indent.nvim
-  -- require('guess-indent').setup {}
+    -- TODO: more mini tools
+    -- https://github.com/nvim-mini/mini.nvim
+  end
 end
 
 -- ############################################
