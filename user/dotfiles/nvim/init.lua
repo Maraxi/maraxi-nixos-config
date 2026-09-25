@@ -216,6 +216,7 @@ do
   require('gitsigns').setup {
     signs = { add = { text = '+' }, change = { text = '~' } },
     signs_staged = { add = { text = '+' }, change = { text = '~' } },
+    -- TODO: kickstart commands to move to next change and interact with hunks
   }
 
   -- [[ todo comments ]]
