@@ -66,10 +66,10 @@ vim.opt.cursorline = true
 -- ########################
 
 -- Run files or just active lines in lua
--- vim.keymap.set('n', '<leader><leader>X', '<cmd>restart<CR>')
--- vim.keymap.set('n', '<leader><leader>x', '<cmd>source $MYVIMRC<CR>')
-vim.keymap.set('n', '<leader>x', ':.lua<CR>')
-vim.keymap.set('v', '<leader>x', ':lua<CR>')
+vim.keymap.set('n', '<leader>R', '<cmd>restart<CR>', { desc = 'Restart nvim' })
+vim.keymap.set('n', '<leader>r', '<cmd>source $MYVIMRC<CR>', { desc = 'Reload configuration' })
+vim.keymap.set('n', '<leader>x', ':.lua<CR>', { desc = 'run current line' })
+vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Run selected lines' })
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
