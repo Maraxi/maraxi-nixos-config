@@ -98,6 +98,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.highlight.on_yank() end,
 })
 
+-- Fix for german keyboard. Emulate <C-]> with <Enter> in help pages. See :help tag
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'help',
+  callback = function() vim.keymap.set('n', '<CR>', '<C-]>', { buffer = true }) end,
+})
 -- ########################
 -- ##      Plug ins      ##
 -- ########################
