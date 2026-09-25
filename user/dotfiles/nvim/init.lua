@@ -80,10 +80,6 @@ do
 
   vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear highlight on escape' })
 
-  -- Diagnostic keymaps
-  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-  vim.diagnostic.config { virtual_text = true }
-
   -- Keybinds to make split navigation easier.
   vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
   vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
@@ -93,6 +89,11 @@ do
   vim.keymap.set('n', '<C-S-l>', '<C-w>L', { desc = 'Move window to the right' })
   vim.keymap.set('n', '<C-S-j>', '<C-w>J', { desc = 'Move window to the lower' })
   vim.keymap.set('n', '<C-S-k>', '<C-w>K', { desc = 'Move window to the upper' })
+end
+
+do -- diagnostics
+  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+  vim.diagnostic.config { virtual_text = true }
 end
 
 -- ########################
