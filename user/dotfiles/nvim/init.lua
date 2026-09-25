@@ -191,6 +191,11 @@ local gh = function(x) return 'https://github.com/' .. x end
 do
   -- [[ colorscheme ]]
   vim.pack.add { gh 'folke/tokyonight.nvim' }
+  require('tokyonight').setup {
+    styles = {
+      comments = { italic = false },
+    },
+  }
   vim.cmd.colorscheme 'tokyonight-moon'
 
   vim.pack.add { gh 'NMAC427/guess-indent.nvim' }
