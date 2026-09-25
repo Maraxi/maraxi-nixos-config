@@ -135,9 +135,9 @@ do
   })
 end
 
--- ########################
--- ##      Plug ins      ##
--- ########################
+-- ###############################
+-- ##      Plug in manager      ##
+-- ###############################
 do
   --  To inspect plugin state and pending updates, run
   --    :lua vim.pack.update(nil, { offline = true })
