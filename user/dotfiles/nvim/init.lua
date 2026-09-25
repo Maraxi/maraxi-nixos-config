@@ -78,7 +78,7 @@ do
   vim.keymap.set('n', '<leader>x', ':.lua<CR>', { desc = 'run current line' })
   vim.keymap.set('v', '<leader>x', ':lua<CR>', { desc = 'Run selected lines' })
 
-  vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+  vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear highlight on escape' })
 
   -- Diagnostic keymaps
   vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
