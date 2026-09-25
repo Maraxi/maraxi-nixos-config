@@ -2,7 +2,9 @@
 -- ##      Options      ##
 -- #######################
 do
-  -- TODO: test: vim.loader.enable()
+  -- Enable experimental faster start up by caching compiled Lua modules
+  vim.loader.enable()
+
   -- vim.cmd([[set mouse=]])  -- TODO: need to fix jump, usually ^] / :tag
   -- vim.o.mouse = '' / 'a'
 
