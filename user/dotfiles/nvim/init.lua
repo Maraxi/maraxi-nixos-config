@@ -57,7 +57,7 @@ do
 
   vim.o.ignorecase = true
   vim.o.smartcase = true
-  vim.o.scrolloff = 20
+  vim.o.scrolloff = 25
   vim.o.sidescrolloff = 10
 
   vim.o.spell = true
