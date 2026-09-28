@@ -6,7 +6,6 @@
       experimental-features = [
         "nix-command"
         "flakes"
-        "pipe-operators"
       ];
       use-xdg-base-directories = true;
       # warn-dirty = false;

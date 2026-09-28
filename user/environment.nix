@@ -115,8 +115,6 @@
         "org.gnome.gThumb.desktop"
         "vlc.desktop"
       ];
-      text-mime-types =
-        builtins.readFile ./text-mime-types.txt |> lib.splitString "\n" |> builtins.filter (x: x != "");
       association = {
         "application/json" = editor;
         "application/pdf" = [
@@ -134,6 +132,7 @@
         "image/webp" = image_viewer;
         "inode/directory" = "nemo.desktop";
         "message/rfc822" = "thunderbird.desktop";
+        "text/*" = editor;
         "text/html" = browser;
         "x-scheme-handler/about" = browser;
         "x-scheme-handler/http" = browser;
@@ -142,13 +141,7 @@
         "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
         "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
         "x-scheme-handler/unknown" = browser;
-      }
-      // builtins.listToAttrs (
-        map (type: {
-          name = "text/${type}";
-          value = editor;
-        }) text-mime-types
-      );
+      };
     in
     {
       enable = true;
