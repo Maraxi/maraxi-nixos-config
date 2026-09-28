@@ -56,6 +56,16 @@ if [[ $(uname -v) =~ "NixOS" ]]; then
 		git tag -f last-build
 	fi
 else
+	function get_generation() {
+		readlink "${XDG_STATE_HOME:-$HOME/.local/state}/nix/profiles/profile" | sed -E 's/.*-([0-9]+)-link/\1/'
+	}
+
+	prev_generation=$(get_generation)
 	home-manager "${1:-switch}"
+
+	current_generation=$(get_generation)
+	if [[ "$prev_generation" != "$current_generation" ]]; then
+		nvd history --profile ~/.nix-profile --minimum-version "$prev_generation"
+	fi
 	git tag -f last-build
 fi
