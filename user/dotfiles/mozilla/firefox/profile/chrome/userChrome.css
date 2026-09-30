@@ -1,0 +1,22 @@
+/* Firefox 157 + Nova: restore vertical container indicators */
+
+#tabbrowser-tabs[orient="vertical"]
+.tabbrowser-tab[usercontextid] > .tab-stack > .tab-background {
+  position: relative !important;
+}
+
+#tabbrowser-tabs[orient="vertical"]
+.tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
+  position: absolute !important;
+  top: 50% !important;
+  right: 0 !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: 2px !important;
+  height: 20px !important;
+  transform: translateY(-50%) !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 2px !important;
+  background: var(--identity-icon-color) !important;
+}
