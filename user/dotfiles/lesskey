@@ -1,2 +1,6 @@
 #env
-LESS = --ignore-case --jump-target=.4 --SEARCH-SKIP-SCREEN --LONG-PROMPT --RAW-CONTROL-CHARS --QUIET --quit-if-one-screen --quit-on-intr --tabs=4 --use-color --color=O-
+LESS  = --LONG-PROMPT --QUIET --tabs=4  # General
+LESS += --quit-if-one-screen --quit-on-intr  # Quit sensibly
+LESS += --ignore-case --jump-target=.4 --SEARCH-SKIP-SCREEN  # search settings
+LESS += --RAW-CONTROL-CHARS  # apply ANSI colours
+LESS += --use-color --color=O-  # do not style OSC 8 links
