@@ -12,8 +12,8 @@ function notify(text) hl.notification.create { text = text, timeout = 15000, ico
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-local monitor_left = 'DP-5'
-local monitor_right = 'HDMI-A-2'
+local monitor_left = 'DP-2'
+local monitor_right = 'HDMI-A-1'
 hl.monitor { output = monitor_left, mode = 'preferred', position = '0x0', scale = 'auto' }
 hl.monitor { output = monitor_right, mode = 'preferred', position = '2560x0', scale = 'auto' }
 hl.monitor { output = '', mode = 'preferred', position = 'auto', scale = 'auto' }
