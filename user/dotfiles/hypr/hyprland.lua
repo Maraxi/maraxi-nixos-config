@@ -422,8 +422,11 @@ hl.window_rule { match = { initial_title = '^Ghostty$' }, focus_on_activate = fa
 
 hl.window_rule { match = { class = '^steam$' }, workspace = '7', no_initial_focus = true, suppress_event = 'activatefocus' }
 hl.window_rule { match = { title = '^Steam$' }, tile = true }
+
+local ok, games = pcall(require, 'games')
+if not ok or type(games) ~= 'table' then games = { [[steam_app_\d+]] } end
 hl.window_rule {
-  match = { class = [[steam_app_\d+|dota2|FTL.*|Hollow Knight Silksong]], float = false },
+  match = { class = table.concat(games, '|'), float = false },
   workspace = '10',
   fullscreen = true,
 }
