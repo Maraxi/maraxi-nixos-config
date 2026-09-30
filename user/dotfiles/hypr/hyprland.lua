@@ -418,6 +418,8 @@ hl.workspace_rule { workspace = '9', monitor = monitor_right, on_created_empty =
 hl.workspace_rule { workspace = '10', monitor = monitor_right }
 
 -- Application specific settings
+hl.window_rule { match = { initial_title = '^Ghostty$' }, focus_on_activate = false }
+
 hl.window_rule { match = { class = '^steam$' }, workspace = '7', no_initial_focus = true, suppress_event = 'activatefocus' }
 hl.window_rule { match = { title = '^Steam$' }, tile = true }
 hl.window_rule {
