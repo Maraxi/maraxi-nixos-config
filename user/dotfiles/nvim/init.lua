@@ -475,8 +475,6 @@ do
     -- But for many setups, the LSP (`rust_analyzer`) will work just fine
     -- rust_analyzer = {},
 
-    stylua = {}, -- Used to format Lua code
-
     -- Special Lua Config, as recommended by neovim help docs
     lua_ls = {
       on_init = function(client)
@@ -513,6 +511,10 @@ do
         },
       },
     },
+  }
+
+  vim.pack.add {
+    gh 'neovim/nvim-lspconfig',
   }
 
   for name, server in pairs(servers) do
