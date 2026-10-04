@@ -22,6 +22,8 @@
 
     # lsp
     lua-language-server
+    stylua
+    nil
 
     (pkgs.runCommand "symlink-to-nvim" { } ''
       mkdir -p $out/bin
