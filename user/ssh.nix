@@ -20,7 +20,7 @@
       };
       "work" = {
         Hostname = "pc9d217";
-        User = "iv546";
+        User = "iv546_local";
         IdentityFile = "/home/stefan/.ssh/id_ed25519_pc9d217";
       };
     };

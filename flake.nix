@@ -75,7 +75,7 @@
         };
       };
       homeConfigurations = {
-        "iv546@pc9d217" = home-manager.lib.homeManagerConfiguration {
+        "iv546_local@pc9d217" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             ./user
@@ -85,7 +85,7 @@
             inherit inputs;
             inherit keyboard;
             setup = {
-              username = "iv546";
+              username = "iv546_local";
               stateVersion = "24.05";
               isNixOS = false;
             };
