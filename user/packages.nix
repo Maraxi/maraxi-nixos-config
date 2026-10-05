@@ -165,6 +165,15 @@
     basic_pkgs ++ per_system_pkgs;
 
   dconf.settings = {
+    "org/gnome/desktop/input-sources" = {
+      sources = [
+        (lib.gvariant.mkTuple [
+          "xkb"
+          "de+nodeadkeys"
+        ])
+      ];
+      xkb-options = [ "caps:escape" ];
+    };
     "org/gnome/desktop/interface" = {
       gtk-enable-primary-paste = true;
       color-scheme = "prefer-dark";
