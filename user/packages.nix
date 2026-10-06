@@ -17,6 +17,7 @@
           postBuild = "ln -s $out/bin/xdg-open $out/bin/open";
         })
 
+        nemo
         fastfetch
         tmux
 
@@ -124,7 +125,6 @@
             ffmpegthumbnailer
 
             glib
-            nemo
             libreoffice-stable
             evince
             pdfarranger
