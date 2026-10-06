@@ -89,8 +89,7 @@
       ];
       per_system_pkgs =
         if setup.isNixOS then
-          with pkgs;
-          [
+          (with pkgs; [
             gcc
             gnumake
             python314
@@ -134,10 +133,9 @@
             simple-scan
 
             gnome-maps
-          ]
+          ])
         else
-          with pkgs;
-          [
+          (with pkgs; [
             util-linux
 
             python313
@@ -159,7 +157,7 @@
             apache-directory-studio
 
             bluetuith
-          ];
+          ]);
     in
     basic_pkgs ++ per_system_pkgs;
 }
