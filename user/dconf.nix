@@ -22,7 +22,7 @@
     };
     "org/nemo/preferences" = {
       show-hidden-files = true;
-      thumbnail-limit = lib.hm.gvariant.mkUint64 1073741824;
+      thumbnail-limit = lib.hm.gvariant.mkUint64 1073741824; # 2^30 bytes = 1 GiB
     };
     "org/cinnamon/desktop/applications/terminal" = {
       exec =
