@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
+  home.packages = [ pkgs.dconf-editor ];
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       sources = [
