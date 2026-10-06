@@ -9,6 +9,9 @@
       ];
       xkb-options = [ "caps:escape" ];
     };
+    "org/gnome/shell/extensions/ding" = {
+      show-home = false;
+    };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       screensaver = [ "<Super>o" ];
       terminal = [ "<Super>Return" ];
