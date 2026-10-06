@@ -9,8 +9,8 @@
 
   programs.bash.shellAliases = {
     tox = "TERM=xterm-256color tox";
-    opencode-r = "$HOME/repositories/opencode_containerized/opencode.sh";
-    opencode = "$HOME/repositories/opencode_containerized/opencode.sh -w --rw";
+    # opencode-r = "$HOME/repositories/opencode_containerized/opencode.sh";
+    # opencode = "$HOME/repositories/opencode_containerized/opencode.sh -w --rw";
   };
 
   home.sessionPath = [ "$HOME/p1-bin" ];

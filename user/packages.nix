@@ -29,6 +29,8 @@
 
         telegram-desktop
 
+        opencode
+
         devenv
 
         uv
