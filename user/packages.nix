@@ -41,7 +41,6 @@
         yq
 
         lua
-        stylua
         # cargo
         # zig
 
