@@ -178,6 +178,9 @@
       screensaver = [ "<Super>o" ];
       terminal = [ "<Super>Return" ];
     };
+    "org/gnome/desktop/screensaver" = {
+      lock-enabled = false;
+    };
     "org/gnome/desktop/interface" = {
       gtk-enable-primary-paste = true;
       color-scheme = "prefer-dark";
