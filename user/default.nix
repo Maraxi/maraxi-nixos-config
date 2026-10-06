@@ -26,6 +26,7 @@
           ];
     in
     [
+      ./dconf.nix
       ./environment.nix
       ./ghostty.nix
       ./git.nix
