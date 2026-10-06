@@ -8,6 +8,7 @@
 {
   programs.neovim = {
     enable = true;
+    defaultEditor = true;
     sideloadInitLua = true;
     vimAlias = true;
     # vimdiffAlias = true;
