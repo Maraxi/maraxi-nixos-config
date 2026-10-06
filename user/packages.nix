@@ -174,6 +174,10 @@
       ];
       xkb-options = [ "caps:escape" ];
     };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      screensaver = [ "<Super>o" ];
+      terminal = [ "<Super>Return" ];
+    };
     "org/gnome/desktop/interface" = {
       gtk-enable-primary-paste = true;
       color-scheme = "prefer-dark";
