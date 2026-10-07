@@ -39,11 +39,10 @@
         ls-untracked = "ls-files --others --exclude-standard --directory";
         ls-ignored = "ls-files --others --ignored --exclude-standard --directory";
 
-        # using tformat intead of format does not quite fix the lf alias, there is still an extra empty line
         l =
           "log --graph --date-order --date=human"
           # space before %h for delta pager, its parser does not find the link otherwise
-          + " --format=tformat:'%C(bold blue) %h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%(decorate:tag=)%C(reset)'"
+          + " --format='%C(bold blue) %h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%(decorate:tag=)%C(reset)'"
           + " --tags HEAD";
         ls = "l -n 30";
 
@@ -59,8 +58,14 @@
         lf = "l --name-status";
         lfs = "lf -n 30";
 
-        lgf = "lg --name-status";
+        lgf = "lf --branches --remotes";
         lgfs = "lgf -n 30";
+      };
+      pager = {
+        # Git inserts an extra new line after each commit for extra separation.
+        # Delete this line for aliases derived from `lf` with the sed command.
+        # Only matches lines that contain ANSI color codes, spaces and vertical bar.
+        lf = "sed -E '/^(\\x1b\\[[0-9;]*m|[| ])+$/d' | less";
       };
       core.editor = "nvim";
       diff.colorMoved = "default";
