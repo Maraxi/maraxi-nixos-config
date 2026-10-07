@@ -14,7 +14,7 @@
       show-home = false;
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      screensaver = [ "<Super>o" ];
+      screensaver = [ "<Super>i" ];
       terminal = [ "<Super>Return" ];
     };
     "org/gnome/desktop/screensaver" = {
