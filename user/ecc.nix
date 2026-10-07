@@ -1,7 +1,11 @@
 { config, ... }: {
-  home.sessionVariables = {
+  home.sessionVariables = rec {
     SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt";
-    NODE_EXTRA_CA_CERTS = "/etc/ssl/certs/ca-certificates.crt";
+    SSL_CERT_DIR = "/etc/ssl/certs/";
+    NODE_EXTRA_CA_CERTS = SSL_CERT_FILE;
+    REQUESTS_CA_BUNDLE = SSL_CERT_FILE;
+    CURL_CA_BUNDLE = SSL_CERT_FILE;
+    PIP_CERT = SSL_CERT_FILE;
     UV_DEFAULT_INDEX = "https://artifactory.dbgcloud.io/artifactory/api/pypi/cio-ecc-itsdesign-pypi-dev/simple";
     UV_PYTHON = "3.13";
     UV_PYTHON_PREFERENCE = "only-managed";
