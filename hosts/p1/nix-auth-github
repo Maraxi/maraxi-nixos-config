@@ -1,3 +1,0 @@
-store result from
-$ gh auth token
-in .config/nix/nix.conf
