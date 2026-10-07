@@ -63,8 +63,8 @@
       };
       pager = {
         # Git inserts an extra new line after each commit for extra separation.
-        # Delete this line for aliases derived from `lf` with the sed command.
-        # Only matches lines that contain ANSI color codes, spaces and vertical bar.
+        # Delete this line for aliases derived from `lf` with `sed`.
+        # Only matches lines that contain ANSI color codes, spaces and vertical bar and delete them.
         lf = "sed -E '/^(\\x1b\\[[0-9;]*m|[| ])+$/d' | less";
       };
       core.editor = "nvim";
