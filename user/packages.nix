@@ -18,6 +18,7 @@
 
         nemo
         fastfetch
+        pavucontrol
         tmux
 
         (pkgs.symlinkJoin {
@@ -109,7 +110,6 @@
 
             fclones
 
-            pavucontrol
             vlc
 
             ncdu
