@@ -10,4 +10,6 @@
       sha256 = "sha256-NiA7iWC35JyKQva6H1hjzeNKBek9KyS3mK8G3YRva4I=";
     };
   };
+
+  nix.assumeXdg = true;
 }
