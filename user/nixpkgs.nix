@@ -7,7 +7,7 @@
     builtins.elem (lib.getName pkg) [
       "keymapp"
       # "nvidia-x11"
-      "pycharm-professional"
+      "pycharm"
       "sqlcl"
     ];
   # nixpkgs.config.nvidia.acceptLicense = true;

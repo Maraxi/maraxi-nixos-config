@@ -144,6 +144,7 @@
 
             curl
 
+            pycharm
             kubectl # for pycharm
 
             freerdp
