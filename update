@@ -65,7 +65,7 @@ else
 
 	current_generation=$(get_generation)
 	if [[ "$prev_generation" != "$current_generation" ]]; then
-		nvd history --profile ~/.nix-profile --minimum-version "$prev_generation"
+		nvd history --profile ~/.local/state/nix/profile --minimum-version "$prev_generation"
 	fi
 	git tag -f last-build
 fi
