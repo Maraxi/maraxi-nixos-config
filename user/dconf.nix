@@ -14,7 +14,8 @@
       show-home = false;
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      screensaver = [ "<Super>i" ];
+      rotate-video-lock-static = [ "XF86RotationLockToggle" ]; # Remove `<Super>o` from this bind to free it for screensaver
+      screensaver = [ "<Super>o" ];
       terminal = [ "<Super>Return" ];
     };
     "org/gnome/desktop/screensaver" = {
