@@ -128,7 +128,7 @@
             shellHook = ''echo -e ">> ${red}protoc: $(protoc  --version)${reset}"'';
           };
           python-jupyter = pkgs.mkShell {
-            packages = with pkgs.python314Packages; [
+            packages = with pkgs.python3Packages; [
               jupyterlab
               matplotlib
             ];

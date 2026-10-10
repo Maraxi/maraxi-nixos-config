@@ -36,6 +36,9 @@
         jq
         yq
 
+        python3
+        python3Packages.ipython
+
         lua
         # cargo
         # zig
@@ -89,8 +92,6 @@
           (with pkgs; [
             gcc
             gnumake
-            python314
-            python314Packages.ipython
 
             wev
             inxi
@@ -133,9 +134,6 @@
         else
           (with pkgs; [
             util-linux
-
-            python313
-            python313Packages.ipython
 
             curl
 
