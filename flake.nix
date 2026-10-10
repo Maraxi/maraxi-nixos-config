@@ -121,11 +121,11 @@
           };
           zig = pkgs.mkShell {
             packages = [ pkgs.zig ];
-            shellHook = ''echo -e ">> ${red}zig version: $(zig version)${reset}"'';
+            shellHook = ''echo -e ">> ${red}zig version: ${pkgs.zig.version}${reset}"'';
           };
           protobuf = pkgs.mkShell {
             packages = [ pkgs.protobuf ];
-            shellHook = ''echo -e ">> ${red}protoc: $(protoc  --version)${reset}"'';
+            shellHook = ''echo -e ">> ${red}protoc: ${pkgs.protobuf.version}${reset}"'';
           };
           python-jupyter = pkgs.mkShell {
             packages = with pkgs.python3Packages; [
@@ -134,7 +134,7 @@
             ];
             shellHook = ''
               echo -e \
-              ">> ${red}jupyter-lab version: $(jupyter-lab --version)${reset}
+              ">> ${red}jupyter-lab version: ${pkgs.python3Packages.jupyterlab.version}${reset}
               >> start the server with:
               >> ${red}jupyter-lab${reset}"
             '';
