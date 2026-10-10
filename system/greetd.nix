@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
-{
+{ pkgs, lib, ... }: {
   security.pam.services.greetd.enableGnomeKeyring = true;
 
   services.greetd = {
