@@ -1,9 +1,4 @@
-{
-  setup,
-  keyboard,
-  ...
-}:
-{
+{ setup, keyboard, ... }: {
   imports =
     let
       specific-imports =

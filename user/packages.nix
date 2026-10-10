@@ -1,9 +1,4 @@
-{
-  pkgs,
-  setup,
-  ...
-}:
-{
+{ pkgs, setup, ... }: {
   home.packages =
     let
       basic_pkgs = with pkgs; [
