@@ -37,22 +37,7 @@
             stty -ixon
 
             # colored manpages - https://gist.github.com/bahamas10/542875bb47990933638d2b7dfaa501bf
-            export LESS_TERMCAP_mb=$'\e[1;36m'  # blinking
-            export LESS_TERMCAP_md=$'\e[1;36m'  # bold text
-            export LESS_TERMCAP_me=$'\e[0m'  # end all "_b." modes
-            export LESS_TERMCAP_mh=$'\e[2m'  # dim
-            export LESS_TERMCAP_mr=$'\e[7m'  # reverse-video
-            # standout mode
-            export LESS_TERMCAP_se=$'\e[0m'
-            export LESS_TERMCAP_so=$'\e[1;30;43m'
-            # "underline" mode
-            export LESS_TERMCAP_ue=$'\e[0m'
-            export LESS_TERMCAP_us=$'\e[4;1;32m'
-            # Sub & Superscript
-            export LESS_TERMCAP_ZN=$'\e[74m'
-            export LESS_TERMCAP_ZO=$'\e[73m'
-            export LESS_TERMCAP_ZV=$'\e[75m'
-            export LESS_TERMCAP_ZW=$'\e[75m'
+            # see also in lesskey
             # Fix groff settings to show colors
             export GROFF_NO_SGR=1;
           '')

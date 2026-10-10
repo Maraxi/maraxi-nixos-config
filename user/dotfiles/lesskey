@@ -4,3 +4,26 @@ LESS += --quit-if-one-screen --quit-on-intr  # Quit sensibly
 LESS += --ignore-case --jump-target=.4 --SEARCH-SKIP-SCREEN  # search settings
 LESS += --RAW-CONTROL-CHARS  # apply ANSI colours
 #version >= 700 LESS += --use-color --color=O-  # do not style OSC 8 links
+
+# colored manpages - https://gist.github.com/bahamas10/542875bb47990933638d2b7dfaa501bf
+# "underline" mode - start / exit
+LESS_TERMCAP_us=\e[4;32m
+LESS_TERMCAP_ue=\e[0m
+# bold
+LESS_TERMCAP_md=\e[1;36m
+# blinking
+LESS_TERMCAP_mb=\e[1;36m
+# end special from bc/md/..
+LESS_TERMCAP_me=\e[0m
+# dim
+LESS_TERMCAP_mh=\e[2m
+# reverse-video
+LESS_TERMCAP_mr=\e[7m
+# standout mode - enter / exit
+LESS_TERMCAP_so=\e[1;30;43m
+LESS_TERMCAP_se=\e[0m
+# Sub & Superscript
+LESS_TERMCAP_ZN=\e[74m
+LESS_TERMCAP_ZO=\e[73m
+LESS_TERMCAP_ZV=\e[75m
+LESS_TERMCAP_ZW=\e[75m
