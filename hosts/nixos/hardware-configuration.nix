@@ -34,20 +34,27 @@
     "/" = {
       device = "/dev/disk/by-uuid/1f668d89-2f36-4347-9a72-1c6cfd2fd9e9";
       fsType = "ext4";
+      options = [ "lazytime" ];
     };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/B2B2-768D";
       fsType = "vfat";
       options = [
-        "fmask=0077"
-        "dmask=0077"
+        "lazytime"
+        "umask=0077"
       ];
     };
 
     "/home/stefan/extra" = {
       device = "/dev/disk/by-uuid/bb11e84b-ea33-400c-9e41-1c735203d973";
       fsType = "ext4";
+      options = [
+        "lazytime" # Atime updates are not always directly written to disk
+        "nofail" # do not report error if missing
+        "x-systemd.automount" # Only mount on demand
+        "x-systemd.idle-timeout=1min" # Unmount when idle
+      ];
     };
   };
 
