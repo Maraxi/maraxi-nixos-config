@@ -21,6 +21,8 @@ window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = true
 
+config-file = ?"config.local"
+
 keybind = clear
 
 keybind = ctrl+q=close_window
