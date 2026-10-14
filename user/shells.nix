@@ -44,10 +44,14 @@
         ]
         ++ lib.optionals (!setup.isNixOS) [
           (lib.mkAfter ''
-            # Deduplicate PATH while preserving order
+            # Deduplicate while preserving order
             if [ -n "$PATH" ]; then
               PATH=$(echo -n "$PATH" | awk -v RS=: -v ORS=: '!a[$0]{a[$0]=1;print}' | sed 's/:$//')
               export PATH
+            fi
+            if [ -n "$XDG_DATA_DIRS" ]; then
+              XDG_DATA_DIRS=$(echo -n "$XDG_DATA_DIRS" | awk -v RS=: -v ORS=: '!a[$0]{a[$0]=1;print}' | sed 's/:$//')
+              export XDG_DATA_DIRS
             fi
           '')
         ]
