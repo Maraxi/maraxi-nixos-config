@@ -13,7 +13,7 @@
     {
       eza =
         if prev.eza.version == "0.19.4" then
-          prev.eza.overrideAttrs (trunk.x86_64-linux.eza.drvAttrs)
+          prev.eza.overrideAttrs trunk.x86_64-linux.eza.drvAttrs
         else
           prev.eza;
     };
