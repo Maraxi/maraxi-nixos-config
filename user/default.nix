@@ -39,9 +39,9 @@
   programs.home-manager.enable = true;
 
   home = {
-    username = setup.username;
+    inherit (setup) username;
     homeDirectory = "/home/${setup.username}";
-    stateVersion = setup.stateVersion;
+    inherit (setup) stateVersion;
     inherit keyboard;
   };
 }
