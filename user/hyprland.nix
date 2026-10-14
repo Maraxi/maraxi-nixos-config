@@ -1,7 +1,7 @@
 {
-  config,
   pkgs,
   inputs,
+  mutableLink,
   ...
 }:
 {
@@ -27,10 +27,12 @@
     };
   };
 
-  xdg.configFile."wofi/wallpaper".source = config.lib.meta.mkMutableSymlink dotfiles/wofi-wallpaper;
-  xdg.configFile."hypr".source = config.lib.meta.mkMutableSymlink dotfiles/hypr;
-  xdg.configFile."waybar".source = config.lib.meta.mkMutableSymlink dotfiles/waybar;
-  xdg.configFile."satty/config.toml".source = config.lib.meta.mkMutableSymlink dotfiles/satty.toml;
+  xdg.configFile = {
+    "wofi/wallpaper" = mutableLink dotfiles/wofi-wallpaper;
+    "hypr" = mutableLink dotfiles/hypr;
+    "waybar" = mutableLink dotfiles/waybar;
+    "satty/config.toml" = mutableLink dotfiles/satty.toml;
+  };
 
   services.hypridle.enable = true;
 
