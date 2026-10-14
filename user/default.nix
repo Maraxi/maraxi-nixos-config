@@ -21,6 +21,7 @@
           ];
     in
     [
+      ./cli-tools.nix
       ./dconf.nix
       ./environment.nix
       ./ghostty.nix

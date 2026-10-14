@@ -53,6 +53,7 @@
         ]
       );
   };
+
   programs.readline = {
     enable = true;
     variables = {
@@ -69,6 +70,7 @@
       "\\C-s" = "nop"; # unbind ^s
     };
   };
+
   programs.nushell = {
     enable = false;
     extraConfig = ''
@@ -102,74 +104,4 @@
   #   enable = true;
   #   enableNushellIntegration = true;
   # };
-
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    options = [
-      "--cmd"
-      "cd"
-    ];
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-    defaultOptions = [ "--bind ctrl-up:preview-half-page-up,ctrl-down:preview-half-page-down" ];
-  };
-
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-  xdg.configFile."starship.toml" = mutableLink dotfiles/starship.toml;
-
-  programs.eza = {
-    enable = true;
-    icons = "auto";
-    extraOptions = [ "--group-directories-first" ];
-  };
-  programs.ripgrep = {
-    enable = true;
-    arguments = [
-      "--smart-case"
-      "--max-columns-preview"
-      "--max-columns=200"
-      # "--follow"
-    ];
-  };
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    nix-direnv.enable = true;
-    config = {
-      global.strict_env = true;
-    };
-  };
-
-  programs.lesspipe.enable = true;
-  xdg.configFile."lesskey" = mutableLink dotfiles/lesskey;
-
-  xdg.configFile."bat" = mutableLink dotfiles/bat;
-
-  xdg.dataFile."ipython/profile_default/ipython_config.py".text = ''
-    c = get_config()
-    c.TerminalInteractiveShell.confirm_exit = False
-  '';
-
-  editorconfig = {
-    enable = true;
-    settings = {
-      "*" = {
-        charset = "utf-8";
-        end_of_line = "lf";
-        insert_final_newline = true;
-        trim_trailing_whitespace = true;
-      };
-      "*.py" = {
-        indent_size = 4;
-        indent_style = "space";
-      };
-    };
-  };
 }
