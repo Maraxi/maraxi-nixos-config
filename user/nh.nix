@@ -1,6 +1,6 @@
-{ config, ... }: {
+{ flakeDir, ... }: {
   programs.nh = {
     enable = true;
-    flake = config.lib.meta.flakeDir;
+    flake = flakeDir;
   };
 }

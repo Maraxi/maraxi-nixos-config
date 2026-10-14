@@ -17,7 +17,12 @@
       );
   };
 
-  _module.args.mutableLink = path: {
-    source = config.lib.meta.mkMutableSymlink path;
+  _module.args = {
+    flakeDir = "${config.home.homeDirectory}/${
+      if setup.isNixOS then "nixconfig" else ".config/home-manager"
+    }";
+    mutableLink = path: {
+      source = config.lib.meta.mkMutableSymlink path;
+    };
   };
 }
