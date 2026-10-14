@@ -1,8 +1,8 @@
 {
   setup,
   lib,
-  config,
   pkgs,
+  mutableLink,
   ...
 }:
 {
@@ -32,9 +32,7 @@
     '')
   ];
 
-  xdg.configFile = lib.optionalAttrs setup.isNixOS {
-    "nvim".source = config.lib.meta.mkMutableSymlink dotfiles/nvim;
-  };
+  xdg.configFile = lib.optionalAttrs setup.isNixOS { "nvim" = mutableLink dotfiles/nvim; };
 
   programs.bash.shellAliases = {
     sv = "sudoedit";

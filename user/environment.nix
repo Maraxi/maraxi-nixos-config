@@ -1,8 +1,8 @@
 {
   setup,
-  config,
   lib,
   pkgs,
+  mutableLink,
   ...
 }:
 {
@@ -50,7 +50,7 @@
     "$HOME/bin"
     "$HOME/.local/bin"
   ];
-  home.file."bin".source = config.lib.meta.mkMutableSymlink dotfiles/bin;
+  home.file."bin" = mutableLink dotfiles/bin;
 
   xdg.desktopEntries."nvim-new-term" = {
     type = "Application";

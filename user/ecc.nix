@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ mutableLink, ... }: {
   home.sessionVariables = rec {
     SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt";
     SSL_CERT_DIR = "/etc/ssl/certs/";
@@ -20,7 +20,7 @@
   };
 
   home.sessionPath = [ "$HOME/p1-bin" ];
-  home.file."p1-bin".source = config.lib.meta.mkMutableSymlink ../hosts/p1;
+  home.file."p1-bin" = mutableLink ../hosts/p1;
 
   xdg.mimeApps =
     let
