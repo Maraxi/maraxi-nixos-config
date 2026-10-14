@@ -16,4 +16,8 @@
         config.lib.meta.flakeDir + lib.removePrefix (toString inputs.self) (toString path)
       );
   };
+
+  _module.args.mutableLink = path: {
+    source = config.lib.meta.mkMutableSymlink path;
+  };
 }

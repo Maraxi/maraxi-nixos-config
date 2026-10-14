@@ -1,7 +1,7 @@
 {
   lib,
-  config,
   setup,
+  mutableLink,
   ...
 }:
 {
@@ -122,7 +122,7 @@
     enable = true;
     enableBashIntegration = true;
   };
-  xdg.configFile."starship.toml".source = config.lib.meta.mkMutableSymlink dotfiles/starship.toml;
+  xdg.configFile."starship.toml" = mutableLink dotfiles/starship.toml;
 
   programs.eza = {
     enable = true;
@@ -148,9 +148,9 @@
   };
 
   programs.lesspipe.enable = true;
-  xdg.configFile."lesskey".source = config.lib.meta.mkMutableSymlink dotfiles/lesskey;
+  xdg.configFile."lesskey" = mutableLink dotfiles/lesskey;
 
-  xdg.configFile."bat".source = config.lib.meta.mkMutableSymlink dotfiles/bat;
+  xdg.configFile."bat" = mutableLink dotfiles/bat;
 
   xdg.dataFile."ipython/profile_default/ipython_config.py".text = ''
     c = get_config()
