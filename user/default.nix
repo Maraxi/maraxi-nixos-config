@@ -27,6 +27,7 @@
       ./git.nix
       ./keepassxc.nix
       ./meta.nix
+      ./mime.nix
       ./neovim.nix
       ./nh.nix
       ./notifications.nix
