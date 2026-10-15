@@ -35,7 +35,6 @@
         rebase-continue = "-c core.editor=true rebase --continue";
         rebase-with-dates = "rebase --committer-date-is-author-date";
 
-        ls-tracked = "ls-tree -r HEAD --name-only";
         ls-untracked = "ls-files --others --exclude-standard --directory";
         ls-ignored = "ls-files --others --ignored --exclude-standard --directory";
 
