@@ -33,6 +33,8 @@
         ruff
         ty
 
+        eclint
+
         jq
         yq
 
