@@ -1181,7 +1181,7 @@ user_pref("_user.js.parrot", "8000 syntax error: the parrot's crossed the Jordan
    - Opt-in telemetry _does not_ work and results in data that is unrepresentative and may be misleading
    Choice
    - Every new profile on first use provides data collection/use policy and the abillty to opt-out
-   - It can be disabled at any time (Settings>Privacy & Security>Data Collection and Use) 
+   - It can be disabled at any time (Settings>Privacy & Security>Data Collection and Use)
    Data
    - no PII (Personally Identifiable Information)
    - can be viewed in about:telemetry

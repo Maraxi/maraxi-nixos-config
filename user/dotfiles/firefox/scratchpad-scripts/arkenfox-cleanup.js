@@ -22,7 +22,7 @@
      - some prefs require a restart
      - a restart will reapply your user.js
   - [optional] re-enable your network connection
- 
+
   [1] Blocking Firefox from the internet ensures it cannot act on your reset preferences in the
   period before you restart it, such as app and extension auto-updating, or downloading unwanted
   components (GMP etc). It depends on what you're resetting and how long before you restart.
@@ -119,7 +119,7 @@
     'privacy.window.name.update.enabled',
     'security.insecure_connection_text.enabled',
 
-    /* IMPORTANT: last active pref must not have a trailing comma */ 
+    /* IMPORTANT: last active pref must not have a trailing comma */
     /* reset parrot: check your open about:config after running the script */
     '_user.js.parrot'
   ];
