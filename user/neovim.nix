@@ -32,7 +32,10 @@
     '')
   ];
 
-  xdg.configFile = lib.optionalAttrs setup.isNixOS { "nvim" = mutableLink dotfiles/nvim; };
+  xdg.configFile = {
+    "stylua.toml" = mutableLink dotfiles/stylua.toml;
+    "nvim" = lib.optionalAttrs setup.isNixOS (mutableLink dotfiles/nvim);
+  };
 
   programs.bash.shellAliases = {
     sv = "sudoedit";
