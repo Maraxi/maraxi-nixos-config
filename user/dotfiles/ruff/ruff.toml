@@ -23,7 +23,6 @@ extend-select = [
   "A",             # flake8-builtins
   "COM",           # flake8-commas
   "C4",            # flake8-comprehensions
-  "CPY",           # flake8-copyright
   "DTZ",           # flake8-datetimez
   "T10",           # flake8-debugger
   "DJ",            # flake8-django
@@ -73,6 +72,10 @@ extend-select = [
 ]
 
 ignore = [
+  "assert",
+  "print",
+  "D1",                                         # missing docstrings
+
   # incompatible with formatter
   "tab-indentation",
   "indentation-with-invalid-multiple",
