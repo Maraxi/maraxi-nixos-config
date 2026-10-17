@@ -477,11 +477,12 @@ do
   require('conform').setup {
     notify_on_error = true,
     format_on_save = function(bufnr)
-      -- You can specify filetypes to autoformat on save here:
       local enabled_filetypes = {
         lua = true,
+        python = true,
         toml = true,
       }
+
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
       else
@@ -494,7 +495,7 @@ do
     -- You can also specify external formatters in here.
     formatters_by_ft = {
       lua = { 'stylua' },
-      -- toml = { 'tombi' }, # from lsp
+      python = { 'ruff_fix', 'ruff_format' },
     },
   }
 
