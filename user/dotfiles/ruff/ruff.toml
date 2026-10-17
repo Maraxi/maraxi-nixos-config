@@ -75,7 +75,6 @@ ignore = [
   "assert",
   "print",
   "D1",                                         # missing docstrings
-
   # incompatible with formatter
   "tab-indentation",
   "indentation-with-invalid-multiple",
