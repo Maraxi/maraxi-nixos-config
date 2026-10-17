@@ -4,7 +4,9 @@ import re
 import sys
 from pathlib import Path
 
-if len(sys.argv) != 2:
+ARG_COUNT = 2
+
+if len(sys.argv) != ARG_COUNT:
     print("Invalid argument count")
     sys.exit()
 
