@@ -1,10 +1,4 @@
-{
-  lib,
-  setup,
-  mutableLink,
-  ...
-}:
-{
+{ mutableLink, ... }: {
   editorconfig = {
     enable = true;
     settings = {
