@@ -297,7 +297,13 @@ do
     -- },
     -- pickers = {}
     extensions = {
-      ['ui-select'] = { require('telescope.themes').get_dropdown() },
+      ['ui-select'] = {
+        require('telescope.themes').get_dropdown {
+          layout_config = {
+            width = { 0.6, max = 120 },
+          },
+        },
+      },
     },
   }
 
