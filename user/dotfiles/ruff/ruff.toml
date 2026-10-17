@@ -4,65 +4,90 @@ line-length = 120
 fix = true
 
 [lint]
-unfixable = [      # do not auto fix the following issues during "ruff check --fix"
-  "F841",          # remove unused variables
-  "T201",          # remove print statements
+unfixable = [
+  "unused-variable",
+  "print",
 ]
+
 extend-select = [
-  "A",             # flake8-builtins - checks for Python builtins being used as variables or parameters
-  "ANN",           # flake8-annotations - checks for missing type annotations
-  "ARG",           # flake8-unused-arguments - checks for unused function arguments
-  "ASYNC",         # flake8-async - checks for async/await misuse
-  "B",             # flake8-bugbear - finds likely bugs and design problems
-  "BLE",           # flake8-blind-except - do not catch generic exception
-  "C4",            # flake8-comprehensions - helps write better list/set/dict comprehensions
-  "COM",           # flake8-commas - enforces trailing commas in multi-line sequences
-  "D",             # pydocstyle - docstring style checking
-  "DTZ",           # flake8-datetimez - checks for naive datetime objects
-  "E",             # pycodestyle errors - serious code quality issues
-  "EXE",           # flake8-executable - checks file permissions
-  "F",             # Pyflakes - detects various errors like undefined names
-  "FA",            # flake8-future-annotations - checks for proper annotation imports
-  "FIX",           # flake8-fixme - hint to resolve todos
-  "FURB",          # refurb - hints for modern best practices
-  "I",             # isort - import sorting
-  "ICN",           # flake8-import-conventions - enforces import naming conventions
-  "ISC",           # flake8-implicit-str-concat - checks for implicit string concatenation
-  "N",             # pep8-naming - naming conventions from PEP 8
-  "PD",            # pandas-vet - pandas-specific checks
-  "PERF",          # perflint - performance issues
-  "PIE",           # flake8-pie - miscellaneous linting rules
-  "PL",            # pylint - pylint conventions and warnings
-  "PT",            # flake8-pytest-style - pytest-specific checks
-  "PTH",           # flake8-use-pathlib - encourages pathlib over os.path
-  "Q",             # flake8-quotes - enforces consistent string quotes
-  "RET",           # flake8-return - checks for unnecessary return statements
-  "RSE",           # flake8-raise - checks for proper exception raising
-  "RUF",           # ruff - ruff specific rules
-  "SIM",           # flake8-simplify - suggests code simplifications
-  "SLF",           # flake8-self - discourage private member access
-  "T20",           # flake8-print - checks for print statements
-  "TC",            # flake8-type-checking - checks for type checking related issues
-  "TD",            # flake8-todo - best practices for todos
-  "TID",           # flake8-tidy-imports - checks for banned imports and module-level imports
-  "UP",            # pyupgrade - upgrades syntax to newer Python versions
-  "W",             # pycodestyle warnings - style issues that aren't serious
-  "YTT",           # flake8-2020 - checks for misuse of sys.version or sys.version_info
+  "AIR",           # Airflow
+  "ERA",           # eradicate
+  "FAST",          # FastAPI
+  "YTT",           # flake8-2020
+  "ANN",           # flake8-annotations
+  "ASYNC",         # flake8-async
+  "S",             # flake8-bandit
+  "BLE",           # flake8-blind-except
+  "FBT",           # flake8-boolean-trap
+  "B",             # flake8-bugbear
+  "A",             # flake8-builtins
+  "COM",           # flake8-commas
+  "C4",            # flake8-comprehensions
+  "CPY",           # flake8-copyright
+  "DTZ",           # flake8-datetimez
+  "T10",           # flake8-debugger
+  "DJ",            # flake8-django
+  "EM",            # flake8-errmsg
+  "EXE",           # flake8-executable
+  "FIX",           # flake8-fixme
+  "FA",            # flake8-future-annotations
+  "INT",           # flake8-gettext
+  "ISC",           # flake8-implicit-str-concat
+  "ICN",           # flake8-import-conventions
+  "LOG",           # flake8-logging
+  "G",             # flake8-logging-format
+  "INP",           # flake8-no-pep420
+  "PIE",           # flake8-pie
+  "T20",           # flake8-print
+  "PYI",           # flake8-pyi
+  "PT",            # flake8-pytest-style
+  "Q",             # flake8-quotes
+  "RSE",           # flake8-raise
+  "RET",           # flake8-return
+  "SLF",           # flake8-self
+  "SIM",           # flake8-simplify
+  "SLOT",          # flake8-slots
+  "TID",           # flake8-tidy-imports
+  "TD",            # flake8-todos
+  "TC",            # flake8-type-checking
+  "ARG",           # flake8-unused-arguments
+  "PTH",           # flake8-use-pathlib
+  "FLY",           # flynt
+  "I",             # isort
+  "C90",           # mccabe
+  "NPY",           # NumPy-specific rules
+  "PD",            # pandas-vet
+  "N",             # pep8-naming
+  "PERF",          # Perflint
+  "E",             # pycodestyle
+  "W",             # pycodestyle
+  "DOC",           # pydoclint
+  "D",             # pydocstyle
+  "F",             # Pyflakes
+  "PGH",           # pygrep-hooks
+  "PL",            # Pylint
+  "UP",            # pyupgrade
+  "FURB",          # refurb
+  "RUF",           # Ruff-specific rules
+  "TRY",           # tryceratops
 ]
+
 ignore = [
-  "T20",
-  "ANN002",        # Checks that function `*args` arguments have type annotations.
-  "ANN003",        # Checks that function `**kwargs` arguments have type annotations.
-  "ANN401",        # Dynamically typed expressions (typing.Any) are disallowed in {name}
-  "COM812",        # Trailing comma missing
-  "D100",          # Missing docstring in public module
-  "PD015",         # Use .merge method instead of pd.merge function. They have equivalent functionality.
-  "RET504",        # Unnecessary assignment to {name} before return statement
-  "SIM108",        # Use ternary operator {contents} instead of if-else-block
-  "SIM110",        # Use {replacement} instead of for loop
-  "SIM115",        # Use a context manager for opening files
-  "SIM118",        # Use key {operator} dict instead of key {operator} dict.keys()
-  "W505",          # Doc line too long ({width} > {limit})
+  # incompatible with formatter
+  "tab-indentation",
+  "indentation-with-invalid-multiple",
+  "indentation-with-invalid-multiple-comment",
+  "over-indented",
+  "incorrect-blank-line-before-class",
+  "docstring-tab-indentation",
+  "triple-single-quotes",
+  "bad-quotes-inline-string",
+  "bad-quotes-multiline-string",
+  "bad-quotes-docstring",
+  "avoidable-escaped-quote",
+  "unnecessary-escaped-quote",
+  "missing-trailing-comma",
+  "prohibited-trailing-comma",
 ]
 
 [lint.pydocstyle]

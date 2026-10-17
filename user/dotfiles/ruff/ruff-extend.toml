@@ -3,11 +3,12 @@
 # If a project has its own own pyproject.toml with ruff settings then
 # the ruff LSP in nvim still merges in the options from this file.
 
+preview = true
+
 [format]
 docstring-code-format = true
-preview = true
 
 [lint]
 extend-select = [
-  "E501",
+  "line-too-long",
 ]
