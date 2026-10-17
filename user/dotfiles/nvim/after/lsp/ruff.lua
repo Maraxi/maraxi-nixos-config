@@ -5,8 +5,8 @@ return {
   root_markers = { 'pyproject.toml', 'ruff.toml', '.ruff.toml', '.git' },
   init_options = {
     settings = {
-      configuration = '~/.config/ruff/ruff.toml',
-      configurationPreference = 'filesystemFirst',
+      configuration = '~/.config/ruff/ruff-extend.toml',
+      -- configurationPreference = 'filesystemFirst',
     },
   },
 }
