@@ -471,6 +471,7 @@ do
     -- But for many setups, the LSP (`rust_analyzer`) will work just fine
     -- rust_analyzer = {},
 
+    ruff = {},
     tombi = {},
 
     -- Special Lua Config, as recommended by neovim help docs
