@@ -1,11 +1,4 @@
-{
-  setup,
-  lib,
-  pkgs,
-  mutableLink,
-  ...
-}:
-{
+{ mutableLink, ... }: {
   home.sessionVariables = rec {
     XDG_CACHE_HOME = "$HOME/.cache";
     XDG_CONFIG_HOME = "$HOME/.config";
@@ -50,5 +43,5 @@
     "$HOME/bin"
     "$HOME/.local/bin"
   ];
-  home.file."bin" = mutableLink dotfiles/bin;
+  home.file.".local/bin" = mutableLink dotfiles/bin;
 }
