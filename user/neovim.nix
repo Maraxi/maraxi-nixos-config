@@ -24,7 +24,8 @@
     # lsp
     lua-language-server
     stylua
-    nil
+    tombi # toml
+    nil # nix
 
     (pkgs.runCommand "symlink-to-nvim" { } ''
       mkdir -p $out/bin
@@ -34,6 +35,7 @@
 
   xdg.configFile = {
     "stylua.toml" = mutableLink dotfiles/stylua.toml;
+    "tombi/config.toml" = mutableLink dotfiles/tombi.toml;
     "nvim" = lib.optionalAttrs setup.isNixOS (mutableLink dotfiles/nvim);
   };
 
