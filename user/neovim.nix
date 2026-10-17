@@ -24,9 +24,9 @@
     # lsp
     inotify-tools # to replace default nvim file watcher
     lua-language-server
+    nil # nix
     stylua
     tombi # toml
-    nil # nix
 
     (pkgs.runCommand "symlink-to-nvim" { } ''
       mkdir -p $out/bin
@@ -35,10 +35,11 @@
   ];
 
   xdg.configFile = {
+    "nvim" = lib.optionalAttrs setup.isNixOS (mutableLink dotfiles/nvim);
+
     "ruff/ruff.toml" = mutableLink dotfiles/ruff.toml;
     "stylua.toml" = mutableLink dotfiles/stylua.toml;
     "tombi/config.toml" = mutableLink dotfiles/tombi.toml;
-    "nvim" = lib.optionalAttrs setup.isNixOS (mutableLink dotfiles/nvim);
   };
 
   programs.bash.shellAliases = {
