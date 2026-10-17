@@ -22,6 +22,7 @@
     tree-sitter
 
     # lsp
+    inotify-tools # to replace default nvim file watcher
     lua-language-server
     stylua
     tombi # toml
