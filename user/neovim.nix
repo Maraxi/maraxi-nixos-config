@@ -35,6 +35,7 @@
   ];
 
   xdg.configFile = {
+    "ruff/ruff.toml" = mutableLink dotfiles/ruff.toml;
     "stylua.toml" = mutableLink dotfiles/stylua.toml;
     "tombi/config.toml" = mutableLink dotfiles/tombi.toml;
     "nvim" = lib.optionalAttrs setup.isNixOS (mutableLink dotfiles/nvim);

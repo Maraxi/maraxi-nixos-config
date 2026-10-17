@@ -1,13 +1,12 @@
-[tool.ruff]
 target-version = "py314"
 include = ["src/**/*.py", "tests/**/*.py"]
 extend-exclude = ["*_pb2.py"]
 line-length = 120
 
-[tool.ruff.format]
+[format]
 docstring-code-line-length = 79
 
-[tool.ruff.lint]
+[lint]
 unfixable = [ # do not auto fix the following issues during "ruff check --fix"
     "F841",   # remove unused variables
     "T201",   # remove print statements
@@ -69,10 +68,10 @@ ignore = [
     "W505",   # Doc line too long ({width} > {limit})
 ]
 
-[tool.ruff.lint.pydocstyle]
+[lint.pydocstyle]
 convention = "numpy"
 
-[tool.ruff.lint.per-file-ignores]
+[lint.per-file-ignores]
 "tests/**/*.py" = ["ANN", "ARG001", "D"]
 "__init__.py" = ["D104"]
 
