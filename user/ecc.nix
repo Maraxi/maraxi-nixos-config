@@ -19,8 +19,8 @@
     # opencode = "$HOME/repositories/opencode_containerized/opencode.sh -w --rw";
   };
 
-  home.sessionPath = [ "$HOME/p1-bin" ];
-  home.file."p1-bin" = mutableLink ../hosts/p1;
+  home.sessionPath = [ "$HOME/.local/p1-bin" ];
+  home.file.".local/p1-bin" = mutableLink ../hosts/p1;
 
   xdg.mimeApps =
     let
