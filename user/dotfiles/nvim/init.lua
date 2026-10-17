@@ -542,18 +542,12 @@ do
       end
     end,
     default_format_opts = {
-      lsp_format = 'fallback', -- Use external formatters if configured below, otherwise use LSP formatting. Set to `false` to disable LSP formatting entirely.
+      lsp_format = 'fallback', -- Use external formatters if configured below, otherwise use LSP formatting
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
       lua = { 'stylua' },
-      toml = { 'tombi' },
-      -- rust = { 'rustfmt' },
-      -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
-      --
-      -- You can use 'stop_after_first' to run the first available formatter from the list
-      -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      -- toml = { 'tombi' }, # from lsp
     },
   }
 
