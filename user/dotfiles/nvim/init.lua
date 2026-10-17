@@ -465,9 +465,15 @@ do
 
   vim.pack.add { gh 'neovim/nvim-lspconfig' }
   local servers = {
+    -- python
     'ruff',
+    -- toml
     'tombi',
+    -- lua
     'lua_ls',
+    -- nix
+    'statix',
+    'nil_ls',
   }
   -- Enabling the LSP servers here
   -- Configuring the servers via the files in after/lsp/
@@ -487,6 +493,7 @@ do
     format_on_save = function(bufnr)
       local enabled_filetypes = {
         lua = true,
+        nix = true,
         python = true,
         toml = true,
       }
@@ -504,6 +511,7 @@ do
     formatters_by_ft = {
       lua = { 'stylua' },
       python = { 'ruff_fix', 'ruff_format' },
+      nix = { 'nixfmt' },
     },
   }
 

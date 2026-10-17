@@ -25,6 +25,8 @@
     inotify-tools # to replace default nvim file watcher
     lua-language-server
     nil # nix
+    ruff
+    statix # nix
     stylua
     tombi # toml
 
