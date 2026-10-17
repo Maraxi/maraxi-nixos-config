@@ -1,6 +1,4 @@
 {
-  setup,
-  lib,
   pkgs,
   mutableLink,
   ...
@@ -37,7 +35,7 @@
   ];
 
   xdg.configFile = {
-    "nvim" = lib.optionalAttrs setup.isNixOS (mutableLink dotfiles/nvim);
+    "nvim" = mutableLink dotfiles/nvim;
 
     "ruff" = mutableLink dotfiles/ruff;
     "stylua.toml" = mutableLink dotfiles/stylua.toml;
