@@ -10,8 +10,6 @@ if len(sys.argv) != ARG_COUNT:
     print("Invalid argument count")
     sys.exit()
 
-match = re.search(r"(.*)(\.html)", sys.argv[1])
-
 replacements = {
     "&lt;": "<",
     "&gt;": ">",
@@ -25,11 +23,18 @@ replacements = {
     "</tw-passagedata><tw-passagedata": "</tw-passagedata>\n\n\n<tw-passagedata",
 }
 
-with (
-    Path.open(sys.argv[1], encoding="utf8") as orig,
-    Path.open(f"{match.group(1)}.xml", "w", encoding="utf8") as output,
-):
-    s = orig.read()
+
+def main() -> None:
+    match = re.search(r"(.*)(\.html)", sys.argv[1])
+    if match is None:
+        print("Invalid path name. Could not extract base name")
+        return
+
+    s = Path(sys.argv[1]).read_text(encoding="utf8")
     for before, after in replacements.items():
         s = s.replace(before, after)
-    output.write(s)
+    Path(f"{match.group(1)}.xml").write_text(s, encoding="utf8")
+
+
+if __name__ == "__main__":
+    main()
