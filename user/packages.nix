@@ -36,7 +36,7 @@
         eclint
 
         jq
-        yq
+        yq-go
 
         python3
         python3Packages.ipython
