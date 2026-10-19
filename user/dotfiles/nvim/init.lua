@@ -473,6 +473,7 @@ do
   local servers = {
     -- python
     'ruff',
+    'ty',
     -- toml
     'tombi',
     -- lua

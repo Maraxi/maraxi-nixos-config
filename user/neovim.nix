@@ -27,6 +27,7 @@
     statix # nix
     stylua
     tombi # toml
+    ty # python
 
     (pkgs.runCommand "symlink-to-nvim" { } ''
       mkdir -p $out/bin
