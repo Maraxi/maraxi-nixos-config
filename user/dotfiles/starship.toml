@@ -1,5 +1,5 @@
 # Get editor completions based on the config schema
-"$schema" = 'https://starship.rs/config-schema.json'
+"$schema" = "https://starship.rs/config-schema.json"
 
 format = """
 $username\
@@ -55,7 +55,7 @@ highlight = "#24773f"
 adjacent = "#0000ff"
 
 [character]
-error_symbol = '[❯](bold red)'
+error_symbol = "[❯](bold red)"
 
 [directory]
 truncate_to_repo = false
@@ -63,54 +63,53 @@ truncation_length = 100
 read_only = " 🔒"
 style = "bold highlight bg:peach"
 read_only_style = "red bg:peach"
-repo_root_style = 'bold adjacent bg:peach'
-before_repo_root_style = 'base bg:peach'
-format = '[$path]($style)[$read_only]($read_only_style)'
-repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)'
+repo_root_style = "bold adjacent bg:peach"
+before_repo_root_style = "base bg:peach"
+format = "[$path]($style)[$read_only]($read_only_style)"
+repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)"
 use_logical_path = false
 
 [directory.substitutions]
-'~/repositories/exg.app.ers' = 'exg.app.ers'
+"~/repositories/exg.app.ers" = "exg.app.ers"
 
 [direnv]
 disabled = false
-format = '[$allowed]($style)'
-allowed_msg = ''
-not_allowed_msg = 'direnv not allowed '
-denied_msg = 'direnv denied '
-
+format = "[$allowed]($style)"
+allowed_msg = ""
+not_allowed_msg = "direnv not allowed "
+denied_msg = "direnv denied "
 
 [git_branch]
-symbol = ''
-style = 'purple'
+symbol = ""
+style = "purple"
 only_attached = true
 # ignore_branches = ['master', 'main', 'development']
 
 [git_commit]
-style = 'purple'
+style = "purple"
 
 [custom.git_tags]
 description = "Output the current git tags"
 command = "git tag --points-at | paste -s -d ' '"
-symbol = ' '
+symbol = " "
 format = '[($symbol\($output\) )]($style)'
-style = 'purple'
+style = "purple"
 # Only when inside git repository
 require_repo = true
-when = 'true'
+when = "true"
 
 [custom.git_set_delta_link]
-description = 'set hyprlink url for git repos'
+description = "set hyprlink url for git repos"
 command = 'git config --local delta.hyperlinks-commit-link-format "$(git config get remote.origin.url | sed -E -e "s|.*@(.*):(.*)|https://\1/\2|" -e "s|\.git||")/commit/{commit}"'
 require_repo = true
-when = 'git config get remote.origin.url && (! git config get --local delta.hyperlinks-commit-link-format)'
+when = "git config get remote.origin.url && (! git config get --local delta.hyperlinks-commit-link-format)"
 
 [git_metrics]
 disabled = false
 
 [git_status]
-stashed = ''
-modified = '*'
+stashed = ""
+modified = "*"
 
 [python]
 symbol = " "
@@ -148,5 +147,5 @@ symbol = " "
 
 [time]
 disabled = false
-format = '[$time]($style)'
-style = 'yellow'
+format = "[$time]($style)"
+style = "yellow"
