@@ -5,7 +5,7 @@
 ---- HELPERS ----
 -----------------
 
-function notify(text) hl.notification.create { text = text, timeout = 15000, icon = 'info', font_size = 20 } end
+local function notify(text) hl.notification.create { text = text, timeout = 15000, icon = 'info', font_size = 20 } end
 
 ------------------
 ---- MONITORS ----
@@ -294,7 +294,7 @@ local screenRecord = hl.dsp.exec_cmd 'record-screen'
 hl.bind(mainMod .. 'Print', screenRecord)
 
 -- Laptop multimedia keys for volume and LCD brightness
-function bindSoundKeys()
+local function bindSoundKeys()
   local soundBinds = {
     ['wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-'] = { keys = { 'F7', 'XF86AudioLowerVolume' }, repeating = true },
     ['wpctl set-volume --limit 1 @DEFAULT_AUDIO_SINK@ 3%+'] = { keys = { 'F8', 'XF86AudioRaiseVolume' }, repeating = true },
