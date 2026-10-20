@@ -418,10 +418,10 @@ hl.workspace_rule { workspace = '9', monitor = monitor_right, on_created_empty =
 hl.workspace_rule { workspace = '10', monitor = monitor_right }
 
 -- Application specific settings
-hl.window_rule { match = { initial_title = '^Ghostty$' }, focus_on_activate = false }
+hl.window_rule { match = { initial_title = 'Ghostty' }, focus_on_activate = false }
 
-hl.window_rule { match = { class = '^steam$' }, workspace = '7', no_initial_focus = true, suppress_event = 'activatefocus' }
-hl.window_rule { match = { title = '^Steam$' }, tile = true }
+hl.window_rule { match = { class = 'steam' }, workspace = '7', no_initial_focus = true, suppress_event = 'activatefocus' }
+hl.window_rule { match = { title = 'Steam' }, tile = true }
 
 local ok, games = pcall(require, 'games')
 if not ok or type(games) ~= 'table' then games = { [[steam_app_\d+]] } end
@@ -431,7 +431,7 @@ hl.window_rule {
   fullscreen = true,
 }
 
-hl.window_rule { match = { class = '^thunderbird$' }, workspace = '8', suppress_event = 'activatefocus' }
+hl.window_rule { match = { class = 'thunderbird' }, workspace = '8', suppress_event = 'activatefocus' }
 
 hl.window_rule {
   match = { class = 'org.keepassxc.KeePassXC', initial_title = [[.*\.kdbx \[Locked\] - KeePassXC]] },
@@ -439,7 +439,7 @@ hl.window_rule {
   no_initial_focus = true,
   no_screen_share = true,
 }
-hl.window_rule { match = { initial_title = '^Unlock Database - KeePassXC$' }, stay_focused = true }
+hl.window_rule { match = { initial_title = 'Unlock Database - KeePassXC' }, stay_focused = true }
 hl.on('window.open', function(w)
   if w.class == 'org.keepassxc.KeePassXC' then
     local ws = hl.get_active_workspace()
@@ -448,10 +448,10 @@ hl.on('window.open', function(w)
   end
 end)
 
-hl.window_rule { match = { class = '^firefox$' }, fullscreen_state = '0 -1' } -- full screen inside its own borders
-hl.window_rule { match = { title = '^About Mozilla Firefox$' }, float = true }
+hl.window_rule { match = { class = 'firefox' }, fullscreen_state = '0 -1' } -- full screen inside its own borders
+hl.window_rule { match = { title = 'About Mozilla Firefox' }, float = true }
 
-hl.window_rule { match = { class = '^nemo$', title = '.*Properties$' }, float = true }
+hl.window_rule { match = { class = 'nemo', title = '.*Properties' }, float = true }
 
 -- Ignore maximize requests from all apps
 hl.window_rule { name = 'suppress-maximize-events', match = { class = '.*' }, suppress_event = 'maximize' }
