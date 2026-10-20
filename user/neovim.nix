@@ -30,6 +30,8 @@
     ty # python
     shfmt
     shellharden
+    bash-language-server
+    shellcheck
 
     (pkgs.runCommand "symlink-to-nvim" { } ''
       mkdir -p $out/bin

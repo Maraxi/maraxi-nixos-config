@@ -481,6 +481,8 @@ do
     -- nix
     'statix',
     'nil_ls',
+    -- bash
+    'bashls',
   }
   -- Enabling the LSP servers here
   -- Configuring the servers via the files in after/lsp/
