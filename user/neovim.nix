@@ -28,6 +28,7 @@
     stylua
     tombi # toml
     ty # python
+    shfmt
 
     (pkgs.runCommand "symlink-to-nvim" { } ''
       mkdir -p $out/bin

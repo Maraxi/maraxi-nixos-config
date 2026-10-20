@@ -502,6 +502,7 @@ do
         lua = true,
         nix = true,
         python = true,
+        sh = true,
         toml = true,
       }
 
@@ -519,6 +520,12 @@ do
       lua = { 'stylua' },
       python = { 'ruff_fix', 'ruff_format' },
       nix = { 'nixfmt' },
+      sh = { 'shfmt' },
+    },
+    formatters = {
+      shfmt = {
+        append_args = { '--simplify', '--case-indent', '--indent=2' },
+      },
     },
   }
 
