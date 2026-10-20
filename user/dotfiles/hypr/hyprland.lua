@@ -434,7 +434,7 @@ hl.window_rule {
 hl.window_rule { match = { class = '^thunderbird$' }, workspace = '8', suppress_event = 'activatefocus' }
 
 hl.window_rule {
-  match = { class = '^org.keepassxc.KeePassXC$', title = 'negative:^Unlock.*' },
+  match = { class = 'org.keepassxc.KeePassXC', initial_title = [[.*\.kdbx \[Locked\] - KeePassXC]] },
   workspace = '9',
   no_initial_focus = true,
   no_screen_share = true,
