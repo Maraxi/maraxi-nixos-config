@@ -520,7 +520,7 @@ do
       lua = { 'stylua' },
       python = { 'ruff_fix', 'ruff_format' },
       nix = { 'nixfmt' },
-      sh = { 'shfmt' },
+      sh = { 'shfmt', 'shellharden' },
     },
     formatters = {
       shfmt = {

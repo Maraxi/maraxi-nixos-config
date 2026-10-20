@@ -29,6 +29,7 @@
     tombi # toml
     ty # python
     shfmt
+    shellharden
 
     (pkgs.runCommand "symlink-to-nvim" { } ''
       mkdir -p $out/bin
