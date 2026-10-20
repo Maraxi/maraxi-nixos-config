@@ -441,9 +441,9 @@ hl.window_rule {
 }
 hl.window_rule { match = { initial_title = 'Unlock Database - KeePassXC' }, stay_focused = true }
 hl.on('window.open', function(w)
+  -- Keepass has "no_initial_focus". But when staying on workspace 9 then do focus it.
   if w.class == 'org.keepassxc.KeePassXC' then
     local ws = hl.get_active_workspace()
-
     if ws ~= nil and ws.id == 9 then hl.dispatch(hl.dsp.focus { window = w }) end
   end
 end)
