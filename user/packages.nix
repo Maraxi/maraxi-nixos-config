@@ -27,12 +27,9 @@
 
         opencode
 
+        prek
         devenv
-
-        uv
-        ruff
-        ty
-
+        treefmt
         eclint
 
         jq
@@ -40,6 +37,7 @@
 
         python3
         python3Packages.ipython
+        uv
 
         lua
         # cargo
@@ -72,15 +70,6 @@
         unar
 
         tty-clock
-
-        treefmt
-        nixfmt
-
-        shellcheck
-        shfmt
-        shellharden
-
-        prek
 
         imagemagick
 

@@ -32,6 +32,7 @@
     shellharden
     bash-language-server
     shellcheck
+    nixfmt
 
     (pkgs.runCommand "symlink-to-nvim" { } ''
       mkdir -p $out/bin
