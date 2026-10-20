@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
 
 signal_waybar() {
-	# Send signal to update waybar
-	pkill -RTMIN+12 waybar
+  # Send signal to update waybar
+  pkill -RTMIN+12 waybar
 }
 
 if pgrep -x wf-recorder >/dev/null; then
-	# Instruct running instance to stop
-	pkill -INT -x wf-recorder
+  # Instruct running instance to stop
+  pkill -INT -x wf-recorder
 
-	signal_waybar
+  signal_waybar
 else
-	mkdir -p "$HOME/Videos/Recordings"
+  mkdir -p "$HOME/Videos/Recordings"
 
-	geometry="$(slurp)"
+  geometry="$(slurp)"
 
-	wf-recorder \
-		-g "$geometry" \
-		-f "$HOME/Videos/Recordings/recording_$(date +%Y-%m-%d_%H-%M-%S).mp4" \
-		&
-	recorder_pid=$!
+  wf-recorder \
+    -g "$geometry" \
+    -f "$HOME/Videos/Recordings/recording_$(date +%Y-%m-%d_%H-%M-%S).mp4" \
+    &
+  recorder_pid=$!
 
-	signal_waybar
+  signal_waybar
 
-	wait "$recorder_pid"
+  wait "$recorder_pid"
 fi
