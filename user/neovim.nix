@@ -21,18 +21,23 @@
 
     # lsp
     inotify-tools # to replace default nvim file watcher
+    # lua
     lua-language-server
-    nil # nix
-    ruff
-    statix # nix
     stylua
-    tombi # toml
-    ty # python
+    # nix
+    nil
+    statix
+    nixfmt
+    # python
+    ruff
+    ty
+    # toml
+    tombi
+    # shell / bash
     shfmt
     shellharden
     bash-language-server
     shellcheck
-    nixfmt
 
     (pkgs.runCommand "symlink-to-nvim" { } ''
       mkdir -p $out/bin
