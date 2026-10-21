@@ -207,9 +207,4 @@ require 'plugins.conform'
 require 'plugins.autocomplete'
 require 'plugins.treesitter'
 
--- #############################
--- ##      MORE PLUG INS      ##
--- #############################
-do
-  require 'plugins.other'
-end
+require 'plugins.other'
