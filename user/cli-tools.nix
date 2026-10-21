@@ -66,6 +66,8 @@
   programs.lesspipe.enable = true;
   xdg.configFile."lesskey" = mutableLink dotfiles/lesskey;
 
+  xdg.configFile."fd" = mutableLink dotfiles/fd;
+
   xdg.configFile."bat/config" = mutableLink dotfiles/bat;
 
   xdg.dataFile."ipython/profile_default/ipython_config.py".text = ''
