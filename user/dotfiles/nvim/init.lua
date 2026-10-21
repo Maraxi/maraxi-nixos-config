@@ -698,5 +698,5 @@ end
 -- ##      MORE PLUG INS      ##
 -- #############################
 do
-  require 'plugins'
+  require 'plugins.other'
 end
