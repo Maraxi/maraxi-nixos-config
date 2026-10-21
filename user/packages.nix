@@ -143,6 +143,8 @@
             apache-directory-studio
 
             bluetuith
+
+            flameshot
           ]);
     in
     basic_pkgs ++ per_system_pkgs;
