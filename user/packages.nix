@@ -55,6 +55,7 @@
         bat
         dust
         file
+        parallel
 
         (pkgs.symlinkJoin {
           name = "trans";
@@ -88,7 +89,6 @@
 
             wev
             usbutils
-            parallel
 
             iw
             dig
