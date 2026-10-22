@@ -6,10 +6,11 @@
     REQUESTS_CA_BUNDLE = SSL_CERT_FILE;
     CURL_CA_BUNDLE = SSL_CERT_FILE;
     PIP_CERT = SSL_CERT_FILE;
+
     UV_DEFAULT_INDEX = "https://artifactory.dbgcloud.io/artifactory/api/pypi/cio-ecc-itsdesign-pypi-dev/simple";
-    UV_PYTHON = "3.13";
     UV_PYTHON_PREFERENCE = "only-managed";
     UV_SYSTEM_CERTS = "true";
+
     TNS_ADMIN = "$HOME/.config/tns_ora";
   };
 
