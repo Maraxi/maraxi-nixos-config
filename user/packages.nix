@@ -44,6 +44,7 @@
         # cargo
         # zig
 
+        inxi
         htop
         btop
 
@@ -86,7 +87,6 @@
             gnumake
 
             wev
-            inxi
             usbutils
             parallel
 
