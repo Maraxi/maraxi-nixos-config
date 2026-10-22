@@ -23,7 +23,6 @@ if [[ $(hostname) =~ "stefan-nixos" ]]; then
 
   if [[ $LOCKED_REV != "$CURRENT_REV" ]]; then
     # Update flake and commit on change
-    prek install
     echo "Updating flake.lock"
     nix flake update --commit-lock-file
   fi

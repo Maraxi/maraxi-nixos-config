@@ -1,5 +1,0 @@
-repos:
-  - repo: https://github.com/MaxMatti/treefmt-pre-commit
-    rev: 04ed8d82314d966aeeacf14daebc13e12a49fb1a  # frozen: v2.5.0
-    hooks:
-      - id: treefmt

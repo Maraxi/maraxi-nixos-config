@@ -41,7 +41,7 @@
     {
       # overlays = import ./overlays {inherit inputs;};
 
-      formatter.${system} = pkgs.nixfmt-tree;
+      # formatter.${system} = pkgs.nixfmt-tree;
 
       nixosConfigurations = {
         stefan-nixos = nixpkgs.lib.nixosSystem {
