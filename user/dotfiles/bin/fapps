@@ -2,11 +2,13 @@
 
 set -euo pipefail
 
+IFS=: read -ra data_dirs <<<"$XDG_DATA_DIRS"
+IFS=: read -ra config_dirs <<<"$XDG_CONFIG_DIRS"
+
 desktop_result=$(
-  IFS=": "
   fd --follow --format '{/.};{}' '\.desktop$' \
-    "$XDG_DATA_HOME"/applications "$XDG_DATA_DIRS" \
-    "$XDG_CONFIG_HOME"/autostart "$XDG_CONFIG_DIRS" \
+    "$XDG_DATA_HOME"/applications "${data_dirs[@]}" \
+    "$XDG_CONFIG_HOME"/autostart "${config_dirs[@]}" \
     2>/dev/null |
     column -ts ';' -o ' >' |
     sort -u |
