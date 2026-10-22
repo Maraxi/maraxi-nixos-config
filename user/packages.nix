@@ -14,6 +14,7 @@
         nemo
         fastfetch
         pavucontrol
+        wiremix
         tmux
 
         (pkgs.symlinkJoin {
