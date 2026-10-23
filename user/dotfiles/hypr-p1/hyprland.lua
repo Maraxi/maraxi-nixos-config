@@ -462,3 +462,17 @@ hl.window_rule {
   match = { class = '^$', title = '^$', xwayland = true, float = true, fullscreen = false, pin = false },
   no_focus = true,
 }
+
+-- Browser "<site> is sharing your screen." bubble (Edge/Chrome, e.g. Teams): a small floating window
+-- without class. waybar already shows active screen shares. Closing it also stops the share, so it is
+-- hidden instead: it opens on the special workspace "sharing" (= i3's scratchpad), not shown ("silent").
+-- Show it again with: hl.dsp.workspace.toggle_special('sharing')
+-- The title is set at creation (initialTitle), so a static rule is enough.
+hl.window_rule {
+  name = 'screen-share-indicator',
+  match = { title = '.* is sharing (your screen|a window).*' },
+  workspace = 'special:sharing silent',
+  border_size = 0,
+  no_shadow = true,
+  no_initial_focus = true,
+}
