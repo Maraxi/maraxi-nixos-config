@@ -26,6 +26,50 @@ let
     ];
   };
 
+  # Chromium/Electron apps (Edge, Teams, ...) open several token-less ScreenCast sessions for ONE screen
+  # share (first for the preview in their own picker, then for the actual stream), so the portal picker
+  # of xdg-desktop-portal-hyprland is shown again and again (GNOME hides this by silently restoring).
+  # Wrapper around hyprland-share-picker: a follow-up request within a short time reuses the first
+  # selection instead of asking again. Only the stdout selection layout is passed through unchanged.
+  # See https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/385
+  xdphSharePicker = pkgs.writeShellApplication {
+    name = "xdph-share-picker-batched";
+    runtimeInputs = with pkgs; [
+      coreutils
+      util-linux # logger
+    ];
+    text = ''
+      ttl=60       # seconds a selection may be reused
+      max_reuse=2  # follow-up requests per selection
+
+      dir="$XDG_RUNTIME_DIR/xdph-share-picker-batched"
+      mkdir -p "$dir"
+
+      if [[ -s $dir/out && -s $dir/time && -s $dir/used ]]; then
+        age=$(( $(date +%s) - $(cat "$dir/time") ))
+        used=$(cat "$dir/used")
+        if (( age <= ttl && used < max_reuse )); then
+          echo $(( used + 1 )) > "$dir/used"
+          logger -t xdph-share-picker-batched "reusing selection from $age s ago ($(( used + 1 ))/$max_reuse)"
+          cat "$dir/out"
+          exit 0
+        fi
+      fi
+
+      rm -f "$dir/out" "$dir/time" "$dir/used"
+      rc=0
+      out=$(${pkgs.xdg-desktop-portal-hyprland}/bin/hyprland-share-picker "$@") || rc=$?
+      if [[ $rc -eq 0 && $out == *"[SELECTION]"* ]]; then
+        printf '%s\n' "$out" > "$dir/out"
+        date +%s > "$dir/time"
+        echo 0 > "$dir/used"
+        logger -t xdph-share-picker-batched "new selection: $out"
+      fi
+      printf '%s\n' "$out"
+      exit $rc
+    '';
+  };
+
   # Copied to /usr/share/wayland-sessions by hosts/p1/hyprland-session.sh.
   # Must be a real file there (the gdm user cannot read $HOME) with an Exec that survives GC and
   # new generations: the profile path is stable, a /nix/store path is not.
@@ -106,6 +150,12 @@ in
       config.lib.file.mkOutOfStoreSymlink "/dev/dri/by-path/pci-0000:00:02.0-card";
     "hypr/card-nvidia".source =
       config.lib.file.mkOutOfStoreSymlink "/dev/dri/by-path/pci-0000:01:00.0-card";
+
+    "hypr/xdph.conf".text = ''
+      screencopy {
+        custom_picker_binary = ${lib.getExe xdphSharePicker}
+      }
+    '';
 
     # Only read by uwsm for Hyprland sessions
     "uwsm/env-hyprland".text = ''
