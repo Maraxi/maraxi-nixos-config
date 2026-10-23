@@ -29,6 +29,7 @@ let
   # Copied to /usr/share/wayland-sessions by hosts/p1/hyprland-session.sh.
   # Must be a real file there (the gdm user cannot read $HOME) with an Exec that survives GC and
   # new generations: the profile path is stable, a /nix/store path is not.
+  # No TryExec: gdm checks it as the gdm user, who cannot read $HOME, and would hide the entry.
   session = pkgs.writeTextFile {
     name = "hyprland-nix-session";
     destination = "/share/wayland-sessions/hyprland-nix.desktop";
@@ -37,7 +38,6 @@ let
       Name=Hyprland (nix, uwsm)
       Comment=An intelligent dynamic tiling Wayland compositor managed by uwsm
       Exec=${profile}/bin/uwsm start -e -D Hyprland -N Hyprland -F -- ${profile}/bin/start-hyprland
-      TryExec=${profile}/bin/uwsm
       DesktopNames=Hyprland
       Type=Application
     '';
