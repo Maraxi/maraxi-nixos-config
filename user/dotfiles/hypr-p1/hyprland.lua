@@ -371,7 +371,7 @@ hl.define_submap('lock', function()
     hl.timer(function()
       hl.dispatch(hl.dsp.submap 'reset')
       hl.dispatch(hl.dsp.dpms 'off')
-      hl.dispatch(hl.dsp.exec_cmd 'swaylock')
+      hl.dispatch(hl.dsp.exec_cmd 'lock-screen')
     end, { timeout = 100, type = 'oneshot' })
   end, { release = true })
 

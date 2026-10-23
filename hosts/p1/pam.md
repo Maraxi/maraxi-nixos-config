@@ -6,14 +6,6 @@ Optionally update / restore settings with
 
 ## Affected files in /etc/pam.d/
 
-i3lock
-
-    # PAM configuration file for the i3lock screen locker. By default, it includes
-    # the 'login' configuration file (see /etc/pam.d/login)
-    #
-    auth      sufficient pam_fprintd.so timeout=5
-    auth include login
-
 sudo
 
     #%PAM-1.0
@@ -45,8 +37,11 @@ This disables fprint on login, but still allows it during lock-screen
 ## swaylock (Hyprland session)
 
 swaylock is installed with `sudo apt install swaylock` (not from nix: nix' PAM cannot authenticate against the
-host, home-manager's `programs.swaylock.package` is `null` on this machine). The package ships `/etc/pam.d/swaylock`.
-For fingerprint add the same line as for i3lock above the include:
+host, home-manager's `programs.swaylock.package` is `null` on this machine). The package ships a password only
+`/etc/pam.d/swaylock`, which stays as it is.
 
-    auth      sufficient pam_fprintd.so timeout=5
-    auth include login
+Fingerprint: not via PAM. swaylock only starts PAM after a key press, so a `pam_fprintd` line (with
+`ignore-empty-password` set, as it is) never gets to check the finger without typing something first.
+The `lock-screen` script (user/hyprland-p1.nix, used by hypridle and the lock keybinding) starts `fprintd-verify`
+in the background and unlocks swaylock with SIGUSR1 when the finger matches; the password works at any time.
+`swaylock-pam-restore.sh` undoes the earlier PAM fingerprint line.

@@ -74,6 +74,37 @@ let
     '';
   };
 
+  # Lock screen with fingerprint unlock. swaylock (apt, password via PAM) only starts PAM after a key press, so a
+  # PAM fingerprint line needs an extra Enter first. Instead fprintd-verify runs in the background and
+  # unlocks swaylock with SIGUSR1 as soon as the finger matches; the password works at any time.
+  lockScreen = pkgs.writeShellApplication {
+    name = "lock-screen";
+    runtimeInputs = with pkgs; [
+      coreutils
+      procps # pidof, pkill
+      hyprland # hyprctl
+    ];
+    text = ''
+      pidof swaylock >/dev/null && exit 0
+
+      swaylock -f
+
+      # swaylock and fprintd-verify are the apt ones (/usr/bin)
+      (
+        while pidof swaylock >/dev/null; do
+          # a verification waits for a finger, give up after a while to re-check that swaylock still runs
+          if timeout 20 fprintd-verify >/dev/null 2>&1; then
+            pkill -USR1 swaylock
+            # a touch on the sensor is no input that wakes a display that was switched off (lock keybinding, idle)
+            hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' >/dev/null || true
+            break
+          fi
+          sleep 1
+        done
+      ) >/dev/null 2>&1 &
+    '';
+  };
+
   # Copied to /usr/share/wayland-sessions by hosts/p1/hyprland-session.sh.
   # Must be a real file there (the gdm user cannot read $HOME) with an Exec that survives GC and
   # new generations: the profile path is stable, a /nix/store path is not.
@@ -104,6 +135,7 @@ in
       xdg-desktop-portal-hyprland
       uwsm
       session
+      lockScreen
 
       brightnessctl
       grim
