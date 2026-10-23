@@ -25,14 +25,17 @@ local function notify(text) hl.notification.create { text = text, timeout = 1500
 -- If that gets tedious (many docks / locations), switch to profile based tools which apply a layout by
 -- the set of connected monitors, e.g. kanshi or shikane (both work with Hyprland via wlr-output-management).
 --
--- TODO: verify the two desc strings below with `hyprctl monitors` (EDID make is "SAM", Hyprland
--- most likely shows the long vendor name) and fix them. Until then the catch-all rule is used.
--- Known monitors: 2x Samsung LS27D60xU, serials HNAX501260 (was DP-3) and HK2XA00058 (was DP-4).
-local monitor_left = 'desc:Samsung Electric Company LS27D60xU HNAX501260'
+-- The two desc strings below were verified with `hyprctl monitors` (2x Samsung LS27D60xU; the ports
+-- DP-3/DP-4 swap between boots, the serials do not).
+-- Layout, left to right, all bottom aligned (the panel is 360px lower than the 1440px high externals):
+--   eDP-1 (reference, x = 0, 1920x1080)  |  monitor_middle (2560x1440)  |  monitor_right (2560x1440)
+local monitor_middle = 'desc:Samsung Electric Company LS27D60xU HNAX501260'
 local monitor_right = 'desc:Samsung Electric Company LS27D60xU HK2XA00058'
-hl.monitor { output = monitor_left, mode = 'preferred', position = '0x0', scale = 'auto' }
-hl.monitor { output = monitor_right, mode = 'preferred', position = '2560x0', scale = 'auto' }
--- Internal panel and any other monitor
+-- Internal panel: 15.6" FHD (1920x1080), 'auto' would pick scale 1.5 which is far too large
+hl.monitor { output = 'eDP-1', mode = 'preferred', position = '0x360', scale = 1 }
+hl.monitor { output = monitor_middle, mode = 'preferred', position = '1920x0', scale = 'auto' }
+hl.monitor { output = monitor_right, mode = 'preferred', position = '4480x0', scale = 'auto' }
+-- Any other monitor
 hl.monitor { output = '', mode = 'preferred', position = 'auto', scale = 'auto' }
 
 ---------------------
