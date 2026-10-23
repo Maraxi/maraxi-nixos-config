@@ -99,11 +99,18 @@ in
     "waybar" = mutableLink dotfiles/waybar;
     "satty/config.toml" = mutableLink dotfiles/satty.toml;
 
+    # aquamarine splits AQ_DRM_DEVICES at every ":" and does not support escaping, so the colons of the
+    # /dev/dri/by-path names cannot be used directly. Colon-free links to the stable PCI paths instead
+    # (PCI addresses: 00:02.0 = Intel UHD P630, 01:00.0 = Quadro T2000, see `lspci`).
+    "hypr/card-intel".source =
+      config.lib.file.mkOutOfStoreSymlink "/dev/dri/by-path/pci-0000:00:02.0-card";
+    "hypr/card-nvidia".source =
+      config.lib.file.mkOutOfStoreSymlink "/dev/dri/by-path/pci-0000:01:00.0-card";
+
     # Only read by uwsm for Hyprland sessions
     "uwsm/env-hyprland".text = ''
       # Intel iGPU (internal panel) renders, the nvidia dGPU scans out the external monitors.
-      # Colons inside the by-path names must be escaped with a backslash, hence the single quotes.
-      export AQ_DRM_DEVICES='/dev/dri/by-path/pci-0000\:00\:02.0-card:/dev/dri/by-path/pci-0000\:01\:00.0-card'
+      export AQ_DRM_DEVICES="$HOME/.config/hypr/card-intel:$HOME/.config/hypr/card-nvidia"
 
       # Do NOT set LIBVA_DRIVER_NAME / __GLX_VENDOR_LIBRARY_NAME=nvidia: prime-select is on-demand,
       # apps should run on the Intel gpu unless started with offloading.
