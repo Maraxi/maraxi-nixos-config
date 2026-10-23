@@ -32,6 +32,10 @@ let
   # Wrapper around hyprland-share-picker: a follow-up request within a short time reuses the first
   # selection instead of asking again. Only the stdout selection layout is passed through unchanged.
   # See https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/385
+  #
+  # The picker itself is hyprland-preview-share-picker (previews of screens/windows, GTK). To go back to
+  # the plain Qt picker of xdph use `${pkgs.xdg-desktop-portal-hyprland}/bin/hyprland-share-picker`.
+  sharePicker = lib.getExe pkgs.hyprland-preview-share-picker;
   xdphSharePicker = pkgs.writeShellApplication {
     name = "xdph-share-picker-batched";
     runtimeInputs = with pkgs; [
@@ -40,7 +44,7 @@ let
     ];
     text = ''
       ttl=60       # seconds a selection may be reused
-      max_reuse=2  # follow-up requests per selection
+      max_reuse=1  # follow-up requests per selection
 
       dir="$XDG_RUNTIME_DIR/xdph-share-picker-batched"
       mkdir -p "$dir"
@@ -58,7 +62,7 @@ let
 
       rm -f "$dir/out" "$dir/time" "$dir/used"
       rc=0
-      out=$(${pkgs.xdg-desktop-portal-hyprland}/bin/hyprland-share-picker "$@") || rc=$?
+      out=$(${sharePicker} "$@") || rc=$?
       if [[ $rc -eq 0 && $out == *"[SELECTION]"* ]]; then
         printf '%s\n' "$out" > "$dir/out"
         date +%s > "$dir/time"
@@ -156,6 +160,19 @@ in
       config.lib.file.mkOutOfStoreSymlink "/dev/dri/by-path/pci-0000:00:02.0-card";
     "hypr/card-nvidia".source =
       config.lib.file.mkOutOfStoreSymlink "/dev/dri/by-path/pci-0000:01:00.0-card";
+
+    # Previews picker, https://github.com/WhySoBad/hyprland-preview-share-picker (stylesheets etc. possible)
+    "hyprland-preview-share-picker/config.yaml".text = ''
+      # screens first (default is windows)
+      default_page: outputs
+      # one click selects (default is 2)
+      outputs:
+        clicks: 1
+      windows:
+        clicks: 1
+      # the restore token is of no use here (Chromium does not send one back)
+      hide_token_restore: true
+    '';
 
     "hypr/xdph.conf".text = ''
       screencopy {
