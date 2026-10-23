@@ -7,7 +7,7 @@
         mailer = if setup.isNixOS then "thunderbird.desktop" else browser;
         image_viewer = [
           "org.gnome.gThumb.desktop"
-          "feh.desktop"
+          "swayimg.desktop"
         ];
         video_viewer = [
           "org.gnome.gThumb.desktop"
