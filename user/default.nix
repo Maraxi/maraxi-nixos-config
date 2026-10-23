@@ -14,10 +14,10 @@
           ]
         else
           [
+            ./hyprland-p1.nix
             ./nixpkgs.nix
             ./non-nixos.nix
             ./podman.nix
-            ./windowmanager.nix
           ];
     in
     [

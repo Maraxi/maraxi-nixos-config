@@ -41,3 +41,12 @@ Run
     sudo /usr/share/gdm/generate-config
 
 This disables fprint on login, but still allows it during lock-screen
+
+## swaylock (Hyprland session)
+
+swaylock is installed with `sudo apt install swaylock` (not from nix: nix' PAM cannot authenticate against the
+host, home-manager's `programs.swaylock.package` is `null` on this machine). The package ships `/etc/pam.d/swaylock`.
+For fingerprint add the same line as for i3lock above the include:
+
+    auth      sufficient pam_fprintd.so timeout=5
+    auth include login

@@ -16,7 +16,7 @@
       # See dunst(5) for all configuration options
       # Also see dotfiles/dunstrc
       global = {
-        monitor = if setup.isNixOS then "DP-5" else "eDP-1-1";
+        monitor = if setup.isNixOS then "DP-5" else "eDP-1";
         follow = "none";
         indicate_hidden = true;
 
