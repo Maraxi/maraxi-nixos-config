@@ -397,25 +397,6 @@ hl.define_submap('lock', function()
   hl.bind('catchall', hl.dsp.submap 'reset')
 end)
 
--- Unbind all other keys
-hl.bind(mehMod .. 'P', function()
-  hl.config { cursor = { no_warps = false } }
-  hl.dispatch(hl.dsp.submap 'no-binds')
-end)
-hl.define_submap('no-binds', function()
-  hl.bind(mainMod .. 'tab', hl.dsp.focus { last = true })
-  hl.bind(mainMod .. 'asciicircum', function()
-    hl.dispatch(hl.dsp.workspace.move { workspace = 2, monitor = monitor_right })
-    hl.dispatch(hl.dsp.focus { workspace = 2 })
-  end)
-
-  bindSoundKeys()
-
-  hl.bind(mehMod .. 'P', function()
-    hl.config { cursor = { no_warps = true } }
-    hl.dispatch(hl.dsp.submap 'reset')
-  end)
-end)
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
