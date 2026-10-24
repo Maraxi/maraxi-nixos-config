@@ -13,7 +13,6 @@
 
         nemo
         fastfetch
-        pavucontrol
         wiremix
         tmux
 
