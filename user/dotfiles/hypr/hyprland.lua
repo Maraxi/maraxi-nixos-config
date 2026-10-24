@@ -33,8 +33,8 @@ local menu = 'wofi --show drun --matching multi-contains --insensitive'
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 hl.on('hyprland.start', function()
   hl.exec_cmd 'dbus-update-activation-environment --systemd --all'
-  -- hl.exec_cmd("nm-applet")
-  hl.exec_cmd 'waybar & hyprpaper'
+  hl.exec_cmd 'uwsm app -- waybar'
+  hl.exec_cmd 'uwsm app -- hyprpaper'
 end)
 
 -------------------------------

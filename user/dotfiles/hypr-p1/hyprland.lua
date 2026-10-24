@@ -55,8 +55,8 @@ local menu = 'wofi --show drun --matching multi-contains --insensitive'
 -- Environment import, hyprpaper, hypridle, hyprpolkitagent and dunst are handled by uwsm / systemd user units
 -- (user/hyprland-p1.nix), only started inside Hyprland.
 hl.on('hyprland.start', function()
-  -- hl.exec_cmd("nm-applet")
   hl.exec_cmd 'uwsm app -- waybar'
+  hl.exec_cmd 'uwsm app -- intune-portal'
 end)
 
 -------------------------------
