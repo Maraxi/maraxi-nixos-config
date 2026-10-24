@@ -29,10 +29,11 @@ local function notify(text) hl.notification.create { text = text, timeout = 1500
 -- DP-3/DP-4 swap between boots, the serials do not).
 -- Layout, left to right, all bottom aligned (the panel is 360px lower than the 1440px high externals):
 --   eDP-1 (reference, x = 0, 1920x1080)  |  monitor_middle (2560x1440)  |  monitor_right (2560x1440)
+local monitor_integrated = 'eDP-1'
 local monitor_middle = 'desc:Samsung Electric Company LS27D60xU HNAX501260'
 local monitor_right = 'desc:Samsung Electric Company LS27D60xU HK2XA00058'
 -- Internal panel: 15.6" FHD (1920x1080), 'auto' would pick scale 1.5 which is far too large
-hl.monitor { output = 'eDP-1', mode = 'preferred', position = '0x360', scale = 1 }
+hl.monitor { output = monitor_integrated, mode = 'preferred', position = '0x360', scale = 1 }
 hl.monitor { output = monitor_middle, mode = 'preferred', position = '1920x0', scale = 'auto' }
 hl.monitor { output = monitor_right, mode = 'preferred', position = '4480x0', scale = 'auto' }
 -- Any other monitor
@@ -430,8 +431,8 @@ hl.workspace_rule { workspace = 'f[1]', gaps_out = 0, gaps_in = 0 } --maximized 
 
 -- Workspaces on fixed monitors with default apps (ignored while the monitor is not connected)
 hl.workspace_rule { workspace = '2', monitor = monitor_right, on_created_empty = 'microsoft-edge-stable' }
-hl.workspace_rule { workspace = '9', monitor = monitor_right, on_created_empty = 'keepassxc' }
-hl.workspace_rule { workspace = '10', monitor = monitor_right }
+hl.workspace_rule { workspace = '9', monitor = monitor_integrated, on_created_empty = 'keepassxc' }
+hl.workspace_rule { workspace = '10', monitor = monitor_integrated }
 
 -- Application specific settings
 hl.window_rule { match = { initial_title = 'Ghostty' }, focus_on_activate = false }
