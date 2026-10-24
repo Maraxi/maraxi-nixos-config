@@ -21,6 +21,7 @@ do
 
   -- ensure plugin specific updates run after vim.pack.update()
   vim.api.nvim_create_autocmd('PackChanged', {
+    group = vim.api.nvim_create_augroup('pack-build-hooks', { clear = true }),
     callback = function(ev)
       local name = ev.data.spec.name
       local kind = ev.data.kind

@@ -26,7 +26,6 @@ do
     spec = {
       { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
       { '<leader>t', group = '[T]oggle' },
-      { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
       { 'gr', group = 'LSP Actions', mode = { 'n' } },
     },
   }
@@ -58,8 +57,8 @@ do
     require('mini.ai').setup {
       -- NOTE: Avoid conflicts with the built-in incremental selection mappings on Neovim>=0.12 (see `:help treesitter-incremental-selection`)
       mappings = {
-        around_next = 'aa',
-        inside_next = 'ii',
+        around_next = 'aN',
+        inside_next = 'iN',
       },
       n_lines = 500,
     }

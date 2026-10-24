@@ -32,7 +32,7 @@ do
   --    #### editor / display behaviour ####
   -- Decrease mapped sequence wait time
   -- Displays which-key pop-up sooner
-  -- INFO: this might breaks gO / outline at low values
+  -- INFO: this might break gO / outline at low values
   vim.o.timeoutlen = 300
   -- prompt instead of failing with unsaved changes with commands like `:q`
   vim.o.confirm = true
