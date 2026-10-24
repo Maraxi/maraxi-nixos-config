@@ -3,9 +3,6 @@
 -- Hyprpaper, hypridle, hyprpolkitagent and dunst are handled by systemd user units (user/hyprland-ubuntu.nix),
 -- only started inside Hyprland.
 
--- Remove after, just to hide warnings
--- local hl = {}
-
 local common = require 'common'
 
 ------------------

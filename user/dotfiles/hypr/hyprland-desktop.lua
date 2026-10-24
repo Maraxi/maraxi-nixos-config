@@ -1,9 +1,6 @@
 -- Hyprland config for the NixOS desktop. Everything shared is in common.lua.
 -- Environment variables are in ~/.config/uwsm/env-hyprland (user/hyprland-nixos.nix).
 
--- Remove after, just to hide warnings
--- local hl = {}
-
 local common = require 'common'
 local mainMod, mehMod = common.mainMod, common.mehMod
 
