@@ -53,7 +53,7 @@
     "separate-outputs": true,
     "icon": true,
     "icon-size": 20,
-    "max-length": 80,
+    "max-length": 200,
     "rewrite": {
       "(.*) [-–] [^-–]*Edge$": "$1"
     }
@@ -94,7 +94,7 @@
   "wireplumber": {
     "format": "{icon} {volume}%",
     "format-muted": "󰝟 Muted",
-    "on-click": "pavucontrol",
+    "on-click": "ghostty +new-window -e wiremix",
     "format-icons": ["", "", ""]
   },
 
