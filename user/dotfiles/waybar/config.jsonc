@@ -6,9 +6,9 @@
   "exclusive": true,
   "passthrough": false,
 
-  "modules-left": [ "clock", "hyprland/workspaces", "hyprland/submap" ],
-  "modules-center": [ "hyprland/window" ],
-  "modules-right": [ "custom/recording", "privacy", "network", "wireplumber", "idle_inhibitor", "tray" ],
+  "modules-left": [ "clock", "hyprland/workspaces", "hyprland/window" ],
+  "modules-center": [],
+  "modules-right": [ "hyprland/submap", "custom/recording", "privacy", "idle_inhibitor", "tray", "wireplumber", "network", "battery" ],
 
   "clock": {
     "format": "  {:%H:%M    %a, %d %b}",
@@ -50,7 +50,22 @@
 
   "hyprland/window": {
     "separate-outputs": true,
-    "icon": true
+    "icon": true,
+    "max-length": 80,
+    "rewrite": {
+      "(.*) [-–] [^-–]*Edge$": "$1"
+    }
+  },
+
+  // Hidden automatically on machines without a battery (desktop PC)
+  "battery": {
+    "states": { "warning": 30, "critical": 15 },
+    "format": "{icon} {capacity}%",
+    "format-charging": "\uf0e7 {capacity}%",
+    "format-plugged": "\uf1e6 {capacity}%",
+    "format-full": "\uf1e6 {capacity}%",
+    "format-icons": [ "\uf244", "\uf243", "\uf242", "\uf241", "\uf240" ],
+    "tooltip-format": "{timeTo}\n{power} W, health {health}%"
   },
 
   "privacy": {

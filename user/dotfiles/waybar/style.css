@@ -1,121 +1,167 @@
-@define-color base rgba(84,42,206,0.5);
-@define-color base-purple shade(alpha(#8f00ff, 0.75), 0.6);
-@define-color base-blue alpha(#51c7fe, 0.3);
-@define-color base-solid rgba(84,42,206,1);
-@define-color content #cdd6f4;
-@define-color green #00ff00;
-@define-color blue #0000ff;
-@define-color font-workspace #018284;
+/* Palette: purple -> cool blue neon, Catppuccin Mocha for the text colors */
+@define-color purple #8f00ff;
+@define-color violet #b57bff;
+@define-color blue #51c7fe;
+@define-color text #cdd6f4;
+@define-color dim #8b88a8;
+@define-color peach #fab387;
+@define-color yellow #f9e2af;
+@define-color green #8aba7c;
+@define-color mint #a6e3a1;
+@define-color teal #94e2d5;
+@define-color red #f38ba8;
 
-window#waybar {
-    background: alpha(#000000, 0);
+/* Lowest specificity on purpose: ids below can override it */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: 400;
+    font-size: 14px;
+    text-shadow: 0 1px 2px alpha(black, 0.9);
 }
 
-window#waybar * {
-    border: none;
-    font-family: "JetBrainsMono Nerd Font";
-    font-weight: 600;
-    font-size: 15px;
+/* One continuous bar, flush with the screen edges. Gradient is per monitor. */
+window#waybar {
+    color: @text;
+    background: linear-gradient(to right, rgba(40, 12, 88, 0.60), rgba(12, 20, 56, 0.60));
+    border-bottom: 1px solid @purple;
+    border-image: linear-gradient(to right, @purple, @blue) 0 0 1 0;
+    box-shadow: inset 0 -4px 8px -3px alpha(@purple, 0.55);
 }
 
 tooltip {
     background: #1e1e2e;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #11111b;
+    border: 1px solid alpha(@purple, 0.7);
+    border-radius: 6px;
+}
+tooltip label {
+    color: @text;
+    text-shadow: none;
 }
 
 .modules-left,
 .modules-center,
 .modules-right {
-    margin-top: -2px;
-    margin-bottom: 3px;
-    min-height: 24px;
-}
-.modules-left {
-    margin-left: 25px;
-}
-.modules-right {
-    margin-right: 25px;
-}
-
-#workspaces {
-    border-radius: 0 0 10px 10px;
-    background: @base-purple;
-}
-#workspaces button {
-    padding: 0px 0.4em;
-    color: #f9e2af;
-}
-#workspaces button.visible {
-    color: @green;
-}
-#workspaces button.active {
-    box-shadow: inset 0 0 5px #21adcd,
-                inset 0 0 2px #80daeb;
-}
-#workspaces button.urgent {
-    color: #11111b;
-    background: #a6e3a1;
-}
-#workspaces button:hover {
-    background: #11111b;
-    color: #cdd6f4;
-}
-
-window#waybar.empty #window {
-    background: alpha(#000000, 0);
-    box-shadow: none;
+    min-height: 26px;
 }
 
 #clock,
-/*#workspaces,*/
-#submap,
 #window,
+#submap,
 #privacy,
 #network,
 #wireplumber,
+#battery,
 #idle_inhibitor,
 #tray,
 #custom-recording {
-    background: @base-purple;
-    border-radius: 0 0 10px 10px;
-    padding: 0px 10px;
-    margin: 0 2px;
-    text-shadow: 0 0 1px white;
-    box-shadow: inset 0 0 2px shade(@base-purple, 3);
+    padding: 0 10px;
+}
+
+/* subtle dividers between the modules on the right */
+#privacy,
+#network,
+#wireplumber,
+#battery,
+#idle_inhibitor,
+#tray,
+#custom-recording {
+    border-left: 1px solid alpha(@blue, 0.18);
 }
 
 #clock {
-    color: #fab387;
+    color: @mint;
 }
-#network,
 #window {
-    color: #f9e2af;
+    color: @green;
+    margin-left: 3px;
 }
-#submap,
+#network {
+    color: @yellow;
+}
 #privacy,
 #wireplumber {
-    color: #8aba7c;
-}
-#window {
-    /* background: @base-blue; */
+    color: @green;
 }
 
-/*
-#workspaces {
-    background: #1e1e2e;
-    border-radius: 10px;
-    margin-left: 10px;
-    padding-right: 0px;
-    padding-left: 5px;
+/* Workspaces:
+   .visible = shown on one of the monitors (blue underline)
+   .active  = shown on the monitor with the focus (filled gradient) */
+#workspaces button {
+    margin: 3px 1px;
+    padding: 0 5px;
+    color: @dim;
+    background: none;
+    border-radius: 6px;
+    box-shadow: none;
+    text-shadow: none;
+}
+#workspaces button.visible {
+    color: @blue;
+    border-radius: 0;
+    box-shadow: inset 0 -2px @blue;
+}
+#workspaces button.active {
+    color: white;
+    border-radius: 0;
+    background-image: none;
+    background-color: alpha(@violet, 0.30);
+    box-shadow: inset 0 -2px @blue, inset 0 0 8px alpha(@blue, 0.55);
+    text-shadow: 0 0 4px alpha(white, 0.7);
+}
+#workspaces button:hover {
+    color: white;
+    background-image: none;
+    background-color: alpha(@violet, 0.3);
+    box-shadow: none;
+}
+#workspaces button.urgent {
+    color: #11111b;
+    background-image: none;
+    background-color: @red;
+    box-shadow: none;
+    text-shadow: none;
 }
 
-#pulseaudio.microphone {
-    color: #cba6f7;
-    border-left: 0px;
-    border-right: 0px;
-    border-radius: 0px 10px 10px 0px;
-    margin-right: 10px;
+#submap {
+    color: #11111b;
+    background-color: @red;
+    font-weight: 600;
+    text-shadow: none;
 }
-*/
+
+#battery.charging,
+#battery.plugged,
+#battery.full {
+    color: @teal;
+}
+#battery.warning:not(.charging) {
+    color: @yellow;
+}
+#battery.critical:not(.charging) {
+    color: #11111b;
+    background-color: @red;
+    text-shadow: none;
+    animation: blink 1s steps(2, start) infinite alternate;
+}
+@keyframes blink {
+    to {
+        background-color: transparent;
+        color: @red;
+    }
+}
+
+#idle_inhibitor {
+    color: @dim;
+}
+#idle_inhibitor.activated {
+    color: @peach;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
