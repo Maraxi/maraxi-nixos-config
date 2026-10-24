@@ -383,7 +383,7 @@ hl.define_submap('lock', function()
     end, { timeout = 100, type = 'oneshot' })
   end, { release = true })
 
-  hl.bind('E', hl.dsp.exit())
+  hl.bind('E', hl.dsp.exec_cmd 'uwsm stop')
   hl.bind('P', hl.dsp.exec_cmd 'poweroff')
 
   hl.bind('S', function()
