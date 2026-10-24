@@ -50,7 +50,7 @@
       "--max-columns=200"
       "--heading"
       "--with-filename" # print each name even when only a single is provided as in "fd --exec rg"
-      # "--follow"
+      "--follow"
     ];
   };
 
