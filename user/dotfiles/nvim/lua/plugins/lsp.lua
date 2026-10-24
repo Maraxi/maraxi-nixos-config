@@ -80,6 +80,15 @@ do
     end,
   })
 
+  -- Lua LS library: loads the Neovim runtime and only the plugins that are `require`d
+  vim.pack.add { GH 'folke/lazydev.nvim' }
+  require('lazydev').setup {
+    library = {
+      -- Only load luv types when `vim.uv` is used
+      { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+    },
+  }
+
   vim.pack.add { GH 'neovim/nvim-lspconfig' }
   local servers = {
     -- python
