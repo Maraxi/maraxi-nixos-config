@@ -51,6 +51,7 @@
   "hyprland/window": {
     "separate-outputs": true,
     "icon": true,
+    "icon-size": 20,
     "max-length": 80,
     "rewrite": {
       "(.*) [-–] [^-–]*Edge$": "$1"

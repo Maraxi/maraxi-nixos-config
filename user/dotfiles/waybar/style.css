@@ -43,7 +43,7 @@ tooltip label {
 .modules-left,
 .modules-center,
 .modules-right {
-    min-height: 26px;
+    min-height: 28px;
 }
 
 #clock,
@@ -89,6 +89,7 @@ tooltip label {
    .visible = shown on one of the monitors (blue underline)
    .active  = shown on the monitor with the focus (filled gradient) */
 #workspaces button {
+    min-height: 0;
     margin: 3px 1px;
     padding: 0 5px;
     color: @dim;
