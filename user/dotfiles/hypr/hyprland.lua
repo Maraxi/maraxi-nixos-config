@@ -12,8 +12,8 @@ local function notify(text) hl.notification.create { text = text, timeout = 1500
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-local monitor_left = 'DP-5'
-local monitor_right = 'HDMI-A-2'
+local monitor_left = 'desc:Samsung Electric Company LS27D60xU HNAX501260'
+local monitor_right = 'desc:Samsung Electric Company LS27D60xU HK2XA00058'
 hl.monitor { output = monitor_left, mode = 'preferred', position = '0x0', scale = 'auto' }
 hl.monitor { output = monitor_right, mode = 'preferred', position = '2560x0', scale = 'auto' }
 hl.monitor { output = '', mode = 'preferred', position = 'auto', scale = 'auto' }
