@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
   cursor = {
     package = pkgs.volantes-cursors;
@@ -16,8 +16,13 @@ in
     dotIcons.enable = false;
   }
   // cursor;
+
+  # Keep the files of the gtk2 and x11 cursor config out of ~ (XDG Base Directory)
+  xresources.path = "${config.xdg.configHome}/X11/Xresources";
+
   gtk = {
     enable = true;
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     theme = {
       package = pkgs.catppuccin-gtk.override {
         variant = cat-variant;

@@ -3,6 +3,7 @@
 # environment. The Hyprland config itself is in dotfiles/hypr/ (common.lua is shared, the host modules link
 # hyprland.lua, hypridle.conf and hyprpaper.conf).
 {
+  config,
   inputs,
   mutableLink,
   pkgs,
@@ -58,6 +59,7 @@
     # so Hyprland needs neither hl.env() nor dbus-update-activation-environment). The host modules append
     # their variables. Read at login, a session restart is needed after changes.
     "uwsm/env-hyprland".text = ''
+      export XCURSOR_THEME=${config.home.pointerCursor.name}
       export XCURSOR_SIZE=24
       export HYPRCURSOR_SIZE=24
     '';

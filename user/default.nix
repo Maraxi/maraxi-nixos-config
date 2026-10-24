@@ -6,7 +6,6 @@
           [
             ./alacritty.nix
             ./firefox.nix
-            ./gtk.nix
             ./hyprland-nixos.nix
             ./nextcloud-sync.nix
             ./ssh.nix
@@ -25,6 +24,7 @@
       ./environment.nix
       ./ghostty.nix
       ./git.nix
+      ./gtk.nix
       ./hyprland.nix
       ./keepassxc.nix
       ./meta.nix
