@@ -12,6 +12,8 @@
     # vimdiffAlias = true;
     withRuby = false;
     withPython3 = false;
+    # prebuilt by nix, so no `make` at runtime
+    plugins = [ pkgs.vimPlugins.telescope-fzf-native-nvim ];
   };
 
   home.packages = with pkgs; [

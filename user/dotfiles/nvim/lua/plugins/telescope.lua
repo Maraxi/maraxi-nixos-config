@@ -11,7 +11,7 @@ do
     GH 'nvim-lua/plenary.nvim',
     GH 'nvim-telescope/telescope.nvim',
     GH 'nvim-telescope/telescope-ui-select.nvim',
-    GH 'nvim-telescope/telescope-fzf-native.nvim',
+    -- telescope-fzf-native.nvim is installed (and built) by nix, see user/neovim.nix
   }
   -- See `:help telescope` and `:help telescope.setup()`
   require('telescope').setup {
