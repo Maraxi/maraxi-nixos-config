@@ -11,7 +11,8 @@
   "modules-right": [ "hyprland/submap", "custom/recording", "privacy", "idle_inhibitor", "tray", "wireplumber", "network", "battery" ],
 
   "clock": {
-    "format": "  {:%H:%M    %a, %d %b}",
+    "interval": 5,
+    "format": "  {:%H:%M:%S    %a, %d %b}",
     "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
       "mode": "year",
