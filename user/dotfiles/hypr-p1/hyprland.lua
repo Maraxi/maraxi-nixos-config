@@ -435,6 +435,11 @@ end)
 
 hl.window_rule { match = { class = 'nemo', title = '.*Properties' }, float = true }
 
+-- Zscaler Client Connector is a fixed size window (max size set by the app), so Hyprland floats it and
+-- refuses to tile it. Dropping the size limit lets the float toggle work.
+hl.window_rule { name = 'zscaler-tile', match = { class = 'ZSTray6' }, tile = true, no_max_size = true, workspace = 10 }
+hl.window_rule { match = { class = 'Intune-portal' }, tile = true, workspace = 10 }
+
 -- Ignore maximize requests from all apps
 hl.window_rule { name = 'suppress-maximize-events', match = { class = '.*' }, suppress_event = 'maximize' }
 
