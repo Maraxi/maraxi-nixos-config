@@ -1,4 +1,5 @@
-# Hyprland on a non-NixOS host (Ubuntu + gdm, GNOME stays available as fallback session).
+# Hyprland on a non-NixOS host (Ubuntu + gdm, GNOME stays available as fallback session). Adds to the shared
+# setup from hyprland.nix.
 #
 # Not used here on purpose:
 # - wayland.windowManager.hyprland: it always generates ~/.config/hypr/hyprland.lua, but the config is a mutable link.
@@ -8,7 +9,6 @@
 # Root-level steps (session file for gdm) are in hosts/p1/, swaylock comes from apt.
 {
   config,
-  inputs,
   lib,
   mutableLink,
   pkgs,
@@ -123,29 +123,20 @@ let
   };
 in
 {
-  imports = [ ./wayland.nix ]; # wl-clipboard, wdisplays, swaylock settings
-
   # nix' PAM cannot authenticate against the host: use `sudo apt install swaylock` (ships /etc/pam.d/swaylock)
   programs.swaylock.package = null;
 
-  home.packages =
-    with pkgs;
-    [
-      hyprland
-      xdg-desktop-portal-hyprland
-      uwsm
-      session
-      lockScreen
+  home.packages = with pkgs; [
+    hyprland
+    xdg-desktop-portal-hyprland
+    uwsm
+    session
+    lockScreen
 
-      brightnessctl
-      grim
-      slurp
-      satty
-      wf-recorder
+    brightnessctl
 
-      nerd-fonts.jetbrains-mono # waybar font + icons (NixOS gets it from system/fonts.nix)
-    ]
-    ++ [ inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+    nerd-fonts.jetbrains-mono # waybar font + icons (NixOS gets it from system/fonts.nix)
+  ];
 
   fonts.fontconfig.enable = true;
 
@@ -155,7 +146,6 @@ in
     xdg-desktop-portal-hyprland
   ];
 
-  services.hypridle.enable = true;
   services.hyprpaper.enable = true;
   services.hyprpolkitagent.enable = true;
 
@@ -173,21 +163,10 @@ in
     };
   };
 
-  # dmenu like launcher
-  programs.wofi = {
-    enable = true;
-    settings = {
-      key_expand = "Left,Right";
-    };
-  };
-
   xdg.configFile = {
-    "hypr/hyprland.lua" = mutableLink dotfiles/hypr-p1/hyprland.lua;
-    "hypr/hypridle.conf" = mutableLink dotfiles/hypr-p1/hypridle.conf;
-    "hypr/hyprpaper.conf" = mutableLink dotfiles/hypr-p1/hyprpaper.conf;
-    "wofi/wallpaper" = mutableLink dotfiles/wofi-wallpaper;
-    "waybar" = mutableLink dotfiles/waybar;
-    "satty/config.toml" = mutableLink dotfiles/satty.toml;
+    "hypr/hyprland.lua" = mutableLink dotfiles/hypr/hyprland-p1.lua;
+    "hypr/hypridle.conf" = mutableLink dotfiles/hypr/hypridle-p1.conf;
+    "hypr/hyprpaper.conf" = mutableLink dotfiles/hypr/hyprpaper-p1.conf;
 
     # aquamarine splits AQ_DRM_DEVICES at every ":" and does not support escaping, so the colons of the
     # /dev/dri/by-path names cannot be used directly. Colon-free links to the stable PCI paths instead
@@ -216,13 +195,15 @@ in
       }
     '';
 
-    # Only read by uwsm for Hyprland sessions
     "uwsm/env-hyprland".text = ''
       # Intel iGPU (internal panel) renders, the nvidia dGPU scans out the external monitors.
       export AQ_DRM_DEVICES="$HOME/.config/hypr/card-intel:$HOME/.config/hypr/card-nvidia"
 
-      # Do NOT set LIBVA_DRIVER_NAME / __GLX_VENDOR_LIBRARY_NAME=nvidia: prime-select is on-demand,
-      # apps should run on the Intel gpu unless started with offloading.
+      # Do NOT set LIBVA_DRIVER_NAME / __GLX_VENDOR_LIBRARY_NAME=nvidia (the NixOS desktop does):
+      # this laptop is a hybrid system. The Intel iGPU renders and prime-select is on-demand, so apps should
+      # run on the Intel gpu unless started with offloading. Forcing nvidia would wake the dGPU for every
+      # GLX / VA-API app (battery) and make them render on a gpu that does not drive the internal panel.
+      # The desktop has the nvidia card as its only gpu (user/hyprland-nixos.nix).
 
       export ELECTRON_OZONE_PLATFORM_HINT=auto
       export QT_QPA_PLATFORM="wayland;xcb"

@@ -42,6 +42,6 @@ host, home-manager's `programs.swaylock.package` is `null` on this machine). The
 
 Fingerprint: not via PAM. swaylock only starts PAM after a key press, so a `pam_fprintd` line (with
 `ignore-empty-password` set, as it is) never gets to check the finger without typing something first.
-The `lock-screen` script (user/hyprland-p1.nix, used by hypridle and the lock keybinding) starts `fprintd-verify`
+The `lock-screen` script (user/hyprland-ubuntu.nix, used by hypridle and the lock keybinding) starts `fprintd-verify`
 in the background and unlocks swaylock with SIGUSR1 when the finger matches; the password works at any time.
 `swaylock-pam-restore.sh` undoes the earlier PAM fingerprint line.

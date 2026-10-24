@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Restores the packaged /etc/pam.d/swaylock (password only, "auth include login").
-# Fingerprint unlock does not use PAM: the lock-screen script (user/hyprland-p1.nix) runs fprintd-verify in
+# Fingerprint unlock does not use PAM: the lock-screen script (user/hyprland-ubuntu.nix) runs fprintd-verify in
 # the background and unlocks swaylock with SIGUSR1, see pam.md.
 
 set -euo pipefail

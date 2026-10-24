@@ -7,14 +7,13 @@
             ./alacritty.nix
             ./firefox.nix
             ./gtk.nix
-            ./hyprland.nix
+            ./hyprland-nixos.nix
             ./nextcloud-sync.nix
             ./ssh.nix
-            ./wayland.nix
           ]
         else
           [
-            ./hyprland-p1.nix
+            ./hyprland-ubuntu.nix
             ./nixpkgs.nix
             ./non-nixos.nix
             ./podman.nix
@@ -26,6 +25,7 @@
       ./environment.nix
       ./ghostty.nix
       ./git.nix
+      ./hyprland.nix
       ./keepassxc.nix
       ./meta.nix
       ./mime.nix

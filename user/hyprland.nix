@@ -1,21 +1,25 @@
+# Hyprland setup shared by all hosts. Nothing here is specific to one machine: the host modules
+# (hyprland-nixos.nix, hyprland-ubuntu.nix) add the host specific Hyprland config files, services and
+# environment. The Hyprland config itself is in dotfiles/hypr/ (common.lua is shared, the host modules link
+# hyprland.lua, hypridle.conf and hyprpaper.conf).
 {
-  pkgs,
   inputs,
   mutableLink,
+  pkgs,
   ...
 }:
 {
-  # wayland.windowManager.hyprland.enable = true;
   home.packages =
     with pkgs;
     [
-      hyprpaper
-      hypridle
-
       grim
       slurp
       satty
       wf-recorder
+
+      wl-clipboard # wayland clipboard
+      wdisplays # arandr replacement
+      # kanshi # hot switching output profiles
     ]
     ++ [ inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
@@ -27,69 +31,35 @@
     };
   };
 
-  xdg.configFile = {
-    "wofi/wallpaper" = mutableLink dotfiles/wofi-wallpaper;
-    "hypr" = mutableLink dotfiles/hypr;
-    "waybar" = mutableLink dotfiles/waybar;
-    "satty/config.toml" = mutableLink dotfiles/satty.toml;
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      color = "000000";
+      font-size = 24;
+      indicator-idle-visible = true;
+      indicator-radius = 100;
+      indicator-thickness = 15;
+      line-color = "000000";
+      show-failed-attempts = true;
+      ignore-empty-password = true;
+    };
   };
 
   services.hypridle.enable = true;
 
-  systemd.user.services.hyprland-ipc = {
-    Unit = {
-      Description = "React to Hyprland events via IPC";
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-      ConditionEnvironment = [
-        "WAYLAND_DISPLAY"
-        "HYPRLAND_INSTANCE_SIGNATURE"
-      ];
-    };
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-    Service = {
-      Restart = "on-failure";
-      RestartSec = 1;
-      ExecStart = "${pkgs.writeShellScript "hyprland-ipc" ''
-        # shellcheck shell=bash
+  xdg.configFile = {
+    "hypr/common.lua" = mutableLink dotfiles/hypr/common.lua;
+    "hypr/.luarc.json" = mutableLink dotfiles/hypr/.luarc.json;
+    "wofi/wallpaper" = mutableLink dotfiles/wofi-wallpaper;
+    "waybar" = mutableLink dotfiles/waybar;
+    "satty/config.toml" = mutableLink dotfiles/satty.toml;
 
-        # Strict mode
-        set -euo pipefail
-        IFS=$'\n\t'
-
-        # set -x
-
-        handle() {
-          # ((SECONDS > 0)) && echo -e '\nreceived batch'
-          # echo "$1"
-
-          case $1 in
-            activewindow\>\>dota2*)
-              echo "entering no-binds"
-              hyprctl eval 'function f()
-                                hl.dispatch(hl.dsp.submap("no-binds"))
-                                hl.config({cursor = {no_warps = false}})
-                            end; f()' >>/dev/null
-              ;;
-            activewindow\>\>*)
-              if [[ "no-binds" == $(hyprctl submap) ]]; then
-                echo exiting no-binds
-                hyprctl eval 'function f()
-                                  hl.dispatch(hl.dsp.submap("reset"))
-                                  hl.config({cursor = {no_warps = true}})
-                              end; f()' >>/dev/null
-              fi
-              ;;
-          esac
-          # SECONDS=0
-        }
-
-        ${pkgs.socat}/bin/socat -U - \
-          UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock |
-          while read -r line; do handle "$line"; done
-      ''}";
-    };
+    # Only read by uwsm for Hyprland sessions (it also imports the environment into systemd and dbus,
+    # so Hyprland needs neither hl.env() nor dbus-update-activation-environment). The host modules append
+    # their variables. Read at login, a session restart is needed after changes.
+    "uwsm/env-hyprland".text = ''
+      export XCURSOR_SIZE=24
+      export HYPRCURSOR_SIZE=24
+    '';
   };
 }
