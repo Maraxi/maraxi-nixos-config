@@ -142,8 +142,12 @@ in
       slurp
       satty
       wf-recorder
+
+      nerd-fonts.jetbrains-mono # waybar font + icons (NixOS gets it from system/fonts.nix)
     ]
     ++ [ inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+
+  fonts.fontconfig.enable = true;
 
   # Units shipped by the packages (uwsm templates, portal backend) -> ~/.local/share/systemd/user
   systemd.user.packages = with pkgs; [
