@@ -73,7 +73,7 @@ hl.env('__GLX_VENDOR_LIBRARY_NAME', 'nvidia')
 hl.config {
   general = {
     gaps_in = 4,
-    gaps_out = { top = 0, right = 15, bottom = 12, left = 15 },
+    gaps_out = { top = 8, right = 15, bottom = 12, left = 15 },
 
     border_size = 1,
 
