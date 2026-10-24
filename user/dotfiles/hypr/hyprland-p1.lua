@@ -52,9 +52,11 @@ common.setup {
 --------------------------------
 
 -- Workspaces on fixed monitors with default apps (ignored while the monitor is not connected)
-hl.workspace_rule { workspace = '2', monitor = monitor_right, on_created_empty = 'microsoft-edge-stable' }
+-- `default = true` is the workspace a monitor starts with at login, so the middle one gets 1 (not 3)
+hl.workspace_rule { workspace = '1', monitor = monitor_middle, default = true }
+hl.workspace_rule { workspace = '2', monitor = monitor_right, default = true, on_created_empty = 'microsoft-edge-stable' }
 hl.workspace_rule { workspace = '9', monitor = monitor_integrated, on_created_empty = 'keepassxc' }
-hl.workspace_rule { workspace = '10', monitor = monitor_integrated }
+hl.workspace_rule { workspace = '10', monitor = monitor_integrated, default = true }
 
 -- Zscaler Client Connector is a fixed size window (max size set by the app), so Hyprland floats it and
 -- refuses to tile it. Dropping the size limit lets the float toggle work.
