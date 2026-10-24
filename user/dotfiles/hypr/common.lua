@@ -7,9 +7,6 @@
 --   media_binds     extra locked keybindings, same format as soundBinds below (e.g. LCD brightness)
 --   wallpaper_binds function that adds host specific keybindings to the "wallpaper" submap
 
--- Remove after, just to hide warnings
--- local hl = {}
-
 local M = {}
 
 M.mainMod = 'SUPER + ' -- "Windows" key as main modifier
