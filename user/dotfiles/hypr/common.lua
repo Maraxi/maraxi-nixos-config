@@ -2,7 +2,6 @@
 -- defines the monitors and everything host specific and calls require('common').setup { ... }.
 --
 -- Options of setup():
---   main_monitor    monitor (output or desc:...) with workspace 2 and the "move workspace 2 here" key
 --   lock_cmd        command that locks the screen
 --   autostart       commands to run once at start, after waybar
 --   media_binds     extra locked keybindings, same format as soundBinds below (e.g. LCD brightness)
@@ -258,10 +257,6 @@ hl.device({
 
   -- Alt tab to last active window
   hl.bind(mainMod .. 'tab', hl.dsp.focus { last = true })
-  hl.bind(mainMod .. 'asciicircum', function()
-    hl.dispatch(hl.dsp.workspace.move { workspace = 2, monitor = opts.main_monitor })
-    hl.dispatch(hl.dsp.focus { workspace = 2 })
-  end)
 
   -- Full Screen
   hl.bind(mehMod .. 'F', hl.dsp.window.fullscreen { action = 'toggle', mode = 'fullscreen' })
@@ -322,17 +317,6 @@ hl.device({
     hl.bind('R', hl.dsp.exec_cmd 'hyprpaper-random')
     hl.bind('plus', hl.dsp.exec_cmd 'hyprpaper-random p')
     hl.bind('minus', hl.dsp.exec_cmd 'hyprpaper-random m')
-
-    hl.bind('F', function()
-      hl.timer(
-        function() hl.dispatch(hl.dsp.dpms { action = 'off', monitor = opts.main_monitor }) end,
-        { timeout = 100, type = 'oneshot' }
-      )
-      hl.timer(
-        function() hl.dispatch(hl.dsp.dpms { action = 'on', monitor = opts.main_monitor }) end,
-        { timeout = 1000, type = 'oneshot' }
-      )
-    end)
 
     hl.bind('escape', hl.dsp.submap 'reset')
   end)

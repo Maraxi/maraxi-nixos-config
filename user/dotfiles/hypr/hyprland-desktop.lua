@@ -19,7 +19,6 @@ hl.monitor { output = monitor_right, mode = 'preferred', position = '2560x0', sc
 hl.monitor { output = '', mode = 'preferred', position = 'auto', scale = 'auto' }
 
 common.setup {
-  main_monitor = monitor_right,
   lock_cmd = 'swaylock',
   autostart = { 'uwsm app -- hyprpaper' },
   wallpaper_binds = function()
@@ -28,12 +27,28 @@ common.setup {
     hl.bind('E', set_wp '/home/stefan/Pictures/wallpaper/ef29_wallpaper_2_pc.png')
     hl.bind('D', set_wp '/home/stefan/Pictures/e6/28bf47c2383901e372940101003d9a03.png')
     hl.bind('S', set_wp '/home/stefan/Pictures/wallpaper/galaxy-cosmic-5376x3584-14974.jpg')
+
+    hl.bind('F', function()
+      hl.timer(
+        function() hl.dispatch(hl.dsp.dpms { action = 'off', monitor = monitor_right }) end,
+        { timeout = 100, type = 'oneshot' }
+      )
+      hl.timer(
+        function() hl.dispatch(hl.dsp.dpms { action = 'on', monitor = monitor_right }) end,
+        { timeout = 1000, type = 'oneshot' }
+      )
+    end)
   end,
 }
 
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
+
+hl.bind(mainMod .. 'asciicircum', function()
+  hl.dispatch(hl.dsp.workspace.move { workspace = 2, monitor = monitor_right })
+  hl.dispatch(hl.dsp.focus { workspace = 2 })
+end)
 
 -- Unbind all other keys
 hl.bind(mehMod .. 'P', function()

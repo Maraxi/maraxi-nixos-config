@@ -37,7 +37,6 @@ hl.monitor { output = monitor_right, mode = 'preferred', position = '4480x0', sc
 hl.monitor { output = '', mode = 'preferred', position = 'auto', scale = 'auto' }
 
 common.setup {
-  main_monitor = monitor_right,
   lock_cmd = 'lock-screen',
   autostart = { 'uwsm app -- intune-portal' },
   media_binds = {
