@@ -79,7 +79,10 @@ hl.workspace_rule { workspace = '9', monitor = monitor_right, on_created_empty =
 hl.workspace_rule { workspace = '10', monitor = monitor_right }
 
 hl.window_rule { match = { class = 'steam' }, workspace = '7', no_initial_focus = true, suppress_event = 'activatefocus' }
-hl.window_rule { match = { title = 'Steam' }, tile = true }
+hl.window_rule {
+  match = { initial_title = 'Steam', float = true },
+  move = { 'monitor_w/2 - window_w/2', 'monitor_h/2 - window_h/2' },
+}
 
 local ok, games = pcall(require, 'games')
 if not ok or type(games) ~= 'table' then games = { [[steam_app_\d+]] } end
