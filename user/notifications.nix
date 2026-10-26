@@ -76,7 +76,7 @@
       teams-timeout-override =
         lib.hm.dag.entryAfter [ "urgency_low" "urgency_normal" "urgency_critical" ]
           {
-            body = "*teams.microsoft.com*";
+            body = "*teams.cloud.microsoft*";
             urgency = "normal";
             timeout = 12;
             # Overwrite settings from dbus, this would take priority over the normal timeout
