@@ -47,7 +47,7 @@
     arguments = [
       "--smart-case"
       "--max-columns-preview"
-      "--max-columns=200"
+      "--max-columns=225"
       "--heading"
       "--follow"
     ];
