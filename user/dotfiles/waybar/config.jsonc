@@ -118,6 +118,7 @@
   },
 
   "tray": {
+    // "show-passive-items": true,
     "icon-size": 18,
     "spacing": 10
   },
