@@ -55,7 +55,7 @@
     "icon-size": 20,
     "max-length": 200,
     "rewrite": {
-      "(.*) [-–] [^-–]*Edge$": "$1"
+      "(.*) - [^-]+ - Microsoft.*Edge$": "$1"
     }
   },
 
