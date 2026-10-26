@@ -51,9 +51,11 @@ in
     };
     cursorTheme = cursor;
 
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+    # remove the legacy config gtk-application-prefer-dark
+    # should be covered by the dconf entry org.gnome.desktop.interface color-scheme
+    # gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+    # gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
 
-    gtk4.theme = null;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.theme = null; # do not force GTK3 themes to GTK4 apps
   };
 }
