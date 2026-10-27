@@ -16,6 +16,10 @@
         exit 1
       fi
 
+      if ((''${#files[@]} == 1)); then
+        exec remmina -c "''${files[0]}"
+      fi
+
       declare -A entries
       for file in "''${files[@]}"; do
         name=$(sed -n 's/^name=//p' "$file" | head -n1)
