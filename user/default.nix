@@ -16,6 +16,7 @@
             ./nixpkgs.nix
             ./non-nixos.nix
             ./podman.nix
+            ./remmina.nix
           ];
     in
     [
