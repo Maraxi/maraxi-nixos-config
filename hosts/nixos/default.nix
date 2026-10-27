@@ -12,12 +12,11 @@
       pkg:
       builtins.elem (lib.getName pkg) [
         "keymapp" # allow non-free keymapp for voyager
-        "nvidia-x11"
         "nvidia-settings"
+        "nvidia-x11"
         "steam"
-        "steam-original"
-        "steam-unwrapped"
         "steam-run"
+        "steam-unwrapped"
       ];
   };
 
