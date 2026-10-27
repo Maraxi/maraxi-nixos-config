@@ -58,6 +58,7 @@ hl.workspace_rule { workspace = '9', monitor = monitor_integrated, on_created_em
 hl.workspace_rule { workspace = '10', monitor = monitor_integrated, default = true }
 
 hl.window_rule { match = { class = 'microsoft-edge' }, workspace = 1 }
+hl.window_rule { match = { class = 'xfreerdp' }, workspace = 6 }
 
 -- Zscaler Client Connector is a fixed size window (max size set by the app), so Hyprland floats it and
 -- refuses to tile it. Dropping the size limit lets the float toggle work.
