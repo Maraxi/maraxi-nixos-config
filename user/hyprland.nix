@@ -36,9 +36,12 @@ let
     };
 
   # Upstream's flaky sleeper_thread subprocess test has failed in the NixOS build sandbox, so skip the checks.
-  waybar = wrap (inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs {
-    doCheck = false;
-  }) "--prefix XDG_DATA_DIRS : ${papirusFallback}/share";
+  waybar = wrap (inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
+    (old: {
+      doCheck = false;
+      mesonFlags = (old.mesonFlags or [ ]) ++ [ "-Dtests=disabled" ];
+    })
+  ) "--prefix XDG_DATA_DIRS : ${papirusFallback}/share";
 
   # Satty needs none of the user's icon themes. On Ubuntu, skipping the Nix profile cuts ~0.6s from the
   # start of the screenshot editor.
