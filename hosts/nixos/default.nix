@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   imports = [ ./hardware-configuration.nix ];
 
   # nixpkgs.overlays = [outputs.overlays.trunk-packages];
@@ -17,7 +17,9 @@
         "steam"
         "steam-run"
         "steam-unwrapped"
-      ];
+      ]
+      || pkgs._cuda.lib.allowUnfreeCudaPredicate pkg;
+
   };
 
   system = {

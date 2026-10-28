@@ -9,6 +9,7 @@
     ./hyprland.nix
     ./locale.nix
     ./misc.nix
+    ./ollama.nix
     ./networking-ssh.nix
     ./nix.nix
     ./nvidia.nix
