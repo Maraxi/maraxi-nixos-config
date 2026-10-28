@@ -43,10 +43,17 @@ in
       name = "catppuccin-${cat-variant}-${cat-accents}-${cat-size}";
     };
     iconTheme = {
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = cat-variant;
-        accent = cat-accents;
-      };
+      # nixpkgs' dropIconThemeCache hook deletes the icon-theme.cache that the
+      # build creates, which makes every GTK app scan thousands of icon
+      # directories at startup (~1s). Keep the cache.
+      package =
+        (pkgs.catppuccin-papirus-folders.override {
+          flavor = cat-variant;
+          accent = cat-accents;
+        }).overrideAttrs
+          (_: {
+            dontDropIconThemeCache = true;
+          });
       name = iconThemeName;
     };
     cursorTheme = cursor;
