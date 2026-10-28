@@ -7,19 +7,9 @@ let
   cat-variant = "mocha";
   cat-accents = "mauve";
   cat-size = "standard";
-  iconThemeName = "Papirus-Dark-Fallback";
+  iconThemeName = "Papirus-Dark";
 in
 {
-  # GTK only takes a single icon theme name, so use an empty theme that inherits
-  # Papirus-Dark and falls back to other themes for icons Papirus lacks.
-  xdg.dataFile."icons/${iconThemeName}/index.theme".text = ''
-    [Icon Theme]
-    Name=${iconThemeName}
-    Comment=Papirus-Dark with Yaru and Adwaita fallbacks
-    Inherits=Papirus-Dark,Yaru,Adwaita,hicolor
-    Directories=
-  '';
-
   home.pointerCursor = {
     enable = true;
     gtk.enable = true;

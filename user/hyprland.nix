@@ -5,24 +5,56 @@
 {
   config,
   inputs,
+  lib,
   mutableLink,
   pkgs,
+  setup,
   ...
 }:
-{
-  home.packages =
-    with pkgs;
-    [
-      grim
-      slurp
-      satty
-      wf-recorder
+let
+  # GTK has to scan every icon theme in XDG_DATA_DIRS at startup, which makes apps slow with the large
+  # Papirus theme (~1s). The icon theme is Papirus-Dark globally. The few apps that need more fallback icons
+  # or none at all get an adjusted environment instead.
 
-      wl-clipboard # wayland clipboard
-      wdisplays # arandr replacement
-      # kanshi # hot switching output profiles
-    ]
-    ++ [ inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+  # Shadows the index.theme of Papirus-Dark with one that has more fallback themes. Only for waybar, which
+  # needs the fallbacks for the icons of the window title and the tray.
+  papirusFallback = pkgs.runCommand "papirus-dark-fallback" { } ''
+    mkdir -p $out/share/icons/Papirus-Dark
+    sed 's/^Inherits=.*/Inherits=breeze-dark,Yaru,Adwaita,hicolor/' \
+      ${config.gtk.iconTheme.package}/share/icons/Papirus-Dark/index.theme \
+      > $out/share/icons/Papirus-Dark/index.theme
+  '';
+
+  wrap =
+    pkg: args:
+    pkgs.symlinkJoin {
+      name = "${pkg.pname or pkg.name}-wrapped";
+      paths = [ pkg ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = "wrapProgram $out/bin/${pkg.meta.mainProgram} ${args}";
+      meta.mainProgram = pkg.meta.mainProgram;
+    };
+
+  waybar = wrap inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default "--prefix XDG_DATA_DIRS : ${papirusFallback}/share";
+
+  # Satty needs none of the user's icon themes. On Ubuntu, skipping the Nix profile cuts ~0.6s from the
+  # start of the screenshot editor.
+  satty = wrap pkgs.satty (
+    lib.optionalString (!setup.isNixOS) "--set XDG_DATA_DIRS /usr/share:/usr/local/share"
+  );
+in
+{
+  home.packages = [
+    pkgs.grim
+    pkgs.slurp
+    satty
+    pkgs.wf-recorder
+
+    pkgs.wl-clipboard # wayland clipboard
+    pkgs.wdisplays # arandr replacement
+    # pkgs.kanshi # hot switching output profiles
+    waybar
+  ];
 
   # dmenu like launcher
   programs.wofi = {
