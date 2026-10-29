@@ -21,6 +21,9 @@
 
         root = "rev-parse --show-toplevel";
 
+        # switch to the remote's default branch and reset it to match origin
+        default = ''!f() { ref=$(git symbolic-ref --short refs/remotes/origin/HEAD) && git fetch && git switch -C "''${ref#origin/}" "$ref"; }; f'';
+
         unstage = "reset HEAD --";
         s = "status";
 
@@ -33,7 +36,6 @@
         amend = "commit --amend -C HEAD";
 
         rebase-continue = "-c core.editor=true rebase --continue";
-        rebase-with-dates = "rebase --committer-date-is-author-date";
 
         ls-untracked = "ls-files --others --exclude-standard --directory";
         ls-ignored = "ls-files --others --ignored --exclude-standard --directory";
