@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Interactively delete local branches whose remote branch is gone
+# (typically squash-merged feature branches). Unpushed branches are kept.
+# Run as `git prune-gone`.
+
+set -euo pipefail
+
+git fetch --prune --quiet
+
+default=$(git symbolic-ref --short --quiet refs/remotes/origin/HEAD || true)
+default=${default#origin/}
+
+# Fields: branch, upstream, upstream status, short hash, checked out in a worktree
+readarray -t branches < <(
+  git for-each-ref refs/heads \
+    --format='%(refname:short)%1f%(upstream:short)%1f%(upstream:track)%1f%(objectname:short)%1f%(worktreepath)'
+)
+
+found=0
+for line in "${branches[@]}"; do
+  IFS=$'\x1f' read -r branch upstream track hash worktree <<<"$line"
+
+  if [[ $track == '[gone]' && $branch != "$default" && -z $worktree ]]; then
+    found=1
+    echo
+    echo "$branch  [remote gone: $upstream]"
+    git log -1 --date=human "$branch" \
+      --format=' %C(bold blue) %h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+
+    read -r -p "Delete '$branch'? [Y/n] " answer </dev/tty
+    if [[ ${answer:-y} == [yY] ]]; then
+      git branch -D "$branch" >/dev/null
+      echo "  deleted (restore with: git branch $branch $hash)"
+    fi
+  fi
+done
+
+((found)) || echo "No local branches with a deleted remote."
