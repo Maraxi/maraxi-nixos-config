@@ -248,7 +248,7 @@ function M.setup(opts)
   hl.bind(mainMod .. 'mouse:273', hl.dsp.window.resize(), { mouse = true })
 
   -- Screenshot
-  local screenShot = hl.dsp.exec_cmd 'grim -g "$(slurp)" -t ppm - | satty --filename -'
+  local screenShot = hl.dsp.exec_cmd 'grim -g "$(slurp)" -t ppm - | swappy -f -'
   hl.bind(mainMod .. 'P', screenShot)
   hl.bind('Print', screenShot)
   local screenRecord = hl.dsp.exec_cmd 'record-screen'

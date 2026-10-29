@@ -5,10 +5,8 @@
 {
   config,
   inputs,
-  lib,
   mutableLink,
   pkgs,
-  setup,
   ...
 }:
 let
@@ -42,18 +40,12 @@ let
       mesonFlags = (old.mesonFlags or [ ]) ++ [ "-Dtests=disabled" ];
     })
   ) "--prefix XDG_DATA_DIRS : ${papirusFallback}/share";
-
-  # Satty needs none of the user's icon themes. On Ubuntu, skipping the Nix profile cuts ~0.6s from the
-  # start of the screenshot editor.
-  satty = wrap pkgs.satty (
-    lib.optionalString (!setup.isNixOS) "--set XDG_DATA_DIRS /usr/share:/usr/local/share"
-  );
 in
 {
   home.packages = [
     pkgs.grim
     pkgs.slurp
-    satty
+    pkgs.swappy
     pkgs.wf-recorder
 
     pkgs.wl-clipboard # wayland clipboard
@@ -91,7 +83,6 @@ in
     "hypr/.luarc.json" = mutableLink dotfiles/hypr/.luarc.json;
     "wofi/wallpaper" = mutableLink dotfiles/wofi-wallpaper;
     "waybar" = mutableLink dotfiles/waybar;
-    "satty/config.toml" = mutableLink dotfiles/satty.toml;
 
     # Only read by uwsm for Hyprland sessions (it also imports the environment into systemd and dbus,
     # so Hyprland needs neither hl.env() nor dbus-update-activation-environment). The host modules append
