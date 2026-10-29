@@ -83,6 +83,7 @@ in
     "hypr/.luarc.json" = mutableLink dotfiles/hypr/.luarc.json;
     "wofi/wallpaper" = mutableLink dotfiles/wofi-wallpaper;
     "waybar" = mutableLink dotfiles/waybar;
+    "swappy/config" = mutableLink dotfiles/swappy.conf;
 
     # Only read by uwsm for Hyprland sessions (it also imports the environment into systemd and dbus,
     # so Hyprland needs neither hl.env() nor dbus-update-activation-environment). The host modules append
