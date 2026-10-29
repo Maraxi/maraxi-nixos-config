@@ -64,7 +64,7 @@ do
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets' },
+      default = { 'lsp', 'path', 'snippets', 'buffer' },
       -- lazydev completes `require 'module'` and `---@module` names
       per_filetype = { lua = { inherit_defaults = true, 'lazydev' } },
       providers = {
