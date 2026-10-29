@@ -7,7 +7,7 @@
     port = 11434;
 
     environmentVariables = {
-      OLLAMA_CONTEXT_LENGTH = "16384";
+      OLLAMA_CONTEXT_LENGTH = "65536";
     };
   };
 }
