@@ -83,21 +83,39 @@ let
       coreutils
       procps # pidof, pkill
       hyprland # hyprctl
+      brightnessctl
+      gnugrep
     ];
     text = ''
       pidof swaylock >/dev/null && exit 0
 
       swaylock -f
 
+      # swaylock has no feedback of its own for the fingerprint, so flash the LEDs: mute twice for a match,
+      # micmute once for any failed read
+      flash() {
+        local led=$1 times=$2 i
+        for ((i = 0; i < times; i++)); do
+          brightnessctl -q -d "platform::$led" set 1 || true
+          sleep 0.2
+          brightnessctl -q -d "platform::$led" set 0 || true
+          sleep 0.2
+        done
+      }
+
       # swaylock and fprintd-verify are the apt ones (/usr/bin)
       (
         while pidof swaylock >/dev/null; do
           # a verification waits for a finger, give up after a while to re-check that swaylock still runs
-          if timeout 20 fprintd-verify >/dev/null 2>&1; then
+          out=$(timeout 20 fprintd-verify 2>&1) || true
+          if grep -q 'verify-match' <<<"$out"; then
             pkill -USR1 swaylock
             # a touch on the sensor is no input that wakes a display that was switched off (lock keybinding, idle)
             hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' >/dev/null || true
+            flash mute 2
             break
+          elif grep -q 'Verify result: verify-' <<<"$out"; then
+            flash micmute 2
           fi
           sleep 1
         done
