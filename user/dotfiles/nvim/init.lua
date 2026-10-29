@@ -53,7 +53,7 @@ do
   vim.o.signcolumn = 'yes'
   -- vim.opt.showtabline = 2
 
-  vim.o.wrap = false
+  vim.o.wrap = true
   vim.o.breakindent = true
 
   vim.o.ignorecase = true
