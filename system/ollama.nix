@@ -11,6 +11,7 @@
       OLLAMA_FLASH_ATTENTION = "1";
       OLLAMA_KV_CACHE_TYPE = "q8_0";
       OLLAMA_NUM_PARALLEL = "1";
+      OLLAMA_KEEP_ALIVE = "30m";
     };
   };
 }
