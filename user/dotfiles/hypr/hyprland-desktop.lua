@@ -72,11 +72,18 @@ end)
 --------------------------------
 
 -- Workspaces on fixed monitors with default apps
-hl.workspace_rule { workspace = '2', monitor = monitor_right, on_created_empty = 'firefox' }
-hl.workspace_rule { workspace = '7', monitor = monitor_right, on_created_empty = 'steam' }
-hl.workspace_rule { workspace = '8', monitor = monitor_right, on_created_empty = 'thunderbird' }
-hl.workspace_rule { workspace = '9', monitor = monitor_right, on_created_empty = 'keepassxc' }
+hl.workspace_rule { workspace = '2', monitor = monitor_right }
+hl.workspace_rule { workspace = '7', monitor = monitor_right }
+hl.workspace_rule { workspace = '8', monitor = monitor_right }
+hl.workspace_rule { workspace = '9', monitor = monitor_right }
 hl.workspace_rule { workspace = '10', monitor = monitor_right }
+
+common.on_created_empty {
+  [2] = 'firefox',
+  [7] = 'steam',
+  [8] = 'thunderbird',
+  [9] = 'keepassxc',
+}
 
 hl.window_rule { match = { class = 'steam' }, workspace = '7', no_initial_focus = true, suppress_event = 'activatefocus' }
 hl.window_rule {
