@@ -38,6 +38,8 @@
     NPM_CONFIG_USERCONFIG = XDG_CONFIG_HOME + "/npm/npmrc";
 
     CUDA_CACHE_PATH = XDG_CACHE_HOME + "/nv";
+
+    OPENCODE_DISABLE_FREE_MODELS = 1;
   };
   home.sessionPath = [
     "$HOME/bin"
