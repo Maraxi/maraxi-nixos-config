@@ -72,7 +72,8 @@ end)
 --------------------------------
 
 -- Workspaces on fixed monitors with default apps
-hl.workspace_rule { workspace = '2', monitor = monitor_right }
+hl.workspace_rule { workspace = '1', monitor = monitor_left, default = true }
+hl.workspace_rule { workspace = '2', monitor = monitor_right, default = true }
 hl.workspace_rule { workspace = '7', monitor = monitor_right }
 hl.workspace_rule { workspace = '8', monitor = monitor_right }
 hl.workspace_rule { workspace = '9', monitor = monitor_right }
