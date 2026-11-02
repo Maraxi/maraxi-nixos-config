@@ -14,7 +14,6 @@
         nemo
         fastfetch
         wiremix
-        tmux
 
         swayimg
 

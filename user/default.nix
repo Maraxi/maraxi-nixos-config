@@ -36,6 +36,7 @@
       ./packages.nix
       ./radio.nix
       ./shells.nix
+      ./tmux.nix
     ]
     ++ specific-imports;
 
