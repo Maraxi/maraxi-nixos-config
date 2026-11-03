@@ -370,10 +370,10 @@ function M.setup(opts)
 end
 
 function M.on_created_empty(apps)
-  hl.on('workspace.created', function(workspace)
-    if not workspace.is_empty then return end
-    local app = apps[workspace.id]
-    if app then hl.exec_cmd(app) end
+  hl.on('workspace.created', function(ws)
+    if not ws.is_empty then return end
+    local app = apps[ws.id]
+    if app then hl.exec_cmd(app, { workspace = ws.id }) end
   end)
 end
 
