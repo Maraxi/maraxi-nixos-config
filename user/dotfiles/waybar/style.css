@@ -50,6 +50,7 @@ tooltip label {
 #window,
 #submap,
 #privacy,
+#bluetooth,
 #network,
 #wireplumber,
 #battery,
@@ -61,6 +62,7 @@ tooltip label {
 
 /* subtle dividers between the modules on the right */
 #privacy,
+#bluetooth,
 #network,
 #wireplumber,
 #battery,
@@ -76,6 +78,9 @@ tooltip label {
 #window {
     color: @green;
     margin-left: 3px;
+}
+#bluetooth {
+    color: @blue;
 }
 #network {
     color: @yellow;
