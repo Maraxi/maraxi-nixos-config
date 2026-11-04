@@ -76,8 +76,7 @@
                 useUserPackages = true;
                 users.stefan.imports = [ ./user ];
                 extraSpecialArgs = {
-                  inherit inputs;
-                  inherit keyboard;
+                  inherit inputs keyboard;
                   # inherit pkgs-stable;
                   setup = {
                     username = "stefan";
@@ -95,8 +94,7 @@
           inherit pkgs;
           modules = [ ./user ];
           extraSpecialArgs = {
-            inherit inputs;
-            inherit keyboard locale;
+            inherit inputs keyboard locale;
             setup = {
               username = "iv546_local";
               stateVersion = "24.05";
