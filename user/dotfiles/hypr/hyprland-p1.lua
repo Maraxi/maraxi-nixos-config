@@ -58,7 +58,7 @@ hl.workspace_rule { workspace = '9', monitor = monitor_integrated }
 hl.workspace_rule { workspace = '10', monitor = monitor_integrated, default = true }
 
 common.on_created_empty {
-  [2] = 'microsoft-edge-stable',
+  [1] = 'microsoft-edge-stable',
   [9] = 'keepassxc',
 }
 
