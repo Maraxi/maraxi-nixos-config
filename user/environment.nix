@@ -1,4 +1,4 @@
-{ mutableLink, ... }: {
+{ config, mutableLink, ... }: {
   home.sessionVariables = rec {
     XDG_CACHE_HOME = "$HOME/.cache";
     XDG_CONFIG_HOME = "$HOME/.config";
@@ -43,10 +43,13 @@
     CUDA_CACHE_PATH = XDG_CACHE_HOME + "/nv";
 
     OPENCODE_DISABLE_FREE_MODELS = 1;
+
+    WGETRC = XDG_CONFIG_HOME + "/wgetrc";
   };
   home.sessionPath = [
     "$HOME/bin"
     "$HOME/.local/bin"
   ];
   home.file.".local/bin" = mutableLink dotfiles/bin;
+  xdg.configFile."wgetrc".text = "hsts-file = ${config.xdg.stateHome}/wget-hsts";
 }
