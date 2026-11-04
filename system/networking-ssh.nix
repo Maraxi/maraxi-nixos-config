@@ -9,8 +9,7 @@
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
     firewall.enable = true;
-    # Open ports in the firewall.
-    # firewall.allowedTCPPorts = [8000 8080];
+    firewall.allowedTCPPorts = [ 11436 ];
     # firewall.allowedUDPPorts = [ ... ];
 
     # nftables instead of iptbles for firewall
