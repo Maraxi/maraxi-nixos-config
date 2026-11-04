@@ -141,6 +141,7 @@
             flameshot
 
             onedrive
+            scribus
           ]);
     in
     basic_pkgs ++ per_system_pkgs;
