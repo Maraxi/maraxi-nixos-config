@@ -29,10 +29,8 @@
     }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = import ./overlays { inherit inputs; };
-      };
+      overlays = import ./overlays { inherit inputs; };
+      pkgs = import nixpkgs { inherit system overlays; };
       # pkgs-stable = import nixstable { inherit system; };
       keyboard = {
         layout = "de";
@@ -58,8 +56,6 @@
       };
     in
     {
-      # overlays = import ./overlays {inherit inputs;};
-
       # formatter.${system} = pkgs.nixfmt-tree;
 
       nixosConfigurations = {
@@ -74,7 +70,7 @@
             ./system
             home-manager.nixosModules.home-manager
             {
-              nixpkgs.overlays = import ./overlays { inherit inputs; };
+              nixpkgs.overlays = overlays;
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
