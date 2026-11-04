@@ -5,6 +5,9 @@
     XDG_DATA_HOME = "$HOME/.local/share";
     XDG_STATE_HOME = "$HOME/.local/state";
 
+    TERMINFO = XDG_DATA_HOME + "/terminfo";
+    TERMINFO_DIRS = XDG_DATA_HOME + "/terminfo:/usr/share/terminfo";
+
     RUFF_CACHE_DIR = XDG_CACHE_HOME + "/ruff_cache";
     # UV_EXCLUDE_NEWER = "3 days";
 
