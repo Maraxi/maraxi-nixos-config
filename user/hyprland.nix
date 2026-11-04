@@ -52,6 +52,7 @@ in
     pkgs.wdisplays # arandr replacement
     # pkgs.kanshi # hot switching output profiles
     waybar
+    pkgs.kitty
   ];
 
   # dmenu like launcher
