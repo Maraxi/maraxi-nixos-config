@@ -7,7 +7,6 @@
     ./wifi-tdls.nix
   ];
 
-  # nixpkgs.overlays = [outputs.overlays.trunk-packages];
   nixpkgs.config = {
     # allowBroken = true;
     # allowUnfree = true;
