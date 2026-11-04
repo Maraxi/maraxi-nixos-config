@@ -125,7 +125,7 @@ in
       line-numbers = true;
       line-numbers-zero-style = "#707070";
       navigate = true;
-      side-by-side = true;
+      # side-by-side = true;
       tabs = 4;
       map-styles =
         let
