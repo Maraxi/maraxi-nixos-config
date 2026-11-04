@@ -139,6 +139,8 @@
             apache-directory-studio
 
             flameshot
+
+            onedrive
           ]);
     in
     basic_pkgs ++ per_system_pkgs;
