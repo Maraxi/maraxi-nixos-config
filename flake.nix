@@ -93,10 +93,7 @@
       homeConfigurations = {
         "iv546_local@pc9d217" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [
-            ./user
-            ./user/ecc.nix
-          ];
+          modules = [ ./user ];
           extraSpecialArgs = {
             inherit inputs;
             inherit keyboard locale;

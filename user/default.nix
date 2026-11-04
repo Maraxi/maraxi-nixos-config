@@ -12,6 +12,7 @@
           ]
         else
           [
+            ./ecc.nix
             ./hyprland-ubuntu.nix
             ./nixpkgs.nix
             ./non-nixos.nix
