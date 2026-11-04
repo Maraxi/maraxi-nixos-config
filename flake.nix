@@ -37,6 +37,22 @@
         # man xkeyboard-config  -> Options
         options = "caps:escape,compose:rctrl";
       };
+
+      de = "de_DE.UTF-8";
+      locale = {
+        LC_ADDRESS = de;
+        LC_COLLATE = de;
+        LC_CTYPE = de;
+        LC_IDENTIFICATION = de;
+        LC_MEASUREMENT = de;
+        LC_MESSAGES = "en_GB.UTF-8";
+        LC_MONETARY = de;
+        LC_NAME = de;
+        LC_NUMERIC = de;
+        LC_PAPER = de;
+        LC_TELEPHONE = de;
+        LC_TIME = de;
+      };
     in
     {
       # overlays = import ./overlays {inherit inputs;};
@@ -47,7 +63,7 @@
         stefan-nixos = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit keyboard;
+            inherit keyboard locale;
             hostName = "stefan-nixos";
           };
           modules = [
@@ -83,7 +99,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs;
-            inherit keyboard;
+            inherit keyboard locale;
             setup = {
               username = "iv546_local";
               stateVersion = "24.05";

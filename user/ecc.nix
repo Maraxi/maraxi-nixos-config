@@ -1,4 +1,4 @@
-{ mutableLink, ... }: {
+{ mutableLink, locale, ... }: {
   home.sessionVariables = rec {
     SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt";
     SSL_CERT_DIR = "/etc/ssl/certs/";
@@ -12,17 +12,7 @@
     UV_SYSTEM_CERTS = "true";
 
     TNS_ADMIN = "$HOME/.config/tns_ora";
-
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
+  } // locale;
 
   programs.bash.shellAliases = {
     tox = "TERM=xterm-256color tox";
