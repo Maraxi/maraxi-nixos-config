@@ -35,6 +35,7 @@ let
   #
   # The picker itself is hyprland-preview-share-picker (previews of screens/windows, GTK). To go back to
   # the plain Qt picker of xdph use `${pkgs.xdg-desktop-portal-hyprland}/bin/hyprland-share-picker`.
+  # (pkgs.hyprland-preview-share-picker is patched in overlays/upstream-fixes.nix.)
   sharePicker = lib.getExe pkgs.hyprland-preview-share-picker;
   xdphSharePicker = pkgs.writeShellApplication {
     name = "xdph-share-picker-batched";

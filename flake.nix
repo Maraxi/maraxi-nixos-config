@@ -31,7 +31,7 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
-        overlays = import ./overlays;
+        overlays = import ./overlays { inherit inputs; };
       };
       # pkgs-stable = import nixstable { inherit system; };
       keyboard = {
@@ -74,7 +74,7 @@
             ./system
             home-manager.nixosModules.home-manager
             {
-              nixpkgs.overlays = import ./overlays;
+              nixpkgs.overlays = import ./overlays { inherit inputs; };
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;

@@ -4,7 +4,6 @@
 # hyprland.lua, hypridle.conf and hyprpaper.conf).
 {
   config,
-  inputs,
   mutableLink,
   pkgs,
   ...
@@ -33,13 +32,8 @@ let
       meta.mainProgram = pkg.meta.mainProgram;
     };
 
-  # Upstream's flaky sleeper_thread subprocess test has failed in the NixOS build sandbox, so skip the checks.
-  waybar = wrap (inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
-    (old: {
-      doCheck = false;
-      mesonFlags = (old.mesonFlags or [ ]) ++ [ "-Dtests=disabled" ];
-    })
-  ) "--prefix XDG_DATA_DIRS : ${papirusFallback}/share";
+  # pkgs.waybar is the flake input's package with the test workaround from overlays/default.nix
+  waybar = wrap pkgs.waybar "--prefix XDG_DATA_DIRS : ${papirusFallback}/share";
 in
 {
   home.packages = [
