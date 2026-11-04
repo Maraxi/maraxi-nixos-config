@@ -1,4 +1,52 @@
-{ setup, ... }: {
+{ lib, setup, ... }:
+let
+  # Alias names are "l" + scope + topo + files + short, e.g. "lgtfs".
+  # Each key is the letter appended to the name, each value the arguments it adds to `git l`,
+  # with a leading space.
+  scopeOptions = {
+    "" = "";
+    g = " origin/HEAD";
+    a = " --branches --remotes";
+    x =
+      " --exclude master --exclude main --exclude release-candiate --branches"
+      + " --exclude *master --exclude *main --exclude *release-candiate --exclude *dependabot* --exclude */renovate/* --remotes";
+  };
+  topoOptions = {
+    "" = "";
+    t = " --topo-order";
+  };
+  filesOptions = {
+    "" = "";
+    f = " --name-status";
+  };
+  shortOptions = {
+    "" = "";
+    s = " -n 30";
+  };
+
+  combinations = lib.cartesianProduct {
+    scope = builtins.attrNames scopeOptions;
+    topo = builtins.attrNames topoOptions;
+    files = builtins.attrNames filesOptions;
+    short = builtins.attrNames shortOptions;
+  };
+
+  logAlias =
+    {
+      scope,
+      topo,
+      files,
+      short,
+    }:
+    {
+      name = "l${scope}${topo}${files}${short}";
+      value = "l${scopeOptions.${scope}}${topoOptions.${topo}}${filesOptions.${files}}${shortOptions.${short}}";
+    };
+
+  # "l" itself is the base alias
+  logAliases = removeAttrs (lib.listToAttrs (map logAlias combinations)) [ "l" ];
+in
+{
   home.shellAliases = {
     gti = "git";
     s = "git status";
@@ -23,7 +71,7 @@
 
         update-origin-head = "remote set-head origin -a";
         # switch to the remote's default branch and reset it to match origin
-        default = ''!f() { ref=$(git symbolic-ref --short refs/remotes/origin/HEAD) && git fetch && git switch -C "''${ref#origin/}" "$ref"; }; f'';
+        default = ''!f() { ref=$(git symbolic-ref --short refs/remotes/origin/HEAD) && git switch -C "''${ref#origin/}" "$ref"; }; f'';
 
         unstage = "reset HEAD --";
         s = "status";
@@ -46,29 +94,16 @@
           # space before %h for delta pager, its parser does not find the link otherwise
           + " --format='%C(bold blue) %h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%(decorate:tag=)%C(reset)'"
           + " --tags HEAD";
-        ls = "l -n 30";
+      }
+      # l[g|a|x][f][s] generated from the parts above, see `git aliases`
+      // logAliases;
 
-        lg = "l --branches --remotes";
-        lgs = "lg -n 30";
-
-        lgx =
-          "l"
-          + " --exclude master --exclude main --exclude release-candiate --branches"
-          + " --exclude *master --exclude *main --exclude *release-candiate --exclude *dependabot* --exclude */renovate/* --remotes";
-        lgxs = "lgx -n 30";
-
-        lf = "l --name-status";
-        lfs = "lf -n 30";
-
-        lgf = "lf --branches --remotes";
-        lgfs = "lgf -n 30";
-      };
-      pager = {
+      pager = lib.genAttrs (builtins.filter (lib.hasInfix "f") (builtins.attrNames logAliases)) (
         # Git inserts an extra new line after each commit for extra separation.
-        # Delete this line for aliases derived from `lf` with `sed`.
+        # Delete this line for the file listing aliases with `sed`.
         # Only matches lines that contain ANSI color codes, spaces and vertical bar and delete them.
-        lf = "sed -E '/^(\\x1b\\[[0-9;]*m|[| ])+$/d' | less";
-      };
+        _: "sed -E '/^(\\x1b\\[[0-9;]*m|[| ])+$/d' | less"
+      );
       core.editor = "nvim";
       diff.colorMoved = "default";
       fetch.prune = true;
