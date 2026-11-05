@@ -17,4 +17,8 @@
   };
   # services.dbus.packages = [ pkgs.gcr ];
   # services.pcscd.enable = true;
+
+  # Packages are listed both via the system path and on their own in the D-Bus config, so dbus-broker logs an
+  # "Ignoring duplicate name" line for each service file on every boot. Harmless, only filter it from the journal.
+  systemd.services.dbus-broker.serviceConfig.LogFilterPatterns = "~Ignoring duplicate name";
 }
