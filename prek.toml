@@ -3,8 +3,7 @@ repo = "local"
 
 [[repos.hooks]]
 id = "nix-fmt"
-name = "nix fmt (treefmt)"
+name = "treefmt"
 language = "system"
-entry = "nix fmt -- --ci"
+entry = "treefmt --config-file tools/treefmt.toml --ci"
 types = ["nix"]
-pass_filenames = false
