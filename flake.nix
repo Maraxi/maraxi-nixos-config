@@ -24,7 +24,6 @@
       nixpkgs,
       # nixstable,
       home-manager,
-      waybar,
       ...
     }:
     let

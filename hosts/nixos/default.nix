@@ -21,7 +21,6 @@
         "steam-unwrapped"
       ]
       || pkgs._cuda.lib.allowUnfreeCudaPredicate pkg;
-
   };
 
   system = {
