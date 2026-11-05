@@ -1,0 +1,4 @@
+# Used by `nix fmt` and the prek pre-commit hook. Checks (statix, deadnix) are in `nix run .#lint`.
+[formatter.nixfmt]
+command = "nixfmt"
+includes = ["*.nix"]

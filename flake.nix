@@ -56,7 +56,8 @@
       };
     in
     {
-      # formatter.${system} = pkgs.nixfmt-tree;
+      # Run as `nix fmt`
+      formatter.${system} = import ./tools/formatter.nix { inherit pkgs; };
 
       nixosConfigurations = {
         stefan-nixos = nixpkgs.lib.nixosSystem {
