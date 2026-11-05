@@ -1,7 +1,7 @@
 { pkgs, setup, ... }: {
   home.packages =
     let
-      basic_pkgs = with pkgs; [
+      basicPkgs = with pkgs; [
         # Default terminal for gtk-launch / wofi
         (pkgs.writeShellScriptBin "xdg-terminal-exec" ''exec ${pkgs.ghostty}/bin/ghostty +new-window -e "$@"'')
 
@@ -76,7 +76,7 @@
         # # fonts?
         # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
       ];
-      per_system_pkgs =
+      perSystemPkgs =
         if setup.isNixOS then
           (with pkgs; [
             gcc
@@ -144,5 +144,5 @@
             scribus
           ]);
     in
-    basic_pkgs ++ per_system_pkgs;
+    basicPkgs ++ perSystemPkgs;
 }
