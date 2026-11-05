@@ -1,0 +1,10 @@
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "nix-fmt"
+name = "nix fmt (treefmt)"
+language = "system"
+entry = "nix fmt -- --ci"
+types = ["nix"]
+pass_filenames = false
