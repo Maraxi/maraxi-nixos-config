@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./wifi-tdls.nix
@@ -6,17 +6,15 @@
 
   nixpkgs.config = {
     # allowBroken = true;
-    allowUnfreePredicate =
-      pkg:
-      builtins.elem (lib.getName pkg) [
-        "keymapp" # allow non-free keymapp for voyager
-        "nvidia-settings"
-        "nvidia-x11"
-        "steam"
-        "steam-run"
-        "steam-unwrapped"
-      ]
-      || pkgs._cuda.lib.allowUnfreeCudaPredicate pkg;
+    allowUnfreePackages = [
+      "keymapp" # allow non-free keymapp for voyager
+      "nvidia-settings"
+      "nvidia-x11"
+      "steam"
+      "steam-run"
+      "steam-unwrapped"
+    ];
+    allowUnfreePredicate = pkgs._cuda.lib.allowUnfreeCudaPredicate;
   };
 
   system = {
