@@ -59,6 +59,13 @@
       # Run as `nix fmt`
       formatter.${system} = import ./tools/formatter.nix { inherit pkgs; };
 
+      # Run as `nix run .#lint`
+      apps.${system}.lint = {
+        type = "app";
+        program = nixpkgs.lib.getExe (import ./tools/lint.nix { inherit pkgs; });
+        meta.description = "Run statix and deadnix over the flake";
+      };
+
       nixosConfigurations = {
         stefan-nixos = nixpkgs.lib.nixosSystem {
           inherit system;
