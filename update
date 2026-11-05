@@ -59,6 +59,7 @@ else
   }
 
   prev_generation=$(get_generation)
+  # Always switch here, the activation checks that the nvidia userspace driver matches the kernel module
   home-manager "${1:-switch}"
 
   current_generation=$(get_generation)
