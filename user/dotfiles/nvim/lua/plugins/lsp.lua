@@ -99,7 +99,6 @@ do
     -- lua
     'lua_ls',
     -- nix
-    'statix',
     'nil_ls',
     -- bash
     'bashls',
