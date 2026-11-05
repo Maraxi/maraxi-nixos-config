@@ -12,7 +12,8 @@
     UV_SYSTEM_CERTS = "true";
 
     TNS_ADMIN = "$HOME/.config/tns_ora";
-  } // locale;
+  }
+  // locale;
 
   programs.bash.shellAliases = {
     tox = "TERM=xterm-256color tox";

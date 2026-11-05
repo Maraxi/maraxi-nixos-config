@@ -5,8 +5,8 @@
 # wpa_supplicant is chrooted to /run/wpa_supplicant and must be able to reply to
 # the client socket, so wpa_cli runs as the wpa_supplicant user.
 { lib, pkgs, ... }: {
-  systemd.services.wpa_supplicant.serviceConfig.ExecStart = lib.mkForce
-    "${pkgs.wpa_supplicant}/bin/wpa_supplicant -s -u -Dnl80211,wext -c /etc/wpa_supplicant/imperative.conf -O /run/wpa_supplicant";
+  systemd.services.wpa_supplicant.serviceConfig.ExecStart =
+    lib.mkForce "${pkgs.wpa_supplicant}/bin/wpa_supplicant -s -u -Dnl80211,wext -c /etc/wpa_supplicant/imperative.conf -O /run/wpa_supplicant";
 
   networking.networkmanager.dispatcherScripts = [
     {
