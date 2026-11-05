@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   programs.ssh = {
     enable = true;
@@ -10,18 +11,18 @@
         Hostname = "raspberrypi";
         User = "stefan";
         Port = 36969;
-        IdentityFile = "/home/stefan/.ssh/id_ed25519_raspberrypi";
+        IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519_raspberrypi";
       };
       "github.com" = {
-        IdentityFile = "/home/stefan/.ssh/id_ed25519_github";
+        IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519_github";
       };
       "codeberg.org" = {
-        IdentityFile = "/home/stefan/.ssh/id_ed25519_codeberg";
+        IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519_codeberg";
       };
       "work" = {
         Hostname = "pc9d217";
         User = "iv546_local";
-        IdentityFile = "/home/stefan/.ssh/id_ed25519_pc9d217";
+        IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519_pc9d217";
       };
     };
   };

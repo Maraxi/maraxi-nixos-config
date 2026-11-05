@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   home.packages = [ pkgs.nextcloud-client ];
 
   systemd.user =
@@ -15,7 +15,7 @@
         };
         Service = {
           Type = "simple";
-          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --path /Stefan /home/stefan/Documents/nextcloud raspberrypi/nextcloud";
+          ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --path /Stefan ${config.home.homeDirectory}/Documents/nextcloud raspberrypi/nextcloud";
           TimeoutStopSec = "180";
           KillMode = "process";
           KillSignal = "SIGINT";
@@ -29,7 +29,7 @@
         Install.WantedBy = [ "timers.target" ];
       };
       paths.${nextcloud} = {
-        Path.PathModified = "/home/stefan/Documents/nextcloud/KeePass";
+        Path.PathModified = "${config.home.homeDirectory}/Documents/nextcloud/KeePass";
         Install.WantedBy = [ "paths.target" ];
       };
     };
