@@ -183,9 +183,9 @@ in
   };
 
   xdg.configFile = {
-    "hypr/hyprland.lua" = mutableLink dotfiles/hypr/hyprland-p1.lua;
-    "hypr/hypridle.conf" = mutableLink dotfiles/hypr/hypridle-p1.conf;
-    "hypr/hyprpaper.conf" = mutableLink dotfiles/hypr/hyprpaper-p1.conf;
+    "hypr/hyprland.lua" = mutableLink ../dotfiles/hypr/hyprland-non-nixos.lua;
+    "hypr/hypridle.conf" = mutableLink ../dotfiles/hypr/hypridle-non-nixos.conf;
+    "hypr/hyprpaper.conf" = mutableLink ../dotfiles/hypr/hyprpaper-non-nixos.conf;
 
     # aquamarine splits AQ_DRM_DEVICES at every ":" and does not support escaping, so the colons of the
     # /dev/dri/by-path names cannot be used directly. Colon-free links to the stable PCI paths instead
@@ -222,7 +222,7 @@ in
       # this laptop is a hybrid system. The Intel iGPU renders and prime-select is on-demand, so apps should
       # run on the Intel gpu unless started with offloading. Forcing nvidia would wake the dGPU for every
       # GLX / VA-API app (battery) and make them render on a gpu that does not drive the internal panel.
-      # The desktop has the nvidia card as its only gpu (user/hyprland-nixos.nix).
+      # The desktop has the nvidia card as its only gpu (user/nixos/hyprland.nix).
 
       export ELECTRON_OZONE_PLATFORM_HINT=auto
       export QT_QPA_PLATFORM="wayland;xcb"

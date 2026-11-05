@@ -1,5 +1,5 @@
 # Hyprland setup shared by all hosts. Nothing here is specific to one machine: the host modules
-# (hyprland-nixos.nix, hyprland-ubuntu.nix) add the host specific Hyprland config files, services and
+# (nixos/hyprland.nix, non-nixos/hyprland.nix) add the host specific Hyprland config files, services and
 # environment. The Hyprland config itself is in dotfiles/hypr/ (common.lua is shared, the host modules link
 # hyprland.lua, hypridle.conf and hyprpaper.conf).
 {

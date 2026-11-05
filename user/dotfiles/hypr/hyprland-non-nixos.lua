@@ -40,7 +40,7 @@ common.setup {
     ['brightnessctl -e4 -n2 set 5%+'] = { keys = { 'XF86MonBrightnessUp' }, repeating = true },
     ['brightnessctl -e4 -n2 set 5%-'] = { keys = { 'XF86MonBrightnessDown' }, repeating = true },
   },
-  -- wallpaper_binds: fixed wallpapers can be bound in the wallpaper submap, see hyprland-desktop.lua
+  -- wallpaper_binds: fixed wallpapers can be bound in the wallpaper submap, see hyprland-nixos.lua
   -- (hyprpaper-random uses ~/Pictures/e6/, which does not exist here yet)
 }
 

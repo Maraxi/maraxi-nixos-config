@@ -4,20 +4,20 @@
       specific-imports =
         if setup.isNixOS then
           [
-            ./alacritty.nix
-            ./firefox.nix
-            ./hyprland-nixos.nix
-            ./nextcloud-sync.nix
-            ./ssh.nix
+            ./nixos/alacritty.nix
+            ./nixos/firefox.nix
+            ./nixos/hyprland.nix
+            ./nixos/nextcloud-sync.nix
+            ./nixos/ssh.nix
           ]
         else
           [
-            ./ecc.nix
-            ./hyprland-ubuntu.nix
-            ./nixpkgs.nix
-            ./non-nixos.nix
-            ./podman.nix
-            ./remmina.nix
+            ./non-nixos/ecc.nix
+            ./non-nixos/hyprland.nix
+            ./non-nixos/nixpkgs.nix
+            ./non-nixos/nvidia.nix
+            ./non-nixos/podman.nix
+            ./non-nixos/remmina.nix
           ];
     in
     [

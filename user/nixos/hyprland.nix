@@ -1,12 +1,12 @@
-# Hyprland on the NixOS desktop. Hyprland itself comes from system/hyprland.nix, the shared setup from hyprland.nix.
+# Hyprland on the NixOS desktop. Hyprland itself comes from system/hyprland.nix, the shared setup from ../hyprland.nix.
 { mutableLink, pkgs, ... }:
 {
   home.packages = [ pkgs.hyprpaper ];
 
   xdg.configFile = {
-    "hypr/hyprland.lua" = mutableLink dotfiles/hypr/hyprland-desktop.lua;
-    "hypr/hypridle.conf" = mutableLink dotfiles/hypr/hypridle-desktop.conf;
-    "hypr/hyprpaper.conf" = mutableLink dotfiles/hypr/hyprpaper-desktop.conf;
+    "hypr/hyprland.lua" = mutableLink ../dotfiles/hypr/hyprland-nixos.lua;
+    "hypr/hypridle.conf" = mutableLink ../dotfiles/hypr/hypridle-nixos.conf;
+    "hypr/hyprpaper.conf" = mutableLink ../dotfiles/hypr/hyprpaper-nixos.conf;
 
     "uwsm/env-hyprland".text = ''
       # The nvidia card is the only gpu here (no iGPU). nvidia-vaapi-driver comes from

@@ -22,8 +22,8 @@
   };
 
   home.sessionPath = [ "$HOME/.local/p1-bin" ];
-  home.file.".local/p1-bin" = mutableLink ../hosts/p1;
-  xdg.configFile."flameshot/flameshot.ini" = mutableLink ./dotfiles/flameshot.ini;
+  home.file.".local/p1-bin" = mutableLink ../../hosts/p1;
+  xdg.configFile."flameshot/flameshot.ini" = mutableLink ../dotfiles/flameshot.ini;
 
   xdg.mimeApps =
     let

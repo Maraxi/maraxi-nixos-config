@@ -7,7 +7,7 @@
 }:
 let
   nvidia = config.targets.genericLinux.gpu.nvidia;
-  pinFile = "${flakeDir}/user/non-nixos.nix";
+  pinFile = "${flakeDir}/user/non-nixos/nvidia.nix";
 
   loadedVersion = ''head -n1 /proc/driver/nvidia/version | grep -oE '[0-9]{3}\.[0-9]{2,3}(\.[0-9]{2,3})?' | head -n1'';
 
