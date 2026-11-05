@@ -12,7 +12,7 @@
     firewall.allowedTCPPorts = [ 11436 ];
     # firewall.allowedUDPPorts = [ ... ];
 
-    # nftables instead of iptbles for firewall
+    # nftables instead of iptables for firewall
     nftables.enable = true;
 
     hosts = {
