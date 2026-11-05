@@ -12,7 +12,7 @@ git pull --no-tags
 echo
 
 # Check for updates
-if [[ $(hostname) =~ "stefan-nixos" ]]; then
+if [[ $(hostname) == stefan-nixos ]]; then
   ROOT=$(git rev-parse --show-toplevel)
   LOCKED_REV=$(jq '.nodes.nixpkgs.locked.rev' "$ROOT/flake.lock")
   CURRENT_REV=$(curl -sL \
@@ -41,7 +41,7 @@ TAG_EXISTS=$?
 set -e
 
 # Rebuild
-if [[ $(uname -v) =~ "NixOS" ]]; then
+if [[ $(uname -v) == *NixOS* ]]; then
   if [[ $TAG_EXISTS != 0 ]] || [[ $CURRENT != "$LAST_BUILD" ]]; then
     prev_generation=$(nixos-rebuild list-generations --json | jq '.[] | select(.current == true) | .generation')
 
