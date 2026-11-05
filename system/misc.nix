@@ -20,5 +20,9 @@
 
   # Packages are listed both via the system path and on their own in the D-Bus config, so dbus-broker logs an
   # "Ignoring duplicate name" line for each service file on every boot. Harmless, only filter it from the journal.
-  systemd.services.dbus-broker.serviceConfig.LogFilterPatterns = "~Ignoring duplicate name";
+  # The user bus logs as user@<uid>.service, the template covers every user.
+  systemd.services = {
+    dbus-broker.serviceConfig.LogFilterPatterns = "~Ignoring duplicate name";
+    "user@".serviceConfig.LogFilterPatterns = "~Ignoring duplicate name";
+  };
 }
