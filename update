@@ -35,14 +35,12 @@ REMOTE=$(git rev-parse "@{u}")
 # Push any changes
 [[ $CURRENT == "$REMOTE" ]] || git push
 
-set +e # do not fail if tag is missing
-LAST_BUILD=$(git show-ref --hash --verify refs/tags/last-build 2>/dev/null)
-TAG_EXISTS=$?
-set -e
+# empty if the tag is missing
+LAST_BUILD=$(git rev-parse -q --verify refs/tags/last-build || true)
 
 # Rebuild
 if [[ $(uname -v) == *NixOS* ]]; then
-  if [[ $TAG_EXISTS != 0 ]] || [[ $CURRENT != "$LAST_BUILD" ]]; then
+  if [[ $CURRENT != "$LAST_BUILD" ]]; then
     prev_generation=$(nixos-rebuild list-generations --json | jq '.[] | select(.current == true) | .generation')
 
     # Ask for sudo password early
