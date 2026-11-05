@@ -1,13 +1,14 @@
 -- ####################
 -- ##      LINT      ##
 -- ####################
--- statix is no language server, so it runs through nvim-lint instead of vim.lsp.enable()
+-- statix is no language server, so it runs through nvim-lint instead of vim.lsp.enable().
+-- deadnix has no stdin mode, it lints the file on disk (so it updates after saving).
 do
   vim.pack.add { GH 'mfussenegger/nvim-lint' }
   local lint = require 'lint'
 
   lint.linters_by_ft = {
-    nix = { 'statix' },
+    nix = { 'statix', 'deadnix' },
   }
 
   -- the statix config lives in tools/ of the flake, args may contain functions that return a string
