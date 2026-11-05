@@ -16,9 +16,6 @@
       "lp"
       "plugdev"
     ];
-    packages = with pkgs; [ ];
-    # shell = pkgs.nushell;
     shell = pkgs.bash;
-    openssh.authorizedKeys.keys = [ ];
   };
 }

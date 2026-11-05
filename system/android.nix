@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-  # Only install android-tools on demand
-  # environment.systemPackages = [ pkgs.android-tools ];
+{
+  # pkgs.android-tools is only installed on demand
   users.users.stefan.extraGroups = [ "adbusers" ];
 }

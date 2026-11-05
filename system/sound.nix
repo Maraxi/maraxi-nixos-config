@@ -1,6 +1,4 @@
 {
-  # Enable sound.
-  # sound.enable = false;
   security.rtkit.enable = true; # RealtimeKit
   services.pipewire = {
     enable = true;
