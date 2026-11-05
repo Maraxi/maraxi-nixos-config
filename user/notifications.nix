@@ -85,4 +85,10 @@
           };
     };
   };
+
+  # dunst 1.13.2 segfaults on notifications whose temporary icon file is already gone (e.g. Teams)
+  systemd.user.services.dunst.Service = {
+    Restart = "on-failure";
+    RestartSec = 1;
+  };
 }

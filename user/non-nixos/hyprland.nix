@@ -173,13 +173,7 @@ in
     hyprpaper = onlyInHyprland;
     hyprpolkitagent = onlyInHyprland;
     # Only in Hyprland: GNOME shell owns the notifications in the fallback session.
-    # Restart: dunst 1.13.2 segfaults on notifications whose temporary icon file is already gone (Teams).
-    dunst = onlyInHyprland // {
-      Service = {
-        Restart = "on-failure";
-        RestartSec = 1;
-      };
-    };
+    dunst = onlyInHyprland;
   };
 
   xdg.configFile = {
