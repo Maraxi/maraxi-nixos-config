@@ -10,10 +10,11 @@
     ./hyprland.nix
     ./locale.nix
     ./misc.nix
-    ./networking-ssh.nix
+    ./networking.nix
     ./nix.nix
     ./nvidia.nix
     ./ollama.nix
+    ./openssh.nix
     ./print-scan.nix
     ./shokz.nix
     ./sound.nix

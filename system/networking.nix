@@ -19,14 +19,4 @@
       "104.26.10.35" = [ "static1.e621.net" ];
     };
   };
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    ports = [ 36969 ];
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "no";
-    };
-  };
 }
