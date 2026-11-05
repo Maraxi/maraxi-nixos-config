@@ -48,13 +48,14 @@ if [[ $(uname -v) == *NixOS* ]]; then
     sudo nixos-rebuild "${1:-switch}" --flake "${NH_FLAKE:-.}"
     echo
 
-    nvd history --minimum-version "$prev_generation"
+    dix last --from "$prev_generation"
     echo
     git tag -f last-build
   fi
 else
+  hm_profile="${XDG_STATE_HOME:-$HOME/.local/state}/nix/profiles/home-manager"
   function get_generation() {
-    readlink "${XDG_STATE_HOME:-$HOME/.local/state}/nix/profiles/profile" | sed -E 's/.*-([0-9]+)-link/\1/'
+    readlink "$hm_profile" | sed -E 's/.*-([0-9]+)-link/\1/'
   }
 
   prev_generation=$(get_generation)
@@ -62,7 +63,7 @@ else
 
   current_generation=$(get_generation)
   if [[ $prev_generation != "$current_generation" ]]; then
-    nvd history --profile ~/.local/state/nix/profile --minimum-version "$prev_generation"
+    dix last --profile "$hm_profile" --from "$prev_generation"
   fi
   git tag -f last-build
 fi

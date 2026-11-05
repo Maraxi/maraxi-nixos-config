@@ -58,7 +58,7 @@
         })
 
         nix-tree
-        nvd
+        dix
 
         atool
         zip
