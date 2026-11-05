@@ -2,6 +2,8 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false;
+    # The kernel has no ISO sockets, so LE Audio (BAP) cannot work and only logs errors on every start.
+    disabledPlugins = [ "bap" ];
     settings = {
       General = {
         # Shows battery charge of connected devices on supported Bluetooth adapters.
