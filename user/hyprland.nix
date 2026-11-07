@@ -32,22 +32,21 @@ let
       postBuild = "wrapProgram $out/bin/${pkg.meta.mainProgram} ${args}";
       meta.mainProgram = pkg.meta.mainProgram;
     };
-
-  # pkgs.waybar may come from nix-trunk (see overlays/default.nix)
-  waybar = wrap pkgs.waybar "--prefix XDG_DATA_DIRS : ${papirusFallback}/share";
 in
 {
-  home.packages = [
-    pkgs.grim
-    pkgs.slurp
-    pkgs.swappy
-    pkgs.wf-recorder
+  home.packages = with pkgs; [
+    grim
+    slurp
+    swappy
+    wf-recorder
 
-    pkgs.wl-clipboard # wayland clipboard
-    pkgs.wdisplays # arandr replacement
-    # pkgs.kanshi # hot switching output profiles
-    waybar
-    pkgs.kitty
+    wl-clipboard # wayland clipboard
+    wdisplays # arandr replacement
+    # kanshi # hot switching output profiles
+    kitty # default terminal for crashed hyprland sessions
+
+    # waybar may come from nix-trunk (see overlays/default.nix)
+    (wrap waybar "--prefix XDG_DATA_DIRS : ${papirusFallback}/share")
   ];
 
   # dmenu like launcher
