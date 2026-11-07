@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "flake-compat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1767039857,
-        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -33,6 +17,21 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nix-trunk": {
+      "locked": {
+        "lastModified": 1794058631,
+        "narHash": "sha256-A7pBJ2sRZ64sFSxiJ4fO8GfRRgmoA4oktfYZ7iw7D1o=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "90882aaeb66d63d0557a2594b333dd9741fa2f5b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -55,29 +54,8 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs",
-        "waybar": "waybar"
-      }
-    },
-    "waybar": {
-      "inputs": {
-        "flake-compat": "flake-compat",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1793905441,
-        "narHash": "sha256-qxqnXm27fDAlXXGAVXg/0Se8U7fMkCEgpRpD1QTr01M=",
-        "owner": "Alexays",
-        "repo": "Waybar",
-        "rev": "f49ec82e2d296f033b081fd36d12297795b017dc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Alexays",
-        "repo": "Waybar",
-        "type": "github"
+        "nix-trunk": "nix-trunk",
+        "nixpkgs": "nixpkgs"
       }
     }
   },
