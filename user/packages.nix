@@ -1,130 +1,118 @@
-{ pkgs, setup, ... }:
+{
+  lib,
+  pkgs,
+  setup,
+  ...
+}:
 let
   basicPkgs = with pkgs; [
+    # Launchers and integration
     # Default terminal for gtk-launch / wofi
-    (writeShellScriptBin "xdg-terminal-exec" ''exec ${ghostty}/bin/ghostty +new-window -e "$@"'')
+    (writeShellScriptBin "xdg-terminal-exec" ''exec ${lib.getExe ghostty} +new-window -e "$@"'')
+    xdg-utils
+    (writeShellScriptBin "open" ''exec ${lib.getExe' xdg-utils "xdg-open"} "$@"'')
 
-    (symlinkJoin {
-      name = "xdg-utils-and-alias";
-      paths = [ xdg-utils ];
-      postBuild = "ln -s $out/bin/xdg-open $out/bin/open";
-    })
-
+    # desktop apps
     nemo
-    fastfetch
-    wiremix
-
     swayimg
-
     telegram-desktop
+    wiremix
+    bluetuith
 
+    # Dev tooling
     opencode
-
     prek
     devenv
     treefmt
     eclint
-
     jq
     yq-go
 
+    # System info and monitoring
+    fastfetch
     inxi
     htop
     btop
-
-    fd
     pciutils
-    wget
     lsof
+    nix-tree
+    dix
+
+    # File tools
+    fd
     bat
     dust
     file
     parallel
+    wget
 
-    (symlinkJoin {
-      name = "trans";
-      buildInputs = [ makeWrapper ];
-      paths = [ translate-shell ];
-      postBuild = ''wrapProgram $out/bin/trans --append-flags "-engine bing"'';
-    })
-
-    nix-tree
-    dix
-
+    # Archives
     atool
     zip
     unzip
     unar
 
+    # Misc
     tty-clock
-
-    imagemagick
-
-    bluetuith
+    translate-shell
   ];
 
   nixosPkgs = with pkgs; [
+    # Build tools
     gcc
     gnumake
 
+    # Hardware and network diagnostics
     wev
     usbutils
-
     iw
     dig
 
+    # Utilities
     libfaketime
     libnotify
-
     fclones
-
-    vlc
-
     ncdu
 
+    # Media and thumbnails
+    imagemagick
+    vlc
     gimp
+    ffmpeg-headless
+    ffmpegthumbnailer
     gdk-pixbuf
     webp-pixbuf-loader
     # For general HEIF container support (this includes the AVIF file format)
     libheif.bin # provides heif-thumbnailer (the program that generates HEIF thumbnails)
     libheif.out # provides heif.thumbnailer (allows for the viewing of HEIF thumbnails)
-    ffmpeg-headless
-    ffmpegthumbnailer
 
-    glib
+    # Documents and desktop
+    glib # gio / gsettings
     libreoffice-stable
     evince
     pdfarranger
     gthumb
-
-    thunderbird
-
     simple-scan
-
+    thunderbird
     gnome-maps
   ];
 
   nonNixosPkgs = with pkgs; [
     util-linux
-
     curl
 
+    # Dev / work
     pycharm
     kubectl # for pycharm
-
-    freerdp
-
     sqlcl
-
     kubernetes-helm
     openshift
-
     gh # github cli
-
     apache-directory-studio
 
+    # desktop
+    freerdp
     flameshot
-
     onedrive
     scribus
   ];
