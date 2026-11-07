@@ -32,7 +32,7 @@ let
       meta.mainProgram = pkg.meta.mainProgram;
     };
 
-  # pkgs.waybar is the flake input's package with the test workaround from overlays/default.nix
+  # pkgs.waybar may come from nix-trunk (see overlays/default.nix)
   waybar = wrap pkgs.waybar "--prefix XDG_DATA_DIRS : ${papirusFallback}/share";
 in
 {

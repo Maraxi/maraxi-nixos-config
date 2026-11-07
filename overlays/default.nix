@@ -1,14 +1,16 @@
 { inputs }:
 [
-  # Comes from the waybar flake input, not nixpkgs.
-  # Upstream's flaky sleeper_thread subprocess test has failed in the NixOS build sandbox, so skip the
-  # checks. Drop once upstream fixed the test.
-  (final: _prev: {
-    waybar = inputs.waybar.packages.${final.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
-      doCheck = false;
-      mesonFlags = (old.mesonFlags or [ ]) ++ [ "-Dtests=disabled" ];
-    });
-  })
+  # waybar 0.16 is in nixpkgs master but not yet in nixos-unstable. Take it from nix-trunk until unstable
+  # has it (version-gated, so this retires itself).
+  (
+    final: prev:
+    let
+      trunk = inputs.nix-trunk.legacyPackages.${final.stdenv.hostPlatform.system};
+    in
+    {
+      waybar = if prev.lib.versionOlder prev.waybar.version "0.16.0" then trunk.waybar else prev.waybar;
+    }
+  )
 
   (import ./upstream-fixes.nix)
 ]
