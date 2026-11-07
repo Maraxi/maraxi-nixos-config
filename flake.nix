@@ -25,7 +25,7 @@
       keyboard = {
         layout = "de";
         variant = "nodeadkeys";
-        # man xkeyboard-config  -> Options
+        # nix run nixpkgs#libxkbcommon list | less
         options = "caps:escape,compose:rctrl";
       };
 
