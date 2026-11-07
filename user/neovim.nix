@@ -21,9 +21,9 @@
     nodejs
     tree-sitter
 
-    # lsp and lint
     inotify-tools # to replace default nvim file watcher
     # lua
+    lua
     lua-language-server
     stylua
     # nix
@@ -32,6 +32,9 @@
     deadnix
     nixfmt
     # python
+    python3
+    python3Packages.ipython
+    uv
     ruff
     ty
     # toml

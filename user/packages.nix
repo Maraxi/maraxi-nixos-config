@@ -28,14 +28,6 @@ let
     jq
     yq-go
 
-    python3
-    python3Packages.ipython
-    uv
-
-    lua
-    # cargo
-    # zig
-
     inxi
     htop
     btop
@@ -69,11 +61,6 @@ let
     imagemagick
 
     bluetuith
-
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
   ];
 
   nixosPkgs = with pkgs; [
