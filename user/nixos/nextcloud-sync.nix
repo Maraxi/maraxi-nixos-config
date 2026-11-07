@@ -15,6 +15,7 @@
         };
         Service = {
           Type = "simple";
+          Environment = "HOME=${config.home.homeDirectory}/.ssh/nextcloud";
           ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -h -n --path /Stefan ${config.home.homeDirectory}/Documents/nextcloud raspberrypi/nextcloud";
           TimeoutStopSec = "180";
           KillMode = "process";
