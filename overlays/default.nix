@@ -5,7 +5,7 @@
   (
     final: prev:
     let
-      trunk = inputs.nix-trunk.legacyPackages.${final.stdenv.hostPlatform.system};
+      trunk = inputs.nixos-unstable-small.legacyPackages.${final.stdenv.hostPlatform.system};
     in
     {
       waybar = if prev.lib.versionOlder prev.waybar.version "0.16.0" then trunk.waybar else prev.waybar;
