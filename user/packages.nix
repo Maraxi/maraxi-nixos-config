@@ -36,7 +36,6 @@ let
     pciutils
     lsof
     nix-tree
-    dix
 
     # File tools
     fd
@@ -69,6 +68,7 @@ let
     dig
 
     # Utilities
+    dix # non-NixOS hosts get a wrapper from non-nixos/dix.nix
     libfaketime
     libnotify
     fclones

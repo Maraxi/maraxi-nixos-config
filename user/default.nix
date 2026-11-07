@@ -12,6 +12,7 @@
           ]
         else
           [
+            ./non-nixos/dix.nix
             ./non-nixos/ecc.nix
             ./non-nixos/hyprland.nix
             ./non-nixos/nixpkgs.nix

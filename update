@@ -64,7 +64,7 @@ else
 
   current_generation=$(get_generation)
   if [[ $prev_generation != "$current_generation" ]]; then
-    dix last --profile "$hm_profile" --from "$prev_generation"
+    dix last --from "$prev_generation"
   fi
   git tag -f last-build
 fi
