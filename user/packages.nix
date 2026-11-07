@@ -1,148 +1,147 @@
-{ pkgs, setup, ... }: {
-  home.packages =
-    let
-      basicPkgs = with pkgs; [
-        # Default terminal for gtk-launch / wofi
-        (pkgs.writeShellScriptBin "xdg-terminal-exec" ''exec ${pkgs.ghostty}/bin/ghostty +new-window -e "$@"'')
+{ pkgs, setup, ... }:
+let
+  basicPkgs = with pkgs; [
+    # Default terminal for gtk-launch / wofi
+    (writeShellScriptBin "xdg-terminal-exec" ''exec ${ghostty}/bin/ghostty +new-window -e "$@"'')
 
-        (pkgs.symlinkJoin {
-          name = "xdg-utils-and-alias";
-          paths = [ pkgs.xdg-utils ];
-          postBuild = "ln -s $out/bin/xdg-open $out/bin/open";
-        })
+    (symlinkJoin {
+      name = "xdg-utils-and-alias";
+      paths = [ xdg-utils ];
+      postBuild = "ln -s $out/bin/xdg-open $out/bin/open";
+    })
 
-        nemo
-        fastfetch
-        wiremix
+    nemo
+    fastfetch
+    wiremix
 
-        swayimg
+    swayimg
 
-        telegram-desktop
+    telegram-desktop
 
-        opencode
+    opencode
 
-        prek
-        devenv
-        treefmt
-        eclint
+    prek
+    devenv
+    treefmt
+    eclint
 
-        jq
-        yq-go
+    jq
+    yq-go
 
-        python3
-        python3Packages.ipython
-        uv
+    python3
+    python3Packages.ipython
+    uv
 
-        lua
-        # cargo
-        # zig
+    lua
+    # cargo
+    # zig
 
-        inxi
-        htop
-        btop
+    inxi
+    htop
+    btop
 
-        fd
-        pciutils
-        wget
-        lsof
-        bat
-        dust
-        file
-        parallel
+    fd
+    pciutils
+    wget
+    lsof
+    bat
+    dust
+    file
+    parallel
 
-        (pkgs.symlinkJoin {
-          name = "trans";
-          buildInputs = [ pkgs.makeWrapper ];
-          paths = [ pkgs.translate-shell ];
-          postBuild = ''wrapProgram $out/bin/trans --append-flags "-engine bing"'';
-        })
+    (symlinkJoin {
+      name = "trans";
+      buildInputs = [ makeWrapper ];
+      paths = [ translate-shell ];
+      postBuild = ''wrapProgram $out/bin/trans --append-flags "-engine bing"'';
+    })
 
-        nix-tree
-        dix
+    nix-tree
+    dix
 
-        atool
-        zip
-        unzip
-        unar
+    atool
+    zip
+    unzip
+    unar
 
-        tty-clock
+    tty-clock
 
-        imagemagick
+    imagemagick
 
-        bluetuith
+    bluetuith
 
-        # # overrides. You can do that directly here, just don't forget the
-        # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-        # # fonts?
-        # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-      ];
-      perSystemPkgs =
-        if setup.isNixOS then
-          (with pkgs; [
-            gcc
-            gnumake
+    # # overrides. You can do that directly here, just don't forget the
+    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+    # # fonts?
+    # (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+  ];
 
-            wev
-            usbutils
+  nixosPkgs = with pkgs; [
+    gcc
+    gnumake
 
-            iw
-            dig
+    wev
+    usbutils
 
-            libfaketime
-            libnotify
+    iw
+    dig
 
-            fclones
+    libfaketime
+    libnotify
 
-            vlc
+    fclones
 
-            ncdu
+    vlc
 
-            gimp
-            gdk-pixbuf
-            webp-pixbuf-loader
-            # For general HEIF container support (this includes the AVIF file format)
-            libheif.bin # provides heif-thumbnailer (the program that generates HEIF thumbnails)
-            libheif.out # provides heif.thumbnailer (allows for the viewing of HEIF thumbnails)
-            ffmpeg-headless
-            ffmpegthumbnailer
+    ncdu
 
-            glib
-            libreoffice-stable
-            evince
-            pdfarranger
-            gthumb
+    gimp
+    gdk-pixbuf
+    webp-pixbuf-loader
+    # For general HEIF container support (this includes the AVIF file format)
+    libheif.bin # provides heif-thumbnailer (the program that generates HEIF thumbnails)
+    libheif.out # provides heif.thumbnailer (allows for the viewing of HEIF thumbnails)
+    ffmpeg-headless
+    ffmpegthumbnailer
 
-            thunderbird
+    glib
+    libreoffice-stable
+    evince
+    pdfarranger
+    gthumb
 
-            simple-scan
+    thunderbird
 
-            gnome-maps
-          ])
-        else
-          (with pkgs; [
-            util-linux
+    simple-scan
 
-            curl
+    gnome-maps
+  ];
 
-            pycharm
-            kubectl # for pycharm
+  nonNixosPkgs = with pkgs; [
+    util-linux
 
-            freerdp
+    curl
 
-            sqlcl
+    pycharm
+    kubectl # for pycharm
 
-            kubernetes-helm
-            openshift
+    freerdp
 
-            gh # github cli
+    sqlcl
 
-            apache-directory-studio
+    kubernetes-helm
+    openshift
 
-            flameshot
+    gh # github cli
 
-            onedrive
-            scribus
-          ]);
-    in
-    basicPkgs ++ perSystemPkgs;
+    apache-directory-studio
+
+    flameshot
+
+    onedrive
+    scribus
+  ];
+in
+{
+  home.packages = basicPkgs ++ (if setup.isNixOS then nixosPkgs else nonNixosPkgs);
 }
