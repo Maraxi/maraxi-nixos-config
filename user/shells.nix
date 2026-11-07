@@ -1,5 +1,7 @@
 {
+  config,
   lib,
+  pkgs,
   setup,
   ...
 }:
@@ -27,6 +29,23 @@
       in
       lib.mkMerge (
         [
+          # ble.sh must be sourced before everything that hooks the prompt and attached last
+          (lib.mkOrder 50 ''
+            source ${pkgs.blesh}/share/blesh/ble.sh --noattach
+            bleopt exec_errexit_mark=
+            bleopt exec_elapsed_mark=
+            bleopt exec_exit_mark=
+          '')
+          (lib.mkOrder 300 ''
+            ble-import integration/fzf-key-bindings
+          '')
+          # after fzf, so atuin owns ctrl-r
+          (lib.mkOrder 2050 ''
+            eval "$(atuin init bash --disable-up-arrow --disable-ai)"
+          '')
+          (lib.mkOrder 2100 ''
+            [[ ''${BLE_VERSION-} ]] && ble-attach
+          '')
           (lib.mkOrder 100 ''
             eval "$(devenv hook bash)"
 
@@ -71,6 +90,31 @@
     };
     bindings = {
       "\\C-s" = "nop"; # unbind ^s, used by ghostty instead
+    };
+  };
+
+  # init is done by hand in programs.bash.initExtra (ordering with ble.sh)
+  programs.atuin = {
+    enable = true;
+    enableBashIntegration = false;
+    settings = {
+      auto_sync = false;
+      update_check = false;
+      ai.enabled = false;
+      search.filters = [
+        "workspace"
+        "global"
+        "directory"
+      ];
+      show_numeric_shortcuts = false;
+      prefers_reduced_motion = true;
+      db_path = "${config.xdg.dataHome}/atuin/history.db";
+      key_path = "${config.xdg.dataHome}/atuin/key";
+      session_path = "${config.xdg.dataHome}/atuin/session";
+      record_store_path = "${config.xdg.dataHome}/atuin/records.db";
+      meta.db_path = "${config.xdg.dataHome}/atuin/meta.db";
+      logs.dir = "${config.xdg.stateHome}/atuin/logs";
+      daemon.pidfile_path = "${config.xdg.stateHome}/atuin/daemon.pid";
     };
   };
 }
