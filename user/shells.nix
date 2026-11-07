@@ -73,8 +73,4 @@
       "\\C-s" = "nop"; # unbind ^s, used by ghostty instead
     };
   };
-
-  # programs.carapace = { # command line completions
-  #   enable = true;
-  # };
 }
