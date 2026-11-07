@@ -17,17 +17,11 @@
   };
 
   outputs =
-    inputs@{
-      nixpkgs,
-      # nixstable,
-      home-manager,
-      ...
-    }:
+    inputs@{ nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       overlays = import ./overlays { inherit inputs; };
       pkgs = import nixpkgs { inherit system overlays; };
-      # pkgs-stable = import nixstable { inherit system; };
       keyboard = {
         layout = "de";
         variant = "nodeadkeys";
