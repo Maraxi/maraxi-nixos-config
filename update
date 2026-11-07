@@ -8,7 +8,7 @@ IFS=$'\n\t'
 # set -x
 
 # Get reference commit
-git pull --no-tags
+git pull --no-tags --autostash
 echo
 
 # Check for updates
