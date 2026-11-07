@@ -26,7 +26,11 @@
         layout = "de";
         variant = "nodeadkeys";
         # nix run nixpkgs#libxkbcommon list | less
-        options = "caps:escape,compose:rctrl";
+        options = [
+          "caps:escape"
+          "shift:both_capslock_cancel"
+          "compose:rctrl"
+        ];
       };
 
       de = "de_DE.UTF-8";

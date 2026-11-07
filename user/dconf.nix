@@ -1,14 +1,20 @@
-{ lib, pkgs, ... }: {
+{
+  keyboard,
+  lib,
+  pkgs,
+  ...
+}:
+{
   home.packages = [ pkgs.dconf-editor ];
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       sources = [
         (lib.gvariant.mkTuple [
           "xkb"
-          "de+nodeadkeys"
+          (if keyboard.variant == "" then keyboard.layout else "${keyboard.layout}+${keyboard.variant}")
         ])
       ];
-      xkb-options = [ "caps:escape" ];
+      xkb-options = keyboard.options;
     };
     "org/gnome/shell/extensions/ding" = {
       show-home = false;

@@ -4,6 +4,7 @@
 # hyprland.lua, hypridle.conf and hyprpaper.conf).
 {
   config,
+  lib,
   mutableLink,
   pkgs,
   ...
@@ -76,6 +77,21 @@ in
   xdg.configFile = {
     "hypr/common.lua" = mutableLink dotfiles/hypr/common.lua;
     "hypr/.luarc.json" = mutableLink dotfiles/hypr/.luarc.json;
+
+    # Keyboard layout from the flake (home.keyboard), required by common.lua
+    "hypr/keyboard.lua".text =
+      let
+        kb = config.home.keyboard;
+        str = v: builtins.toJSON (if v == null then "" else v);
+      in
+      ''
+        return {
+          layout = ${str kb.layout},
+          variant = ${str kb.variant},
+          model = ${str kb.model},
+          options = ${str (lib.concatStringsSep "," kb.options)},
+        }
+      '';
     "wofi/wallpaper" = mutableLink dotfiles/wofi-wallpaper;
     "waybar" = mutableLink dotfiles/waybar;
     "swappy/config" = mutableLink dotfiles/swappy.conf;
