@@ -11,7 +11,6 @@
       "nvidia-settings"
       "nvidia-x11"
       "steam"
-      "steam-run"
       "steam-unwrapped"
     ];
     allowUnfreePredicate = pkgs._cuda.lib.allowUnfreeCudaPredicate;
