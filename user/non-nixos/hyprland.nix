@@ -223,6 +223,13 @@ in
       export ELECTRON_OZONE_PLATFORM_HINT=auto
       export QT_QPA_PLATFORM="wayland;xcb"
       export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+      # Qt apps take icon theme, colors and font from the GTK settings (gtk.nix). The gtk3 platform theme also
+      # reads dark mode from gsettings, which needs the dconf GIO module and the schemas. Apps started from a
+      # keybind inherit only this environment, not the one a wrapped terminal (e.g. ghostty) would add.
+      export QT_QPA_PLATFORMTHEME=gtk3
+      export GIO_EXTRA_MODULES="${pkgs.dconf.lib}/lib/gio/modules''${GIO_EXTRA_MODULES:+:$GIO_EXTRA_MODULES}"
+      export XDG_DATA_DIRS="${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
     '';
   };
 }

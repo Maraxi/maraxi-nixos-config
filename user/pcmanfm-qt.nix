@@ -9,7 +9,8 @@
 {
   home.packages = [
     # The gtk3 platform theme makes Qt take icon theme, colors and font from the GTK settings (gtk.nix), so it
-    # matches the rest of the desktop.
+    # matches the rest of the desktop. The Hyprland session sets it too (non-nixos/hyprland.nix), the wrapper
+    # keeps the app themed when it is started elsewhere.
     (pkgs.symlinkJoin {
       name = "pcmanfm-qt-wrapped";
       paths = [ pkgs.pcmanfm-qt ];
