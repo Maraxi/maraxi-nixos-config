@@ -1,5 +1,5 @@
 {
-  pkgs,
+  config,
   lib,
   setup,
   ...
@@ -8,8 +8,8 @@
   services.dunst = {
     enable = true;
     iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
+      # Same package as the GTK icon theme. It already contains Papirus-Dark, so no second copy is needed.
+      inherit (config.gtk.iconTheme) package name;
       size = "32x32";
     };
     settings = {
