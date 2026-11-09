@@ -35,6 +35,7 @@
             bleopt exec_errexit_mark=
             bleopt exec_elapsed_mark=
             bleopt exec_exit_mark=
+            bleopt prompt_eol_mark=
           '')
           (lib.mkOrder 300 ''
             ble-import integration/fzf-key-bindings
