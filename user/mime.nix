@@ -27,7 +27,7 @@
           "image/jpeg" = image_viewer;
           "image/png" = image_viewer;
           "image/webp" = image_viewer;
-          "inode/directory" = "thunar.desktop";
+          "inode/directory" = "pcmanfm-qt.desktop";
           "message/rfc822" = "thunderbird.desktop";
           "text/*" = editor;
           "text/html" = browser;

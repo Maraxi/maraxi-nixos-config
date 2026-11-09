@@ -36,9 +36,9 @@
       ./nh.nix
       ./notifications.nix
       ./packages.nix
+      ./pcmanfm-qt.nix
       ./radio.nix
       ./shells.nix
-      ./thunar.nix
       ./tmux.nix
     ]
     ++ specific-imports;
