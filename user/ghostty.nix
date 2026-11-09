@@ -1,4 +1,4 @@
-{ config, setup, mutableLink, ... }: {
+{ config, mutableLink, ... }: {
   programs.ghostty = {
     enable = true;
     systemd.enable = true;
@@ -12,6 +12,5 @@
     # Wanting it from the graphical session starts it on login.
     "systemd/user/graphical-session.target.wants/app-com.mitchellh.ghostty.service".source =
       "${config.programs.ghostty.package}/share/systemd/user/app-com.mitchellh.ghostty.service";
-  }
-  // (if setup.isNixOS then { } else { "ghostty/config.local".text = "background-opacity = 0.85"; });
+  };
 }
