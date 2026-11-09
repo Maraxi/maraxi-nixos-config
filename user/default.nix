@@ -38,6 +38,7 @@
       ./packages.nix
       ./radio.nix
       ./shells.nix
+      ./thunar.nix
       ./tmux.nix
     ]
     ++ specific-imports;

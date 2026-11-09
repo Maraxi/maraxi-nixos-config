@@ -20,7 +20,6 @@
             browser
           ];
           "application/x-desktop" = editor;
-          "application/x-gnome-saved-search" = "nemo.desktop";
           "default-url-scheme-handler" = browser;
           "default-web-browser" = browser;
           "image/avif" = image_viewer;
@@ -28,7 +27,7 @@
           "image/jpeg" = image_viewer;
           "image/png" = image_viewer;
           "image/webp" = image_viewer;
-          "inode/directory" = "nemo.desktop";
+          "inode/directory" = "thunar.desktop";
           "message/rfc822" = "thunderbird.desktop";
           "text/*" = editor;
           "text/html" = browser;

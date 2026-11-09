@@ -23,7 +23,7 @@ function M.setup(opts)
   ---------------------
 
   local terminal = 'ghostty +new-window'
-  local fileManager = 'nemo'
+  local fileManager = 'thunar'
   local menu = 'wofi --show drun --matching multi-contains --insensitive'
 
   -------------------
@@ -359,7 +359,7 @@ function M.setup(opts)
     end
   end)
 
-  hl.window_rule { match = { class = 'nemo', title = '.*Properties' }, float = true }
+  hl.window_rule { match = { class = 'thunar', title = '.*Properties' }, float = true }
 
   -- Ignore maximize requests from all apps
   hl.window_rule { name = 'suppress-maximize-events', match = { class = '.*' }, suppress_event = 'maximize' }

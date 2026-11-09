@@ -13,7 +13,6 @@ let
     (writeShellScriptBin "open" ''exec ${lib.getExe' xdg-utils "xdg-open"} "$@"'')
 
     # desktop apps
-    nemo
     swayimg
     telegram-desktop
     wiremix

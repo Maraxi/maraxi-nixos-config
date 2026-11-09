@@ -31,13 +31,5 @@
       gtk-enable-primary-paste = true;
       color-scheme = "prefer-dark";
     };
-    "org/nemo/preferences" = {
-      show-hidden-files = true;
-      thumbnail-limit = lib.hm.gvariant.mkUint64 1073741824; # 2^30 bytes = 1 GiB
-    };
-    "org/cinnamon/desktop/applications/terminal" = {
-      # for nemo -> open in terminal
-      exec = "ghostty --working-directory=inherit";
-    };
   };
 }
