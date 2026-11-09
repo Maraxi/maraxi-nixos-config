@@ -24,7 +24,6 @@
           "default-url-scheme-handler" = browser;
           "default-web-browser" = browser;
           "image/*" = image_viewer;
-          "image/gif" = video_viewer;
           "inode/directory" = "pcmanfm-qt.desktop";
           "message/rfc822" = "thunderbird.desktop";
           "text/*" = editor;
