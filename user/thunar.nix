@@ -1,6 +1,7 @@
 # Thunar comes from nixpkgs, so its helpers have to be reachable without a NixOS desktop module.
 {
   lib,
+  mutableLink,
   pkgs,
   setup,
   ...
@@ -11,6 +12,8 @@
     tumbler # thumbnails
     xfconf # settings backend (dbus service)
   ];
+
+  xdg.configFile."Thunar/uca.xml" = mutableLink dotfiles/thunar/uca.xml;
 
   # The dbus service file of tumbler has SystemdService=tumblerd.service, but systemd does not search the
   # nix profile for units. Without a unit the activation fails and Thunar shows no thumbnails.
