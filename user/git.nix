@@ -5,10 +5,11 @@ let
   # with a leading space.
   scopeOptions = {
     "" = "";
-    g = " origin/HEAD";
-    a = " --branches --remotes";
+    g = " --tags origin/HEAD";
+    a = " --tags --branches --remotes";
     x =
-      " --exclude master --exclude main --exclude release-candiate --branches"
+      "--tags"
+      + " --exclude master --exclude main --exclude release-candiate --branches"
       + " --exclude *master --exclude *main --exclude *release-candiate --exclude *dependabot* --exclude */renovate/* --remotes";
   };
   topoOptions = {
@@ -93,7 +94,7 @@ in
           "log --graph --date-order --date=human"
           # space before %h for delta pager, its parser does not find the link otherwise
           + " --format='%C(bold blue) %h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%(decorate:tag=)%C(reset)'"
-          + " --tags HEAD";
+          + " HEAD";
       }
       # l[g|a|x][f][s] generated from the parts above, see `git aliases`
       // logAliases;
