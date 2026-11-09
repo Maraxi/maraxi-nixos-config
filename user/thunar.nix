@@ -26,6 +26,17 @@
     };
   };
 
+  # Same issue for xfconf (SystemdService=xfconfd.service). Without the daemon Thunar cannot persist its
+  # settings (toolbar, view, ...) and they reset on every start.
+  systemd.user.services.xfconfd = {
+    Unit.Description = "Xfce configuration storage service";
+    Service = {
+      Type = "dbus";
+      BusName = "org.xfce.Xfconf";
+      ExecStart = "${pkgs.xfconf}/lib/xfce4/xfconf/xfconfd";
+    };
+  };
+
   # smb://, sftp://, ... in Thunar need the gvfs GIO module that matches nix's glib. Only the client module is
   # used, the gvfs daemons are Ubuntu's (activated via dbus). NixOS provides all of this through services.gvfs.
   home.sessionVariables = lib.mkIf (!setup.isNixOS) {
