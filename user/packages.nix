@@ -77,7 +77,6 @@ let
     # Media and thumbnails
     imagemagick
     vlc
-    gimp
     ffmpeg-headless
     ffmpegthumbnailer
     gdk-pixbuf
