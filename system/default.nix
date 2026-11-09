@@ -3,7 +3,7 @@
     ./android.nix
     ./bluetooth.nix
     ./boot-drives.nix
-    ./cross-compiling.nix
+    # ./cross-compiling.nix
     ./environment.nix
     ./fonts.nix
     ./greetd.nix
