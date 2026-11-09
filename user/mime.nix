@@ -6,12 +6,13 @@
         browser = if setup.isNixOS then "firefox.desktop" else "microsoft-edge.desktop";
         mailer = if setup.isNixOS then "thunderbird.desktop" else browser;
         image_viewer = [
-          "org.gnome.gThumb.desktop"
           "swayimg.desktop"
+          "org.gnome.gThumb.desktop"
         ];
         video_viewer = [
-          "org.gnome.gThumb.desktop"
           "vlc.desktop"
+          "org.gnome.gThumb.desktop"
+          "mpv.desktop"
         ];
         association = {
           "application/json" = editor;
@@ -22,15 +23,13 @@
           "application/x-desktop" = editor;
           "default-url-scheme-handler" = browser;
           "default-web-browser" = browser;
-          "image/avif" = image_viewer;
+          "image/*" = image_viewer;
           "image/gif" = video_viewer;
-          "image/jpeg" = image_viewer;
-          "image/png" = image_viewer;
-          "image/webp" = image_viewer;
           "inode/directory" = "pcmanfm-qt.desktop";
           "message/rfc822" = "thunderbird.desktop";
           "text/*" = editor;
           "text/html" = browser;
+          "video/*" = video_viewer;
           "x-scheme-handler/about" = browser;
           "x-scheme-handler/http" = browser;
           "x-scheme-handler/https" = browser;
