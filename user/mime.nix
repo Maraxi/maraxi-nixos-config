@@ -10,9 +10,9 @@
           "org.gnome.gThumb.desktop"
         ];
         video_viewer = [
+          "mpv.desktop"
           "vlc.desktop"
           "org.gnome.gThumb.desktop"
-          "mpv.desktop"
         ];
         association = {
           "application/json" = editor;
