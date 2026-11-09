@@ -154,7 +154,9 @@ in
 
     brightnessctl
 
-    nerd-fonts.jetbrains-mono # waybar font + icons (NixOS gets it from system/fonts.nix)
+    # waybar font + icons
+    jetbrains-mono
+    nerd-fonts.symbols-only
   ];
 
   fonts.fontconfig.enable = true;

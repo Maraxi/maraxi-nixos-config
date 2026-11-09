@@ -1,7 +1,8 @@
 { pkgs, ... }: {
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
+      jetbrains-mono
+      nerd-fonts.symbols-only # icons for waybar
       dejavu_fonts
       noto-fonts
       noto-fonts-cjk-sans
