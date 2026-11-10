@@ -23,4 +23,12 @@ do
       if vim.bo[ev.buf].filetype == 'help' then vim.cmd 'wincmd L' end
     end,
   })
+
+  -- No swap files for third-party code. Avoids E325 when another instance has the file open.
+  -- SwapExists is not consulted when LSP opens the file via nvim_win_set_buf, so disable the swapfile instead.
+  vim.api.nvim_create_autocmd({ 'BufNew', 'BufAdd' }, {
+    group = vim.api.nvim_create_augroup('NoSwapThirdParty', { clear = true }),
+    pattern = { '*/.venv/*', '*/site-packages/*', '*/node_modules/*' },
+    callback = function(ev) vim.bo[ev.buf].swapfile = false end,
+  })
 end
