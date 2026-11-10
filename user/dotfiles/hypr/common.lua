@@ -88,6 +88,7 @@ function M.setup(opts)
     dwindle = {
       preserve_split = false,
       force_split = 2,
+      split_width_multiplier = 1.5,
     },
 
     scrolling = { column_width = 1 },
