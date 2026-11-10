@@ -92,8 +92,8 @@ let
 
       swaylock -f
 
-      # swaylock has no feedback of its own for the fingerprint, so flash the LEDs: mute twice for a match,
-      # micmute once for any failed read
+      # swaylock has no feedback of its own for the fingerprint, so flash the LEDs: micmute once when the reader
+      # is ready, mute twice for a match, micmute twice for any failed read
       flash() {
         local led=$1 times=$2 i
         for ((i = 0; i < times; i++)); do
@@ -106,19 +106,38 @@ let
 
       # swaylock and fprintd-verify are the apt ones (/usr/bin)
       (
+        tmp=$(mktemp)
+        trap 'rm -f "$tmp"' EXIT
+        ready=0
         while pidof swaylock >/dev/null; do
           # a verification waits for a finger, give up after a while to re-check that swaylock still runs
-          out=$(timeout 20 fprintd-verify 2>&1) || true
+          timeout 10 fprintd-verify &>"$tmp" &
+          verify=$!
+          # after a resume polkit refuses the claim until the NVIDIA resume is done and the session is active
+          # again, so fprintd-verify exits at once. One that is still running after a moment waits for a finger.
+          if ((!ready)); then
+            sleep 1
+            if kill -0 "$verify" 2>/dev/null; then
+              ready=1
+              flash micmute 1
+            fi
+          fi
+          rc=0
+          wait "$verify" || rc=$?
+          out=$(<"$tmp")
           if grep -q 'verify-match' <<<"$out"; then
+            flash mute 2 &
             pkill -USR1 swaylock
             # a touch on the sensor is no input that wakes a display that was switched off (lock keybinding, idle)
             hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })' >/dev/null || true
-            flash mute 2
             break
           elif grep -q 'Verify result: verify-' <<<"$out"; then
             flash micmute 2
+          elif ((rc != 124)); then
+            # no result and no timeout: fprintd-verify was refused or failed at once (a second suspend, no device).
+            # Wait for ready again, which also paces the loop and flashes micmute when the reader is back.
+            ready=0
           fi
-          sleep 1
         done
       ) >/dev/null 2>&1 &
     '';
