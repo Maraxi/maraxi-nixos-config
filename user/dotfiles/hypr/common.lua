@@ -359,7 +359,8 @@ function M.setup(opts)
     end
   end)
 
-  hl.window_rule { match = { class = 'pcmanfm-qt', title = '.*Properties|Mount' }, float = true }
+  hl.window_rule { match = { class = 'pcmanfm-qt', title = '.*Properties|Mount|Preferences' }, float = true }
+  hl.window_rule { match = { class = 'pcmanfm-qt', title = 'Copy Files' }, float = true, move = '200 100' }
 
   -- Ignore maximize requests from all apps
   hl.window_rule { name = 'suppress-maximize-events', match = { class = '.*' }, suppress_event = 'maximize' }
