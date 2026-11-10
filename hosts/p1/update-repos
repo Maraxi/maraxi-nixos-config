@@ -1,0 +1,49 @@
+#! /usr/bin/env bash
+
+# strict mode
+set -euo pipefail
+IFS=$'\n\t'
+
+# debug
+# set -x
+
+# parse arguments - explanations:
+# -h  -  update pointer of origin/HEAD
+if getopts h head; then
+	echo "updating each origin/HEAD"
+fi
+
+find . -execdir test -e {}/.git \; -prune -print0 | while IFS= read -r -d '' folder; do
+	pushd "$folder" > /dev/null
+
+	branch=$(git rev-parse --abbrev-ref HEAD)
+	echo -e "\e[31m-> $folder \e[33m- ${branch}\e[0m"
+
+	# fetch only once per 15 minutes
+	if [[ ! -e .git/FETCH_HEAD ]] || [[ $(( $(date +%s) - $(stat -c %Y .git/FETCH_HEAD) )) -gt 900 ]]; then
+		git fetch &> /dev/null
+	fi
+	
+	if [[ -z $(git remote) ]]; then
+		echo "no remote found"
+	else
+		[[ $head == h ]] && git remote set-head origin --auto &> /dev/null
+		if [[ $(git rev-parse HEAD) != $(git rev-parse origin/HEAD) ]]; then
+			remote_default=$(git rev-parse --abbrev-ref origin/HEAD)
+			# remove prefix
+			default="${remote_default#origin/}"
+
+			if [[ "$branch" == "$default" ]]; then
+				git pull || echo "Pull failed"
+			elif [[ -z $(git status --porcelain --untracked-files=no) ]]; then
+				# no untracked files, switch to default branch
+				git switch "$default"
+				git pull
+			else
+				echo "Dirty working directory. Can not switch to default branch"
+			fi
+		fi
+	fi
+
+	popd > /dev/null
+done
