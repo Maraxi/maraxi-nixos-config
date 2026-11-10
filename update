@@ -41,16 +41,28 @@ LAST_BUILD=$(git rev-parse -q --verify refs/tags/last-build || true)
 # Rebuild
 if [[ $(uname -v) == *NixOS* ]]; then
   if [[ $CURRENT != "$LAST_BUILD" ]]; then
-    prev_generation=$(nixos-rebuild list-generations --json | jq '.[] | select(.current == true) | .generation')
+    action=${1:-switch}
 
-    # Ask for sudo password early
-    sudo true
-    sudo nixos-rebuild "${1:-switch}" --flake "${NH_FLAKE:-.}"
+    prev_system=$(readlink -f /run/current-system)
+
+    sudo nixos-rebuild "$action" --flake "${NH_FLAKE:-.}"
     echo
 
-    dix last --from "$prev_generation"
-    echo
-    git tag -f last-build
+    # `test` activates a new system without creating a generation, so compare store paths instead
+    case $action in
+      boot) new_system=/nix/var/nix/profiles/system ;;
+      *) new_system=/run/current-system ;;
+    esac
+    current_system=$(readlink -f "$new_system")
+    if [[ $prev_system != "$current_system" ]]; then
+      dix "$prev_system" "$current_system"
+      echo
+    fi
+
+    # Only tag when the configuration is persistent, so a later `update` still rebuilds after `test`/`build`
+    case $action in
+      switch | boot) git tag -f last-build ;;
+    esac
   fi
 else
   hm_profile="${XDG_STATE_HOME:-$HOME/.local/state}/nix/profiles/home-manager"
