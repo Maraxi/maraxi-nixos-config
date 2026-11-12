@@ -55,7 +55,7 @@ if [[ $(uname -v) == *NixOS* ]]; then
     esac
     current_system=$(readlink -f "$new_system")
     if [[ $prev_system != "$current_system" ]]; then
-      dix "$prev_system" "$current_system"
+      dix diff "$prev_system" "$current_system"
       echo
     fi
 
