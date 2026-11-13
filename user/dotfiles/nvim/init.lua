@@ -66,6 +66,10 @@ do
 
   vim.o.inccommand = 'split'
   vim.o.cursorline = true
+
+  -- Don't save special windows (e.g. neo-tree) in the session used by :restart,
+  -- otherwise they come back as empty buffers that clash with the plugin's own.
+  vim.opt.sessionoptions:remove 'blank'
 end
 
 -- ########################
