@@ -4,8 +4,8 @@
 require 'plugins.helpers'
 do
   -- Two important keymaps to use while in Telescope are:
-  --  - Insert mode: <c-/>
-  --  - Normal mode: ?
+  --  - Insert mode: <c-h> (default <c-/>)
+  --  - Normal mode: ? or <c-h>
 
   vim.pack.add {
     GH 'nvim-lua/plenary.nvim',
@@ -18,11 +18,13 @@ do
     -- You can put your default mappings / updates / etc. in here
     --  All the info you're looking for is in `:help telescope.setup()`
     --
-    -- defaults = {
-    --   mappings = {
-    --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-    --   },
-    -- },
+    defaults = {
+      mappings = {
+        -- <c-/> is hard to type on a German keyboard
+        i = { ['<C-h>'] = 'which_key' },
+        n = { ['<C-h>'] = 'which_key' },
+      },
+    },
     -- pickers = {}
     extensions = {
       ['ui-select'] = {
