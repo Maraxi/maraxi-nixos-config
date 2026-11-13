@@ -24,6 +24,7 @@ do
     delay = 0,
     -- Document existing key chains
     spec = {
+      { '<leader>d', group = '[D]iagnostic' },
       { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
       { '<leader>t', group = '[T]oggle' },
       { 'gr', group = 'LSP Actions', mode = { 'n' } },
