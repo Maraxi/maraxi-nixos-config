@@ -95,7 +95,7 @@ do
 
   vim.keymap.set(
     'n',
-    '<leader>dt',
+    '<leader>td',
     ':lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>',
     { desc = '[D]iagnostics [T]oggle' }
   )
