@@ -8,7 +8,7 @@
 
   "modules-left": [ "clock", "hyprland/workspaces", "hyprland/window" ],
   "modules-center": [],
-  "modules-right": [ "hyprland/submap", "custom/recording", "privacy", "idle_inhibitor", "tray", "wireplumber", "bluetooth", "network", "battery" ],
+  "modules-right": [ "hyprland/submap", "custom/recording", "privacy", "idle_inhibitor", "tray", "custom/shokz", "wireplumber", "bluetooth", "network", "battery" ],
 
   "clock": {
     "interval": 5,
@@ -142,6 +142,17 @@
     "exec": "~/.config/waybar/scripts/recording-status",
     "interval": 60,
     "signal": 12,
+    "tooltip": true
+  },
+
+  // USB Shokz Loop120: empty when not connected, click toggles the audio profile
+  "custom/shokz": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/shokz-profile",
+    "on-click": "~/.config/waybar/scripts/shokz-profile toggle",
+    "interval": 3,
+    "signal": 13,
     "tooltip": true
   },
 }

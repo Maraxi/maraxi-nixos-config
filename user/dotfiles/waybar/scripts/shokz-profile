@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Waybar module for the USB Shokz Loop120 (the bluetooth variant is ignored).
+# Usage: shokz-profile          print waybar json (empty when not connected)
+#        shokz-profile toggle   toggle "Analog Stereo Output" <-> "... + Mono Input"
+
+OUTPUT="output:analog-stereo"
+DUPLEX="output:analog-stereo+input:mono-fallback"
+
+card=$(pw-dump | jq -c '
+  [.[] | select(.type == "PipeWire:Interface:Device")
+       | select(.info.props["device.name"] // "" | startswith("alsa_card.usb-Shokz_Loop120"))][0] // empty
+  | {id, profile: (.info.params.Profile[0].name // "off"),
+     index: ([.info.params.EnumProfile[] | {(.name): .index}] | add)}')
+
+if [ "$card" = "" ]; then
+  [ "$1" = toggle ] || printf '{"text":"","class":"disconnected"}\n'
+  exit 0
+fi
+
+id=$(jq -r .id <<<"$card")
+profile=$(jq -r .profile <<<"$card")
+
+if [ "$1" = toggle ]; then
+  [ "$profile" = "$OUTPUT" ] && target=$DUPLEX || target=$OUTPUT
+  wpctl set-profile "$id" "$(jq -r --arg p "$target" '.index[$p]' <<<"$card")"
+  pkill -RTMIN+13 waybar
+  exit 0
+fi
+
+case "$profile" in
+  "$OUTPUT") text=$'\uf025'; class=output; tip="Analog stereo output" ;;
+  "$DUPLEX") text=$'\uf025 \uf130'; class=duplex; tip="Analog stereo output + mono input" ;;
+  off) text=$'\uf011'; class=off; tip="Off" ;;
+  *) text=$'\uf128'; class=other; tip="Profile: $profile" ;;
+esac
+jq -cn --arg t "$text" --arg c "$class" --arg tip "Loop120: $tip (click to toggle)" \
+  '{text: $t, class: $c, tooltip: $tip}'

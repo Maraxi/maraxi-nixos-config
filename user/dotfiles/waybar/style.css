@@ -56,7 +56,8 @@ tooltip label {
 #battery,
 #idle_inhibitor,
 #tray,
-#custom-recording {
+#custom-recording,
+#custom-shokz {
     padding: 0 10px;
 }
 
@@ -68,7 +69,8 @@ tooltip label {
 #battery,
 #idle_inhibitor,
 #tray,
-#custom-recording {
+#custom-recording,
+#custom-shokz {
     border-left: 1px solid alpha(@blue, 0.18);
 }
 
@@ -88,6 +90,12 @@ tooltip label {
 #privacy,
 #wireplumber {
     color: @green;
+}
+#custom-shokz {
+    color: @teal;
+}
+#custom-shokz.off {
+    color: @dim;
 }
 
 /* Workspaces:
