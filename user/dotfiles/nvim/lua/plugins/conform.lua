@@ -11,6 +11,7 @@ do
       local enabled_filetypes = {
         lua = true,
         nix = true,
+        graphql = true,
         python = true,
         sh = true,
         toml = true,
@@ -27,6 +28,7 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
+      graphql = { 'prettier' },
       lua = { 'stylua' },
       python = { 'ruff_fix', 'ruff_format' },
       nix = { 'nixfmt' },

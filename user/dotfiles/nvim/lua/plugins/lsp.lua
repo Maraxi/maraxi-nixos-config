@@ -102,6 +102,8 @@ do
     'nil_ls',
     -- bash
     'bashls',
+    -- graphql
+    'graphql',
   }
   -- Enabling the LSP servers here
   -- Configuring the servers via the files in after/lsp/

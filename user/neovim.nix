@@ -44,6 +44,9 @@
     shellharden
     bash-language-server
     shellcheck
+    # graphql
+    graphql-language-service-cli
+    prettier
 
     (pkgs.runCommand "symlink-to-nvim" { } ''
       mkdir -p $out/bin
