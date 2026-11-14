@@ -26,6 +26,10 @@ do
   -- Don't show the mode, since it's already in the status line
   vim.o.showmode = false
 
+  -- Rounded border for all floating windows (hover with `K`, signature help, ...)
+  vim.o.winborder = 'rounded'
+  vim.o.pumborder = 'rounded'
+
   vim.o.splitright = true
   vim.o.splitbelow = true
 
