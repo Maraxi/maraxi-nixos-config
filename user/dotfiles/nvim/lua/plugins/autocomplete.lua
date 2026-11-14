@@ -22,6 +22,27 @@ end
 do
   -- [[ Autocomplete Engine ]]
   vim.pack.add { { src = GH 'saghen/blink.cmp', version = vim.version.range '1.*' } }
+
+  -- When true, the windows are shown above the cursor line instead of below (default is below for the menu)
+  local flipped = false
+  vim.api.nvim_create_autocmd('User', {
+    pattern = 'BlinkCmpMenuClose',
+    callback = function() flipped = false end,
+  })
+  local function flip_windows()
+    local menu = require 'blink.cmp.completion.windows.menu'
+    local signature = require 'blink.cmp.signature.window'
+    local menu_open, signature_open = menu.win:is_open(), signature.win:is_open()
+    if not (menu_open or signature_open) then return false end
+    flipped = not flipped
+    if menu_open then
+      menu.update_position()
+    else
+      signature.update_position()
+    end
+    return true
+  end
+
   require('blink.cmp').setup {
     keymap = {
       -- 'default' (recommended) for mappings similar to built-in completions
@@ -47,6 +68,10 @@ do
       -- See `:help blink-cmp-config-keymap` for defining your own keymap
       preset = 'default',
 
+      -- Flip the completion menu (and the docs / signature windows that follow it) above or below the line
+      -- Falls back to the global `<C-,>` mapping (flips LSP floats) when no blink window is open
+      ['<C-,>'] = { flip_windows, 'fallback' },
+
       -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
       --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
     },
@@ -58,6 +83,9 @@ do
     },
 
     completion = {
+      menu = {
+        direction_priority = function() return flipped and { 'n', 's' } or { 's', 'n' } end,
+      },
       -- By default, you may press `<c-space>` to show the documentation.
       -- Optionally, set `auto_show = true` to show the documentation after a delay.
       documentation = { auto_show = false, auto_show_delay_ms = 400 },
@@ -84,6 +112,11 @@ do
     fuzzy = { implementation = 'lua' },
 
     -- Shows a signature help window while you type arguments for a function
-    signature = { enabled = true },
+    signature = {
+      enabled = true,
+      window = {
+        direction_priority = function() return flipped and { 's', 'n' } or { 'n', 's' } end,
+      },
+    },
   }
 end

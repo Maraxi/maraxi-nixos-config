@@ -97,6 +97,38 @@ do
   vim.keymap.set('n', '<C-S-j>', '<C-w>J', { desc = 'Move window to the lower' })
   vim.keymap.set('n', '<C-S-k>', '<C-w>K', { desc = 'Move window to the upper' })
 
+  -- Flip an open LSP float (hover with `K`, signature help) between below and above the cursor line,
+  -- so the code hidden behind it can be read. Works from the source window and from inside the float.
+  -- In insert mode blink.cmp handles its own windows first (see plugins/autocomplete.lua) and falls back to this.
+  vim.keymap.set({ 'n', 'i', 'x', 's' }, '<C-,>', function()
+    local cur = vim.api.nvim_get_current_win()
+    local src_buf = vim.w[cur].lsp_floating_bufnr
+    local float, src_win
+    if src_buf then
+      float, src_win = cur, vim.fn.bufwinid(src_buf)
+    else
+      float, src_win = vim.b.lsp_floating_preview, cur
+    end
+    if not (float and vim.api.nvim_win_is_valid(float) and src_win ~= -1) then return end
+
+    local config = vim.api.nvim_win_get_config(float)
+    local to_above = config.anchor:sub(1, 1) == 'N'
+    local lines_above = vim.api.nvim_win_call(src_win, function() return vim.fn.winline() - 1 end)
+    local lines_below = vim.api.nvim_win_get_height(src_win) - lines_above
+    local border = (config.border and config.border ~= 'none') and 2 or 0
+    local space = (to_above and lines_above or lines_below) - border
+
+    local wanted = vim.api.nvim_win_text_height(float, {}).all
+    vim.api.nvim_win_set_config(float, {
+      relative = 'cursor',
+      win = src_win,
+      anchor = (to_above and 'S' or 'N') .. config.anchor:sub(2),
+      row = to_above and 0 or 1,
+      col = config.anchor:sub(2) == 'E' and 1 or 0,
+      height = math.max(math.min(space, wanted), 1),
+    })
+  end, { desc = 'Flip floating window above/below cursor' })
+
   vim.keymap.set(
     'n',
     '<leader>td',
