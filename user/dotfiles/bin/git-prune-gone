@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Interactively delete local branches whose remote branch is gone
+# Delete local branches whose remote branch is gone
 # (typically squash-merged feature branches). Unpushed branches are kept.
 # Run as `git prune-gone`.
 
@@ -27,11 +27,8 @@ for line in "${branches[@]}"; do
     git log -1 --date=human "$branch" \
       --format=' %C(bold blue) %h%C(reset) %C(bold green)(%cd)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
 
-    read -r -p "Delete '$branch'? [Y/n] " answer </dev/tty
-    if [[ ${answer:-y} == [yY] ]]; then
-      git branch -D "$branch" >/dev/null
-      echo "  deleted (restore with: git branch $branch $hash)"
-    fi
+    git branch -D "$branch" >/dev/null
+    echo "  deleted (restore with: git branch $branch $hash)"
   fi
 done
 
