@@ -63,6 +63,7 @@ common.on_created_empty {
 }
 
 hl.window_rule { match = { class = 'microsoft-edge' }, workspace = 1 }
+hl.window_rule { match = { class = 'microsoft-edge' }, fullscreen_state = '0 -1' } -- full screen inside its own borders
 hl.window_rule { match = { class = 'xfreerdp' }, workspace = 6 }
 
 -- Zscaler Client Connector is a fixed size window (max size set by the app), so Hyprland floats it and
