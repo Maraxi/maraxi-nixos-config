@@ -72,7 +72,7 @@ in
 
         update-origin-head = "remote set-head origin -a";
         # switch to the remote's default branch and reset it to match origin
-        default = ''!f() { ref=$(git symbolic-ref --short refs/remotes/origin/HEAD) && git switch -C "''${ref#origin/}" "$ref"; }; f'';
+        default = ''!f() { ref=$(git symbolic-ref --short refs/remotes/origin/HEAD) && git fetch && git switch -C "''${ref#origin/}" "$ref"; }; f'';
 
         unstage = "reset HEAD --";
         s = "status";
