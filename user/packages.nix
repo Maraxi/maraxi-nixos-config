@@ -26,6 +26,8 @@ let
     eclint
     jq
     yq-go
+    hyperfine # cli benchmark tool
+    sd # sed alternative
 
     # System info and monitoring
     fastfetch
