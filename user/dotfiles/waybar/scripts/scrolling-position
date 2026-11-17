@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# Waybar module: position of the focused window in the scrolling layout, e.g. "(2/4)".
+# Only shown on the bar of the focused monitor and only when its active workspace uses the scrolling layout.
+# Runs continuously (one instance per bar) and refreshes on Hyprland events and on SIGUSR1.
+# Usage: scrolling-position           run the module
+#        scrolling-position refresh   make all running instances refresh, used by the layout toggle in common.lua
+#                                     because changing a workspace layout does not emit an event
+
+pids="$XDG_RUNTIME_DIR/waybar-scrolling-position"
+
+if [ "$1" = refresh ]; then
+  sleep 0.2 # the layout is applied after the Lua function that called this
+  for pid in "$pids"/*; do
+    [ -e "$pid" ] && { kill -USR1 "${pid##*/}" 2>/dev/null || rm -f "$pid"; }
+  done
+  exit 0
+fi
+
+socket="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+
+last=
+refresh() {
+  local out
+  out=$({ hyprctl activeworkspace -j; hyprctl activewindow -j; hyprctl clients -j; } | jq -cs --arg output "$WAYBAR_OUTPUT_NAME" '
+    . as [$ws, $win, $clients]
+    | if $ws.tiledLayout != "scrolling" or $ws.monitor != $output then {text: "", class: "inactive"}
+      else
+        # Windows in one column share the x position (x is the position on the scrolling strip)
+        ([$clients[] | select(.workspace.id == $ws.id and (.floating | not) and .mapped) | .at[0]] | unique) as $columns
+        | (if $win.workspace.id == $ws.id and ($win.floating | not) then ($columns | index($win.at[0])) else null end) as $index
+        | {text: "(\(if $index == null then "-" else $index + 1 end)/\($columns | length))",
+           class: "scrolling",
+           tooltip: "Scrolling layout: column \(if $index == null then "-" else $index + 1 end) of \($columns | length)"}
+      end')
+  [ "$out" = "$last" ] || printf '%s\n' "$out"
+  last=$out
+}
+
+coproc EVENTS { nc -U "$socket"; }
+mkdir -p "$pids" && touch "$pids/$$"
+trap 'kill $EVENTS_PID 2>/dev/null; rm -f "$pids/$$"' EXIT
+trap exit TERM INT HUP
+trap refresh USR1
+
+refresh
+while read -r -u "${EVENTS[0]}" -t 5 line || (($? > 128)); do
+  case "$line" in
+  workspace* | focusedmon* | activewindow* | openwindow* | closewindow* | movewindow* | changefloatingmode* | configreloaded*)
+    refresh
+    ;;
+  esac
+  line=
+done

@@ -6,7 +6,7 @@
   "exclusive": true,
   "passthrough": false,
 
-  "modules-left": [ "clock", "hyprland/workspaces", "hyprland/window" ],
+  "modules-left": [ "clock", "hyprland/workspaces", "custom/scrolling", "hyprland/window" ],
   "modules-center": [],
   "modules-right": [ "hyprland/submap", "custom/recording", "privacy", "idle_inhibitor", "tray", "custom/shokz", "wireplumber", "bluetooth", "network", "battery" ],
 
@@ -142,6 +142,14 @@
     "exec": "~/.config/waybar/scripts/recording-status",
     "interval": 60,
     "signal": 12,
+    "tooltip": true
+  },
+
+  // Position of the focused window in the scrolling layout, empty on other layouts
+  "custom/scrolling": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/scrolling-position",
     "tooltip": true
   },
 
