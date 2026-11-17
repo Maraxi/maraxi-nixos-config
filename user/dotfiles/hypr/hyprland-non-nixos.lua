@@ -52,7 +52,8 @@ common.setup {
 -- `default = true` is the workspace a monitor starts with at login, so the middle one gets 1 (not 3)
 hl.workspace_rule { workspace = '1', monitor = monitor_middle, default = true }
 hl.workspace_rule { workspace = '2', monitor = monitor_right, default = true }
-hl.workspace_rule { workspace = '6', monitor = monitor_right, layout = 'scrolling', gaps_in = 0 }
+hl.workspace_rule { workspace = '6', monitor = monitor_right }
+common.set_workspace_layout(6, 'scrolling')
 hl.workspace_rule { workspace = '8', monitor = monitor_integrated }
 hl.workspace_rule { workspace = '9', monitor = monitor_integrated }
 hl.workspace_rule { workspace = '10', monitor = monitor_integrated, default = true }

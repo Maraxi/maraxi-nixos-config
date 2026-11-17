@@ -15,6 +15,15 @@ local keyboard = require 'keyboard'
 M.mainMod = 'SUPER + ' -- "Windows" key as main modifier
 M.mehMod = 'SUPER + CTRL + SHIFT + '
 
+local gaps_in = 4
+-- gaps_in per layout, layouts not listed use the default gaps_in
+local layout_gaps_in = { scrolling = 0 }
+
+-- Sets the layout of a workspace together with the gaps that belong to that layout
+function M.set_workspace_layout(workspace, layout)
+  hl.workspace_rule { workspace = tostring(workspace), layout = layout, gaps_in = layout_gaps_in[layout] or gaps_in }
+end
+
 function M.notify(text) hl.notification.create { text = text, timeout = 15000, icon = 'info', font_size = 20 } end
 
 function M.setup(opts)
@@ -66,7 +75,7 @@ function M.setup(opts)
   -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
   hl.config {
     general = {
-      gaps_in = 4,
+      gaps_in = gaps_in,
       gaps_out = { top = 8, right = 15, bottom = 12, left = 15 },
 
       border_size = 1,
@@ -197,6 +206,16 @@ function M.setup(opts)
     function() hl.dispatch(hl.dsp.window.cycle_next { floating = not hl.get_active_window().floating }) end,
     { description = 'Switch focus between tiled and floating windows' }
   )
+
+  -- Toggle the layout of the active workspace only (dwindle <-> scrolling)
+  hl.bind(mainMod .. 'U', function()
+    local workspace = hl.get_active_workspace()
+    if not workspace then return end
+    local layout = workspace.tiled_layout == 'scrolling' and 'dwindle' or 'scrolling'
+    M.set_workspace_layout(workspace.id, layout)
+    -- The layout change emits no event and is applied after this function, so tell waybar to update its scrolling module
+    hl.exec_cmd '~/.config/waybar/scripts/scrolling-position refresh'
+  end, { description = 'Toggle dwindle/scrolling layout on the active workspace' })
 
   -- hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
   -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
