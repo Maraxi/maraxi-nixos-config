@@ -364,6 +364,8 @@ function M.setup(opts)
   -- Application specific settings
   hl.window_rule { match = { initial_title = 'Ghostty' }, focus_on_activate = false }
 
+  hl.window_rule { match = { initial_title = 'swappy' }, stay_focused = true }
+
   hl.window_rule {
     match = { class = 'org.keepassxc.KeePassXC', initial_title = [[.*\.kdbx \[Locked\] - KeePassXC]] },
     workspace = '9',
