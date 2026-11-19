@@ -41,6 +41,14 @@ function M.setup(opts)
 
   -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
   hl.on('hyprland.start', function()
+    -- Xwayland keeps the keymap of the compositor, but its _XKB_RULES_NAMES root property says "us".
+    -- Clients like FreeRDP read that property to detect the layout and announce a US keyboard to the server.
+    -- Show current layout: `xprop -root _XKB_RULES_NAMES`
+    -- Set layout: `setxkbmap -layout de -variant nodeadkeys -option -option "caps:escape,shift:both_capslock_cancel,compose:rctrl"`
+    local args = '-layout "' .. keyboard.layout .. '" -option -option "' .. keyboard.options .. '"'
+    if keyboard.variant ~= '' then args = args .. ' -variant "' .. keyboard.variant .. '"' end
+    hl.exec_cmd("sh -c 'for i in $(seq 20); do setxkbmap " .. args .. " 2>/dev/null && break; sleep 1; done'")
+
     hl.exec_cmd 'uwsm app -- waybar'
     for _, cmd in ipairs(opts.autostart or {}) do
       hl.exec_cmd(cmd)

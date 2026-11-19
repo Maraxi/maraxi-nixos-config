@@ -41,6 +41,7 @@ in
     wf-recorder
 
     wl-clipboard # wayland clipboard
+    setxkbmap # sets _XKB_RULES_NAMES of Xwayland (see hyprland.start in common.lua)
     wdisplays # arandr replacement
     # kanshi # hot switching output profiles
     kitty # default terminal for crashed hyprland sessions
