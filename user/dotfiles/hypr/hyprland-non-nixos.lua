@@ -66,6 +66,12 @@ common.on_created_empty {
 hl.window_rule { match = { class = 'microsoft-edge' }, workspace = 1 }
 hl.window_rule { match = { class = 'microsoft-edge' }, fullscreen_state = '0 -1' } -- full screen inside its own borders
 hl.window_rule { match = { class = 'xfreerdp' }, workspace = 6 }
+-- xfreerdp opens and gets focus, but ~200 ms later the focus jumps back to the window under the mouse.
+-- Focus it again after a fixed time.
+hl.on('window.open', function(w)
+  if w.class ~= 'xfreerdp' then return end
+  hl.timer(function() hl.dispatch(hl.dsp.focus { window = w }) end, { timeout = 300, type = 'oneshot' })
+end)
 
 -- Zscaler Client Connector is a fixed size window (max size set by the app), so Hyprland floats it and
 -- refuses to tile it. Dropping the size limit lets the float toggle work.
