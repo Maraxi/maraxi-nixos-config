@@ -8,6 +8,11 @@
         insert_final_newline = true;
         trim_trailing_whitespace = true;
       };
+      # Whitespace is significant: a context line of a hunk is " " + empty line.
+      # This also covers `git add -p` -> `e`, which edits `addp-hunk-edit.diff`.
+      "*.{diff,patch}" = {
+        trim_trailing_whitespace = false;
+      };
       "*.py" = {
         indent_size = 4;
         indent_style = "space";
