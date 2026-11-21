@@ -9,8 +9,22 @@ do
   vim.pack.add { { src = GH 'nvim-treesitter/nvim-treesitter', version = 'main' } }
 
   -- Ensure basic parsers are installed
-  local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+  local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'yaml' }
   require('nvim-treesitter').install(parsers)
+
+  -- Jump to the start of the closest ancestor node that begins on an earlier line
+  vim.keymap.set('n', '[p', function()
+    local node = vim.treesitter.get_node()
+    local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+    while node do
+      local r, c = node:start()
+      if r < row then
+        vim.api.nvim_win_set_cursor(0, { r + 1, c })
+        return
+      end
+      node = node:parent()
+    end
+  end, { desc = 'Jump to [P]arent treesitter node' })
 
   ---@param buf integer
   ---@param language string
