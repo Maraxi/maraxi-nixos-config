@@ -24,10 +24,13 @@ do
     -- Enable syntax highlighting and other treesitter features
     vim.treesitter.start(buf, language)
 
-    -- Enable treesitter based folds
+    -- Enable treesitter based folds if the language has a folds query (only for the current window)
     -- For more info on folds see `:help folds`
-    -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-    -- vim.wo.foldmethod = 'expr'
+    if vim.treesitter.query.get(language, 'folds') ~= nil and vim.api.nvim_get_current_buf() == buf then
+      vim.wo[0][0].foldmethod = 'expr'
+      vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+      vim.wo[0][0].foldlevel = 99
+    end
 
     -- Check if treesitter indentation is available for this language, and if so enable it
     -- in case there is no indent query, the indentexpr will fallback to the vim's built in one
