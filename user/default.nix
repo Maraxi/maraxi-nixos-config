@@ -7,7 +7,7 @@
             ./nixos/alacritty.nix
             ./nixos/firefox.nix
             ./nixos/hyprland.nix
-            ./nixos/nextcloud-sync.nix
+            # ./nixos/nextcloud-sync.nix
             ./nixos/ssh.nix
           ]
         else
