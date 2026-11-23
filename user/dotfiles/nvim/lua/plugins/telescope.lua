@@ -19,9 +19,17 @@ do
     --  All the info you're looking for is in `:help telescope.setup()`
     --
     defaults = {
+      layout_strategy = 'flex',
+      cycle_layout_list = { 'bottom_pane', 'horizontal', 'vertical' },
+      wrap_results = true,
+      path_display = { 'filename_first' },
       mappings = {
         -- <c-/> is hard to type on a German keyboard
-        i = { ['<C-h>'] = 'which_key' },
+        i = {
+          ['<C-h>'] = 'which_key',
+          ['<C-k>'] = require('telescope.actions.layout').toggle_preview,
+          ['<C-l>'] = require('telescope.actions.layout').cycle_layout_next,
+        },
         n = { ['<C-h>'] = 'which_key' },
       },
     },
