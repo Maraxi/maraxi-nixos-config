@@ -31,4 +31,12 @@ do
     pattern = { '*/.venv/*', '*/site-packages/*', '*/node_modules/*' },
     callback = function(ev) vim.bo[ev.buf].swapfile = false end,
   })
+
+  -- No diagnostics for third-party code and the Python stdlib (e.g. after go-to-definition).
+  -- The LSP servers stay attached, so navigation and hover keep working.
+  vim.api.nvim_create_autocmd({ 'BufNew', 'BufAdd' }, {
+    group = vim.api.nvim_create_augroup('NoDiagnosticsThirdParty', { clear = true }),
+    pattern = { '*/.venv/*', '*/site-packages/*', '*/node_modules/*', '*/share/uv/python/*' },
+    callback = function(ev) vim.diagnostic.enable(false, { bufnr = ev.buf }) end,
+  })
 end
