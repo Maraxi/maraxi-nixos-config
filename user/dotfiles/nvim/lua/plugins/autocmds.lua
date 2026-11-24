@@ -36,7 +36,7 @@ do
   -- The LSP servers stay attached, so navigation and hover keep working.
   vim.api.nvim_create_autocmd({ 'BufNew', 'BufAdd' }, {
     group = vim.api.nvim_create_augroup('NoDiagnosticsThirdParty', { clear = true }),
-    pattern = { '*/.venv/*', '*/site-packages/*', '*/node_modules/*', '*/share/uv/python/*' },
+    pattern = { '*/.venv/*', '*/site-packages/*', '*/node_modules/*', '*/share/uv/python/*', '*/.cache/ty/*' },
     callback = function(ev) vim.diagnostic.enable(false, { bufnr = ev.buf }) end,
   })
 end
