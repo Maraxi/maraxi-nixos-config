@@ -21,6 +21,7 @@
             browser
           ];
           "application/x-desktop" = editor;
+          "application/xml" = editor;
           "default-url-scheme-handler" = browser;
           "default-web-browser" = browser;
           "image/*" = image_viewer;
@@ -37,6 +38,8 @@
           "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
           "x-scheme-handler/unknown" = browser;
         };
+        # check mime with: `xdg-mime query filetype <file>`
+        # check default application `xdg-mime query default <mime/type>`
       in
       {
         enable = true;
